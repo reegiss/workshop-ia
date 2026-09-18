@@ -499,13 +499,58 @@
       grid-template-columns: 72px 1fr;
       gap: 16px;
       align-items: baseline;
-      padding: 18px 0 18px 20px;
+      padding: 13px 0 13px 20px;
       border-top: 1px solid var(--line);
       border-left: 6px solid var(--g, transparent);
     }
     .agenda-page { font: 600 22px/1 var(--mono); color: var(--blue); }
     .agenda strong { display: block; font-size: 32px; line-height: 1.2; font-weight: 800; color: var(--navy); }
     .agenda li span:last-child { display: block; margin-top: 4px; font-size: 24px; line-height: 1.35; color: var(--text); }
+    /* Slides de skills por plataforma */
+    .plat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .plat-card {
+      padding: 28px 28px 32px;
+      border: 1px solid var(--line);
+      border-top: 8px solid var(--blue);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .plat-card h2 { margin: 0; font: 600 22px/1.3 var(--mono); color: var(--navy); }
+    .plat-src { margin: 8px 0 16px; font: 400 17px/1.3 var(--mono); color: var(--muted); }
+    .plat-tag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font: 600 15px/1.4 var(--font);
+    }
+    .plat-desc { margin: 0; font-size: 24px; line-height: 1.35; color: var(--text); }
+    .plat-tip {
+      padding: 28px 28px 32px;
+      border-radius: var(--radius);
+      background: var(--navy);
+      color: var(--blue-light);
+    }
+    .plat-tip .deep-label { color: var(--blue-light); }
+    .plat-tip p:last-child { margin: 0; font-size: 24px; line-height: 1.4; }
+    .plat-tip code { color: var(--white); font-size: 0.9em; }
+    .plat-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      margin-top: 32px;
+      font-size: 22px;
+      color: var(--text);
+    }
+    .plat-foot code { color: var(--navy); font-weight: 600; }
+    .keep-case { text-transform: none; }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -542,6 +587,7 @@
             <li style="--g: var(--g3)"><span class="agenda-page">12</span><span><strong>Escala com agentes</strong><span>subagentes, paralelismo e worktrees</span></span></li>
             <li style="--g: var(--g4)"><span class="agenda-page">13</span><span><strong>Revisão e entrega</strong><span>code review, fechamento e novas skills</span></span></li>
             <li><span class="agenda-page">14</span><span><strong>O fluxo completo</strong><span>juntando tudo e como começar</span></span></li>
+            <li><span class="agenda-page">15</span><span><strong>Skills por plataforma</strong><span>iOS, Android e backend Java</span></span></li>
           </ol>
         </div>
       </div>
@@ -843,6 +889,45 @@ description: Use antes de qualquer
         </div>
         <p class="closing">Agentes rápidos + método = <em>software confiável</em>.</p>
       </div>
+    </section>
+    <section class="slide slide--light" id="s-ios" aria-label="Skills para iOS">
+      <p class="kicker">Skills por plataforma · 1 de 3</p>
+      <h1 class="title"><span class="keep-case">iOS</span> · <em>Swift</em></h1>
+      <div class="plat-grid">
+        <article class="plat-card"><h2>swiftui-pro</h2><p class="plat-src">twostraws/swiftui-agent-skill</p><p class="plat-desc">Revisa código SwiftUI: APIs modernas, manutenção e performance.</p></article>
+        <article class="plat-card"><h2>swiftui-expert-skill</h2><p class="plat-src">avdlee/swiftui-agent-skill</p><p class="plat-desc">Escreve e refatora SwiftUI: estado com <code>@Observable</code>, composição de views e listas.</p></article>
+        <article class="plat-card"><h2>swift-concurrency</h2><p class="plat-src">avdlee/swift-concurrency-agent-skill</p><p class="plat-desc">Diagnostica concorrência, troca callbacks por async/await e guia a migração para o Swift 6.</p></article>
+        <article class="plat-card"><h2>swift-testing-pro</h2><p class="plat-src">twostraws/swift-testing-agent-skill</p><p class="plat-desc">Escreve e revisa testes com o framework Swift Testing.</p></article>
+        <article class="plat-card"><h2>ios-accessibility</h2><p class="plat-src">dpearson2699/swift-ios-skills</p><p class="plat-desc">Constrói e audita acessibilidade: VoiceOver, Voice Control e Dynamic Type.</p></article>
+        <article class="plat-tip"><p class="deep-label">Combina com o superpowers</p><p><code>swift-testing-pro</code> + <code>test-driven-development</code>: o teste vem primeiro, já com as APIs do Swift Testing.</p></article>
+      </div>
+      <p class="plat-foot"><span>Instalar: <code>npx skills add https://github.com/{dono}/{repo} --skill {nome}</code></span><span>Revise o <code>SKILL.md</code> antes de instalar.</span></p>
+    </section>
+    <section class="slide slide--light" id="s-android" aria-label="Skills para Android">
+      <p class="kicker">Skills por plataforma · 2 de 3</p>
+      <h1 class="title">Android · <em>Kotlin</em></h1>
+      <div class="plat-grid">
+        <article class="plat-card"><h2>migrate-xml-views-<wbr>to-jetpack-compose</h2><p class="plat-src">android/skills<span class="plat-tag">oficial</span></p><p class="plat-desc">Roteiro guiado para migrar telas em XML para Jetpack Compose.</p></article>
+        <article class="plat-card"><h2>navigation-3</h2><p class="plat-src">android/skills<span class="plat-tag">oficial</span></p><p class="plat-desc">Instala e migra para o Navigation 3: deep links, múltiplas pilhas e diálogos.</p></article>
+        <article class="plat-card"><h2>edge-to-edge</h2><p class="plat-src">android/skills<span class="plat-tag">oficial</span></p><p class="plat-desc">Adapta apps Compose para a tela de borda a borda e corrige os problemas comuns.</p></article>
+        <article class="plat-card"><h2>kotlin-tooling-<wbr>java-to-kotlin</h2><p class="plat-src">kotlin/kotlin-agent-skills<span class="plat-tag">JetBrains</span></p><p class="plat-desc">Converte código Java em Kotlin idiomático.</p></article>
+        <article class="plat-card"><h2>kotlin-coroutines-flows</h2><p class="plat-src">affaan-m/ecc</p><p class="plat-desc">Coroutines e Flow: concorrência estruturada, StateFlow, erros e testes.</p></article>
+        <article class="plat-tip"><p class="deep-label">Combina com o superpowers</p><p><code>migrate-xml-views-to-jetpack-compose</code> + <code>writing-plans</code>: a migração vira um plano tela a tela.</p></article>
+      </div>
+      <p class="plat-foot"><span>Instalar: <code>npx skills add https://github.com/{dono}/{repo} --skill {nome}</code></span><span>Revise o <code>SKILL.md</code> antes de instalar.</span></p>
+    </section>
+    <section class="slide slide--light" id="s-java" aria-label="Skills para backend Java">
+      <p class="kicker">Skills por plataforma · 3 de 3</p>
+      <h1 class="title">Backend · <em>Java</em></h1>
+      <div class="plat-grid">
+        <article class="plat-card"><h2>java-springboot</h2><p class="plat-src">github/awesome-copilot<span class="plat-tag">GitHub</span></p><p class="plat-desc">Boas práticas para aplicações Spring Boot.</p></article>
+        <article class="plat-card"><h2>create-spring-boot-<wbr>java-project</h2><p class="plat-src">github/awesome-copilot<span class="plat-tag">GitHub</span></p><p class="plat-desc">Gera o esqueleto de um projeto Spring Boot em Java.</p></article>
+        <article class="plat-card"><h2>java-junit</h2><p class="plat-src">github/awesome-copilot<span class="plat-tag">GitHub</span></p><p class="plat-desc">Testes com JUnit 5, incluindo testes orientados a dados.</p></article>
+        <article class="plat-card"><h2>springboot-security</h2><p class="plat-src">affaan-m/ecc</p><p class="plat-desc">Spring Security: autenticação, autorização, validação, CSRF, segredos e rate limiting.</p></article>
+        <article class="plat-card"><h2>springboot-tdd</h2><p class="plat-src">affaan-m/ecc</p><p class="plat-desc">TDD com JUnit 5, Mockito, MockMvc, Testcontainers e JaCoCo.</p></article>
+        <article class="plat-tip"><p class="deep-label">Combina com o superpowers</p><p><code>springboot-security</code> + <code>requesting-code-review</code>: segurança revisada por um olhar independente antes do merge.</p></article>
+      </div>
+      <p class="plat-foot"><span>Instalar: <code>npx skills add https://github.com/{dono}/{repo} --skill {nome}</code></span><span>Revise o <code>SKILL.md</code> antes de instalar.</span></p>
     </section>
     <div class="progress" aria-hidden="true"></div>
     <div class="counter" aria-hidden="true">01 / 10</div>
