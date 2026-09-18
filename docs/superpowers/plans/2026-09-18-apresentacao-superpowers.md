@@ -28,7 +28,7 @@
 - **Modo de verificação:** abrir `index.html?check` faz a página medir todos os slides e escrever no `<body>`:
   - `data-checked="true"` quando termina;
   - `data-overflow="3,7"`: lista de slides com algum texto fora da área útil (vazio = tudo certo).
-- A área útil de um slide é o palco inteiro menos os 72px de baixo, onde ficam o contador e a barra de progresso. Elementos dentro de um contêiner com o atributo `data-bleed` (faixas de cor que vão até a borda) não são verificados.
+- A área útil de um slide é o palco inteiro menos os 72px de baixo, onde ficam o contador e a barra de progresso. O `?check` verifica todo o texto (linha a linha) e as caixas com fundo ou borda. Caixas com o atributo `data-bleed` (faixas de cor que vão até a borda) e suas descendentes podem encostar nas bordas, mas o texto dentro delas continua verificado. Texto dentro de `data-footer` pode ocupar a faixa do contador.
 - O CSS de componentes é inserido **imediatamente antes** da linha `      /* === fim dos componentes === */` dentro do `<style>`.
 - Para trocar um slide, substitua **o elemento `<section>` inteiro** com o `id` indicado (`s1` … `s10`).
 
@@ -556,7 +556,7 @@ Substituir a `<section … id="s1">` inteira por:
       <p class="kicker">Agentes &amp; Skills para desenvolvimento</p>
       <h1 class="title cover-title">Super<em>—</em><br>Powers</h1>
       <p class="lead cover-lead">Skills que ensinam agentes de IA a desenvolver como engenheiros</p>
-      <p class="cover-foot mono" data-bleed>skills.sh/obra</p>
+      <p class="cover-foot mono" data-footer>skills.sh/obra</p>
     </section>
 ```
 
