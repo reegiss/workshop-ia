@@ -696,6 +696,15 @@
     .plat-src { font-size: 19px; }
     .plat-desc, .plat-tip p:last-child { font-size: 28px; }
     .plat-foot { margin-top: 40px; font-size: 26px; }
+    .install-options { display: flex; flex-direction: column; gap: 10px; }
+    .howto-row .install-label { margin: 6px 0 0; font: 600 18px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .howto-row .install-label:first-child { margin-top: 0; }
+    #s-copilot .howto { gap: 18px; margin-top: 44px; }
+    #s-copilot .howto-row { padding: 22px 36px; }
+    #s-copilot .howto-row p { font-size: 28px; }
+    #s-copilot .howto-row .install-label { font-size: 18px; }
+    #s-copilot .howto-row pre { padding: 12px 22px; font-size: 24px; }
+    #s-copilot .howto-note { margin-top: 24px; font-size: 26px; }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -887,8 +896,13 @@ description: Use antes de qualquer
       <div class="howto">
         <div class="howto-row">
           <h2>Instalar</h2>
-          <pre><code>copilot plugin marketplace add obra/superpowers-marketplace
+          <div class="install-options">
+            <p class="install-label">Padrão do skills.sh</p>
+            <pre><code>npx skills add obra/superpowers -g -a github-copilot</code></pre>
+            <p class="install-label">Ou como plugin do Copilot CLI</p>
+            <pre><code>copilot plugin marketplace add obra/superpowers-marketplace
 copilot plugin install superpowers@superpowers-marketplace</code></pre>
+          </div>
         </div>
         <div class="howto-row">
           <h2>Conferir</h2>
