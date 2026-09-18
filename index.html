@@ -65,23 +65,29 @@
       color: var(--ink-2);
     }
     .slide > * { flex-shrink: 0; }
-    /* Transição entre slides: o atual esmaece parado; o próximo entra por cima, na direção da navegação */
+    /* Transição: o fundo é o mesmo em todos os slides, então ele fica parado e só o conteúdo troca.
+       O conteúdo atual esmaece; o próximo aparece em cascata curta, na direção da navegação. */
+    .stage { background: var(--navy); }
+    .slide--dark { background: transparent; color: var(--white); }
     .slide.is-active,
-    .slide.is-leaving { display: flex; will-change: opacity, transform; backface-visibility: hidden; }
-    .slide.is-active { z-index: 1; animation: slide-in-next 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-    .slide.is-leaving { z-index: 0; animation: slide-out 260ms ease-out both; pointer-events: none; }
-    .stage[data-dir="prev"] .slide.is-active { animation-name: slide-in-prev; }
-    .slide--dark { background: var(--navy); color: var(--white); }
-    .slide--light { background: linear-gradient(180deg, #FFFFFF 56%, #DCECFA 100%); }
+    .slide.is-leaving { display: flex; }
+    .slide.is-leaving { pointer-events: none; }
+    .slide.is-leaving > * { animation: content-out 160ms ease-in both; }
+    .slide.is-active > * { animation: content-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) 150ms both; }
+    .slide.is-active > :nth-child(2) { animation-delay: 200ms; }
+    .slide.is-active > :nth-child(n + 3) { animation-delay: 250ms; }
 
-    @keyframes slide-in-next { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
-    @keyframes slide-in-prev { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
-    @keyframes slide-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes content-in { from { opacity: 0; transform: translateX(var(--enter-x, 24px)); } to { opacity: 1; transform: none; } }
+    @keyframes content-out { from { opacity: 1; } to { opacity: 0; } }
+    .stage[data-dir="prev"] { --enter-x: -24px; }
+    /* Textos internos (passos, cards, linhas) entram um após o outro */
+    .slide.is-active .reveal { animation: content-in 380ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(300ms + var(--i, 0) * 70ms) both; }
     @media (prefers-reduced-motion: reduce) {
-      .slide.is-active { animation: none; }
+      .slide.is-active > * { animation: none; }
+      .slide.is-active .reveal { animation: none; }
       .slide.is-leaving { display: none; }
     }
-    .is-checking .slide.is-active { animation: none; }
+    .is-checking .slide.is-active > *, .is-checking .slide.is-active .reveal { animation: none; }
     .is-checking .slide.is-leaving { display: none; }
 
     .kicker {
@@ -1255,6 +1261,9 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       const STAGE_W = 1920;
       const STAGE_H = 1080;
       const SAFE_BOTTOM = 72; // espaço do contador e da barra de progresso
+      // Itens de texto que entram em cascata dentro do slide
+      const REVEAL_ITEMS = '.steps li, .problem, .rule, .howto-row, .plat-card, .plat-tip, .group-card, ' +
+        '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div';
 
       const stage = document.querySelector('.stage');
       const slides = [...document.querySelectorAll('.slide')];
@@ -1282,6 +1291,10 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         }
         slides.forEach((s, i) => s.classList.toggle('is-active', i === current - 1));
         const active = slides[current - 1];
+        active.querySelectorAll(REVEAL_ITEMS).forEach((el, i) => {
+          el.classList.add('reveal');
+          el.style.setProperty('--i', String(Math.min(i, 8)));
+        });
         stage.dataset.theme = active.classList.contains('slide--dark') ? 'dark' : 'light';
         counter.textContent = `${pad(current)} / ${pad(total)}`;
         progress.style.width = `${(current / total) * 100}%`;
