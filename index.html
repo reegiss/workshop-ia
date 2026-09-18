@@ -716,6 +716,21 @@
     #s10 .flow-step small { font-size: 19px; }
     .cmd-note { color: var(--muted); }
     .fm-author { margin-top: -12px; color: var(--ink); font-weight: 700; }
+    #s-lab1 .steps { margin-top: 36px; gap: 18px; }
+    #s-lab1 .steps li { font-size: 30px; }
+    #s-lab1 .steps li::before { width: 56px; height: 56px; font-size: 24px; }
+    #s-lab1 .steps li { grid-template-columns: 56px 1fr; }
+    .lab-story {
+      margin-top: 32px;
+      padding: 24px 32px;
+      border: 1px solid var(--card-line);
+      border-radius: var(--radius);
+      background: var(--card);
+    }
+    .lab-story .deep-label { margin-bottom: 10px; }
+    .lab-story-text { margin: 0; font-size: 30px; line-height: 1.35; color: var(--ink-2); }
+    .lab-story-text strong { color: var(--ink); }
+    .lab-story-json { margin: 12px 0 0; font-size: 22px; color: var(--ink); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -947,6 +962,11 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         <li><span>Cole o pedido da etapa 1 do guia (ele usa <code>/brainstorming</code> e traz a história).</span></li>
         <li><span><strong>Responda às perguntas</strong> e aprove o design.</span></li>
       </ol>
+      <div class="lab-story">
+        <p class="deep-label">A história</p>
+        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco.</p>
+        <p class="lab-story-json"><code>{"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}</code></p>
+      </div>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez.</p>
     </section>
     <section class="slide slide--dark lab" id="s-lab2" aria-label="Laboratório etapa 2">
