@@ -755,14 +755,28 @@ code, .mono { font-family: var(--mono); }
 /* Quem apresenta */
 #s-autor { justify-content: center; }
 .bio { display: grid; grid-template-columns: 360px 1fr; gap: 88px; align-items: center; }
+/* O aro gira; a foto fica parada */
 .avatar {
+  position: relative;
   width: 360px;
   height: 360px;
   padding: 9px;
   border-radius: 50%;
+}
+.avatar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
   background: conic-gradient(var(--g1) 0 25%, var(--g2) 0 50%, var(--g3) 0 75%, var(--g4) 0);
+  animation: ring-spin 12s linear infinite;
+}
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .avatar::before { animation: none; }
 }
 .avatar img {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;
