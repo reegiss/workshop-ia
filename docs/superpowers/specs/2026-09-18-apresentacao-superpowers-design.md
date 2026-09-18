@@ -1,7 +1,7 @@
 # Apresentação "Superpowers" — Design
 
 **Data:** 2026-09-18
-**Status:** aprovado pelo usuário
+**Status:** aprovado pelo usuário (tema visual revisado para a identidade Stefanini)
 
 ## Objetivo
 
@@ -18,7 +18,7 @@ de skills para desenvolvimento de software.
 
 - Arquivo único `index.html` na raiz do projeto, com CSS e JS embutidos, sem build
   e sem dependências de runtime.
-- Fontes carregadas do Google Fonts, com fallback para fontes do sistema. Offline,
+- Fontes carregadas do Google Fonts (Manrope e JetBrains Mono), com fallback para fontes do sistema. Offline,
   a apresentação continua funcional e legível.
 - Cada slide é um palco fixo de **1920×1080 (16:9)**, escalado via `transform:
   scale()` para caber na janela mantendo a proporção (letterbox com a cor de fundo).
@@ -36,21 +36,45 @@ de skills para desenvolvimento de software.
 - O slide atual fica no hash da URL (`#3`). Recarregar mantém a posição e um hash
   inválido ou fora do intervalo cai no slide 1.
 
-## Direção visual: editorial / ousado
+## Direção visual: identidade Stefanini, com composição ousada
 
-- **Paleta:** fundo papel `#F2EEE6`, tinta `#111111`, destaque vermelho-laranja
-  `#FF4A1C`. Uma cor por grupo de skills:
-  - Grupo 1, Pensar antes de codar: `#FF4A1C` (destaque)
-  - Grupo 2, Qualidade e disciplina: `#1F4DFF` (azul)
-  - Grupo 3, Escala com agentes: `#00A36C` (verde)
-  - Grupo 4, Revisão e entrega: `#111111` (preto, texto claro)
-- **Tipografia:**
-  - Títulos: fonte display condensada e pesada (Anton), muito grande (140–260px no
-    palco), em caixa alta.
-  - Texto: sans-serif (Inter), 32–40px no palco, frases curtas.
-  - Nomes de skills: monoespaçada (JetBrains Mono).
-- **Composição:** blocos de cor chapados, grid assimétrico, muito espaço vazio e no
-  máximo cerca de 40 palavras de texto corrido por slide.
+O público são desenvolvedores da Stefanini, então a apresentação segue a
+identidade de [stefanini.com/pt](https://stefanini.com/pt/). As cores foram
+extraídas do CSS do tema do site (`wp-content/themes/stefanini/css/style.min.css`).
+A composição continua ousada: tipografia grande, blocos de cor chapados e pouco texto.
+
+- **Paleta base:**
+  - Azul-marinho `#0B1641`: fundo dos slides escuros (capa, abertura e fecho) e cor
+    dos títulos nos slides claros.
+  - Azul Stefanini `#0067CC`: cor principal de destaque (links, palavras-chave,
+    barra de progresso).
+  - Azul escuro `#024589`: variação para hover e detalhes.
+  - Azul claro `#DCECFA`: gradiente dos fundos claros (`linear-gradient(180deg,
+    #FFFFFF 56%, #DCECFA 100%)`, igual ao do site).
+  - Cinza texto `#3C3C3E` e cinza secundário `#83868F`.
+  - Superfícies: `#FFFFFF` e `#F5F5F5`.
+- **Uma cor por grupo de skills (cores de acento do site):**
+  - Grupo 1, Pensar antes de codar: laranja `#FF692C`
+  - Grupo 2, Qualidade e disciplina: magenta `#C70160`
+  - Grupo 3, Escala com agentes: roxo `#6800D5`
+  - Grupo 4, Revisão e entrega: verde-petróleo `#157F75`
+- **Tipografia:** o site usa **Nexa** e **Infra**, fontes comerciais servidas por
+  um kit Adobe Fonts restrito ao domínio da Stefanini, que não carrega num arquivo
+  local. Substitutas:
+  - Títulos e texto: **Manrope** (Google Fonts), geométrica como a Nexa. Títulos em
+    peso 800, grandes (120–220px no palco); texto em peso 400/500, 32–40px.
+  - Nomes de skills e comandos: **JetBrains Mono**.
+  - A pilha de fontes lista `"nexa"` primeiro, então quem tiver a Nexa instalada verá
+    a fonte oficial.
+- **Formas:** cards com cantos arredondados (raio de cerca de 24px), chips de skill
+  em formato de pílula e setas/chevrons como elemento direcional, seguindo o site.
+- **Ritmo claro/escuro:** slides 1, 2 e 10 escuros (marinho); slides 3, 4 e 5 claros
+  (gradiente branco → azul claro); slides 6 a 9 claros, cada um com uma faixa grande
+  na cor do grupo.
+- **Sem logotipo:** a apresentação não usa o logo da Stefanini. Ele pode ser incluído
+  depois, se houver um arquivo oficial.
+- **Composição:** grid assimétrico, muito espaço vazio e no máximo cerca de 40
+  palavras de texto corrido por slide.
 - **Animação:** apenas uma transição curta de entrada (fade e leve deslocamento,
   cerca de 300ms), desativada com `prefers-reduced-motion`.
 
@@ -110,7 +134,7 @@ de skills para desenvolvimento de software.
   4. **Revisão e entrega:** `requesting-code-review`, `receiving-code-review`,
      `finishing-a-development-branch`, `writing-skills`, `using-superpowers`
 
-### 6. Grupo 1: Pensar antes de codar (laranja)
+### 6. Grupo 1: Pensar antes de codar (laranja `#FF692C`)
 Cada skill é mostrada como **Problema → O que o agente passa a fazer**:
 - `brainstorming`: pedido vago vira código errado → o agente faz perguntas uma a uma,
   propõe 2 ou 3 abordagens e só avança com um design aprovado.
@@ -120,7 +144,7 @@ Cada skill é mostrada como **Problema → O que o agente passa a fazer**:
   pontos de revisão.
 - Resultado: "Menos retrabalho: o código nasce do entendimento."
 
-### 7. Grupo 2: Qualidade e disciplina (azul)
+### 7. Grupo 2: Qualidade e disciplina (magenta `#C70160`)
 - `test-driven-development`: teste escrito depois só confirma o código → vermelho,
   verde, refatorar. O teste falha primeiro.
 - `systematic-debugging`: o bug é "consertado" no chute → reproduzir, isolar e
@@ -129,7 +153,7 @@ Cada skill é mostrada como **Problema → O que o agente passa a fazer**:
   com evidência (teste rodado, saída conferida).
 - Resultado: "Confiança: cada afirmação tem evidência."
 
-### 8. Grupo 3: Escala com agentes (verde)
+### 8. Grupo 3: Escala com agentes (roxo `#6800D5`)
 - `subagent-driven-development`: um agente só se perde em contexto longo → cada
   tarefa do plano vai para um subagente novo, com revisão entre tarefas.
 - `dispatching-parallel-agents`: problemas independentes resolvidos em fila →
@@ -138,7 +162,7 @@ Cada skill é mostrada como **Problema → O que o agente passa a fazer**:
   frente tem sua worktree isolada.
 - Resultado: "Mais trabalho em paralelo sem perder o controle."
 
-### 9. Grupo 4: Revisão e entrega (preto)
+### 9. Grupo 4: Revisão e entrega (verde-petróleo `#157F75`)
 - `requesting-code-review`: o agente revisando o próprio viés → pede revisão
   independente antes de integrar.
 - `receiving-code-review`: aceitar tudo sem pensar → avaliar cada sugestão com rigor
