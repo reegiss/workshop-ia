@@ -551,6 +551,36 @@
     }
     .plat-foot code { color: var(--navy); font-weight: 600; }
     .keep-case { text-transform: none; }
+    /* Slide chat isolado vs agente */
+    .versus {
+      display: grid;
+      grid-template-columns: 280px 1fr 1fr;
+      margin-top: 48px;
+    }
+    .versus > div { padding: 18px 28px; border-top: 1px solid var(--line); font-size: 26px; line-height: 1.35; }
+    .versus .vs-aspect { padding-left: 0; font: 600 20px/1.6 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .versus .vs-chat { color: var(--text); }
+    .versus .vs-agent { background: var(--white); color: var(--navy); font-weight: 600; }
+    .versus .vs-head { border-top: 0; padding-top: 28px; padding-bottom: 28px; }
+    .versus .vs-head.vs-agent { border-radius: var(--radius) var(--radius) 0 0; }
+    .versus .vs-last.vs-agent { border-radius: 0 0 var(--radius) var(--radius); }
+    .vs-head h2 { margin: 0 0 16px; font-size: 36px; font-weight: 800; color: var(--navy); }
+    .vs-head.vs-agent h2 { color: var(--blue); }
+    .loop { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .loop-node {
+      padding: 8px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      font: 600 20px/1.2 var(--mono);
+      color: var(--navy);
+    }
+    .vs-agent .loop-node { border-color: var(--blue); background: var(--blue-light); }
+    .loop-arrow { font: 800 26px/1 var(--font); color: var(--muted); }
+    .vs-agent .loop-arrow { color: var(--blue); }
+    .loop-note { margin: 12px 0 0; font-size: 20px; font-weight: 500; color: var(--muted); }
+    .vs-punch { margin: 36px 0 0; font-size: 34px; font-weight: 700; color: var(--navy); }
+    .vs-punch em { font-style: normal; color: var(--blue); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -574,20 +604,21 @@
           <p class="catalog-label">Contexto</p>
           <ol>
             <li><span class="agenda-page">03</span><span><strong>O problema</strong><span>rápido não é o mesmo que bom</span></span></li>
-            <li><span class="agenda-page">04</span><span><strong>O que é uma skill</strong><span>processo empacotado para o agente</span></span></li>
-            <li><span class="agenda-page">05</span><span><strong>obra e o skills.sh</strong><span>o autor e o catálogo</span></span></li>
-            <li><span class="agenda-page">06</span><span><strong>O mapa do superpowers</strong><span>14 skills em 4 momentos do trabalho</span></span></li>
+            <li><span class="agenda-page">04</span><span><strong>Chat isolado vs agente</strong><span>por que o agente trabalha diferente</span></span></li>
+            <li><span class="agenda-page">05</span><span><strong>O que é uma skill</strong><span>processo empacotado para o agente</span></span></li>
+            <li><span class="agenda-page">06</span><span><strong>obra e o skills.sh</strong><span>o autor e o catálogo</span></span></li>
+            <li><span class="agenda-page">07</span><span><strong>O mapa do superpowers</strong><span>14 skills em 4 momentos do trabalho</span></span></li>
           </ol>
         </div>
         <div>
           <p class="catalog-label">As skills</p>
           <ol>
-            <li style="--g: var(--g1)"><span class="agenda-page">07</span><span><strong>Pensar antes de codar</strong><span>brainstorming, writing-plans e executing-plans em detalhe</span></span></li>
-            <li style="--g: var(--g2)"><span class="agenda-page">11</span><span><strong>Qualidade e disciplina</strong><span>testes, depuração e verificação</span></span></li>
-            <li style="--g: var(--g3)"><span class="agenda-page">12</span><span><strong>Escala com agentes</strong><span>subagentes, paralelismo e worktrees</span></span></li>
-            <li style="--g: var(--g4)"><span class="agenda-page">13</span><span><strong>Revisão e entrega</strong><span>code review, fechamento e novas skills</span></span></li>
-            <li><span class="agenda-page">14</span><span><strong>O fluxo completo</strong><span>juntando tudo e como começar</span></span></li>
-            <li><span class="agenda-page">15</span><span><strong>Skills por plataforma</strong><span>iOS, Android e backend Java</span></span></li>
+            <li style="--g: var(--g1)"><span class="agenda-page">08</span><span><strong>Pensar antes de codar</strong><span>brainstorming, writing-plans e executing-plans em detalhe</span></span></li>
+            <li style="--g: var(--g2)"><span class="agenda-page">12</span><span><strong>Qualidade e disciplina</strong><span>testes, depuração e verificação</span></span></li>
+            <li style="--g: var(--g3)"><span class="agenda-page">13</span><span><strong>Escala com agentes</strong><span>subagentes, paralelismo e worktrees</span></span></li>
+            <li style="--g: var(--g4)"><span class="agenda-page">14</span><span><strong>Revisão e entrega</strong><span>code review, fechamento e novas skills</span></span></li>
+            <li><span class="agenda-page">15</span><span><strong>O fluxo completo</strong><span>juntando tudo e como começar</span></span></li>
+            <li><span class="agenda-page">16</span><span><strong>Skills por plataforma</strong><span>iOS, Android e backend Java</span></span></li>
           </ol>
         </div>
       </div>
@@ -603,6 +634,29 @@
         <article class="problem"><p>Diz “pronto” sem ter verificado</p></article>
       </div>
       <p class="punchline">E se desse para ensinar <em>processo</em> ao agente?</p>
+    </section>
+    <section class="slide slide--light" id="s-agentes" aria-label="Chat isolado vs agente">
+      <p class="kicker">Conceito</p>
+      <h1 class="title">Chat isolado vs <em>agente</em></h1>
+      <div class="versus">
+        <div class="vs-aspect vs-head"></div>
+        <div class="vs-chat vs-head">
+          <h2>Chat isolado</h2>
+          <div class="loop"><span class="loop-node">você</span><span class="loop-arrow" aria-hidden="true">⇄</span><span class="loop-node">chat</span></div>
+          <p class="loop-note">uma pergunta, uma resposta</p>
+        </div>
+        <div class="vs-agent vs-head">
+          <h2>Agente</h2>
+          <div class="loop"><span class="loop-node">planeja</span><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-node">age</span><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-node">observa</span><span class="loop-arrow" aria-hidden="true">↻</span></div>
+          <p class="loop-note">repete até cumprir o objetivo</p>
+        </div>
+        <div class="vs-aspect">Contexto</div><div class="vs-chat">Só o que você cola na conversa.</div><div class="vs-agent">Lê o repositório: código, docs e histórico.</div>
+        <div class="vs-aspect">Ações</div><div class="vs-chat">Responde com texto.</div><div class="vs-agent">Edita arquivos e roda comandos.</div>
+        <div class="vs-aspect">Verificação</div><div class="vs-chat">Você testa depois, por conta própria.</div><div class="vs-agent">Roda os testes, lê o erro e corrige.</div>
+        <div class="vs-aspect">Continuidade</div><div class="vs-chat">Cada conversa começa do zero.</div><div class="vs-agent">Segue as instruções e as skills do projeto.</div>
+        <div class="vs-aspect">Seu papel</div><div class="vs-chat">Copiar, colar e executar.</div><div class="vs-agent vs-last">Definir o objetivo e revisar o resultado.</div>
+      </div>
+      <p class="vs-punch">Skills entram nesse ciclo: dizem ao agente <em>como</em> trabalhar a cada volta.</p>
     </section>
     <section class="slide slide--light" id="s3" aria-label="O que é uma skill">
       <p class="kicker">Conceito</p>
