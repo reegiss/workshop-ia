@@ -24,6 +24,13 @@
       --g2: #C70160;
       --g3: #6800D5;
       --g4: #157F75;
+      /* Tema único (fundo azul-marinho em todos os slides) */
+      --ink: #FFFFFF;
+      --ink-2: #DCECFA;
+      --accent: #3D8FE0;
+      --card: rgba(220, 236, 250, 0.07);
+      --card-line: rgba(220, 236, 250, 0.18);
+      --panel: #060D2B;
       --radius: 24px;
       --font: "nexa", "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
       --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -55,7 +62,7 @@
       flex-direction: column;
       padding: 96px 120px 120px;
       overflow: hidden;
-      color: var(--text);
+      color: var(--ink-2);
     }
     .slide > * { flex-shrink: 0; }
     .slide.is-active { display: flex; animation: enter 300ms ease-out; }
@@ -76,7 +83,7 @@
       font: 600 24px/1 var(--mono);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: var(--accent);
     }
     .slide--dark .kicker { color: var(--blue-light); }
 
@@ -87,9 +94,9 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: var(--ink);
     }
-    .title em { font-style: normal; color: var(--blue); }
+    .title em { font-style: normal; color: var(--accent); }
     .slide--dark .title { color: var(--white); }
 
     .lead {
@@ -98,9 +105,9 @@
       font-size: 36px;
       line-height: 1.4;
       font-weight: 500;
-      color: var(--text);
+      color: var(--ink-2);
     }
-    .lead strong { color: var(--navy); font-weight: 800; }
+    .lead strong { color: var(--ink); font-weight: 800; }
     .slide--dark .lead { color: var(--blue-light); }
     .slide--dark .lead strong { color: var(--white); }
 
@@ -135,7 +142,7 @@
     /* A capa é escrita como o frontmatter de um SKILL.md */
     .cover-file { margin: 0 0 36px; font-size: 24px; color: var(--muted); }
     .cover-file strong { font-weight: 600; color: var(--white); }
-    .fm-rule { margin: 0; font-size: 32px; line-height: 1; color: var(--blue); }
+    .fm-rule { margin: 0; font-size: 32px; line-height: 1; color: var(--accent); }
     .fm-key { margin: 28px 0 12px; font-size: 26px; color: var(--muted); }
     .fm-line {
       max-width: 1150px;
@@ -179,9 +186,9 @@
     }
     .problem {
       padding: 32px;
-      border: 1px solid rgba(220, 236, 250, 0.18);
+      border: 1px solid var(--card-line);
       border-radius: var(--radius);
-      background: rgba(220, 236, 250, 0.08);
+      background: var(--card);
     }
     .problem p {
       margin: 0;
@@ -206,12 +213,12 @@
       margin-top: 48px;
     }
     .concept .lead { margin-top: 0; }
-    .lead code { font-size: 0.85em; color: var(--blue); }
+    .lead code { font-size: 0.85em; color: var(--accent); }
     .code-card {
       margin: 32px 0 0;
       padding: 32px 40px;
       border-radius: var(--radius);
-      background: var(--navy);
+      background: var(--panel);
       color: var(--blue-light);
       font: 400 26px/1.5 var(--mono);
       white-space: pre;
@@ -219,13 +226,13 @@
     .compare-list { display: flex; flex-direction: column; gap: 20px; }
     .compare {
       padding: 24px 32px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-radius: var(--radius);
-      background: var(--white);
+      background: var(--card);
     }
-    .compare h2 { margin: 0 0 6px; font-size: 30px; font-weight: 800; color: var(--navy); }
-    .compare p { margin: 0; font-size: 26px; line-height: 1.35; color: var(--text); }
-    .compare--skill { border-color: var(--blue); background: var(--blue); }
+    .compare h2 { margin: 0 0 6px; font-size: 30px; font-weight: 800; color: var(--ink); }
+    .compare p { margin: 0; font-size: 26px; line-height: 1.35; color: var(--ink-2); }
+    .compare--skill { border-color: var(--accent); background: var(--blue); }
     .compare--skill h2, .compare--skill p { color: var(--white); }
 
     /* Slide 4 — obra e skills.sh */
@@ -238,12 +245,12 @@
     .catalog-intro { display: flex; flex-direction: column; gap: 24px; }
     .info-card {
       padding: 32px 40px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-radius: var(--radius);
-      background: var(--white);
+      background: var(--card);
     }
-    .info-card h2 { margin: 0 0 12px; font-size: 36px; font-weight: 600; color: var(--blue); }
-    .info-card p { margin: 0; font-size: 28px; line-height: 1.4; color: var(--text); }
+    .info-card h2 { margin: 0 0 12px; font-size: 36px; font-weight: 600; color: var(--accent); }
+    .info-card p { margin: 0; font-size: 28px; line-height: 1.4; color: var(--ink-2); }
     .catalog-label {
       margin: 0 0 8px;
       font: 600 22px/1 var(--mono);
@@ -257,10 +264,10 @@
       gap: 24px;
       align-items: baseline;
       padding: 18px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--card-line);
     }
-    .pkg code { font-size: 26px; font-weight: 600; color: var(--navy); }
-    .pkg span { font-size: 26px; line-height: 1.35; color: var(--text); }
+    .pkg code { font-size: 26px; font-weight: 600; color: var(--ink); }
+    .pkg span { font-size: 26px; line-height: 1.35; color: var(--ink-2); }
     .pill {
       display: inline-block;
       margin: 32px 0 0;
@@ -281,20 +288,20 @@
     }
     .group-card {
       padding: 24px 32px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-top: 12px solid var(--g);
       border-radius: var(--radius);
-      background: var(--white);
+      background: var(--card);
     }
-    .group-card h2 { margin: 0 0 16px; font-size: 32px; font-weight: 800; color: var(--navy); }
-    .group-card h2 .mono { margin-right: 12px; color: var(--g-ink, var(--g)); }
+    .group-card h2 { margin: 0 0 16px; font-size: 32px; font-weight: 800; color: var(--ink); }
+    .group-card h2 .mono { margin-right: 12px; color: var(--ink-2); }
     .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
     .chip {
       padding: 8px 18px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-radius: 999px;
-      background: var(--surface);
-      color: var(--navy);
+      background: var(--card);
+      color: var(--ink);
       font: 600 20px/1.2 var(--mono);
     }
     /* Slides 6 a 9 — grupos */
@@ -337,15 +344,17 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .skill-row { row-gap: 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .skill-row { row-gap: 8px; padding-top: 24px; border-top: 1px solid var(--card-line); }
     .skill-name {
       grid-column: 1 / -1;
       margin: 0;
+      padding-left: 16px;
+      border-left: 6px solid var(--g);
       font: 600 30px/1.2 var(--mono);
-      color: var(--g-ink, var(--g));
+      color: var(--ink);
     }
     .skill-before { margin: 0; font-size: 26px; line-height: 1.35; color: var(--muted); }
-    .skill-after { margin: 0; font-size: 28px; line-height: 1.35; font-weight: 500; color: var(--navy); }
+    .skill-after { margin: 0; font-size: 28px; line-height: 1.35; font-weight: 500; color: var(--ink); }
     .slide--compact .group-body { gap: 18px; }
     .slide--compact .skill-row { padding-top: 16px; }
     .slide--compact .skill-name { font-size: 26px; }
@@ -366,7 +375,7 @@
       padding: 20px 20px 24px;
       border-top: 8px solid var(--g);
       border-radius: 16px;
-      background: rgba(220, 236, 250, 0.08);
+      background: var(--card);
     }
     .flow-step > span {
       display: block;
@@ -406,8 +415,8 @@
     .code-card--dark {
       margin-top: 16px;
       padding: 24px 32px;
-      border: 1px solid rgba(220, 236, 250, 0.2);
-      background: rgba(220, 236, 250, 0.08);
+      border: 1px solid var(--card-line);
+      background: var(--card);
       color: var(--white);
       font-size: 24px;
     }
@@ -418,7 +427,7 @@
     .closing { margin: 0; font-size: 52px; line-height: 1.1; font-weight: 800; color: var(--white); }
     .closing em { font-style: normal; color: var(--g1); }
     /* Slides de detalhe do grupo 1 */
-    .deep-title { margin: 0; font: 600 96px/1 var(--mono); letter-spacing: -0.02em; color: var(--navy); }
+    .deep-title { margin: 0; font: 600 96px/1 var(--mono); letter-spacing: -0.02em; color: var(--ink); }
     .deep {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -432,29 +441,29 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .deep-text { margin: 0 0 36px; font-size: 30px; line-height: 1.4; color: var(--text); }
+    .deep-text { margin: 0 0 36px; font-size: 30px; line-height: 1.4; color: var(--ink-2); }
     .deep-rule {
       margin: 0 0 36px;
       padding: 24px 32px;
       border-left: 8px solid var(--g);
       border-radius: 0 16px 16px 0;
-      background: var(--white);
+      background: var(--card);
       font-size: 30px;
       line-height: 1.35;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--ink);
     }
     .deep-path {
       display: inline-block;
       margin: 0 0 36px;
       padding: 10px 18px;
       border-radius: 12px;
-      background: var(--navy);
+      background: var(--panel);
       color: var(--blue-light);
       font: 400 22px/1.3 var(--mono);
     }
-    .deep-here { margin: 0; font-size: 24px; line-height: 1.45; color: var(--text); }
-    .deep-here code { font-size: 0.9em; color: var(--navy); }
+    .deep-here { margin: 0; font-size: 24px; line-height: 1.45; color: var(--ink-2); }
+    .deep-here code { font-size: 0.9em; color: var(--ink); }
     .steps {
       display: flex;
       flex-direction: column;
@@ -472,7 +481,7 @@
       counter-increment: step;
       font-size: 28px;
       line-height: 1.35;
-      color: var(--text);
+      color: var(--ink-2);
     }
     .steps li::before {
       content: counter(step);
@@ -485,7 +494,7 @@
       color: var(--on-g, var(--white));
       font: 600 24px/1 var(--mono);
     }
-    .steps strong { font-weight: 800; color: var(--navy); }
+    .steps strong { font-weight: 800; color: var(--ink); }
     /* Slide 2 — roteiro */
     .agenda {
       display: grid;
@@ -500,12 +509,12 @@
       gap: 16px;
       align-items: baseline;
       padding: 13px 0 13px 20px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--card-line);
       border-left: 6px solid var(--g, transparent);
     }
-    .agenda-page { font: 600 22px/1 var(--mono); color: var(--blue); }
-    .agenda strong { display: block; font-size: 32px; line-height: 1.2; font-weight: 800; color: var(--navy); }
-    .agenda li span:last-child { display: block; margin-top: 4px; font-size: 24px; line-height: 1.35; color: var(--text); }
+    .agenda-page { font: 600 22px/1 var(--mono); color: var(--accent); }
+    .agenda strong { display: block; font-size: 32px; line-height: 1.2; font-weight: 800; color: var(--ink); }
+    .agenda li span:last-child { display: block; margin-top: 4px; font-size: 24px; line-height: 1.35; color: var(--ink-2); }
     /* Slides de skills por plataforma */
     .plat-grid {
       display: grid;
@@ -515,12 +524,12 @@
     }
     .plat-card {
       padding: 28px 28px 32px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-top: 8px solid var(--blue);
       border-radius: var(--radius);
-      background: var(--white);
+      background: var(--card);
     }
-    .plat-card h2 { margin: 0; font: 600 22px/1.3 var(--mono); color: var(--navy); }
+    .plat-card h2 { margin: 0; font: 600 22px/1.3 var(--mono); color: var(--ink); }
     .plat-src { margin: 8px 0 16px; font: 400 17px/1.3 var(--mono); color: var(--muted); }
     .plat-tag {
       display: inline-block;
@@ -531,11 +540,11 @@
       color: var(--blue-dark);
       font: 600 15px/1.4 var(--font);
     }
-    .plat-desc { margin: 0; font-size: 24px; line-height: 1.35; color: var(--text); }
+    .plat-desc { margin: 0; font-size: 24px; line-height: 1.35; color: var(--ink-2); }
     .plat-tip {
       padding: 28px 28px 32px;
       border-radius: var(--radius);
-      background: var(--navy);
+      background: var(--panel);
       color: var(--blue-light);
     }
     .plat-tip .deep-label { color: var(--blue-light); }
@@ -547,9 +556,9 @@
       gap: 32px;
       margin-top: 32px;
       font-size: 22px;
-      color: var(--text);
+      color: var(--ink-2);
     }
-    .plat-foot code { color: var(--navy); font-weight: 600; }
+    .plat-foot code { color: var(--ink); font-weight: 600; }
     .keep-case { text-transform: none; }
     /* Slide chat isolado vs agente */
     .versus {
@@ -557,30 +566,30 @@
       grid-template-columns: 280px 1fr 1fr;
       margin-top: 48px;
     }
-    .versus > div { padding: 18px 28px; border-top: 1px solid var(--line); font-size: 26px; line-height: 1.35; }
+    .versus > div { padding: 18px 28px; border-top: 1px solid var(--card-line); font-size: 26px; line-height: 1.35; }
     .versus .vs-aspect { padding-left: 0; font: 600 20px/1.6 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-    .versus .vs-chat { color: var(--text); }
-    .versus .vs-agent { background: var(--white); color: var(--navy); font-weight: 600; }
+    .versus .vs-chat { color: var(--ink-2); }
+    .versus .vs-agent { background: var(--card); color: var(--ink); font-weight: 600; }
     .versus .vs-head { border-top: 0; padding-top: 28px; padding-bottom: 28px; }
     .versus .vs-head.vs-agent { border-radius: var(--radius) var(--radius) 0 0; }
     .versus .vs-last.vs-agent { border-radius: 0 0 var(--radius) var(--radius); }
-    .vs-head h2 { margin: 0 0 16px; font-size: 36px; font-weight: 800; color: var(--navy); }
-    .vs-head.vs-agent h2 { color: var(--blue); }
+    .vs-head h2 { margin: 0 0 16px; font-size: 36px; font-weight: 800; color: var(--ink); }
+    .vs-head.vs-agent h2 { color: var(--accent); }
     .loop { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .loop-node {
       padding: 8px 18px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-radius: 999px;
-      background: var(--surface);
+      background: var(--card);
       font: 600 20px/1.2 var(--mono);
-      color: var(--navy);
+      color: var(--ink);
     }
-    .vs-agent .loop-node { border-color: var(--blue); background: var(--blue-light); }
+    .vs-agent .loop-node { border-color: var(--accent); background: var(--blue-light); }
     .loop-arrow { font: 800 26px/1 var(--font); color: var(--muted); }
-    .vs-agent .loop-arrow { color: var(--blue); }
+    .vs-agent .loop-arrow { color: var(--accent); }
     .loop-note { margin: 12px 0 0; font-size: 20px; font-weight: 500; color: var(--muted); }
-    .vs-punch { margin: 36px 0 0; font-size: 34px; font-weight: 700; color: var(--navy); }
-    .vs-punch em { font-style: normal; color: var(--blue); }
+    .vs-punch { margin: 36px 0 0; font-size: 34px; font-weight: 700; color: var(--ink); }
+    .vs-punch em { font-style: normal; color: var(--accent); }
     /* Listas numeradas em slides escuros */
     .slide--dark .steps li { color: var(--blue-light); }
     .slide--dark .steps strong { color: var(--white); }
@@ -595,36 +604,36 @@
       gap: 32px;
       align-items: center;
       padding: 24px 32px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-radius: var(--radius);
-      background: var(--white);
+      background: var(--card);
     }
-    .howto-row h2 { margin: 0; font-size: 32px; font-weight: 800; color: var(--navy); }
-    .howto-row p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--text); }
+    .howto-row h2 { margin: 0; font-size: 32px; font-weight: 800; color: var(--ink); }
+    .howto-row p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--ink-2); }
     .howto-row pre {
       margin: 0;
       padding: 16px 24px;
       border-radius: 14px;
-      background: var(--navy);
+      background: var(--panel);
       color: var(--white);
       font: 400 24px/1.6 var(--mono);
       white-space: pre;
     }
-    .howto-note { margin: 28px 0 0; font-size: 24px; color: var(--text); }
-    .howto-note code { color: var(--navy); font-weight: 600; }
+    .howto-note { margin: 28px 0 0; font-size: 24px; color: var(--ink-2); }
+    .howto-note code { color: var(--ink); font-weight: 600; }
 
     /* Regras do laboratório */
     .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
     .rule {
       padding: 28px 32px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--card-line);
       border-left: 8px solid var(--blue);
       border-radius: 0 var(--radius) var(--radius) 0;
-      background: var(--white);
+      background: var(--card);
     }
-    .rule h2 { margin: 0 0 10px; font-size: 32px; font-weight: 800; color: var(--navy); }
-    .rule p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--text); }
-    .rule code { color: var(--navy); font-weight: 600; }
+    .rule h2 { margin: 0 0 10px; font-size: 32px; font-weight: 800; color: var(--ink); }
+    .rule p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--ink-2); }
+    .rule code { color: var(--ink); font-weight: 600; }
     /* Laboratório */
     .lab-head { display: flex; align-items: baseline; justify-content: space-between; }
     .lab-time {
@@ -653,6 +662,18 @@
     .questions { margin: auto 0 0; align-self: flex-end; font-size: 88px; font-weight: 800; color: var(--white); }
     .code-card--sm { font-size: 20px; }
     .lab .steps li, .next-steps li, .appendix-list li { align-items: center; }
+    /* Tema único: destaques */
+    .versus .vs-agent { background: rgba(0, 103, 204, 0.16); }
+    .vs-agent .loop-node { border-color: var(--accent); background: rgba(0, 103, 204, 0.3); }
+    .plat-tip { border: 1px solid var(--card-line); }
+    /* Tema único: slides de grupo com painel escuro e filete na cor do grupo */
+    .group-band {
+      background: var(--card);
+      border-right: 1px solid var(--card-line);
+      box-shadow: inset 14px 0 0 var(--g);
+      color: var(--ink);
+    }
+    .group-result { color: var(--ink-2); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -668,7 +689,7 @@
       <p class="fm-rule mono" aria-hidden="true">---</p>
       <p class="cover-foot mono" data-footer>Agentes &amp; Skills para desenvolvimento · skills.sh/obra</p>
     </section>
-    <section class="slide slide--light" id="s-roteiro" aria-label="Roteiro">
+    <section class="slide slide--dark" id="s-roteiro" aria-label="Roteiro">
       <p class="kicker">Roteiro · 60 minutos</p>
       <h1 class="title">O que vamos <em>fazer</em></h1>
       <div class="agenda">
@@ -705,7 +726,7 @@
       </div>
       <p class="punchline">E se desse para ensinar <em>processo</em> ao agente?</p>
     </section>
-    <section class="slide slide--light" id="s-agentes" aria-label="Chat isolado vs agente">
+    <section class="slide slide--dark" id="s-agentes" aria-label="Chat isolado vs agente">
       <p class="kicker">Conceito</p>
       <h1 class="title">Chat isolado vs <em>agente</em></h1>
       <div class="versus">
@@ -728,7 +749,7 @@
       </div>
       <p class="vs-punch">Skills entram nesse ciclo: dizem ao agente <em>como</em> trabalhar a cada volta.</p>
     </section>
-    <section class="slide slide--light" id="s3" aria-label="O que é uma skill">
+    <section class="slide slide--dark" id="s3" aria-label="O que é uma skill">
       <p class="kicker">Conceito</p>
       <h1 class="title">Skill = processo<br><em>empacotado</em></h1>
       <div class="concept">
@@ -747,7 +768,7 @@ description: Use antes de qualquer
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s5" aria-label="Mapa do superpowers">
+    <section class="slide slide--dark" id="s5" aria-label="Mapa do superpowers">
       <p class="kicker">O mapa do superpowers</p>
       <h1 class="title">14 skills,<br>4 <em>momentos</em> do trabalho</h1>
       <div class="groups">
@@ -787,7 +808,7 @@ description: Use antes de qualquer
         </article>
       </div>
     </section>
-    <section class="slide slide--light slide--group" id="s6" aria-label="Pensar antes de codar" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+    <section class="slide slide--dark slide--group" id="s6" aria-label="Pensar antes de codar" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
       <aside class="group-band" data-bleed>
         <span class="group-num">01</span>
         <h1 class="group-title">Pensar antes de codar</h1>
@@ -812,7 +833,7 @@ description: Use antes de qualquer
         </article>
       </div>
     </section>
-    <section class="slide slide--light" id="s6-brainstorming" aria-label="brainstorming em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+    <section class="slide slide--dark" id="s6-brainstorming" aria-label="brainstorming em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
       <p class="kicker">Pensar antes de codar · em detalhe</p>
       <h1 class="deep-title">brainstorming</h1>
       <div class="deep">
@@ -838,7 +859,7 @@ description: Use antes de qualquer
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s-copilot" aria-label="Superpowers no Copilot CLI">
+    <section class="slide slide--dark" id="s-copilot" aria-label="Superpowers no Copilot CLI">
       <p class="kicker">Na prática</p>
       <h1 class="title">Superpowers no <em>Copilot CLI</em></h1>
       <div class="howto">
@@ -858,7 +879,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       </div>
       <p class="howto-note">Skills avulsas: <code>.github/skills/</code> no repositório ou <code>~/.copilot/skills/</code> na sua máquina.</p>
     </section>
-    <section class="slide slide--light" id="s-regras" aria-label="Regras do laboratório">
+    <section class="slide slide--dark" id="s-regras" aria-label="Regras do laboratório">
       <p class="kicker">Antes de começar</p>
       <h1 class="title">Regras do <em>laboratório</em></h1>
       <div class="rules">
@@ -901,7 +922,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       </ol>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> a saída do teste passando. Não terminou? O guia mostra como continuar.</p>
     </section>
-    <section class="slide slide--light slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
+    <section class="slide slide--dark slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
       <aside class="group-band" data-bleed>
         <span class="group-num">02</span>
         <h1 class="group-title">Qualidade e disciplina</h1>
@@ -926,7 +947,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </article>
       </div>
     </section>
-    <section class="slide slide--light slide--group" id="s8" aria-label="Escala com agentes" style="--g: var(--g3)">
+    <section class="slide slide--dark slide--group" id="s8" aria-label="Escala com agentes" style="--g: var(--g3)">
       <aside class="group-band" data-bleed>
         <span class="group-num">03</span>
         <h1 class="group-title">Escala com agentes</h1>
@@ -951,7 +972,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </article>
       </div>
     </section>
-    <section class="slide slide--light slide--group slide--compact" id="s9" aria-label="Revisão e entrega" style="--g: var(--g4)">
+    <section class="slide slide--dark slide--group slide--compact" id="s9" aria-label="Revisão e entrega" style="--g: var(--g4)">
       <aside class="group-band" data-bleed>
         <span class="group-num">04</span>
         <h1 class="group-title">Revisão e entrega</h1>
@@ -1009,7 +1030,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         <p class="closing">Agentes rápidos + método = <em>software confiável</em>.</p>
       </div>
     </section>
-    <section class="slide slide--light" id="s-cuidados" aria-label="Cuidados e limites">
+    <section class="slide slide--dark" id="s-cuidados" aria-label="Cuidados e limites">
       <p class="kicker">Com os pés no chão</p>
       <h1 class="title">Cuidados e <em>limites</em></h1>
       <div class="rules">
@@ -1040,7 +1061,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         <li><span><strong>Skills por plataforma</strong> — iOS, Android e backend Java</span></li>
       </ol>
     </section>
-    <section class="slide slide--light" id="s4" aria-label="obra e o skills.sh">
+    <section class="slide slide--dark" id="s4" aria-label="obra e o skills.sh">
       <p class="kicker">Autor e catálogo</p>
       <h1 class="title">Um catálogo<br>de <em>métodos</em></h1>
       <div class="catalog">
@@ -1058,7 +1079,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s6-writing-plans" aria-label="writing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+    <section class="slide slide--dark" id="s6-writing-plans" aria-label="writing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
       <p class="kicker">Pensar antes de codar · em detalhe</p>
       <h1 class="deep-title">writing-plans</h1>
       <div class="deep">
@@ -1084,7 +1105,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s6-executing-plans" aria-label="executing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+    <section class="slide slide--dark" id="s6-executing-plans" aria-label="executing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
       <p class="kicker">Pensar antes de codar · em detalhe</p>
       <h1 class="deep-title">executing-plans</h1>
       <div class="deep">
@@ -1109,7 +1130,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s-ios" aria-label="Skills para iOS">
+    <section class="slide slide--dark" id="s-ios" aria-label="Skills para iOS">
       <p class="kicker">Skills por plataforma · 1 de 3</p>
       <h1 class="title"><span class="keep-case">iOS</span> · <em>Swift</em></h1>
       <div class="plat-grid">
@@ -1122,7 +1143,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       </div>
       <p class="plat-foot"><span>No Copilot CLI: copie a pasta da skill para <code>.github/skills/</code> ou <code>~/.copilot/skills/</code></span><span>Revise o <code>SKILL.md</code> antes de instalar.</span></p>
     </section>
-    <section class="slide slide--light" id="s-android" aria-label="Skills para Android">
+    <section class="slide slide--dark" id="s-android" aria-label="Skills para Android">
       <p class="kicker">Skills por plataforma · 2 de 3</p>
       <h1 class="title">Android · <em>Kotlin</em></h1>
       <div class="plat-grid">
@@ -1135,7 +1156,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       </div>
       <p class="plat-foot"><span>No Copilot CLI: copie a pasta da skill para <code>.github/skills/</code> ou <code>~/.copilot/skills/</code></span><span>Revise o <code>SKILL.md</code> antes de instalar.</span></p>
     </section>
-    <section class="slide slide--light" id="s-java" aria-label="Skills para backend Java">
+    <section class="slide slide--dark" id="s-java" aria-label="Skills para backend Java">
       <p class="kicker">Skills por plataforma · 3 de 3</p>
       <h1 class="title">Backend · <em>Java</em></h1>
       <div class="plat-grid">
