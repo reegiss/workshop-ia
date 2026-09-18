@@ -625,6 +625,28 @@
     .rule h2 { margin: 0 0 10px; font-size: 32px; font-weight: 800; color: var(--navy); }
     .rule p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--text); }
     .rule code { color: var(--navy); font-weight: 600; }
+    /* Laboratório */
+    .lab-head { display: flex; align-items: baseline; justify-content: space-between; }
+    .lab-time {
+      padding: 10px 24px;
+      border-radius: 999px;
+      background: var(--g1);
+      color: var(--navy);
+      font: 600 28px/1 var(--mono);
+    }
+    .lab .steps { margin-top: 48px; gap: 28px; --g: var(--g1); --on-g: var(--navy); }
+    .lab .steps li { font-size: 34px; grid-template-columns: 64px 1fr; }
+    .lab .steps li::before { width: 64px; height: 64px; font-size: 28px; }
+    .lab .steps code { font-size: 0.9em; }
+    .lab-check {
+      margin: auto 0 0;
+      padding: 24px 32px;
+      border: 2px solid var(--g1);
+      border-radius: var(--radius);
+      font-size: 30px;
+      color: var(--white);
+    }
+    .lab-check strong { color: var(--g1); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -842,6 +864,38 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         <article class="rule"><h2>Copie do guia</h2><p>Os comandos e pedidos estão no guia do participante, no chat. Não copie da tela.</p></article>
       </div>
       <p class="howto-note">Travou? Escreva no chat e acompanhe a tela de quem avançou.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab1" aria-label="Laboratório etapa 1">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 1 de 3</p><span class="lab-time">10 min</span></div>
+      <h1 class="title">Brainstorming</h1>
+      <ol class="steps">
+        <li><span>Crie a branch: <code>git switch -c workshop/seu-nome</code></span></li>
+        <li><span>Abra o agente na raiz do repositório: <code>copilot</code></span></li>
+        <li><span>Cole o pedido da etapa 1 do guia (ele usa <code>/brainstorming</code> e traz a história).</span></li>
+        <li><span><strong>Responda às perguntas</strong> e aprove o design.</span></li>
+      </ol>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab2" aria-label="Laboratório etapa 2">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 2 de 3</p><span class="lab-time">5 min</span></div>
+      <h1 class="title">O plano</h1>
+      <ol class="steps">
+        <li><span>Na mesma sessão, cole o pedido da etapa 2 do guia (<code>/writing-plans</code>).</span></li>
+        <li><span>Leia o plano: <strong>tarefas pequenas</strong>, com arquivos e testes em cada uma.</span></li>
+        <li><span>Algo fora do recorte da sua stack? Peça para cortar.</span></li>
+      </ol>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> quantas tarefas o seu plano tem.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab3" aria-label="Laboratório etapa 3">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 3 de 3</p><span class="lab-time">10 min</span></div>
+      <h1 class="title">Primeira tarefa com TDD</h1>
+      <ol class="steps">
+        <li><span>Cole o pedido da etapa 3 do guia (<code>/test-driven-development</code>, só a Tarefa 1).</span></li>
+        <li><span>Confira que o teste <strong>falha primeiro</strong>: vermelho.</span></li>
+        <li><span>Deixe o agente implementar e rodar de novo: <strong>verde</strong>.</span></li>
+        <li><span>Revise com <code>git diff</code>. Commit só local, sem push.</span></li>
+      </ol>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> a saída do teste passando. Não terminou? O guia mostra como continuar.</p>
     </section>
     <section class="slide slide--light slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
       <aside class="group-band" data-bleed>
