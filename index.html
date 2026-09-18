@@ -762,6 +762,39 @@
     @media (prefers-reduced-motion: reduce) {
       #s1.is-active .cover-bars span { animation: none; }
     }
+    /* Quem apresenta */
+    #s-autor { justify-content: center; }
+    .bio { display: grid; grid-template-columns: 520px 1fr; gap: 96px; align-items: center; }
+    .avatar {
+      width: 520px;
+      height: 520px;
+      padding: 12px;
+      border-radius: 50%;
+      background: conic-gradient(var(--g1) 0 25%, var(--g2) 0 50%, var(--g3) 0 75%, var(--g4) 0);
+    }
+    .avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 10px solid var(--navy);
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .bio-name { font-size: 96px; }
+    .bio-role { margin: 20px 0 0; font-size: 30px; font-weight: 600; color: var(--accent); }
+    .bio-lead { margin: 28px 0 0; font-size: 32px; line-height: 1.4; color: var(--ink-2); }
+    .bio-facts { margin: 32px 0 0; padding: 0; list-style: none; }
+    .bio-facts li {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-top: 1px solid var(--card-line);
+    }
+    .bio-facts .mono { font-size: 22px; font-weight: 600; color: var(--ink); }
+    .bio-facts li > span:last-child { font-size: 26px; line-height: 1.35; color: var(--ink-2); }
+    .bio-links { margin: 24px 0 0; font-size: 22px; color: var(--muted); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -777,6 +810,23 @@
       <p class="fm-line fm-author"><span class="fm-key mono">author:</span> Regis Araujo Melo</p>
       <p class="fm-rule mono" aria-hidden="true">---</p>
       <p class="cover-foot mono" data-footer>Agentes &amp; Skills para desenvolvimento · skills.sh/obra</p>
+    </section>
+    <section class="slide slide--dark" id="s-autor" aria-label="Quem apresenta">
+      <div class="bio">
+        <div class="avatar"><img src="images/profile-circle.jpg" alt="Foto de Regis Araujo Melo"></div>
+        <div class="bio-text">
+          <p class="kicker">Quem apresenta</p>
+          <h1 class="title bio-name">Regis Araujo <em>Melo</em></h1>
+          <p class="bio-role mono">Engenheiro iOS Sênior</p>
+          <p class="bio-lead">Mais de 20 anos em tecnologia, da infraestrutura e do ERP ao mobile. Hoje, foco em iOS para o setor financeiro, com arquitetura modular, segurança e qualidade.</p>
+          <ul class="bio-facts">
+            <li><span class="mono">SecurityKit</span><span>Liderou a plataforma de autenticação do Itaú, usada por mais de 5 milhões de contas.</span></li>
+            <li><span class="mono">TDD</span><span>Levou a cobertura de testes de 0% para mais de 75% e reduziu incidentes em produção em cerca de 40%.</span></li>
+            <li><span class="mono">Formação</span><span>Ciência da Computação (UNIP) e MBA em Gestão de TI (FGV).</span></li>
+          </ul>
+          <p class="bio-links mono">linkedin.com/in/regisaraujomelo · github.com/reegiss</p>
+        </div>
+      </div>
     </section>
     <section class="slide slide--dark" id="s-roteiro" aria-label="Roteiro">
       <p class="kicker">Roteiro · 60 minutos</p>
@@ -1282,7 +1332,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       const SAFE_BOTTOM = 72; // espaço do contador e da barra de progresso
       // Itens de texto que entram em cascata dentro do slide
       const REVEAL_ITEMS = '.steps li, .problem, .rule, .howto-row, .plat-card, .plat-tip, .group-card, ' +
-        '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div';
+        '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div, .bio-facts li';
 
       const stage = document.querySelector('.stage');
       const slides = [...document.querySelectorAll('.slide')];
