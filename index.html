@@ -587,6 +587,44 @@
     .slide--dark .steps code { color: var(--white); }
     .appendix-list { margin-top: 56px; --g: var(--blue); }
     .appendix-list li { font-size: 32px; }
+    /* Superpowers no Copilot CLI */
+    .howto { display: flex; flex-direction: column; gap: 20px; margin-top: 48px; }
+    .howto-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: center;
+      padding: 24px 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .howto-row h2 { margin: 0; font-size: 32px; font-weight: 800; color: var(--navy); }
+    .howto-row p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--text); }
+    .howto-row pre {
+      margin: 0;
+      padding: 16px 24px;
+      border-radius: 14px;
+      background: var(--navy);
+      color: var(--white);
+      font: 400 24px/1.6 var(--mono);
+      white-space: pre;
+    }
+    .howto-note { margin: 28px 0 0; font-size: 24px; color: var(--text); }
+    .howto-note code { color: var(--navy); font-weight: 600; }
+
+    /* Regras do laboratório */
+    .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .rule {
+      padding: 28px 32px;
+      border: 1px solid var(--line);
+      border-left: 8px solid var(--blue);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: var(--white);
+    }
+    .rule h2 { margin: 0 0 10px; font-size: 32px; font-weight: 800; color: var(--navy); }
+    .rule p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--text); }
+    .rule code { color: var(--navy); font-weight: 600; }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -773,6 +811,37 @@ description: Use antes de qualquer
           </ol>
         </div>
       </div>
+    </section>
+    <section class="slide slide--light" id="s-copilot" aria-label="Superpowers no Copilot CLI">
+      <p class="kicker">Na prática</p>
+      <h1 class="title">Superpowers no <em>Copilot CLI</em></h1>
+      <div class="howto">
+        <div class="howto-row">
+          <h2>Instalar</h2>
+          <pre><code>copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace</code></pre>
+        </div>
+        <div class="howto-row">
+          <h2>Conferir</h2>
+          <p>Dentro do <code>copilot</code>, digite <code>/skills list</code>: devem aparecer <code>brainstorming</code>, <code>writing-plans</code> e as demais.</p>
+        </div>
+        <div class="howto-row">
+          <h2>Usar</h2>
+          <p>Cite a skill com barra no pedido: <code>Use a skill /brainstorming para esta história…</code></p>
+        </div>
+      </div>
+      <p class="howto-note">Skills avulsas: <code>.github/skills/</code> no repositório ou <code>~/.copilot/skills/</code> na sua máquina.</p>
+    </section>
+    <section class="slide slide--light" id="s-regras" aria-label="Regras do laboratório">
+      <p class="kicker">Antes de começar</p>
+      <h1 class="title">Regras do <em>laboratório</em></h1>
+      <div class="rules">
+        <article class="rule"><h2>Só branch local</h2><p><code>git switch -c workshop/seu-nome</code> e nada de push para o remoto.</p></article>
+        <article class="rule"><h2>Nada sensível</h2><p>Não cole segredos, tokens nem dados de clientes no agente.</p></article>
+        <article class="rule"><h2>Checkpoints no chat</h2><p>Ao fim de cada etapa, cole no chat do Teams o que o slide pedir.</p></article>
+        <article class="rule"><h2>Copie do guia</h2><p>Os comandos e pedidos estão no guia do participante, no chat. Não copie da tela.</p></article>
+      </div>
+      <p class="howto-note">Travou? Escreva no chat e acompanhe a tela de quem avançou.</p>
     </section>
     <section class="slide slide--light slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
       <aside class="group-band" data-bleed>
