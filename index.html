@@ -417,6 +417,76 @@
     .start-links { margin: 12px 0 0; font-size: 22px; color: var(--blue-light); }
     .closing { margin: 0; font-size: 52px; line-height: 1.1; font-weight: 800; color: var(--white); }
     .closing em { font-style: normal; color: var(--g1); }
+    /* Slides de detalhe do grupo 1 */
+    .deep-title { margin: 0; font: 600 96px/1 var(--mono); letter-spacing: -0.02em; color: var(--navy); }
+    .deep-title .slash { color: var(--g-ink, var(--g)); }
+    .deep {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      margin-top: 48px;
+    }
+    .deep-label {
+      margin: 0 0 12px;
+      font: 600 20px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .deep-text { margin: 0 0 36px; font-size: 30px; line-height: 1.4; color: var(--text); }
+    .deep-rule {
+      margin: 0 0 36px;
+      padding: 24px 32px;
+      border-left: 8px solid var(--g);
+      border-radius: 0 16px 16px 0;
+      background: var(--white);
+      font-size: 30px;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .deep-path {
+      display: inline-block;
+      margin: 0 0 36px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--blue-light);
+      font: 400 22px/1.3 var(--mono);
+    }
+    .deep-here { margin: 0; font-size: 24px; line-height: 1.45; color: var(--text); }
+    .deep-here code { font-size: 0.9em; color: var(--navy); }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+    .steps li {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      align-items: start;
+      counter-increment: step;
+      font-size: 28px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .steps li::before {
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--g);
+      color: var(--on-g, var(--white));
+      font: 600 24px/1 var(--mono);
+    }
+    .steps strong { font-weight: 800; color: var(--navy); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -544,6 +614,83 @@ description: Use antes de qualquer
           <p class="skill-before">O plano é esquecido no meio do caminho.</p>
           <p class="skill-after">executa o plano em lotes, com pontos de revisão.</p>
         </article>
+      </div>
+    </section>
+    <section class="slide slide--light" id="s6-brainstorming" aria-label="brainstorming em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title"><span class="slash">/</span>brainstorming</h1>
+      <div class="deep">
+        <div>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Antes de qualquer trabalho criativo: uma feature nova, um componente, uma mudança de comportamento.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Nenhum código antes de um design aprovado. Vale até para o que “parece simples”.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-path">docs/superpowers/specs/AAAA-MM-DD-tema-design.md</p>
+          <p class="deep-here"><strong>Nesta apresentação:</strong> esboço, formato, estilo e tema foram aprovados antes da primeira linha de HTML.</p>
+        </div>
+        <div>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Explora o contexto:</strong> arquivos, docs e commits recentes.</span></li>
+            <li><span><strong>Pergunta uma coisa por vez,</strong> de preferência com múltipla escolha.</span></li>
+            <li><span><strong>Propõe 2 ou 3 abordagens</strong> com prós, contras e uma recomendação.</span></li>
+            <li><span><strong>Apresenta o design em partes</strong> e pede aprovação de cada uma.</span></li>
+            <li><span><strong>Escreve o spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
+            <li><span><strong>Passa a vez para</strong> <code>writing-plans</code>.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="slide slide--light" id="s6-writing-plans" aria-label="writing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title"><span class="slash">/</span>writing-plans</h1>
+      <div class="deep">
+        <div>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Com um spec aprovado em mãos, antes de tocar no código.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Escrever para um dev que não conhece o projeto: nada de “TODO” ou “implementar depois”.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-path">docs/superpowers/plans/AAAA-MM-DD-feature.md</p>
+          <p class="deep-here"><strong>Nesta apresentação:</strong> 6 tarefas, cada uma com o HTML e o CSS prontos para copiar.</p>
+        </div>
+        <div>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Mapeia os arquivos</strong> e a responsabilidade de cada um.</span></li>
+            <li><span><strong>Quebra em tarefas pequenas:</strong> cada passo leva de 2 a 5 minutos.</span></li>
+            <li><span><strong>Em cada tarefa:</strong> teste que falha, implementação, teste passando, commit.</span></li>
+            <li><span><strong>Escreve tudo por extenso:</strong> caminhos exatos, código completo, comando e saída esperada.</span></li>
+            <li><span><strong>Revisa o plano contra o spec:</strong> cobertura, pendências e nomes consistentes.</span></li>
+            <li><span><strong>Oferece a execução:</strong> com subagentes ou na própria sessão.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="slide slide--light" id="s6-executing-plans" aria-label="executing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title"><span class="slash">/</span>executing-plans</h1>
+      <div class="deep">
+        <div>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Quando há um plano escrito para executar com pontos de revisão. Com subagentes disponíveis, prefira <code>subagent-driven-development</code>.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Travou? Para e pergunta. Não adivinha e não força o caminho.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-text">Código commitado num branch, pronto para integrar.</p>
+          <p class="deep-here"><strong>Nesta apresentação:</strong> nada foi feito na <code>main</code>; tudo está no branch <code>feat/apresentacao-superpowers</code>.</p>
+        </div>
+        <div>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Prepara um espaço isolado</strong> com <code>using-git-worktrees</code>.</span></li>
+            <li><span><strong>Lê o plano com olhar crítico</strong> e levanta dúvidas antes de começar.</span></li>
+            <li><span><strong>Executa tarefa por tarefa:</strong> segue os passos à risca e roda as verificações.</span></li>
+            <li><span><strong>Para no primeiro bloqueio:</strong> dependência faltando, teste falhando, instrução confusa.</span></li>
+            <li><span><strong>Fecha com</strong> <code>finishing-a-development-branch</code>: merge, PR ou limpeza.</span></li>
+          </ol>
+        </div>
       </div>
     </section>
     <section class="slide slide--light slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
