@@ -65,18 +65,26 @@
       color: var(--ink-2);
     }
     .slide > * { flex-shrink: 0; }
-    .slide.is-active { display: flex; animation: enter 300ms ease-out; }
+    /* Transição entre slides: o atual sai e o próximo entra, na direção da navegação */
+    .slide.is-active,
+    .slide.is-leaving { display: flex; animation: 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .slide.is-active { animation-name: slide-in-next; }
+    .slide.is-leaving { animation-name: slide-out-next; pointer-events: none; }
+    .stage[data-dir="prev"] .slide.is-active { animation-name: slide-in-prev; }
+    .stage[data-dir="prev"] .slide.is-leaving { animation-name: slide-out-prev; }
     .slide--dark { background: var(--navy); color: var(--white); }
     .slide--light { background: linear-gradient(180deg, #FFFFFF 56%, #DCECFA 100%); }
 
-    @keyframes enter {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: none; }
-    }
+    @keyframes slide-in-next { from { opacity: 0; transform: translateX(96px); } to { opacity: 1; transform: none; } }
+    @keyframes slide-in-prev { from { opacity: 0; transform: translateX(-96px); } to { opacity: 1; transform: none; } }
+    @keyframes slide-out-next { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(-96px); } }
+    @keyframes slide-out-prev { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(96px); } }
     @media (prefers-reduced-motion: reduce) {
       .slide.is-active { animation: none; }
+      .slide.is-leaving { display: none; }
     }
     .is-checking .slide.is-active { animation: none; }
+    .is-checking .slide.is-leaving { display: none; }
 
     .kicker {
       margin: 0 0 28px;
@@ -1265,7 +1273,15 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       }
 
       function show(n) {
+        const previous = current;
         current = Math.min(Math.max(n, 1), total);
+        slides.forEach((s) => s.classList.remove('is-leaving'));
+        if (previous !== current) {
+          stage.dataset.dir = current > previous ? 'next' : 'prev';
+          const leaving = slides[previous - 1];
+          leaving.classList.add('is-leaving');
+          leaving.addEventListener('animationend', () => leaving.classList.remove('is-leaving'), { once: true });
+        }
         slides.forEach((s, i) => s.classList.toggle('is-active', i === current - 1));
         const active = slides[current - 1];
         stage.dataset.theme = active.classList.contains('slide--dark') ? 'dark' : 'light';
@@ -1328,7 +1344,8 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       window.addEventListener('resize', fit);
 
       fit();
-      show(parseHash(location.hash));
+      current = parseHash(location.hash); // primeira exibição sem transição de saída
+      show(current);
 
       if (new URLSearchParams(location.search).has('check')) {
         document.body.classList.add('is-checking');
