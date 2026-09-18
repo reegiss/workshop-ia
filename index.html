@@ -795,6 +795,12 @@
     .bio-facts .mono { font-size: 22px; font-weight: 600; color: var(--ink); }
     .bio-facts li > span:last-child { font-size: 26px; line-height: 1.35; color: var(--ink-2); }
     .bio-links { margin: 24px 0 0; font-size: 22px; color: var(--muted); }
+    .bio-contact { display: flex; align-items: center; gap: 28px; margin-top: 36px; }
+    .bio-qr { width: 150px; height: 150px; padding: 10px; border-radius: 16px; background: var(--white); }
+    .bio-contact p { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+    .bio-contact-label { font-size: 26px; font-weight: 700; color: var(--ink); }
+    .bio-contact .mono { font-size: 24px; color: var(--ink-2); text-decoration: none; }
+    .bio-contact a:hover, .bio-contact a:focus-visible { color: var(--ink); text-decoration: underline; }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -819,7 +825,10 @@
           <h1 class="title bio-name">Regis Araujo <em>Melo</em></h1>
           <p class="bio-role mono">Engenheiro iOS Sênior</p>
           <p class="bio-lead">Desenvolvedor iOS sênior com mais de 20 anos em tecnologia, com foco em apps nativos para os setores financeiro, varejo e mobilidade. Arquitetura modular, segurança, acessibilidade e performance, com vivência em liderança técnica de squads, evolução de código legado e entrega contínua.</p>
-          <p class="bio-links mono">linkedin.com/in/regisaraujomelo · github.com/reegiss</p>
+          <div class="bio-contact">
+            <img class="bio-qr" src="images/qr-linkedin.svg" alt="QR code para o LinkedIn de Regis Araujo Melo">
+            <p><span class="bio-contact-label">LinkedIn</span><a class="mono" href="https://www.linkedin.com/in/regisaraujomelo" target="_blank" rel="noopener">linkedin.com/in/regisaraujomelo</a></p>
+          </div>
         </div>
       </div>
     </section>
