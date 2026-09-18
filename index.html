@@ -581,6 +581,12 @@
     .loop-note { margin: 12px 0 0; font-size: 20px; font-weight: 500; color: var(--muted); }
     .vs-punch { margin: 36px 0 0; font-size: 34px; font-weight: 700; color: var(--navy); }
     .vs-punch em { font-style: normal; color: var(--blue); }
+    /* Listas numeradas em slides escuros */
+    .slide--dark .steps li { color: var(--blue-light); }
+    .slide--dark .steps strong { color: var(--white); }
+    .slide--dark .steps code { color: var(--white); }
+    .appendix-list { margin-top: 56px; --g: var(--blue); }
+    .appendix-list li { font-size: 32px; }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -677,24 +683,6 @@ description: Use antes de qualquer
         </div>
       </div>
     </section>
-    <section class="slide slide--light" id="s4" aria-label="obra e o skills.sh">
-      <p class="kicker">Autor e catálogo</p>
-      <h1 class="title">Um catálogo<br>de <em>métodos</em></h1>
-      <div class="catalog">
-        <div class="catalog-intro">
-          <article class="info-card"><h2 class="mono">obra</h2><p>Jesse Vincent publica skills que codificam práticas de engenharia sênior para agentes.</p></article>
-          <article class="info-card"><h2 class="mono">skills.sh</h2><p>Diretório aberto de skills: você encontra, instala e usa no seu agente.</p></article>
-        </div>
-        <div>
-          <p class="catalog-label">Outros pacotes do autor</p>
-          <div class="pkg"><code>episodic-memory</code><span>o agente lembra de conversas anteriores</span></div>
-          <div class="pkg"><code>the-elements-of-style</code><span>escrita clara e concisa</span></div>
-          <div class="pkg"><code>superpowers-lab</code><span>experimentos: tmux, funções duplicadas…</span></div>
-          <div class="pkg"><code>superpowers-chrome</code><span>navegar na web pelo Chrome</span></div>
-          <p class="pill">O principal é o <strong>superpowers</strong> →</p>
-        </div>
-      </div>
-    </section>
     <section class="slide slide--light" id="s5" aria-label="Mapa do superpowers">
       <p class="kicker">O mapa do superpowers</p>
       <h1 class="title">14 skills,<br>4 <em>momentos</em> do trabalho</h1>
@@ -782,57 +770,6 @@ description: Use antes de qualquer
             <li><span><strong>Apresenta o design em partes</strong> e pede aprovação de cada uma.</span></li>
             <li><span><strong>Escreve o spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
             <li><span><strong>Passa a vez para</strong> <code>writing-plans</code>.</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-    <section class="slide slide--light" id="s6-writing-plans" aria-label="writing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
-      <p class="kicker">Pensar antes de codar · em detalhe</p>
-      <h1 class="deep-title">writing-plans</h1>
-      <div class="deep">
-        <div>
-          <p class="deep-label">Quando usar</p>
-          <p class="deep-text">Com um spec aprovado em mãos, antes de tocar no código.</p>
-          <p class="deep-label">Regra de ouro</p>
-          <p class="deep-rule">Escrever para um dev que não conhece o projeto: nada de “TODO” ou “implementar depois”.</p>
-          <p class="deep-label">O que gera</p>
-          <p class="deep-path">docs/superpowers/plans/AAAA-MM-DD-feature.md</p>
-          <p class="deep-here"><strong>Nesta apresentação:</strong> 6 tarefas, cada uma com o HTML e o CSS prontos para copiar.</p>
-        </div>
-        <div>
-          <p class="deep-label">O processo</p>
-          <ol class="steps">
-            <li><span><strong>Mapeia os arquivos</strong> e a responsabilidade de cada um.</span></li>
-            <li><span><strong>Quebra em tarefas pequenas:</strong> cada passo leva de 2 a 5 minutos.</span></li>
-            <li><span><strong>Em cada tarefa:</strong> teste que falha, implementação, teste passando, commit.</span></li>
-            <li><span><strong>Escreve tudo por extenso:</strong> caminhos exatos, código completo, comando e saída esperada.</span></li>
-            <li><span><strong>Revisa o plano contra o spec:</strong> cobertura, pendências e nomes consistentes.</span></li>
-            <li><span><strong>Oferece a execução:</strong> com subagentes ou na própria sessão.</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-    <section class="slide slide--light" id="s6-executing-plans" aria-label="executing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
-      <p class="kicker">Pensar antes de codar · em detalhe</p>
-      <h1 class="deep-title">executing-plans</h1>
-      <div class="deep">
-        <div>
-          <p class="deep-label">Quando usar</p>
-          <p class="deep-text">Quando há um plano escrito para executar com pontos de revisão. Com subagentes disponíveis, prefira <code>subagent-driven-development</code>.</p>
-          <p class="deep-label">Regra de ouro</p>
-          <p class="deep-rule">Travou? Para e pergunta. Não adivinha e não força o caminho.</p>
-          <p class="deep-label">O que gera</p>
-          <p class="deep-text">Código commitado num branch, pronto para integrar.</p>
-          <p class="deep-here"><strong>Nesta apresentação:</strong> nada foi feito na <code>main</code>; tudo está no branch <code>feat/apresentacao-superpowers</code>.</p>
-        </div>
-        <div>
-          <p class="deep-label">O processo</p>
-          <ol class="steps">
-            <li><span><strong>Prepara um espaço isolado</strong> com <code>using-git-worktrees</code>.</span></li>
-            <li><span><strong>Lê o plano com olhar crítico</strong> e levanta dúvidas antes de começar.</span></li>
-            <li><span><strong>Executa tarefa por tarefa:</strong> segue os passos à risca e roda as verificações.</span></li>
-            <li><span><strong>Para no primeiro bloqueio:</strong> dependência faltando, teste falhando, instrução confusa.</span></li>
-            <li><span><strong>Fecha com</strong> <code>finishing-a-development-branch</code>: merge, PR ou limpeza.</span></li>
           </ol>
         </div>
       </div>
@@ -942,6 +879,85 @@ description: Use antes de qualquer
           <p class="start-links mono">skills.sh/obra · github.com/obra/superpowers</p>
         </div>
         <p class="closing">Agentes rápidos + método = <em>software confiável</em>.</p>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s-apendice" aria-label="Apêndice">
+      <p class="kicker">Apêndice</p>
+      <h1 class="title">Material de <em>apoio</em></h1>
+      <p class="lead">Para usar se sobrar tempo ou surgir uma pergunta.</p>
+      <ol class="steps appendix-list">
+        <li><span><strong>obra e o skills.sh</strong> — o autor e o catálogo</span></li>
+        <li><span><strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span></li>
+        <li><span><strong>Skills por plataforma</strong> — iOS, Android e backend Java</span></li>
+      </ol>
+    </section>
+    <section class="slide slide--light" id="s4" aria-label="obra e o skills.sh">
+      <p class="kicker">Autor e catálogo</p>
+      <h1 class="title">Um catálogo<br>de <em>métodos</em></h1>
+      <div class="catalog">
+        <div class="catalog-intro">
+          <article class="info-card"><h2 class="mono">obra</h2><p>Jesse Vincent publica skills que codificam práticas de engenharia sênior para agentes.</p></article>
+          <article class="info-card"><h2 class="mono">skills.sh</h2><p>Diretório aberto de skills: você encontra, instala e usa no seu agente.</p></article>
+        </div>
+        <div>
+          <p class="catalog-label">Outros pacotes do autor</p>
+          <div class="pkg"><code>episodic-memory</code><span>o agente lembra de conversas anteriores</span></div>
+          <div class="pkg"><code>the-elements-of-style</code><span>escrita clara e concisa</span></div>
+          <div class="pkg"><code>superpowers-lab</code><span>experimentos: tmux, funções duplicadas…</span></div>
+          <div class="pkg"><code>superpowers-chrome</code><span>navegar na web pelo Chrome</span></div>
+          <p class="pill">O principal é o <strong>superpowers</strong> →</p>
+        </div>
+      </div>
+    </section>
+    <section class="slide slide--light" id="s6-writing-plans" aria-label="writing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title">writing-plans</h1>
+      <div class="deep">
+        <div>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Com um spec aprovado em mãos, antes de tocar no código.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Escrever para um dev que não conhece o projeto: nada de “TODO” ou “implementar depois”.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-path">docs/superpowers/plans/AAAA-MM-DD-feature.md</p>
+          <p class="deep-here"><strong>Nesta apresentação:</strong> 6 tarefas, cada uma com o HTML e o CSS prontos para copiar.</p>
+        </div>
+        <div>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Mapeia os arquivos</strong> e a responsabilidade de cada um.</span></li>
+            <li><span><strong>Quebra em tarefas pequenas:</strong> cada passo leva de 2 a 5 minutos.</span></li>
+            <li><span><strong>Em cada tarefa:</strong> teste que falha, implementação, teste passando, commit.</span></li>
+            <li><span><strong>Escreve tudo por extenso:</strong> caminhos exatos, código completo, comando e saída esperada.</span></li>
+            <li><span><strong>Revisa o plano contra o spec:</strong> cobertura, pendências e nomes consistentes.</span></li>
+            <li><span><strong>Oferece a execução:</strong> com subagentes ou na própria sessão.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="slide slide--light" id="s6-executing-plans" aria-label="executing-plans em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title">executing-plans</h1>
+      <div class="deep">
+        <div>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Quando há um plano escrito para executar com pontos de revisão. Com subagentes disponíveis, prefira <code>subagent-driven-development</code>.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Travou? Para e pergunta. Não adivinha e não força o caminho.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-text">Código commitado num branch, pronto para integrar.</p>
+          <p class="deep-here"><strong>Nesta apresentação:</strong> nada foi feito na <code>main</code>; tudo está no branch <code>feat/apresentacao-superpowers</code>.</p>
+        </div>
+        <div>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Prepara um espaço isolado</strong> com <code>using-git-worktrees</code>.</span></li>
+            <li><span><strong>Lê o plano com olhar crítico</strong> e levanta dúvidas antes de começar.</span></li>
+            <li><span><strong>Executa tarefa por tarefa:</strong> segue os passos à risca e roda as verificações.</span></li>
+            <li><span><strong>Para no primeiro bloqueio:</strong> dependência faltando, teste falhando, instrução confusa.</span></li>
+            <li><span><strong>Fecha com</strong> <code>finishing-a-development-branch</code>: merge, PR ou limpeza.</span></li>
+          </ol>
+        </div>
       </div>
     </section>
     <section class="slide slide--light" id="s-ios" aria-label="Skills para iOS">
