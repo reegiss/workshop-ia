@@ -65,20 +65,18 @@
       color: var(--ink-2);
     }
     .slide > * { flex-shrink: 0; }
-    /* Transição entre slides: o atual sai e o próximo entra, na direção da navegação */
+    /* Transição entre slides: o atual esmaece parado; o próximo entra por cima, na direção da navegação */
     .slide.is-active,
-    .slide.is-leaving { display: flex; animation: 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-    .slide.is-active { animation-name: slide-in-next; }
-    .slide.is-leaving { animation-name: slide-out-next; pointer-events: none; }
+    .slide.is-leaving { display: flex; will-change: opacity, transform; backface-visibility: hidden; }
+    .slide.is-active { z-index: 1; animation: slide-in-next 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .slide.is-leaving { z-index: 0; animation: slide-out 260ms ease-out both; pointer-events: none; }
     .stage[data-dir="prev"] .slide.is-active { animation-name: slide-in-prev; }
-    .stage[data-dir="prev"] .slide.is-leaving { animation-name: slide-out-prev; }
     .slide--dark { background: var(--navy); color: var(--white); }
     .slide--light { background: linear-gradient(180deg, #FFFFFF 56%, #DCECFA 100%); }
 
-    @keyframes slide-in-next { from { opacity: 0; transform: translateX(96px); } to { opacity: 1; transform: none; } }
-    @keyframes slide-in-prev { from { opacity: 0; transform: translateX(-96px); } to { opacity: 1; transform: none; } }
-    @keyframes slide-out-next { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(-96px); } }
-    @keyframes slide-out-prev { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(96px); } }
+    @keyframes slide-in-next { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+    @keyframes slide-in-prev { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+    @keyframes slide-out { from { opacity: 1; } to { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) {
       .slide.is-active { animation: none; }
       .slide.is-leaving { display: none; }
