@@ -23,7 +23,17 @@ Depois, rode `copilot` e, dentro dele, digite `/login` e siga as instruções.
 
 ## 3. Superpowers
 
-No terminal:
+Escolha **uma** das duas opções. Os comandos são os mesmos no Mac e no Windows.
+
+**Opção A — padrão do skills.sh** (instala em `~/.copilot/skills/`):
+
+```bash
+npx skills add obra/superpowers -g -a github-copilot
+```
+
+O comando pergunta quais skills do pacote instalar: selecione todas.
+
+**Opção B — plugin do Copilot CLI:**
 
 ```bash
 copilot plugin marketplace add obra/superpowers-marketplace

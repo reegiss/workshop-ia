@@ -710,10 +710,11 @@
     #s2 .problem { padding: 40px 36px; min-height: 280px; }
     #s2 .problem p { font-size: 38px; line-height: 1.25; }
     #s10 .flow { margin-top: 64px; gap: 20px; }
-    #s10 .flow-step { min-height: 300px; padding: 26px 22px 28px; }
+    #s10 .flow-step { min-height: 240px; padding: 26px 22px 28px; }
     #s10 .flow-step > span { font-size: 24px; margin-bottom: 16px; }
     #s10 .flow-step code { font-size: 25px; }
     #s10 .flow-step small { font-size: 19px; }
+    .cmd-note { color: var(--muted); }
       /* === fim dos componentes === */
   </style>
 </head>
@@ -1067,7 +1068,10 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       <div class="start">
         <div>
           <p class="catalog-label">Como começar</p>
-          <pre class="code-card code-card--dark code-card--sm"><code><span class="prompt">$</span> copilot plugin marketplace add obra/superpowers-marketplace
+          <pre class="code-card code-card--dark code-card--sm"><code><span class="cmd-note"># padrão do skills.sh</span>
+<span class="prompt">$</span> npx skills add obra/superpowers -g -a github-copilot
+<span class="cmd-note"># ou como plugin do Copilot CLI</span>
+<span class="prompt">$</span> copilot plugin marketplace add obra/superpowers-marketplace
 <span class="prompt">$</span> copilot plugin install superpowers@superpowers-marketplace</code></pre>
           <p class="start-alt">Depois, dentro do <strong>copilot</strong>: <strong>/skills list</strong></p>
           <p class="start-links mono">skills.sh/obra · github.com/obra/superpowers</p>
