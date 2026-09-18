@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Superpowers — Skills para agentes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Identidade Stefanini (extraída de stefanini.com) */
+      --navy: #0B1641;
+      --blue: #0067CC;
+      --blue-dark: #024589;
+      --blue-light: #DCECFA;
+      --text: #3C3C3E;
+      --muted: #83868F;
+      --line: #CED2E0;
+      --white: #FFFFFF;
+      --surface: #F5F5F5;
+      /* Uma cor por grupo de skills */
+      --g1: #FF692C;
+      --g2: #C70160;
+      --g3: #6800D5;
+      --g4: #157F75;
+      --radius: 24px;
+      --font: "nexa", "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--navy);
+      overflow: hidden;
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stage {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1920px;
+      height: 1080px;
+      transform: translate(-50%, -50%) scale(var(--scale, 1));
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      padding: 96px 120px 120px;
+      overflow: hidden;
+      color: var(--text);
+    }
+    .slide > * { flex-shrink: 0; }
+    .slide.is-active { display: flex; animation: enter 300ms ease-out; }
+    .slide--dark { background: var(--navy); color: var(--white); }
+    .slide--light { background: linear-gradient(180deg, #FFFFFF 56%, #DCECFA 100%); }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide.is-active { animation: none; }
+    }
+    .is-checking .slide.is-active { animation: none; }
+
+    .kicker {
+      margin: 0 0 28px;
+      font: 600 24px/1 var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .slide--dark .kicker { color: var(--blue-light); }
+
+    .title {
+      margin: 0;
+      font-size: 112px;
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .title em { font-style: normal; color: var(--blue); }
+    .slide--dark .title { color: var(--white); }
+
+    .lead {
+      margin: 40px 0 0;
+      max-width: 1300px;
+      font-size: 36px;
+      line-height: 1.4;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .lead strong { color: var(--navy); font-weight: 800; }
+    .slide--dark .lead { color: var(--blue-light); }
+    .slide--dark .lead strong { color: var(--white); }
+
+    code, .mono { font-family: var(--mono); }
+
+    .counter {
+      position: absolute;
+      right: 120px;
+      bottom: 36px;
+      z-index: 2;
+      font: 600 22px/1 var(--mono);
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .stage[data-theme="dark"] .counter { color: var(--blue-light); }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 0;
+      height: 8px;
+      background: var(--blue);
+      transition: width 300ms ease;
+    }
+
+      /* === componentes dos slides === */
+      /* === fim dos componentes === */
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <section class="slide slide--dark" id="s1" aria-label="Capa">
+      <p class="kicker">Capa</p>
+      <h1 class="title">Superpowers</h1>
+    </section>
+    <section class="slide slide--dark" id="s2" aria-label="O problema">
+      <p class="kicker">O problema</p>
+      <h1 class="title">Rápido não é o mesmo que bom</h1>
+    </section>
+    <section class="slide slide--light" id="s3" aria-label="O que é uma skill">
+      <p class="kicker">Conceito</p>
+      <h1 class="title">Skill = processo empacotado</h1>
+    </section>
+    <section class="slide slide--light" id="s4" aria-label="obra e o skills.sh">
+      <p class="kicker">Autor e catálogo</p>
+      <h1 class="title">Um catálogo de métodos</h1>
+    </section>
+    <section class="slide slide--light" id="s5" aria-label="Mapa do superpowers">
+      <p class="kicker">O mapa do superpowers</p>
+      <h1 class="title">14 skills, 4 momentos</h1>
+    </section>
+    <section class="slide slide--light" id="s6" aria-label="Pensar antes de codar">
+      <p class="kicker">Grupo 01</p>
+      <h1 class="title">Pensar antes de codar</h1>
+    </section>
+    <section class="slide slide--light" id="s7" aria-label="Qualidade e disciplina">
+      <p class="kicker">Grupo 02</p>
+      <h1 class="title">Qualidade e disciplina</h1>
+    </section>
+    <section class="slide slide--light" id="s8" aria-label="Escala com agentes">
+      <p class="kicker">Grupo 03</p>
+      <h1 class="title">Escala com agentes</h1>
+    </section>
+    <section class="slide slide--light" id="s9" aria-label="Revisão e entrega">
+      <p class="kicker">Grupo 04</p>
+      <h1 class="title">Revisão e entrega</h1>
+    </section>
+    <section class="slide slide--dark" id="s10" aria-label="O fluxo completo">
+      <p class="kicker">Juntando tudo</p>
+      <h1 class="title">O fluxo completo</h1>
+    </section>
+    <div class="progress" aria-hidden="true"></div>
+    <div class="counter" aria-hidden="true">01 / 10</div>
+  </main>
+
+  <script>
+    (() => {
+      const STAGE_W = 1920;
+      const STAGE_H = 1080;
+      const SAFE_BOTTOM = 72; // espaço do contador e da barra de progresso
+
+      const stage = document.querySelector('.stage');
+      const slides = [...document.querySelectorAll('.slide')];
+      const counter = document.querySelector('.counter');
+      const progress = document.querySelector('.progress');
+      const total = slides.length;
+      let current = 1;
+
+      const pad = (n) => String(n).padStart(2, '0');
+
+      function parseHash(hash) {
+        const n = Number.parseInt(hash.replace('#', ''), 10);
+        return Number.isInteger(n) && n >= 1 && n <= total ? n : 1;
+      }
+
+      function show(n) {
+        current = Math.min(Math.max(n, 1), total);
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current - 1));
+        const active = slides[current - 1];
+        stage.dataset.theme = active.classList.contains('slide--dark') ? 'dark' : 'light';
+        counter.textContent = `${pad(current)} / ${pad(total)}`;
+        progress.style.width = `${(current / total) * 100}%`;
+        document.body.dataset.current = String(current);
+        if (location.hash !== `#${current}`) history.replaceState(null, '', `#${current}`);
+      }
+
+      function fit() {
+        const scale = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H);
+        stage.style.setProperty('--scale', String(scale));
+      }
+
+      function toggleFullscreen() {
+        if (document.fullscreenElement) document.exitFullscreen?.();
+        else document.documentElement.requestFullscreen?.();
+      }
+
+      // Modo ?check: lista os slides com texto fora da área útil.
+      function findOverflow() {
+        const bad = [];
+        slides.forEach((slide, i) => {
+          slides.forEach((s) => s.classList.toggle('is-active', s === slide));
+          const box = slide.getBoundingClientRect();
+          const scale = box.width / STAGE_W;
+          const bottomLimit = box.bottom - SAFE_BOTTOM * scale;
+          const leaves = [...slide.querySelectorAll('*')].filter(
+            (el) => el.children.length === 0 && !el.closest('[data-bleed]')
+          );
+          const escaped = leaves.some((el) => {
+            const r = el.getBoundingClientRect();
+            if (r.width === 0 && r.height === 0) return false;
+            return r.left < box.left - 1 || r.right > box.right + 1 ||
+              r.top < box.top - 1 || r.bottom > bottomLimit + 1;
+          });
+          if (escaped) bad.push(i + 1);
+        });
+        show(current);
+        return bad;
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) show(current + 1);
+        else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) show(current - 1);
+        else if (e.key === 'Home') show(1);
+        else if (e.key === 'End') show(total);
+        else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        else return;
+        e.preventDefault();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        show(e.clientX > window.innerWidth / 2 ? current + 1 : current - 1);
+      });
+
+      window.addEventListener('hashchange', () => show(parseHash(location.hash)));
+      window.addEventListener('resize', fit);
+
+      fit();
+      show(parseHash(location.hash));
+
+      if (new URLSearchParams(location.search).has('check')) {
+        document.body.classList.add('is-checking');
+        document.fonts.ready.then(() => {
+          document.body.dataset.overflow = findOverflow().join(',');
+          document.body.dataset.checked = 'true';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
