@@ -832,6 +832,113 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .chip--suggest { border-style: dashed; background: transparent; color: var(--muted); font-weight: 400; }
 .chip-legend { display: flex; gap: 16px; align-items: center; margin: 28px 0 0; }
 .chip-legend .chip { font-size: 18px; }
+/* Modo ?export: sem controles nem animações */
+.is-export .home-btn, .is-export .counter, .is-export .progress { display: none !important; }
+.is-export .slide *, .is-export .slide *::before { animation: none !important; }
+/* Exportação PPTX: fontes padrão e fundo sem texto */
+.is-export-arial { --font: Arial, Helvetica, sans-serif; --mono: "Courier New", Courier, monospace; }
+.is-export-arial * { text-wrap: wrap !important; }
+.is-notext .slide * { color: transparent !important; -webkit-text-fill-color: transparent !important; }
+.is-notext .slide *::before, .is-notext .slide *::after { -webkit-text-fill-color: currentColor !important; }
+/* Roteiro: barra de tempo proporcional */
+.timebar { display: flex; gap: 20px; margin-top: 72px; }
+.timebar-seg {
+  flex: var(--span) 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 360px;
+  padding: 36px;
+  border: 1px solid var(--card-line);
+  border-top: 10px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.timebar-seg--lab { border-top-color: var(--g1); background: rgba(255, 105, 44, 0.1); }
+.timebar-seg .mono { font-size: 24px; font-weight: 600; color: var(--accent); }
+.timebar-seg--lab .mono { color: var(--g1); }
+.timebar-seg strong { font-size: 44px; line-height: 1.1; font-weight: 800; color: var(--ink); }
+.timebar-seg span:last-child { font-size: 28px; line-height: 1.35; color: var(--ink-2); }
+
+/* Problema com 3 cards */
+.problems--3 { grid-template-columns: repeat(3, 1fr); }
+
+/* Fluxo mínimo / escala: etapas em sequência */
+.mini-flow {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 4), 1fr);
+  gap: 40px;
+  margin: 64px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: mini;
+}
+.mini-flow li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 320px;
+  padding: 36px 32px;
+  border: 1px solid var(--card-line);
+  border-top: 10px solid var(--g);
+  border-radius: var(--radius);
+  background: var(--card);
+  counter-increment: mini;
+}
+.mini-flow li::before { content: counter(mini, decimal-leading-zero); font: 600 22px/1 var(--mono); color: var(--ink-2); }
+.mini-flow li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -34px;
+  transform: translateY(-50%);
+  font: 800 32px/1 var(--font);
+  color: var(--accent);
+}
+.mini-flow li > code { font-size: 28px; line-height: 1.3; font-weight: 600; color: var(--ink); }
+.mini-flow li > span { font-size: 28px; line-height: 1.4; color: var(--ink-2); }
+.mini-flow li > span code { font-size: 0.85em; color: var(--ink); }
+
+/* Confiável = evidência observável */
+.evidence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+.evidence-col { padding: 40px; border: 1px solid var(--card-line); border-radius: var(--radius); background: var(--card); }
+.evidence-col h2 { margin: 0 0 24px; font: 600 24px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.evidence-col ul { display: flex; flex-direction: column; gap: 20px; margin: 0; padding: 0; list-style: none; }
+.evidence-col li { position: relative; padding-left: 56px; font-size: 34px; line-height: 1.3; font-weight: 600; color: var(--ink); }
+.evidence-col li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--g4);
+  color: var(--white);
+  font: 800 22px/1 var(--font);
+}
+
+/* Terminal ilustrativo do brainstorming */
+.code-card.term { margin-top: 0; font-size: 24px; line-height: 1.7; white-space: pre-wrap; }
+.term-agent { color: var(--g1); font-weight: 600; }
+.term-you { color: var(--accent); font-weight: 600; }
+
+/* Cards de regra em 3 colunas */
+.rules--3 { grid-template-columns: repeat(3, 1fr); }
+/* Ajuste de ocupação dos slides novos */
+.timebar-seg { min-height: 460px; padding: 44px; }
+.timebar-seg strong { font-size: 54px; }
+.timebar-seg span:last-child { font-size: 32px; }
+.mini-flow li { min-height: 420px; padding: 44px 36px; }
+.mini-flow li > code, .mini-flow li > span { font-size: 32px; }
+#s-escala .mini-flow li > span { font-size: 30px; }
+.evidence-col { min-height: 400px; padding: 48px; }
+.evidence-col li { font-size: 40px; padding-left: 64px; }
+.evidence-col li::before { width: 46px; height: 46px; font-size: 26px; }
+.evidence-col ul { gap: 32px; }
   /* === fim dos componentes === */
 
 /* Impressão / PDF: um slide por página, sem animações nem controles */

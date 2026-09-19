@@ -17,7 +17,7 @@
       <p class="fm-rule mono" aria-hidden="true">---</p>
       <p class="fm-key mono">name:</p>
       <h1 class="title cover-title">Super<em>—</em><br>Powers</h1>
-      <p class="fm-line"><span class="fm-key mono">description:</span> Skills que ensinam agentes de IA a desenvolver como engenheiros</p>
+      <p class="fm-line"><span class="fm-key mono">description:</span> Skills para trabalhar com agentes de IA de forma verificável</p>
       <p class="fm-line fm-author"><span class="fm-key mono">author:</span> Regis Araujo Melo</p>
       <p class="fm-rule mono" aria-hidden="true">---</p>
       <p class="cover-foot mono" data-footer>Agentes &amp; Skills para desenvolvimento · skills.sh/obra</p>
@@ -38,49 +38,32 @@
       </div>
     </section>
     <section class="slide slide--dark" id="s-roteiro" aria-label="Roteiro">
-      <p class="kicker">Roteiro · 60 minutos</p>
-      <h1 class="title">O que vamos <em>fazer</em></h1>
-      <div class="agenda">
-        <div>
-          <p class="catalog-label">Conceitos</p>
-          <ol>
-            <li><span class="agenda-page">0:00</span><span><strong>Abertura</strong><span>checagem da tarefa prévia no chat</span></span></li>
-            <li><span class="agenda-page">0:03</span><span><strong>O problema e o agente</strong><span>por que chat isolado não basta</span></span></li>
-            <li><span class="agenda-page">0:07</span><span><strong>Skills e o superpowers</strong><span>o que é uma skill e o mapa das 14</span></span></li>
-            <li><span class="agenda-page">0:12</span><span><strong>Pensar antes de codar</strong><span>brainstorming em detalhe</span></span></li>
-            <li><span class="agenda-page">0:17</span><span><strong>No Copilot CLI</strong><span>instalação e regras do laboratório</span></span></li>
-          </ol>
-        </div>
-        <div>
-          <p class="catalog-label">Prática</p>
-          <ol>
-            <li style="--g: var(--g1)"><span class="agenda-page">0:20</span><span><strong>Laboratório · 25 min</strong><span>brainstorming, plano e primeira tarefa com TDD</span></span></li>
-            <li><span class="agenda-page">0:45</span><span><strong>O resto do fluxo</strong><span>qualidade, escala, revisão e entrega</span></span></li>
-            <li><span class="agenda-page">0:52</span><span><strong>Encerramento</strong><span>retrospectiva, cuidados e próximos passos</span></span></li>
-            <li><span class="agenda-page">0:57</span><span><strong>Perguntas</strong></span></li>
-          </ol>
-        </div>
+      <p class="kicker">Roteiro</p>
+      <h1 class="title">60 minutos,<br><em>25 de prática</em></h1>
+      <div class="timebar">
+        <div class="timebar-seg" style="--span: 15"><span class="mono">0:00–0:15</span><strong>Conceitos</strong><span>problema, agente, skill e o fluxo mínimo</span></div>
+        <div class="timebar-seg timebar-seg--lab" style="--span: 25"><span class="mono">0:15–0:40</span><strong>Laboratório</strong><span>esclarecer, planejar e testar primeiro, no seu repositório</span></div>
+        <div class="timebar-seg" style="--span: 20"><span class="mono">0:40–1:00</span><strong>Escala, limites e perguntas</strong><span>o que vem depois do primeiro teste</span></div>
       </div>
     </section>
     <section class="slide slide--dark" id="s2" aria-label="O problema">
       <p class="kicker">O problema</p>
-      <h1 class="title">Rápido não é o<br>mesmo que <em>bom</em></h1>
-      <p class="lead">Um agente escreve código em segundos, mas:</p>
-      <div class="problems">
-        <article class="problem"><p>Começa a codar antes de entender o problema</p></article>
-        <article class="problem"><p>Não escreve testes, ou escreve depois só para “passar”</p></article>
-        <article class="problem"><p>Chuta a causa de um bug em vez de investigar</p></article>
-        <article class="problem"><p>Diz “pronto” sem ter verificado</p></article>
+      <h1 class="title">Rápido não é<br><em>verificável</em></h1>
+      <p class="lead">Sem processo, um agente pode:</p>
+      <div class="problems problems--3">
+        <article class="problem"><p>Implementar antes de esclarecer o requisito</p></article>
+        <article class="problem"><p>Escrever o teste depois, só para passar</p></article>
+        <article class="problem"><p>Dizer “pronto” sem evidência</p></article>
       </div>
-      <p class="punchline">E se desse para ensinar <em>processo</em> ao agente?</p>
+      <p class="punchline">E se o <em>processo</em> viesse junto com o agente?</p>
     </section>
-    <section class="slide slide--dark" id="s-agentes" aria-label="Chat isolado vs agente">
+    <section class="slide slide--dark" id="s-agentes" aria-label="Chat responde, agente age">
       <p class="kicker">Conceito</p>
-      <h1 class="title">Chat isolado vs <em>agente</em></h1>
+      <h1 class="title">Chat responde, <em>agente age</em></h1>
       <div class="versus">
         <div class="vs-aspect vs-head"></div>
         <div class="vs-chat vs-head">
-          <h2>Chat isolado</h2>
+          <h2>Chat</h2>
           <div class="loop"><span class="loop-node">você</span><span class="loop-arrow" aria-hidden="true">⇄</span><span class="loop-node">chat</span></div>
           <p class="loop-note">uma pergunta, uma resposta</p>
         </div>
@@ -89,20 +72,18 @@
           <div class="loop"><span class="loop-node">planeja</span><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-node">age</span><span class="loop-arrow" aria-hidden="true">→</span><span class="loop-node">observa</span><span class="loop-arrow" aria-hidden="true">↻</span></div>
           <p class="loop-note">repete até cumprir o objetivo</p>
         </div>
-        <div class="vs-aspect">Contexto</div><div class="vs-chat">Só o que você cola na conversa.</div><div class="vs-agent">Lê o repositório: código, docs e histórico.</div>
-        <div class="vs-aspect">Ações</div><div class="vs-chat">Responde com texto.</div><div class="vs-agent">Edita arquivos e roda comandos.</div>
-        <div class="vs-aspect">Verificação</div><div class="vs-chat">Você testa depois, por conta própria.</div><div class="vs-agent">Roda os testes, lê o erro e corrige.</div>
-        <div class="vs-aspect">Continuidade</div><div class="vs-chat">Cada conversa começa do zero.</div><div class="vs-agent">Segue as instruções e as skills do projeto.</div>
-        <div class="vs-aspect">Seu papel</div><div class="vs-chat">Copiar, colar e executar.</div><div class="vs-agent vs-last">Definir o objetivo e revisar o resultado.</div>
+        <div class="vs-aspect">Contexto</div><div class="vs-chat">Só o que você cola na conversa.</div><div class="vs-agent">Pode ler arquivos do projeto, se você der acesso à pasta.</div>
+        <div class="vs-aspect">Ações</div><div class="vs-chat">Responde com texto; você executa.</div><div class="vs-agent">Pode editar arquivos e rodar comandos, com a sua aprovação.</div>
+        <div class="vs-aspect">Controle</div><div class="vs-chat">Você conduz cada passo.</div><div class="vs-agent vs-last">Precisa de regras: é aqui que entram as skills.</div>
       </div>
-      <p class="vs-punch">Skills entram nesse ciclo: dizem ao agente <em>como</em> trabalhar a cada volta.</p>
+      <p class="vs-punch">Mais capacidade pede mais <em>processo</em> e controle.</p>
     </section>
     <section class="slide slide--dark" id="s3" aria-label="O que é uma skill">
       <p class="kicker">Conceito</p>
-      <h1 class="title">Skill = processo<br><em>empacotado</em></h1>
+      <h1 class="title">Skill é um processo<br><em>em arquivo</em></h1>
       <div class="concept">
         <div>
-          <p class="lead">Uma pasta com um <code>SKILL.md</code>: instruções, checklists e exemplos que o agente <strong>carrega sozinho quando a situação pede</strong>.</p>
+          <p class="lead">Uma pasta com um <code>SKILL.md</code>: nome, descrição e instruções. O agente <strong>pode carregá-la pela descrição</strong> ou quando você a cita (<code>/nome</code>).</p>
           <pre class="code-card"><code>---
 name: brainstorming
 description: Use antes de qualquer
@@ -112,9 +93,160 @@ description: Use antes de qualquer
         <div class="compare-list">
           <article class="compare"><h2>Prompt</h2><p>Você repete a cada conversa.</p></article>
           <article class="compare"><h2>Ferramenta</h2><p>Dá ao agente uma capacidade: ler arquivo, rodar comando.</p></article>
-          <article class="compare compare--skill"><h2>Skill</h2><p>Dá ao agente um método: reutilizável, versionado e compartilhável.</p></article>
+          <article class="compare compare--skill"><h2>Skill</h2><p>Dá ao agente um método: versionado e revisável como código.</p></article>
         </div>
       </div>
+    </section>
+    <section class="slide slide--dark" id="s-fluxo-min" aria-label="Fluxo mínimo">
+      <p class="kicker">O fluxo mínimo</p>
+      <h1 class="title">Quatro skills para o<br><em>fluxo mínimo</em></h1>
+      <ol class="mini-flow" style="--n: 4">
+        <li style="--g: var(--g1)"><code>brainstorming</code><span>requisito e design aprovados</span></li>
+        <li style="--g: var(--g1)"><code>writing-plans</code><span>plano em passos pequenos</span></li>
+        <li style="--g: var(--g2)"><code>test-driven-<wbr>development</code><span>teste vermelho, depois verde</span></li>
+        <li style="--g: var(--g2)"><code>verification-<wbr>before-<wbr>completion</code><span>“pronto” só com evidência</span></li>
+      </ol>
+      <p class="howto-note">O pacote tem 14 skills. Hoje usamos estas quatro; o catálogo completo está no apêndice.</p>
+    </section>
+    <section class="slide slide--dark" id="s-confiavel" aria-label="Confiável é evidência observável">
+      <p class="kicker">Definição</p>
+      <h1 class="title">Confiável = evidência<br><em>observável</em></h1>
+      <div class="evidence">
+        <article class="evidence-col"><h2>Antes</h2><ul><li>Requisito esclarecido</li><li>Plano revisável</li></ul></article>
+        <article class="evidence-col"><h2>Durante</h2><ul><li>Teste falhando antes do código</li><li>Teste passando depois</li></ul></article>
+        <article class="evidence-col"><h2>Depois</h2><ul><li>Diff revisado por você</li><li>Resultado verificado por você</li></ul></article>
+      </div>
+      <p class="vs-punch">Sem essas evidências, é só código que <em>parece</em> certo.</p>
+    </section>
+    <section class="slide slide--dark" id="s-pergunta" aria-label="O agente pergunta antes de codar">
+      <p class="kicker">brainstorming na prática</p>
+      <h1 class="title">O agente pergunta<br><em>antes de codar</em></h1>
+      <div class="concept">
+        <div>
+          <p class="lead">No caso da lista de bancos, cada resposta sua vira requisito escrito. A saída é um design curto, <strong>aprovado por você</strong>.</p>
+          <p class="howto-note">Exemplo ilustrativo, não é saída real do agente.</p>
+        </div>
+        <pre class="code-card term"><code><span class="term-agent">agente ›</span> Como a lista deve ser ordenada?
+<span class="term-you">você   ›</span> Por nome, sem diferenciar maiúsculas.
+<span class="term-agent">agente ›</span> A busca vale para nome, código ou os dois?
+<span class="term-you">você   ›</span> Os dois. Código só por prefixo.
+<span class="term-agent">agente ›</span> “credito” deve encontrar “Crédito”?</code></pre>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s-copilot" aria-label="Pronto para começar">
+      <p class="kicker">Tarefa prévia</p>
+      <h1 class="title">Pronto para <em>começar?</em></h1>
+      <div class="howto">
+        <div class="howto-row">
+          <h2>Login</h2>
+          <p>Abra o <code>copilot</code> e confira que está autenticado (<code>/login</code>).</p>
+        </div>
+        <div class="howto-row">
+          <h2>Instalação</h2>
+          <div class="install-options">
+            <pre><code>npx skills add obra/superpowers -g -a github-copilot</code></pre>
+            <p>Ou como plugin do Copilot CLI: comandos nos pré-requisitos.</p>
+          </div>
+        </div>
+        <div class="howto-row">
+          <h2>Conferir</h2>
+          <p><code>/skills list</code> mostra <code>brainstorming</code>. Escreva <strong>pronto</strong> no chat.</p>
+        </div>
+      </div>
+      <p class="howto-note">Sem ambiente? Forme dupla ou acompanhe a tela do apresentador.</p>
+    </section>
+    <section class="slide slide--dark" id="s-regras" aria-label="Regras do laboratório">
+      <p class="kicker">Antes de começar</p>
+      <h1 class="title">Regras do <em>laboratório</em></h1>
+      <div class="rules rules--3">
+        <article class="rule"><h2>Branch local, sem push</h2><p><code>workshop/seu-nome</code>, com o push bloqueado. Os comandos estão no guia.</p></article>
+        <article class="rule"><h2>Aprove comando a comando</h2><p>Leia cada comando antes de permitir. Nunca “permitir tudo”.</p></article>
+        <article class="rule"><h2>Nada sensível</h2><p>Não cole segredos, tokens nem dados de clientes. Não peça para ler arquivos de credenciais.</p></article>
+      </div>
+      <p class="howto-note">Os pedidos estão no guia do participante, no chat. Copie de lá, não da tela.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab1" aria-label="Laboratório etapa 1">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 1 de 3</p><span class="lab-time">8 min</span></div>
+      <h1 class="title">Esclarecer</h1>
+      <ol class="steps">
+        <li><span>Crie a branch e abra o <code>copilot</code> na raiz do repositório.</span></li>
+        <li><span>Cole o pedido da etapa 1 do guia (<code>/brainstorming</code>, no máximo 3 perguntas).</span></li>
+        <li><span><strong>Responda e aprove</strong> o design.</span></li>
+      </ol>
+      <div class="lab-story">
+        <p class="deep-label">A história e o recorte</p>
+        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco. <strong>Recorte:</strong> uma função que ordena por nome e filtra por nome ou código.</p>
+        <p class="lab-story-json"><code>{"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}</code></p>
+      </div>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez. Passou de 8 min? Use o design pronto do guia.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab2" aria-label="Laboratório etapa 2">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 2 de 3</p><span class="lab-time">4 min</span></div>
+      <h1 class="title">Planejar</h1>
+      <ol class="steps">
+        <li><span>Peça o plano com <code>/writing-plans</code> (pedido da etapa 2).</span></li>
+        <li><span>No máximo <strong>3 tarefas</strong>.</span></li>
+        <li><span>Confira que a Tarefa 1 começa por um teste.</span></li>
+      </ol>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> quantas tarefas o seu plano tem. Travou? Use o plano pronto do guia.</p>
+    </section>
+    <section class="slide slide--dark lab" id="s-lab3" aria-label="Laboratório etapa 3">
+      <div class="lab-head"><p class="kicker">Laboratório · etapa 3 de 3</p><span class="lab-time">11 min</span></div>
+      <h1 class="title">Vermelho, depois verde</h1>
+      <ol class="steps">
+        <li><span>Execute só a Tarefa 1 com <code>/test-driven-development</code>.</span></li>
+        <li><span>Rode o teste <strong>você mesmo</strong>: falha, depois passa.</span></li>
+        <li><span>Revise o diff e faça commit só local.</span></li>
+      </ol>
+      <p class="lab-check"><strong>Checkpoint no chat:</strong> a saída do teste verde. Não terminou? O guia mostra como continuar.</p>
+    </section>
+    <section class="slide slide--dark" id="s-retro" aria-label="Retrospectiva do laboratório">
+      <p class="kicker">Retrospectiva</p>
+      <h1 class="title">O que as evidências<br><em>mostraram</em></h1>
+      <div class="rules rules--3">
+        <article class="rule"><h2>Quantos chegaram ao verde?</h2><p>Contagem pelos checkpoints do chat.</p></article>
+        <article class="rule"><h2>A pergunta mais útil</h2><p>Que requisito ela esclareceu antes do código?</p></article>
+        <article class="rule"><h2>Onde travou</h2><p>Travar também é dado: mostra onde o processo protege.</p></article>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s-escala" aria-label="Depois do primeiro teste">
+      <p class="kicker">Escala, revisão e entrega</p>
+      <h1 class="title">Depois do <em>primeiro teste</em></h1>
+      <ol class="mini-flow" style="--n: 3">
+        <li style="--g: var(--g3)"><code>executing-plans</code><span>seguir o plano tarefa a tarefa; com <code>subagent-driven-development</code>, onde houver suporte a subagentes</span></li>
+        <li style="--g: var(--g4)"><code>requesting-code-review</code><span>revisão independente antes de integrar</span></li>
+        <li style="--g: var(--g4)"><code>finishing-a-<wbr>development-<wbr>branch</code><span>merge, PR ou descarte, com os testes verdes</span></li>
+      </ol>
+    </section>
+    <section class="slide slide--dark" id="s-cuidados" aria-label="Limites e controles">
+      <p class="kicker">Com os pés no chão</p>
+      <h1 class="title">Limites e <em>controles</em></h1>
+      <div class="rules rules--3">
+        <article class="rule"><h2>Custa tempo e tokens</h2><p>Use o fluxo completo onde há dúvida ou risco. Correção de uma linha não precisa.</p></article>
+        <article class="rule"><h2>Skill de terceiros</h2><p>É instrução para o seu agente. Revise o <code>SKILL.md</code> e os scripts antes de instalar.</p></article>
+        <article class="rule"><h2>Você continua responsável</h2><p>O agente não substitui revisão, testes nem a sua assinatura no PR.</p></article>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s-proximos" aria-label="Próximos passos">
+      <p class="kicker">Depois do workshop</p>
+      <h1 class="title">Próximo passo:<br><em>uma história real</em></h1>
+      <ol class="steps next-steps">
+        <li><span><strong>Termine o laboratório</strong> com a seção “Como continuar” do guia.</span></li>
+        <li><span>Use o fluxo numa <strong>história pequena</strong> desta sprint.</span></li>
+        <li><span>Traga as <strong>seis evidências</strong> na próxima reunião.</span></li>
+      </ol>
+      <p class="questions">Perguntas?</p>
+    </section>
+    <section class="slide slide--dark" id="s-apendice" aria-label="Apêndice">
+      <p class="kicker">Apêndice</p>
+      <h1 class="title">Material de <em>apoio</em></h1>
+      <p class="lead">Para usar se sobrar tempo ou surgir uma pergunta.</p>
+      <ol class="steps appendix-list">
+        <li><span><strong>O mapa das 14 skills</strong> e os quatro grupos</span></li>
+        <li><span><strong>brainstorming</strong>, <strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span></li>
+        <li><span><strong>O fluxo completo</strong> em sete etapas</span></li>
+        <li><span><strong>obra, skills.sh</strong> e skills por plataforma</span></li>
+      </ol>
     </section>
     <section class="slide slide--dark" id="s5" aria-label="Mapa do superpowers">
       <p class="kicker">O mapa do superpowers</p>
@@ -161,7 +293,7 @@ description: Use antes de qualquer
       <aside class="group-band" data-bleed>
         <span class="group-num">01</span>
         <h1 class="group-title">Pensar antes de codar</h1>
-        <p class="group-result">Menos retrabalho: o código nasce do entendimento.</p>
+        <p class="group-result">Objetivo: entender e planejar antes de codar.</p>
       </aside>
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
@@ -182,110 +314,11 @@ description: Use antes de qualquer
         </article>
       </div>
     </section>
-    <section class="slide slide--dark" id="s6-brainstorming" aria-label="brainstorming em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
-      <p class="kicker">Pensar antes de codar · em detalhe</p>
-      <h1 class="deep-title">brainstorming</h1>
-      <div class="deep">
-        <div>
-          <p class="deep-label">Quando usar</p>
-          <p class="deep-text">Antes de qualquer trabalho criativo: uma feature nova, um componente, uma mudança de comportamento.</p>
-          <p class="deep-label">Regra de ouro</p>
-          <p class="deep-rule">Nenhum código antes de um design aprovado. Vale até para o que “parece simples”.</p>
-          <p class="deep-label">O que gera</p>
-          <p class="deep-path">docs/superpowers/specs/AAAA-MM-DD-tema-design.md</p>
-          <p class="deep-here"><strong>Na prática:</strong> na história da lista de bancos, o agente pergunta como ordenar, se a busca é por nome ou código e o que mostrar com a lista vazia, antes de escrever código.</p>
-        </div>
-        <div>
-          <p class="deep-label">O processo</p>
-          <ol class="steps">
-            <li><span><strong>Explora o contexto:</strong> arquivos, docs e commits recentes.</span></li>
-            <li><span><strong>Pergunta uma coisa por vez,</strong> de preferência com múltipla escolha.</span></li>
-            <li><span><strong>Propõe 2 ou 3 abordagens</strong> com prós, contras e uma recomendação.</span></li>
-            <li><span><strong>Apresenta o design em partes</strong> e pede aprovação de cada uma.</span></li>
-            <li><span><strong>Escreve o spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
-            <li><span><strong>Passa a vez para</strong> <code>writing-plans</code>.</span></li>
-          </ol>
-        </div>
-      </div>
-    </section>
-    <section class="slide slide--dark" id="s-copilot" aria-label="Superpowers no Copilot CLI">
-      <p class="kicker">Na prática</p>
-      <h1 class="title">Superpowers no <em>Copilot CLI</em></h1>
-      <div class="howto">
-        <div class="howto-row">
-          <h2>Instalar</h2>
-          <div class="install-options">
-            <p class="install-label">Padrão do skills.sh</p>
-            <pre><code>npx skills add obra/superpowers -g -a github-copilot</code></pre>
-            <p class="install-label">Ou como plugin do Copilot CLI</p>
-            <pre><code>copilot plugin marketplace add obra/superpowers-marketplace
-copilot plugin install superpowers@superpowers-marketplace</code></pre>
-          </div>
-        </div>
-        <div class="howto-row">
-          <h2>Conferir</h2>
-          <p>Dentro do <code>copilot</code>, digite <code>/skills list</code>: devem aparecer <code>brainstorming</code>, <code>writing-plans</code> e as demais.</p>
-        </div>
-        <div class="howto-row">
-          <h2>Usar</h2>
-          <p>Cite a skill com barra no pedido: <code>Use a skill /brainstorming para esta história…</code></p>
-        </div>
-      </div>
-      <p class="howto-note">Skills avulsas: <code>.github/skills/</code> no repositório ou <code>~/.copilot/skills/</code> na sua máquina.</p>
-    </section>
-    <section class="slide slide--dark" id="s-regras" aria-label="Regras do laboratório">
-      <p class="kicker">Antes de começar</p>
-      <h1 class="title">Regras do <em>laboratório</em></h1>
-      <div class="rules">
-        <article class="rule"><h2>Só branch local</h2><p><code>git switch -c workshop/seu-nome</code> e nada de push para o remoto.</p></article>
-        <article class="rule"><h2>Nada sensível</h2><p>Não cole segredos, tokens nem dados de clientes no agente.</p></article>
-        <article class="rule"><h2>Checkpoints no chat</h2><p>Ao fim de cada etapa, cole no chat do Teams o que o slide pedir.</p></article>
-        <article class="rule"><h2>Copie do guia</h2><p>Os comandos e pedidos estão no guia do participante, no chat. Não copie da tela.</p></article>
-      </div>
-      <p class="howto-note">Travou? Escreva no chat e acompanhe a tela de quem avançou.</p>
-    </section>
-    <section class="slide slide--dark lab" id="s-lab1" aria-label="Laboratório etapa 1">
-      <div class="lab-head"><p class="kicker">Laboratório · etapa 1 de 3</p><span class="lab-time">10 min</span></div>
-      <h1 class="title">Brainstorming</h1>
-      <ol class="steps">
-        <li><span>Crie a branch: <code>git switch -c workshop/seu-nome</code></span></li>
-        <li><span>Abra o agente na raiz do repositório: <code>copilot</code></span></li>
-        <li><span>Cole o pedido da etapa 1 do guia (ele usa <code>/brainstorming</code> e traz a história).</span></li>
-        <li><span><strong>Responda às perguntas</strong> e aprove o design.</span></li>
-      </ol>
-      <div class="lab-story">
-        <p class="deep-label">A história</p>
-        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco.</p>
-        <p class="lab-story-json"><code>{"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}</code></p>
-      </div>
-      <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez.</p>
-    </section>
-    <section class="slide slide--dark lab" id="s-lab2" aria-label="Laboratório etapa 2">
-      <div class="lab-head"><p class="kicker">Laboratório · etapa 2 de 3</p><span class="lab-time">5 min</span></div>
-      <h1 class="title">O plano</h1>
-      <ol class="steps">
-        <li><span>Na mesma sessão, cole o pedido da etapa 2 do guia (<code>/writing-plans</code>).</span></li>
-        <li><span>Leia o plano: <strong>tarefas pequenas</strong>, com arquivos e testes em cada uma.</span></li>
-        <li><span>Algo fora do recorte da sua stack? Peça para cortar.</span></li>
-      </ol>
-      <p class="lab-check"><strong>Checkpoint no chat:</strong> quantas tarefas o seu plano tem.</p>
-    </section>
-    <section class="slide slide--dark lab" id="s-lab3" aria-label="Laboratório etapa 3">
-      <div class="lab-head"><p class="kicker">Laboratório · etapa 3 de 3</p><span class="lab-time">10 min</span></div>
-      <h1 class="title">Primeira tarefa com TDD</h1>
-      <ol class="steps">
-        <li><span>Cole o pedido da etapa 3 do guia (<code>/test-driven-development</code>, só a Tarefa 1).</span></li>
-        <li><span>Confira que o teste <strong>falha primeiro</strong>: vermelho.</span></li>
-        <li><span>Deixe o agente implementar e rodar de novo: <strong>verde</strong>.</span></li>
-        <li><span>Revise com <code>git diff</code>. Commit só local, sem push.</span></li>
-      </ol>
-      <p class="lab-check"><strong>Checkpoint no chat:</strong> a saída do teste passando. Não terminou? O guia mostra como continuar.</p>
-    </section>
     <section class="slide slide--dark slide--group" id="s7" aria-label="Qualidade e disciplina" style="--g: var(--g2)">
       <aside class="group-band" data-bleed>
         <span class="group-num">02</span>
         <h1 class="group-title">Qualidade e disciplina</h1>
-        <p class="group-result">Confiança: cada afirmação tem evidência.</p>
+        <p class="group-result">Objetivo: cada afirmação acompanhada de evidência.</p>
       </aside>
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
@@ -310,14 +343,14 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       <aside class="group-band" data-bleed>
         <span class="group-num">03</span>
         <h1 class="group-title">Escala com agentes</h1>
-        <p class="group-result">Mais trabalho em paralelo sem perder o controle.</p>
+        <p class="group-result">Objetivo: paralelizar com revisão entre tarefas.</p>
       </aside>
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
         <article class="skill-row">
           <h2 class="skill-name">subagent-driven-development</h2>
           <p class="skill-before">Um agente só se perde num contexto longo.</p>
-          <p class="skill-after">entrega cada tarefa do plano a um subagente novo, com revisão entre tarefas.</p>
+          <p class="skill-after">entrega cada tarefa do plano a um subagente novo, com revisão entre tarefas, onde houver suporte.</p>
         </article>
         <article class="skill-row">
           <h2 class="skill-name">dispatching-parallel-agents</h2>
@@ -335,7 +368,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
       <aside class="group-band" data-bleed>
         <span class="group-num">04</span>
         <h1 class="group-title">Revisão e entrega</h1>
-        <p class="group-result">O ciclo fecha e o conhecimento vira skill.</p>
+        <p class="group-result">Objetivo: revisar, integrar e registrar o que se aprendeu.</p>
       </aside>
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
@@ -366,78 +399,29 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
         </article>
       </div>
     </section>
-    <section class="slide slide--dark" id="s10" aria-label="O fluxo completo">
-      <p class="kicker">Juntando tudo</p>
-      <h1 class="title">O fluxo <em>completo</em></h1>
-      <ol class="flow">
-        <li class="flow-step" style="--g: var(--g1)"><span>01</span><code>brainstorming</code></li>
-        <li class="flow-step" style="--g: var(--g1)"><span>02</span><code>writing-<wbr>plans</code></li>
-        <li class="flow-step" style="--g: var(--g3)"><span>03</span><code>using-<wbr>git-<wbr>worktrees</code></li>
-        <li class="flow-step" style="--g: var(--g3)"><span>04</span><code>subagent-<wbr>driven-<wbr>development</code><small>+ test-<wbr>driven-<wbr>development</small></li>
-        <li class="flow-step" style="--g: var(--g4)"><span>05</span><code>requesting-<wbr>code-<wbr>review</code></li>
-        <li class="flow-step" style="--g: var(--g2)"><span>06</span><code>verification-<wbr>before-<wbr>completion</code></li>
-        <li class="flow-step" style="--g: var(--g4)"><span>07</span><code>finishing-<wbr>a-<wbr>development-<wbr>branch</code></li>
-      </ol>
-      <div class="start">
+    <section class="slide slide--dark" id="s6-brainstorming" aria-label="brainstorming em detalhe" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
+      <p class="kicker">Pensar antes de codar · em detalhe</p>
+      <h1 class="deep-title">brainstorming</h1>
+      <div class="deep">
         <div>
-          <p class="catalog-label">Como começar</p>
-          <pre class="code-card code-card--dark code-card--sm"><code><span class="cmd-note"># padrão do skills.sh</span>
-<span class="prompt">$</span> npx skills add obra/superpowers -g -a github-copilot
-<span class="cmd-note"># ou como plugin do Copilot CLI</span>
-<span class="prompt">$</span> copilot plugin marketplace add obra/superpowers-marketplace
-<span class="prompt">$</span> copilot plugin install superpowers@superpowers-marketplace</code></pre>
-          <p class="start-alt">Depois, dentro do <strong>copilot</strong>: <strong>/skills list</strong></p>
-          <p class="start-links mono">skills.sh/obra · github.com/obra/superpowers</p>
-        </div>
-        <p class="closing">Agentes rápidos + método = <em>software confiável</em>.</p>
-      </div>
-    </section>
-    <section class="slide slide--dark" id="s-cuidados" aria-label="Cuidados e limites">
-      <p class="kicker">Com os pés no chão</p>
-      <h1 class="title">Cuidados e <em>limites</em></h1>
-      <div class="rules">
-        <article class="rule"><h2>Mudança pequena</h2><p>Correção de uma linha não pede brainstorming nem plano.</p></article>
-        <article class="rule"><h2>Custa tempo e tokens</h2><p>O processo completo compensa quando há dúvida de regra ou risco.</p></article>
-        <article class="rule"><h2>Skills de terceiros</h2><p>Revise o <code>SKILL.md</code> antes de instalar: ele dá instruções ao seu agente.</p></article>
-        <article class="rule"><h2>Você continua responsável</h2><p>Revise o diff e rode os testes antes de abrir o PR.</p></article>
-      </div>
-    </section>
-    <section class="slide slide--dark" id="s-proximos" aria-label="Próximos passos">
-      <p class="kicker">Depois do workshop</p>
-      <h1 class="title">Próximos <em>passos</em></h1>
-      <ol class="steps next-steps">
-        <li><span><strong>Termine o laboratório</strong> com a seção “Como continuar” do guia.</span></li>
-        <li><span>Use <strong>/brainstorming</strong> na sua próxima história real.</span></li>
-        <li><span>Conheça as <strong>skills da sua plataforma</strong>: iOS, Android e Java, no apêndice.</span></li>
-        <li><span><strong>Traga o resultado</strong> na próxima reunião: o que funcionou e o que não.</span></li>
-      </ol>
-      <p class="questions">Perguntas?</p>
-    </section>
-    <section class="slide slide--dark" id="s-apendice" aria-label="Apêndice">
-      <p class="kicker">Apêndice</p>
-      <h1 class="title">Material de <em>apoio</em></h1>
-      <p class="lead">Para usar se sobrar tempo ou surgir uma pergunta.</p>
-      <ol class="steps appendix-list">
-        <li><span><strong>obra e o skills.sh</strong> — o autor e o catálogo</span></li>
-        <li><span><strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span></li>
-        <li><span><strong>Skills por plataforma</strong> — iOS, Android e backend Java</span></li>
-      </ol>
-    </section>
-    <section class="slide slide--dark" id="s4" aria-label="obra e o skills.sh">
-      <p class="kicker">Autor e catálogo</p>
-      <h1 class="title">Um catálogo<br>de <em>métodos</em></h1>
-      <div class="catalog">
-        <div class="catalog-intro">
-          <article class="info-card"><h2 class="mono">obra</h2><p>Jesse Vincent publica skills que codificam práticas de engenharia sênior para agentes.</p></article>
-          <article class="info-card"><h2 class="mono">skills.sh</h2><p>Diretório aberto de skills: você encontra, instala e usa no seu agente.</p></article>
+          <p class="deep-label">Quando usar</p>
+          <p class="deep-text">Antes de qualquer trabalho criativo: uma feature nova, um componente, uma mudança de comportamento.</p>
+          <p class="deep-label">Regra de ouro</p>
+          <p class="deep-rule">Nenhum código antes de um design aprovado. Vale até para o que “parece simples”.</p>
+          <p class="deep-label">O que gera</p>
+          <p class="deep-path">docs/superpowers/specs/AAAA-MM-DD-tema-design.md</p>
+          <p class="deep-here"><strong>Na prática:</strong> na história da lista de bancos, o agente pergunta como ordenar, se a busca é por nome ou código e o que mostrar com a lista vazia, antes de escrever código.</p>
         </div>
         <div>
-          <p class="catalog-label">Outros pacotes do autor</p>
-          <div class="pkg"><code>episodic-memory</code><span>o agente lembra de conversas anteriores</span></div>
-          <div class="pkg"><code>the-elements-of-style</code><span>escrita clara e concisa</span></div>
-          <div class="pkg"><code>superpowers-lab</code><span>experimentos: tmux, funções duplicadas…</span></div>
-          <div class="pkg"><code>superpowers-chrome</code><span>navegar na web pelo Chrome</span></div>
-          <p class="pill">O principal é o <strong>superpowers</strong> →</p>
+          <p class="deep-label">O processo</p>
+          <ol class="steps">
+            <li><span><strong>Explora o contexto:</strong> arquivos, docs e commits recentes.</span></li>
+            <li><span><strong>Pergunta uma coisa por vez,</strong> de preferência com múltipla escolha.</span></li>
+            <li><span><strong>Propõe 2 ou 3 abordagens</strong> com prós, contras e uma recomendação.</span></li>
+            <li><span><strong>Apresenta o design em partes</strong> e pede aprovação de cada uma.</span></li>
+            <li><span><strong>Escreve o spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
+            <li><span><strong>Passa a vez para</strong> <code>writing-plans</code>.</span></li>
+          </ol>
         </div>
       </div>
     </section>
@@ -452,7 +436,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
           <p class="deep-rule">Escrever para um dev que não conhece o projeto: nada de “TODO” ou “implementar depois”.</p>
           <p class="deep-label">O que gera</p>
           <p class="deep-path">docs/superpowers/plans/AAAA-MM-DD-feature.md</p>
-          <p class="deep-here"><strong>Na prática:</strong> a lista de bancos vira tarefas como “modelo <code>Institution</code> + teste”, “use case com busca + teste” e “estados do ViewModel + teste”.</p>
+          <p class="deep-here"><strong>Na prática:</strong> a lista de bancos vira tarefas como “ordenar por nome + teste”, “filtrar por nome + teste” e “filtrar por código + teste”.</p>
         </div>
         <div>
           <p class="deep-label">O processo</p>
@@ -478,7 +462,7 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
           <p class="deep-rule">Travou? Para e pergunta. Não adivinha e não força o caminho.</p>
           <p class="deep-label">O que gera</p>
           <p class="deep-text">Código commitado num branch, pronto para integrar.</p>
-          <p class="deep-here"><strong>Na prática:</strong> cada tarefa da lista de bancos roda na branch <code>workshop/seu-nome</code>; se o teste do use case falhar sem motivo claro, o agente para e pergunta.</p>
+          <p class="deep-here"><strong>Na prática:</strong> cada tarefa da lista de bancos roda na branch <code>workshop/seu-nome</code>; se o teste da ordenação falhar sem motivo claro, o agente para e pergunta.</p>
         </div>
         <div>
           <p class="deep-label">O processo</p>
@@ -489,6 +473,50 @@ copilot plugin install superpowers@superpowers-marketplace</code></pre>
             <li><span><strong>Para no primeiro bloqueio:</strong> dependência faltando, teste falhando, instrução confusa.</span></li>
             <li><span><strong>Fecha com</strong> <code>finishing-a-development-branch</code>: merge, PR ou limpeza.</span></li>
           </ol>
+        </div>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s10" aria-label="O fluxo completo">
+      <p class="kicker">Juntando tudo</p>
+      <h1 class="title">O fluxo <em>completo</em></h1>
+      <ol class="flow">
+        <li class="flow-step" style="--g: var(--g1)"><span>01</span><code>brainstorming</code></li>
+        <li class="flow-step" style="--g: var(--g1)"><span>02</span><code>writing-<wbr>plans</code></li>
+        <li class="flow-step" style="--g: var(--g3)"><span>03</span><code>using-<wbr>git-<wbr>worktrees</code></li>
+        <li class="flow-step" style="--g: var(--g3)"><span>04</span><code>subagent-<wbr>driven-<wbr>development</code><small>+ test-<wbr>driven-<wbr>development</small></li>
+        <li class="flow-step" style="--g: var(--g4)"><span>05</span><code>requesting-<wbr>code-<wbr>review</code></li>
+        <li class="flow-step" style="--g: var(--g2)"><span>06</span><code>verification-<wbr>before-<wbr>completion</code></li>
+        <li class="flow-step" style="--g: var(--g4)"><span>07</span><code>finishing-<wbr>a-<wbr>development-<wbr>branch</code></li>
+      </ol>
+      <div class="start">
+        <div>
+          <p class="catalog-label">Como começar</p>
+          <pre class="code-card code-card--dark code-card--sm"><code><span class="cmd-note"># padrão do skills.sh</span>
+<span class="prompt">$</span> npx skills add obra/superpowers -g -a github-copilot
+<span class="cmd-note"># ou como plugin do Copilot CLI</span>
+<span class="prompt">$</span> copilot plugin marketplace add obra/superpowers-marketplace
+<span class="prompt">$</span> copilot plugin install superpowers@superpowers-marketplace</code></pre>
+          <p class="start-alt">Depois, dentro do <strong>copilot</strong>: <strong>/skills list</strong></p>
+          <p class="start-links mono">skills.sh/obra · github.com/obra/superpowers</p>
+        </div>
+        <p class="closing">Confiável = <em>evidência observável</em>.</p>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s4" aria-label="obra e o skills.sh">
+      <p class="kicker">Autor e catálogo</p>
+      <h1 class="title">Um catálogo<br>de <em>métodos</em></h1>
+      <div class="catalog">
+        <div class="catalog-intro">
+          <article class="info-card"><h2 class="mono">obra</h2><p>Jesse Vincent publica skills que codificam práticas de engenharia sênior para agentes.</p></article>
+          <article class="info-card"><h2 class="mono">skills.sh</h2><p>Diretório aberto de skills: você encontra, instala e usa no seu agente.</p></article>
+        </div>
+        <div>
+          <p class="catalog-label">Outros pacotes do autor</p>
+          <div class="pkg"><code>episodic-memory</code><span>o agente lembra de conversas anteriores</span></div>
+          <div class="pkg"><code>the-elements-of-style</code><span>escrita clara e concisa</span></div>
+          <div class="pkg"><code>superpowers-lab</code><span>experimentos: tmux, funções duplicadas…</span></div>
+          <div class="pkg"><code>superpowers-chrome</code><span>navegar na web pelo Chrome</span></div>
+          <p class="pill">O principal é o <strong>superpowers</strong> →</p>
         </div>
       </div>
     </section>

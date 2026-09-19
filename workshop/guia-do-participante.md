@@ -4,32 +4,44 @@ Copie os comandos e pedidos **deste arquivo**, não da tela compartilhada.
 
 ## Regras do laboratório
 
-- Trabalhe só numa **branch local** `workshop/seu-nome`. **Nada de push.**
-- Não cole segredos, tokens nem dados de clientes no agente.
+- Trabalhe só numa **branch local** `workshop/seu-nome`, com o **push bloqueado** (etapa 0).
+- **Aprove comando a comando.** Leia cada comando que o agente pedir para rodar. Nunca
+  escolha "permitir tudo".
+- **Nada sensível:** não cole segredos, tokens nem dados de clientes. Não peça ao agente
+  para ler arquivos de credenciais (por exemplo `local.properties` com `JFROG_TOKEN`, ou `.env`).
 - Ao fim de cada etapa, cole no chat do Teams o que o slide pedir.
 - O agente vai criar arquivos em `docs/superpowers/` (design e plano). Eles ficam na sua
   branch local.
 
-## Etapa 1 · Brainstorming (10 min)
+## Etapa 0 · Preparar a branch (1 min)
 
-Na pasta do repositório:
+Na pasta do repositório (os comandos são os mesmos no Mac e no Windows):
 
 ```bash
 git switch -c workshop/seu-nome
+git remote set-url --push origin DESABILITADO
 copilot
 ```
 
-Dentro do `copilot`, cole **o pedido da sua stack**:
+A segunda linha faz qualquer `git push` falhar. Para desfazer depois do workshop:
+
+```bash
+git remote set-url --push origin "$(git remote get-url origin)"
+```
+
+## Etapa 1 · Esclarecer (8 min)
+
+Dentro do `copilot`, cole **o pedido da sua stack**.
 
 ### iOS
 
 ```text
-Use a skill /brainstorming para esta história. Não implemente nada ainda.
+Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.
 
-Recorte para este repositório: modelo Institution, interface de repositório, use case e
-um ViewModel com os estados carregando, lista, vazio e erro, com busca local. Os dados
-vêm de um stub com JSON local (sem backend). Testes com XCTest no ViewModel e no use case.
-A tela em SwiftUI fica fora.
+Recorte: uma função pura (sem UI, rede ou ViewModel) que recebe uma lista de instituições e
+um texto de busca e devolve a lista ordenada por nome e filtrada por nome ou código. Busca
+vazia devolve todas, ordenadas. Coloque o tipo Institution e a função em Sources/Domain.
+Testes com XCTest em Tests/portabilityTests.
 
 História:
 Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
@@ -42,12 +54,12 @@ Exemplo de item:
 ### Android
 
 ```text
-Use a skill /brainstorming para esta história. Não implemente nada ainda.
+Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.
 
-Recorte para este repositório: seguindo o padrão do Sample que já existe, modelo,
-use case e um ViewModel com UIState (carregando, lista, vazio e erro), com busca local.
-Os dados vêm de um stub (sem backend). Testes unitários com JUnit no ViewModel e no
-use case. A tela em Compose fica fora.
+Recorte: uma função pura (sem UI, rede ou ViewModel) que recebe uma lista de instituições e
+um texto de busca e devolve a lista ordenada por nome e filtrada por nome ou código. Busca
+vazia devolve todas, ordenadas. Coloque a data class e a função em
+project/portability/src/main/java/domain. Testes JUnit em project/portability/src/test/java.
 
 História:
 Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
@@ -60,12 +72,12 @@ Exemplo de item:
 ### Backend
 
 ```text
-Use a skill /brainstorming para esta história. Não implemente nada ainda.
+Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.
 
-Recorte para este repositório: o endpoint GET /institutions já existe
-(InstitutionV1Controller e InstitutionService). Evolua-o para filtrar por
-institutionType e ordenar por nome. Testes em InstitutionServiceTest e
-InstitutionV1ControllerTest.
+Recorte: uma classe nova e pura (por exemplo InstitutionSorter), sem alterar o controller nem
+o InstitutionService, que recebe uma lista de instituições e um texto de busca e devolve a
+lista ordenada por nome e filtrada por nome ou código. Busca vazia devolve todas, ordenadas.
+Testes JUnit em src/test/java.
 
 História:
 Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
@@ -79,37 +91,62 @@ Responda às perguntas do agente e aprove o design.
 
 **Checkpoint no chat:** a pergunta mais útil que o agente fez.
 
-## Etapa 2 · O plano (5 min)
+### Design pronto (use se passar de 8 minutos)
+
+```text
+Design aprovado, siga com ele: função filterAndSort(institutions, query).
+- Ordena por nome, sem diferenciar maiúsculas nem acentos.
+- Busca: o nome contém o texto (sem diferenciar maiúsculas nem acentos) ou o código começa com o texto.
+- Busca vazia ou só com espaços devolve todas, ordenadas.
+- Sem dependências externas.
+```
+
+## Etapa 2 · Planejar (4 min)
 
 Na mesma sessão:
 
 ```text
-Use a skill /writing-plans para criar o plano de implementação a partir do design
-aprovado. Tarefas pequenas, com o teste antes do código em cada uma.
+Use a skill /writing-plans para criar o plano a partir do design aprovado. No máximo 3 tarefas,
+cada uma começando por um teste. A Tarefa 1 deve ser: ordenar por nome.
 ```
 
-Leia o plano. Se algo sair do recorte da sua stack, peça para cortar.
+Confira que a Tarefa 1 começa por um teste. Se algo sair do recorte, peça para cortar.
 
 **Checkpoint no chat:** quantas tarefas o seu plano tem.
 
-## Etapa 3 · Primeira tarefa com TDD (10 min)
+### Plano pronto (use se o plano não sair)
 
 ```text
-Execute somente a Tarefa 1 do plano usando a skill /test-driven-development.
-Mostre o teste falhando antes de implementar. Faça commit local e não faça push.
+Siga este plano:
+Tarefa 1 — Ordenar por nome: teste com três bancos fora de ordem que espera a lista ordenada; implementar a ordenação.
+Tarefa 2 — Filtrar por nome: teste em que "brasil" encontra "Banco do Brasil"; implementar o filtro.
+Tarefa 3 — Filtrar por código e busca vazia: teste em que "00" encontra "001" e busca vazia devolve todas; implementar.
 ```
 
-Confira: o teste falha primeiro (vermelho), depois passa (verde). Revise com `git diff`.
+## Etapa 3 · Vermelho, depois verde (11 min)
 
-Para rodar os testes você mesmo:
+```text
+Execute somente a Tarefa 1 do plano usando a skill /test-driven-development. Escreva o teste
+primeiro e pare para eu rodá-lo e ver que falha. Depois implemente o mínimo para passar.
+Faça commit local e não faça push.
+```
+
+Rode o teste **você mesmo**: ele deve falhar antes da implementação e passar depois.
+Revise com `git diff` antes do commit.
 
 | Stack | Mac | Windows |
 |---|---|---|
 | iOS | `xcodebuild test -project app_demo/portabilityDemo.xcodeproj -scheme portabilityDemo -destination 'platform=iOS Simulator,name=iPhone 16'` | — (só Mac) |
-| Android | `cd project && ./gradlew :portability:testDebugUnitTest` | `cd project; .\gradlew.bat :portability:testDebugUnitTest` |
-| Backend | `./mvnw test -Dtest=InstitutionServiceTest` | `.\mvnw.cmd test "-Dtest=InstitutionServiceTest"` |
+| Android | `cd project && ./gradlew :portability:testDebugUnitTest --tests "*Institution*"` | `cd project; .\gradlew.bat :portability:testDebugUnitTest --tests "*Institution*"` |
+| Backend | `./mvnw test -Dtest=InstitutionSorterTest` | `.\mvnw.cmd test "-Dtest=InstitutionSorterTest"` |
 
-**Checkpoint no chat:** a saída do teste passando.
+**Checkpoint no chat:** a saída do teste verde.
+
+## Sem ambiente funcionando?
+
+- Forme dupla com quem está com o ambiente pronto, ou acompanhe a tela do apresentador.
+- As etapas 1 e 2 funcionam sem compilar nada: dá para praticar o brainstorming e o plano
+  mesmo que o build não rode.
 
 ## Como continuar depois do workshop
 
@@ -119,9 +156,10 @@ Abra o `copilot` na mesma branch e peça:
 Use a skill /executing-plans para continuar o plano a partir da Tarefa 2.
 ```
 
-Quando terminar, descarte a branch se não for usá-la:
+Quando terminar, descarte a branch se não for usá-la e reative o push:
 
 ```bash
 git switch main
 git branch -D workshop/seu-nome
+git remote set-url --push origin "$(git remote get-url origin)"
 ```

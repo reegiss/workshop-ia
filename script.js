@@ -4,7 +4,8 @@
   const SAFE_BOTTOM = 72; // espaço do contador e da barra de progresso
   // Itens de texto que entram em cascata dentro do slide
   const REVEAL_ITEMS = '.steps li, .problem, .rule, .howto-row, .plat-card, .plat-tip, .group-card, ' +
-    '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div, .bio-facts li';
+    '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div, .bio-facts li, ' +
+    '.timebar-seg, .mini-flow li, .evidence-col';
 
   const stage = document.querySelector('.stage');
   const slides = [...document.querySelectorAll('.slide')];
@@ -100,6 +101,99 @@
   fit();
   current = parseHash(location.hash); // primeira exibição sem transição de saída
   show(current);
+
+  // Modo ?export: slide no estado final, sem controles (usado para gerar o Keynote)
+  const params = new URLSearchParams(location.search);
+  if (params.has('export')) {
+    document.body.classList.add('is-export');
+    if (params.has('arial')) document.body.classList.add('is-export-arial'); // fontes padrão (Arial / Courier New)
+    if (params.has('notext')) document.body.classList.add('is-notext'); // só as formas, para o fundo do PPTX
+    if (params.has('extract')) document.fonts.ready.then(extractText);
+  }
+
+  // Modo ?export&extract: mede cada bloco de texto de todos os slides e grava o resultado
+  // (JSON em base64) num <script id="export-data">, para gerar o PPTX editável.
+  function extractText() {
+    const isInline = (el) => ['inline', 'contents'].includes(getComputedStyle(el).display);
+    const px = (v) => Number.parseFloat(v) || 0;
+    const result = slides.map((slide) => {
+      slides.forEach((s) => s.classList.toggle('is-active', s === slide));
+      const box = slide.getBoundingClientRect();
+      const scale = box.width / STAGE_W;
+      const blocks = new Map();
+      const blockOf = (node) => {
+        let el = node.parentElement;
+        while (el !== slide && isInline(el)) el = el.parentElement;
+        return el;
+      };
+      const entry = (el) => {
+        if (!blocks.has(el)) blocks.set(el, { runs: [], rects: [] });
+        return blocks.get(el);
+      };
+      const walker = document.createTreeWalker(slide, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+      while (walker.nextNode()) {
+        const n = walker.currentNode;
+        if (n.nodeType === 1) {
+          if (n.tagName === 'BR') entry(blockOf(n)).runs.push({ br: true });
+          continue;
+        }
+        const parent = n.parentElement;
+        const cs = getComputedStyle(parent);
+        const pre = cs.whiteSpace.startsWith('pre');
+        let text = pre ? n.textContent : n.textContent.replace(/\s+/g, ' ');
+        if (!text) continue;
+        const range = document.createRange();
+        range.selectNodeContents(n);
+        const rects = [...range.getClientRects()].filter((r) => r.width > 0 && r.height > 0);
+        if (!rects.length && !pre) continue;
+        if (cs.textTransform === 'uppercase') text = text.toUpperCase();
+        const b = entry(blockOf(n));
+        b.rects.push(...rects);
+        b.runs.push({
+          text,
+          size: px(cs.fontSize) / scale,
+          weight: Number.parseInt(cs.fontWeight, 10),
+          italic: cs.fontStyle === 'italic',
+          mono: /courier|mono|menlo/i.test(cs.fontFamily),
+          color: cs.color,
+          spacing: cs.letterSpacing === 'normal' ? 0 : px(cs.letterSpacing) / scale,
+          pre,
+        });
+      }
+      const out = [];
+      blocks.forEach((b, el) => {
+        if (!b.rects.length || !b.runs.some((r) => r.text && r.text.trim())) return;
+        const cs = getComputedStyle(el);
+        const er = el.getBoundingClientRect();
+        const contentLeft = er.left + px(cs.borderLeftWidth) + px(cs.paddingLeft);
+        const contentRight = er.right - px(cs.borderRightWidth) - px(cs.paddingRight);
+        const left = Math.min(...b.rects.map((r) => r.left));
+        const top = Math.min(...b.rects.map((r) => r.top));
+        const bottom = Math.max(...b.rects.map((r) => r.bottom));
+        const firstSize = b.runs.find((r) => r.size).size * scale;
+        const lh = cs.lineHeight === 'normal' ? firstSize * 1.2 : px(cs.lineHeight);
+        const firstH = b.rects[0].height;
+        const align = ['center', 'right', 'end'].includes(cs.textAlign) ? (cs.textAlign === 'end' ? 'right' : cs.textAlign) : 'left';
+        const x = align === 'left' ? left : contentLeft;
+        out.push({
+          x: (x - box.left) / scale,
+          y: (top - (lh - firstH) / 2 - box.top) / scale,
+          w: (contentRight - x) / scale + 4,
+          h: (bottom - top + (lh - firstH)) / scale,
+          lineHeight: lh / scale,
+          align,
+          runs: b.runs,
+        });
+      });
+      return { index: slides.indexOf(slide) + 1, blocks: out };
+    });
+    show(current);
+    const tag = document.createElement('script');
+    tag.type = 'application/json';
+    tag.id = 'export-data';
+    tag.textContent = btoa(unescape(encodeURIComponent(JSON.stringify(result))));
+    document.body.appendChild(tag);
+  }
 
   if (new URLSearchParams(location.search).has('check')) {
     document.body.classList.add('is-checking');
