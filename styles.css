@@ -833,3 +833,22 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .chip-legend { display: flex; gap: 16px; align-items: center; margin: 28px 0 0; }
 .chip-legend .chip { font-size: 18px; }
   /* === fim dos componentes === */
+
+/* Impressão / PDF: um slide por página, sem animações nem controles */
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { height: auto; overflow: visible; background: var(--navy); }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .stage { position: static; width: 1920px; height: auto; transform: none; overflow: visible; }
+  .slide,
+  .slide.is-leaving {
+    position: relative;
+    display: flex !important;
+    width: 1920px;
+    height: 1080px;
+    break-after: page;
+    background: var(--navy);
+  }
+  .slide *, .slide *::before { animation: none !important; }
+  .home-btn, .counter, .progress { display: none !important; }
+}
