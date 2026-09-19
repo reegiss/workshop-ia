@@ -939,6 +939,28 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .evidence-col li { font-size: 40px; padding-left: 64px; }
 .evidence-col li::before { width: 46px; height: 46px; font-size: 26px; }
 .evidence-col ul { gap: 32px; }
+/* Bloco SDD */
+.sdd-quote { margin-top: 36px; font-size: 40px; color: var(--ink); }
+#s-sdd .mini-flow { margin-top: 48px; }
+#s-sdd .mini-flow li { min-height: 400px; }
+.sdd-map {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.3fr;
+  margin-top: 56px;
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+.sdd-map > div { padding: 24px 32px; border-top: 1px solid var(--card-line); font-size: 30px; line-height: 1.35; color: var(--ink-2); }
+.sdd-map > .sdd-map-head { border-top: 0; font: 600 22px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.sdd-map .sdd-step { font-weight: 700; color: var(--ink); }
+.sdd-map code { font-size: 0.85em; color: var(--ink); }
+.sdd-kit { margin-top: 48px; }
+.sdd-kit .pkg { grid-template-columns: 520px 1fr; padding: 22px 0; }
+.sdd-kit .pkg code { font-size: 32px; color: var(--ink); }
+.sdd-kit .pkg span { font-size: 30px; color: var(--ink-2); }
+.sdd-kit .pkg span code { font-size: 0.85em; }
   /* === fim dos componentes === */
 
 /* Impressão / PDF: um slide por página, sem animações nem controles */

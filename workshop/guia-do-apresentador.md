@@ -161,6 +161,33 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Fala:** "Escolham uma história pequena desta sprint e tragam as evidências: spec,
   plano, teste vermelho e verde, diff." Depois, a frase de encerramento e "Perguntas?".
 
+## Bloco opcional: SDD (3 slides, no apêndice)
+
+Três slides sobre Spec-Driven Development, logo depois da divisória do apêndice. Eles não
+estão no cronograma; use quando fizer sentido. Sugestões de momento:
+
+- **Depois do slide 8** (Confiável = evidência): para dar nome ao que vem a seguir. Custa
+  cerca de 4 minutos; compense nos slides 4 a 7.
+- **Depois do slide 16** (Depois do primeiro teste): para mostrar que o laboratório já foi
+  SDD. Custa cerca de 4 minutos; tire das perguntas.
+- **Nas perguntas:** se alguém citar Spec Kit ou SDD.
+
+### SDD: a spec vem primeiro (1–2 min)
+- **Mensagem:** definir o quê e o porquê antes do como.
+- **Fala:** "SDD é uma ideia simples: a especificação vem antes do código e guia tudo
+  depois dela. Spec, plano, tarefas e só então código, verificado contra a spec."
+
+### O fluxo que praticamos já é SDD (1 min)
+- **Mensagem:** as skills do laboratório cobrem as etapas do SDD.
+- **Fala:** "Repare que o laboratório já seguiu esse caminho: o brainstorming gerou a spec,
+  o writing-plans gerou plano e tarefas, e o TDD implementou com evidência."
+
+### Spec Kit: SDD como ferramenta (1 min)
+- **Mensagem:** o GitHub oferece o mesmo método como ferramenta própria.
+- **Fala:** "O Spec Kit, do GitHub, transforma essas etapas em comandos. Os nomes mudam entre
+  versões: confira o README antes de usar."
+- **Cuidado:** não compare desempenho entre Spec Kit e superpowers; não temos dados para isso.
+
 ## Conduzindo o laboratório (25 min)
 
 | Min do lab | Etapa | Você | Facilitador no chat |

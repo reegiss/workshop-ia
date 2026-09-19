@@ -245,8 +245,44 @@ description: Use antes de qualquer
         <li><span><strong>O mapa das 14 skills</strong> e os quatro grupos</span></li>
         <li><span><strong>brainstorming</strong>, <strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span></li>
         <li><span><strong>O fluxo completo</strong> em sete etapas</span></li>
+        <li><span><strong>SDD</strong>: Spec-Driven Development e o Spec Kit</span></li>
         <li><span><strong>obra, skills.sh</strong> e skills por plataforma</span></li>
       </ol>
+    </section>
+    <section class="slide slide--dark" id="s-sdd" aria-label="SDD: a spec vem primeiro">
+      <p class="kicker">Spec-Driven Development</p>
+      <h1 class="title">SDD: a spec<br><em>vem primeiro</em></h1>
+      <p class="lead sdd-quote">“Definir <strong>o quê e o porquê</strong> antes de decidir <strong>o como</strong>.”</p>
+      <ol class="mini-flow" style="--n: 4">
+        <li style="--g: var(--g1)"><code>spec</code><span>o quê e o porquê: requisitos e critérios de aceite</span></li>
+        <li style="--g: var(--g1)"><code>plano</code><span>o como: decisões técnicas a partir da spec</span></li>
+        <li style="--g: var(--g2)"><code>tarefas</code><span>passos pequenos e verificáveis</span></li>
+        <li style="--g: var(--g2)"><code>código</code><span>implementado e verificado contra a spec</span></li>
+      </ol>
+      <p class="howto-note">Definição: README do <code>github/spec-kit</code>, consultado em 19/09/2026.</p>
+    </section>
+    <section class="slide slide--dark" id="s-sdd-map" aria-label="O fluxo que praticamos já é SDD">
+      <p class="kicker">Spec-Driven Development</p>
+      <h1 class="title">O fluxo que praticamos<br><em>já é SDD</em></h1>
+      <div class="sdd-map">
+        <div class="sdd-map-head">Etapa do SDD</div><div class="sdd-map-head">Skill do superpowers</div><div class="sdd-map-head">Evidência</div>
+        <div class="sdd-step">Especificar</div><div><code>brainstorming</code></div><div>design aprovado em <code>docs/superpowers/specs/</code></div>
+        <div class="sdd-step">Planejar e quebrar em tarefas</div><div><code>writing-plans</code></div><div>plano com tarefas pequenas</div>
+        <div class="sdd-step">Implementar</div><div><code>test-driven-development</code>, <code>executing-plans</code></div><div>teste vermelho, depois verde</div>
+        <div class="sdd-step">Verificar</div><div><code>verification-before-completion</code></div><div>resultado verificado contra a spec</div>
+      </div>
+    </section>
+    <section class="slide slide--dark" id="s-sdd-kit" aria-label="Spec Kit: SDD como ferramenta">
+      <p class="kicker">Spec-Driven Development</p>
+      <h1 class="title">Spec Kit: SDD<br><em>como ferramenta</em></h1>
+      <div class="sdd-kit">
+        <div class="pkg"><code>/speckit-constitution</code><span>princípios do projeto que toda spec deve respeitar</span></div>
+        <div class="pkg"><code>/speckit-specify</code><span>a spec: o quê e o porquê</span></div>
+        <div class="pkg"><code>/speckit-plan</code><span>o plano técnico: o como</span></div>
+        <div class="pkg"><code>/speckit-tasks</code><span>tarefas a partir do plano</span></div>
+        <div class="pkg"><code>/speckit-implement</code><span>implementa as tarefas; repete com <code>/speckit-converge</code> até convergir</span></div>
+      </div>
+      <p class="howto-note">GitHub Spec Kit (<code>github/spec-kit</code>), com integração padrão para o GitHub Copilot. Comandos conforme o README em 19/09/2026: confira a versão antes de usar.</p>
     </section>
     <section class="slide slide--dark" id="s5" aria-label="Mapa do superpowers">
       <p class="kicker">O mapa do superpowers</p>
