@@ -76,6 +76,8 @@
     return bad;
   }
 
+  document.querySelector('.home-btn').addEventListener('click', () => show(1));
+
   document.addEventListener('keydown', (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) show(current + 1);
@@ -88,7 +90,7 @@
   });
 
   document.addEventListener('click', (e) => {
-    if (e.target.closest('a')) return;
+    if (e.target.closest('a, button')) return;
     show(e.clientX > window.innerWidth / 2 ? current + 1 : current - 1);
   });
 

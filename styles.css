@@ -805,4 +805,26 @@ code, .mono { font-family: var(--mono); }
 .bio-contact-label { font-size: 26px; font-weight: 700; color: var(--ink); }
 .bio-contact .mono { font-size: 24px; color: var(--ink-2); text-decoration: none; }
 .bio-contact a:hover, .bio-contact a:focus-visible { color: var(--ink); text-decoration: underline; }
+/* Botão de voltar ao início, ao lado do contador */
+.home-btn {
+  position: absolute;
+  right: 250px;
+  bottom: 24px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--card-line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.home-btn svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.home-btn:hover { color: var(--ink); border-color: var(--accent); background: rgba(0, 103, 204, 0.25); }
+.home-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+body[data-current="1"] .home-btn { visibility: hidden; }
   /* === fim dos componentes === */
