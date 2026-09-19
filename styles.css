@@ -827,4 +827,9 @@ code, .mono { font-family: var(--mono); }
 .home-btn:hover { color: var(--ink); border-color: var(--accent); background: rgba(0, 103, 204, 0.25); }
 .home-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 body[data-current="1"] .home-btn { visibility: hidden; }
+/* Mapa: skills em uso vs sugestões */
+.chip--used { border-color: var(--blue); background: var(--blue); color: var(--white); font-weight: 700; }
+.chip--suggest { border-style: dashed; background: transparent; color: var(--muted); font-weight: 400; }
+.chip-legend { display: flex; gap: 16px; align-items: center; margin: 28px 0 0; }
+.chip-legend .chip { font-size: 18px; }
   /* === fim dos componentes === */
