@@ -46,6 +46,18 @@ diff revisado.
 - [ ] Timer à vista para o laboratório.
 - [ ] Facilitador no chat, com a lista de quem escreveu "pronto".
 
+## Como apresentar
+
+- **Arquivo:** abra `index.html` no navegador. `F` liga a tela cheia; setas, espaço ou
+  clique avançam e voltam; o ícone de casa no rodapé volta à capa.
+- **Ir direto a um slide:** troque o final da URL pelo número, por exemplo `#20` para o
+  primeiro slide de SDD. Útil nas perguntas.
+- **Reserva:** deixe o `superpowers.pdf` aberto noutra janela. Se o navegador travar, você
+  continua pelo PDF, que tem os mesmos 35 slides.
+- **No Teams:** compartilhe **a janela do navegador**, não a tela inteira, e silencie as
+  notificações. Deixe o terminal numa segunda janela para alternar durante o laboratório.
+- **Se tiver segunda tela:** slides na tela compartilhada, este guia e o chat na sua.
+
 ## Cronograma
 
 | Min | Slides | O que fazer |
@@ -61,6 +73,9 @@ diff revisado.
 | 52:00–60:00 | — | Perguntas e folga |
 
 Se atrasar antes do laboratório, corte tempo dos slides 4–9, nunca do laboratório.
+
+O bloco de SDD (slides 20–22) é opcional e não está no cronograma. Se for usá-lo, veja a
+seção abaixo.
 
 ## Slide a slide
 
@@ -79,7 +94,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 ### 3 · 60 minutos, 25 de prática (0:30)
 - **Mensagem:** a maior parte do tempo é mão na massa.
 - **Fala:** "Quinze minutos de conceito, vinte e cinco de prática no seu repositório e o
-  resto para escala, limites e perguntas. Escreva 'pronto' no chat se o ambiente estiver ok."
+  resto para escala, limites e perguntas."
 
 ### 4 · Rápido não é verificável (2 min)
 - **Mensagem:** sem processo, a saída do agente é difícil de avaliar.
@@ -211,6 +226,7 @@ e o diff foi revisado.
 | Plano não sai ou vem enorme | Colar o "plano pronto" do guia |
 | Agente trava ou dá erro | Nova sessão do `copilot`, colando o design aprovado |
 | Rede ou cota fora do ar para muitos | Passar a demonstração gravada |
+| Laboratório falhou para a maioria | Assumir a condução: faça as três etapas na sua tela, pedindo as respostas ao público, e devolva o tempo restante para perguntas |
 | Tempo estourado | Encurtar o slide 15 e ler só os números do chat |
 
 ## Riscos e controles
@@ -228,13 +244,39 @@ e o diff foi revisado.
 As opções de bloqueio de ferramentas do Copilot CLI (por exemplo `--deny-tool`) variam
 por versão. Confira na documentação da versão instalada antes de mencioná-las.
 
+## Mapa do apêndice (slides 19–35)
+
+| Slide | Conteúdo | Quando usar |
+|---|---|---|
+| 19 | Divisória "Material de apoio" | Só de passagem |
+| 20–22 | SDD e Spec Kit | "Isso é SDD?", "E o Spec Kit?" |
+| 23 | Mapa das 14 skills, com o que usamos hoje | "Quais são as outras skills?" |
+| 24–27 | Os quatro grupos, com antes e depois de cada skill | Dúvida sobre uma skill específica |
+| 28–30 | brainstorming, writing-plans e executing-plans em detalhe | "Como funciona por dentro?" |
+| 31 | O fluxo completo em sete etapas, com a instalação | "Como fica o fluxo inteiro?" |
+| 32 | obra e o skills.sh | "De onde vêm essas skills?" |
+| 33–35 | Skills por plataforma: iOS, Android e backend Java | "Tem algo para a minha stack?" |
+
+## Depois do workshop
+
+- [ ] Compartilhar no chat o `superpowers.pdf` e os dois guias.
+- [ ] Registrar o que travou no laboratório (ambiente, agente, tempo) para ajustar a
+      próxima edição.
+- [ ] Combinar a próxima reunião em que cada um traz as evidências da sua história.
+- [ ] Se alguém ficou sem ambiente, ajudar a resolver antes dessa reunião.
+
 ## Perguntas prováveis
 
 - **"Funciona no VS Code, sem o CLI?"** O Copilot também lê skills em `.github/skills/`.
-  Hoje praticamos no CLI; confira a documentação do seu ambiente.
+  Hoje praticamos no CLI; confira a documentação do seu ambiente. (Slides 33–35 mostram as
+  pastas de skills.)
 - **"Isso não deixa o trabalho mais lento?"** Deixa, no começo. Use o fluxo completo onde há
   dúvida de regra ou risco; correção pequena não precisa.
-- **"Posso criar skills da equipe?"** Sim: `writing-skills` (no apêndice) ensina a escrever
-  e testar uma skill. É um bom próximo passo.
+- **"Posso criar skills da equipe?"** Sim: `writing-skills` ensina a escrever e testar uma
+  skill. É um bom próximo passo. (Slide 27.)
 - **"O agente pode ignorar a skill?"** Pode. Por isso as evidências são verificadas por
-  você, não pelo relato do agente.
+  você, não pelo relato do agente. (Slide 8.)
+- **"Isso é Spec-Driven Development?"** É a mesma ideia: a spec antes do código. Slides
+  20–22 mostram o paralelo e o Spec Kit do GitHub.
+- **"Quanto custa em tokens?"** Não temos medição para apresentar. Vale medir numa história
+  real e comparar com o retrabalho que o método evita.
