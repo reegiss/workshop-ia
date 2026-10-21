@@ -985,6 +985,11 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 #s3 .concept { margin-top: 24px; }
 #s3 .code-card { margin-top: 28px; padding: 24px 40px; font-size: 22px; line-height: 1.45; }
 #s-sdd-map .sdd-map > div { padding: 18px 32px; }
+#s-sdd-map .sdd-term { font: 600 30px/1.35 var(--mono); color: var(--ink); }
+#s-sdd-map .sdd-map strong { display: block; font-weight: 800; color: var(--ink); }
+#s-sdd-map .sdd-map strong + code { display: block; margin-top: 4px; font-size: 22px; font-weight: 500; color: var(--ink-2); }
+#s-sdd-map .sdd-map small { display: block; margin-bottom: 4px; font: 600 18px/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+#s-sdd-map .sdd-map div:has(> small) { color: var(--ink); }
 .sdd-map {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1.3fr;
@@ -996,7 +1001,6 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 }
 .sdd-map > div { padding: 24px 32px; border-top: 1px solid var(--card-line); font-size: 30px; line-height: 1.35; color: var(--ink-2); }
 .sdd-map > .sdd-map-head { border-top: 0; font: 600 22px/1.4 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
-.sdd-map .sdd-step { font-weight: 700; color: var(--ink); }
 .sdd-map code { font-size: 0.85em; color: var(--ink); }
 .sdd-kit { margin-top: 48px; }
 .sdd-kit .pkg { grid-template-columns: 520px 1fr; padding: 22px 0; }

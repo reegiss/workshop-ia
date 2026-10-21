@@ -144,9 +144,9 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
   vermelho."
 
 ### 12 · O fluxo de hoje já é SDD (0,5 min)
-- **Mensagem:** as skills do laboratório cobrem as etapas do SDD.
-- **Fala:** "O laboratório vai seguir esse caminho: o brainstorming gera a spec, o
-  writing-plans gera plano e tarefas, e o TDD implementa com evidência."
+- **Mensagem:** os nomes do SDD, as skills e as etapas do laboratório são a mesma coisa.
+- **Fala:** "Spec, no laboratório, é o Esclarecer, na etapa 1. Plano e tarefas são a etapa
+  2. Código e verificação, a etapa 3: vermelho, verde e você roda o teste."
 
 ### 13 · Spec Kit: SDD como ferramenta (1 min)
 - **Mensagem:** o GitHub oferece o mesmo método como ferramenta própria.
