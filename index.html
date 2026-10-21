@@ -95,18 +95,23 @@
       <h1 class="title">Skill é um processo<br><em>em arquivo</em></h1>
       <div class="concept">
         <div>
-          <p class="lead">Uma pasta com um <code>SKILL.md</code>: nome, descrição e instruções. O harness põe <strong>só a descrição</strong> no contexto; as instruções entram <strong>quando a skill é usada</strong>, pela descrição ou quando você a cita (<code>/nome</code>).</p>
-          <pre class="code-card"><code>---
+          <p class="lead">Uma pasta com um <code>SKILL.md</code>: nome, descrição e instruções. O agente a usa quando a descrição combina com o pedido, ou quando você a cita (<code>/nome</code>).</p>
+          <div class="code-card skill-file">
+            <pre class="skill-part"><span class="skill-tag" aria-hidden="true">Sempre no contexto</span><code>---
 name: brainstorming
 description: Use antes de qualquer
   trabalho criativo…
 ---</code></pre>
-          <p class="code-caption">Isto fica sempre no contexto. O resto do arquivo, só quando precisa.</p>
+            <pre class="skill-part skill-part--body"><span class="skill-tag" aria-hidden="true">Só quando é usada</span><code># Brainstorming
+1. Explore o contexto do projeto
+2. Faça uma pergunta por vez
+3. Proponha 2–3 abordagens…</code></pre>
+          </div>
         </div>
         <div class="compare-list">
-          <article class="compare"><h2>Prompt</h2><p>Você repete a cada conversa.</p></article>
-          <article class="compare"><h2>Ferramenta · MCP</h2><p>Dá ao agente uma capacidade: ler arquivo, rodar comando, acessar um serviço.</p></article>
-          <article class="compare compare--skill"><h2>Skill</h2><p>Dá ao agente um método: versionado e revisável como código.</p></article>
+          <article class="compare"><h2>Prompt</h2><p><strong>O que você pede agora.</strong> Some quando a conversa acaba.</p></article>
+          <article class="compare"><h2>Ferramenta · MCP</h2><p><strong>O que o agente consegue fazer:</strong> ler arquivo, rodar comando, acessar um serviço.</p></article>
+          <article class="compare compare--skill"><h2>Skill</h2><p><strong>Como o agente deve fazer:</strong> um método versionado e revisável como código.</p></article>
         </div>
       </div>
     </section>

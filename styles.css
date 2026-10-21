@@ -228,7 +228,12 @@ code, .mono { font-family: var(--mono); }
   font: 400 26px/1.5 var(--mono);
   white-space: pre;
 }
-.code-caption { margin: 14px 0 0; font: 500 20px/1.4 var(--mono); color: var(--ink-2); opacity: 0.75; }
+.skill-file { white-space: normal; }
+.skill-part { position: relative; margin: 0; font: inherit; color: inherit; white-space: pre; }
+.skill-part--body { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--card-line); }
+.skill-part--body code { opacity: 0.5; }
+.skill-tag { position: absolute; top: 0; right: 0; font: 600 16px/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.skill-part--body .skill-tag { top: 14px; color: var(--ink-2); opacity: 0.75; }
 .compare-list { display: flex; flex-direction: column; gap: 20px; }
 .compare {
   padding: 24px 32px;
@@ -240,6 +245,8 @@ code, .mono { font-family: var(--mono); }
 .compare p { margin: 0; font-size: 26px; line-height: 1.35; color: var(--ink-2); }
 .compare--skill { border-color: var(--accent); background: var(--blue); }
 .compare--skill h2, .compare--skill p { color: var(--white); }
+.compare p strong { font-weight: 700; color: var(--ink); }
+.compare--skill p strong { color: var(--white); }
 
 /* Slide 4 — obra e skills.sh */
 .catalog {
@@ -950,7 +957,7 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 #s-sdd .mini-flow { margin-top: 48px; }
 #s-sdd .mini-flow li { min-height: 360px; }
 #s3 .concept { margin-top: 24px; }
-#s3 .code-card { padding: 24px 40px; }
+#s3 .code-card { padding: 20px 40px; }
 #s-sdd-map .sdd-map > div { padding: 18px 32px; }
 .sdd-map {
   display: grid;
