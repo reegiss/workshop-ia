@@ -206,12 +206,13 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 ### 22 · Limites e controles (3 min)
 - **Mensagem:** onde o método não compensa e o que não delegar.
 - **Fala:** "Correção de uma linha não precisa de brainstorming. E skill de terceiros é
-  código que orienta o seu agente: leia antes de instalar."
+  código que orienta o seu agente: leia antes de instalar. A skill orienta, não garante: por
+  isso as evidências. E os controles de hoje valem no dia a dia."
 
 ### 23 · Próximo passo: uma história real (3 min + perguntas)
 - **Mensagem:** transformar o laboratório em hábito.
-- **Fala:** "Escolham uma história pequena desta sprint e tragam as evidências: spec,
-  plano, teste vermelho e verde, diff." Depois, a frase de encerramento e "Perguntas?".
+- **Fala:** "Escolham uma história pequena desta sprint e tragam as seis evidências da
+  tela." Depois, a frase de encerramento (na tela) e "Perguntas?".
 
 ## Conduzindo o laboratório (25 min)
 
