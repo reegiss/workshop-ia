@@ -56,24 +56,30 @@
   ours.forEach((word, i) => terms.splice(3 + i * 6, 0, word));
 
   const R = 370;
-  const golden = Math.PI * (3 - Math.sqrt(5));
   // Cada letra é um ponto da esfera: a palavra segue o paralelo do seu centro e se curva com o globo.
-  // Cada palavra também deriva por conta própria (ritmo e oscilação aleatórios), para o giro não
-  // parecer um bloco rígido.
+  // As palavras correm em faixas de latitude: numa faixa todas derivam juntas, com folgas
+  // aleatórias entre elas, e a oscilação é menor que o vão entre faixas. Assim o giro não parece
+  // um bloco rígido e as palavras não se atropelam.
   const MAX_LAT = 1.0; // ~57°: perto dos polos o paralelo é curto demais para uma palavra
+  const LANES = 7; // vão de 0,33 rad (~120px) entre faixas: folga até perto da borda, onde a perspectiva aperta
   const rand = (min, max) => min + Math.random() * (max - min);
   const words = [];
   function buildWords() {
     const family = getComputedStyle(document.documentElement).getPropertyValue('--font');
     const measure = document.createElement('canvas').getContext('2d');
-    terms.forEach((word, i) => {
-      const base = Math.asin(0.85 * (1 - (i / (terms.length - 1)) * 2));
+    const lanes = Array.from({ length: LANES }, (_, k) => {
+      const lat = -MAX_LAT + (k * 2 * MAX_LAT) / (LANES - 1);
+      return { lat, length: 2 * Math.PI * R * Math.cos(lat), used: 0, items: [] };
+    });
+
+    terms.forEach((word) => {
       const isOurs = ours.includes(word);
       measure.font = `${isOurs ? 800 : 700} 32px ${family}`;
       const letters = [...word];
       // 1,15×: na frente a letra cresce até 1,2×, e o espaçamento precisa acompanhar
       const widths = letters.map((ch) => measure.measureText(ch).width * 1.15);
-      let s = -widths.reduce((sum, w) => sum + w, 0) / 2;
+      const width = widths.reduce((sum, w) => sum + w, 0);
+      let s = -width / 2;
       const chars = [];
       letters.forEach((ch, k) => {
         const mid = s + widths[k] / 2;
@@ -85,16 +91,33 @@
         globe.appendChild(el);
         chars.push({ el, mid });
       });
-      words.push({
-        chars,
-        lat: base + rand(-0.12, 0.12),
-        lon: i * golden + rand(-0.3, 0.3),
-        drift: rand(-0.05, 0.05), // rad/s a mais ou a menos que o globo
-        wobble: rand(0.04, 0.12), // amplitude da oscilação na latitude
-        rate: rand(0.15, 0.4),
-        phase: rand(0, Math.PI * 2),
-      });
+      // Vai para a faixa mais vazia, em proporção ao comprimento do paralelo
+      const lane = lanes.reduce((best, l) => ((l.used + width) / l.length < (best.used + width) / best.length ? l : best));
+      lane.used += width;
+      lane.items.push({ chars, width });
     });
+
+    for (const lane of lanes) {
+      const r = R * Math.cos(lane.lat);
+      // Divide a sobra da faixa em folgas de tamanhos aleatórios, sempre positivas
+      const weights = lane.items.map(() => rand(0.6, 1.4));
+      const total = weights.reduce((sum, w) => sum + w, 0);
+      const free = lane.length - lane.used;
+      const drift = rand(-0.04, 0.04); // rad/s a mais ou a menos que o globo, igual na faixa toda
+      let pos = rand(0, lane.length);
+      lane.items.forEach((item, k) => {
+        words.push({
+          chars: item.chars,
+          lat: lane.lat,
+          lon: (pos + item.width / 2) / r,
+          drift,
+          wobble: rand(0.02, 0.05), // amplitude da oscilação na latitude
+          rate: rand(0.15, 0.4),
+          phase: rand(0, Math.PI * 2),
+        });
+        pos += item.width + (free * weights[k]) / total;
+      });
+    }
   }
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

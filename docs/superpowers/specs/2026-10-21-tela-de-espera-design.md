@@ -35,15 +35,18 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
 
 ## Globo
 
-- ~36 termos (`span`), distribuídos numa esfera de Fibonacci.
+- 37 termos, cada letra num `span`.
 - A cada quadro (`requestAnimationFrame`, ângulo pelo tempo decorrido): rotação no eixo Y
   e inclinação fixa no X; projeção ortográfica.
 - Cada letra é um ponto da esfera: a palavra segue o paralelo do seu centro (latitudes até
   ±58°, longe dos polos) e se curva com o globo. Cada letra gira e achata conforme a direção
   do paralelo projetada; atrás do globo aparece espelhada, como vista por dentro.
-- Posição um pouco aleatória: a cada carga, cada palavra sai deslocada do ponto de Fibonacci
-  (±0,3 rad na longitude, ±0,12 rad na latitude) e, ao girar, deriva no próprio ritmo
-  (±0,05 rad/s em relação ao globo) e oscila na latitude (amplitude 0,04 a 0,12 rad).
+- Sem atropelo: as palavras correm em 7 faixas de latitude (até ±57°, vão de ~0,33 rad).
+  Cada palavra vai para a faixa mais vazia, em proporção ao comprimento do paralelo; dentro
+  da faixa, a sobra vira folgas de tamanhos aleatórios entre as palavras.
+- Posição um pouco aleatória: o início de cada faixa é sorteado a cada carga; ao girar, cada
+  faixa deriva no próprio ritmo (±0,04 rad/s em relação ao globo), e cada palavra oscila na
+  latitude (amplitude 0,02 a 0,05 rad, menor que o vão entre faixas).
 - Profundidade d ∈ [0, 1]: escala 0,6 → 1,2; opacidade 0,12 → 1; `z-index` pela
   profundidade.
 - Termos do workshop (SDD, TDD, spec, plano, evidência, skills) em `--accent`; os demais em
