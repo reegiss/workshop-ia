@@ -5,7 +5,7 @@
   // Itens de texto que entram em cascata dentro do slide
   const REVEAL_ITEMS = '.steps li, .problem, .rule, .howto-row, .plat-card, .plat-tip, .group-card, ' +
     '.flow-step, .skill-row, .agenda li, .compare, .info-card, .pkg, .deep > div, .bio-facts li, ' +
-    '.timebar-seg, .mini-flow li, .evidence-col';
+    '.timebar-seg, .mini-flow li, .evidence-col, .anatomy-defs > div';
 
   const stage = document.querySelector('.stage');
   const slides = [...document.querySelectorAll('.slide')];

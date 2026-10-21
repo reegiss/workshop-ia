@@ -562,34 +562,29 @@ code, .mono { font-family: var(--mono); }
 }
 .plat-foot code { color: var(--ink); font-weight: 600; }
 .keep-case { text-transform: none; }
-/* Slide chat isolado vs agente */
-.versus {
-  display: grid;
-  grid-template-columns: 280px 1fr 1fr;
-  margin-top: 48px;
-}
-.versus > div { padding: 18px 28px; border-top: 1px solid var(--card-line); font-size: 26px; line-height: 1.35; }
-.versus .vs-aspect { padding-left: 0; font: 600 20px/1.6 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.versus .vs-chat { color: var(--ink-2); }
-.versus .vs-agent { background: var(--card); color: var(--ink); font-weight: 600; }
-.versus .vs-head { border-top: 0; padding-top: 28px; padding-bottom: 28px; }
-.versus .vs-head.vs-agent { border-radius: var(--radius) var(--radius) 0 0; }
-.versus .vs-last.vs-agent { border-radius: 0 0 var(--radius) var(--radius); }
-.vs-head h2 { margin: 0 0 16px; font-size: 36px; font-weight: 800; color: var(--ink); }
-.vs-head.vs-agent h2 { color: var(--accent); }
-.loop { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.loop-node {
-  padding: 8px 18px;
-  border: 1px solid var(--card-line);
-  border-radius: 999px;
-  background: var(--card);
-  font: 600 20px/1.2 var(--mono);
-  color: var(--ink);
-}
-.vs-agent .loop-node { border-color: var(--accent); background: var(--blue-light); }
-.loop-arrow { font: 800 26px/1 var(--font); color: var(--muted); }
-.vs-agent .loop-arrow { color: var(--accent); }
-.loop-note { margin: 12px 0 0; font-size: 20px; font-weight: 500; color: var(--muted); }
+/* Slide anatomia de um agente */
+.anatomy { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; margin-top: 40px; }
+.anatomy-diagram { margin: 0; }
+.an-harness { padding: 24px 28px; border: 2px dashed var(--accent); border-radius: var(--radius); }
+.an-label { margin: 0 0 14px; font: 800 26px/1.2 var(--font); color: var(--ink); }
+.an-label span { display: block; margin-top: 4px; font: 500 18px/1.35 var(--mono); color: var(--muted); }
+.an-harness > .an-label { color: var(--accent); }
+.an-row { display: grid; grid-template-columns: 1fr auto 0.8fr; gap: 16px; align-items: center; }
+.an-context { padding: 20px 24px; border: 1px solid var(--card-line); border-radius: var(--radius); background: var(--card); }
+.an-model { padding: 18px 22px; border-radius: calc(var(--radius) - 8px); background: var(--blue); }
+.an-model .an-label { margin: 0; color: var(--white); }
+.an-model .an-label span { color: var(--blue-light); }
+.an-tools { padding: 20px 24px; border: 1px solid var(--g1); border-radius: var(--radius); }
+.an-tools .an-label { margin: 0; }
+.an-arrows { display: flex; flex-direction: column; gap: 12px; font: 700 20px/1 var(--mono); color: var(--accent); white-space: nowrap; }
+.an-loop { margin: 18px 0 0; font: 600 20px/1.3 var(--mono); color: var(--ink-2); }
+.anatomy-defs { display: flex; flex-direction: column; gap: 18px; margin: 0; }
+.anatomy-defs > div { padding-top: 14px; border-top: 1px solid var(--card-line); }
+.anatomy-defs dt { font-size: 26px; font-weight: 800; color: var(--ink); }
+.anatomy-defs dd { margin: 4px 0 0; font-size: 24px; line-height: 1.35; color: var(--ink-2); }
+.an-chat { margin: 32px 0 0; font-size: 28px; color: var(--ink-2); }
+.an-chat strong { color: var(--ink); }
+.an-chat + .vs-punch { margin-top: 16px; }
 .vs-punch { margin: 36px 0 0; font-size: 34px; font-weight: 700; color: var(--ink); }
 .vs-punch em { font-style: normal; color: var(--accent); }
 /* Listas numeradas em slides escuros */
@@ -665,8 +660,6 @@ code, .mono { font-family: var(--mono); }
 .code-card--sm { font-size: 20px; }
 .lab .steps li, .next-steps li, .appendix-list li { align-items: center; }
 /* Tema único: destaques */
-.versus .vs-agent { background: rgba(0, 103, 204, 0.16); }
-.vs-agent .loop-node { border-color: var(--accent); background: rgba(0, 103, 204, 0.3); }
 .plat-tip { border: 1px solid var(--card-line); }
 /* Tema único: slides de grupo com painel escuro e filete na cor do grupo */
 .group-band {
