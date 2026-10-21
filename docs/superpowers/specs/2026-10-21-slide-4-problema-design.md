@@ -23,7 +23,7 @@
 |---|---|---|
 | 1 | Implementar antes de esclarecer o requisito | Fez a busca só por nome; ninguém perguntou sobre o código do banco. |
 | 2 | Escrever o teste depois, só para passar | O teste copia a saída do código, com a ordem errada junto. |
-| 3 | Dizer “pronto” sem evidência | “Pronto!”, e o teste nem foi rodado. |
+| 3 | Dizer “pronto” sem evidência | Respondeu “pronto!”, mas não rodou o teste. |
 
 - **Linha do custo:** "Resultado: a revisão fica toda no fim, e cara.", entre os cards e a
   pergunta final.

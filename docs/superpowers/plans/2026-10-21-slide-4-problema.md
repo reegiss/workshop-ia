@@ -83,7 +83,7 @@ test('slide 4 com uma cena em cada card', () => {
   for (const [titulo, cena] of [
     ['Implementar antes de esclarecer o requisito', 'Fez a busca só por nome; ninguém perguntou sobre o código do banco.'],
     ['Escrever o teste depois, só para passar', 'O teste copia a saída do código, com a ordem errada junto.'],
-    ['Dizer “pronto” sem evidência', '“Pronto!”, e o teste nem foi rodado.'],
+    ['Dizer “pronto” sem evidência', 'Respondeu “pronto!”, mas não rodou o teste.'],
   ]) assert.ok(s.includes(`<p>${titulo}</p><p class="problem-scene">${cena}</p>`), `card incompleto: ${titulo}`);
   assert.equal(count(s, 'class="problem-scene"'), 3);
 });
@@ -138,7 +138,7 @@ Em `index.html`, substituir a section inteira `#s2` por:
       <div class="problems problems--3">
         <article class="problem"><p>Implementar antes de esclarecer o requisito</p><p class="problem-scene">Fez a busca só por nome; ninguém perguntou sobre o código do banco.</p></article>
         <article class="problem"><p>Escrever o teste depois, só para passar</p><p class="problem-scene">O teste copia a saída do código, com a ordem errada junto.</p></article>
-        <article class="problem"><p>Dizer “pronto” sem evidência</p><p class="problem-scene">“Pronto!”, e o teste nem foi rodado.</p></article>
+        <article class="problem"><p>Dizer “pronto” sem evidência</p><p class="problem-scene">Respondeu “pronto!”, mas não rodou o teste.</p></article>
       </div>
       <p class="problem-cost">Resultado: a revisão fica toda no fim, e cara.</p>
       <p class="punchline">E se o <em>processo</em> viesse junto com o agente?</p>
