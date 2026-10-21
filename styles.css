@@ -853,7 +853,10 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .timebar-seg .mono { font-size: 24px; font-weight: 600; color: var(--accent); }
 .timebar-seg--lab .mono { color: var(--g1); }
 .timebar-seg strong { font-size: 44px; line-height: 1.1; font-weight: 800; color: var(--ink); }
-.timebar-seg span:last-child { font-size: 28px; line-height: 1.35; color: var(--ink-2); }
+.timebar-desc { font-size: 28px; line-height: 1.35; color: var(--ink-2); }
+.timebar-out { margin: auto 0 0; padding-top: 20px; border-top: 1px solid var(--card-line); font-size: 26px; line-height: 1.35; color: var(--ink); }
+.timebar-out small { display: block; margin-bottom: 6px; font: 600 18px/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.timebar-seg--lab .timebar-out small { color: var(--g1); }
 
 /* Problema com 3 cards */
 .problems--3 { grid-template-columns: repeat(3, 1fr); }
@@ -926,7 +929,7 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 /* Ajuste de ocupação dos slides novos */
 .timebar-seg { min-height: 460px; padding: 44px; }
 .timebar-seg strong { font-size: 54px; }
-.timebar-seg span:last-child { font-size: 32px; }
+.timebar-desc { font-size: 32px; }
 .mini-flow li { min-height: 420px; padding: 44px 36px; }
 .mini-flow li > code, .mini-flow li > span { font-size: 32px; }
 #s-escala .mini-flow li > span { font-size: 30px; }
