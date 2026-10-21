@@ -933,6 +933,20 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .code-card.term { margin-top: 0; font-size: 24px; line-height: 1.7; white-space: pre-wrap; }
 .term-agent { color: var(--g1); font-weight: 600; }
 .term-you { color: var(--accent); font-weight: 600; }
+#s-pergunta .lead { max-width: none; }
+#s-pergunta .ask-flow { display: grid; grid-template-columns: 1fr auto 0.85fr; gap: 28px; align-items: start; margin-top: 48px; }
+#s-pergunta .ask-term { margin: 0; }
+#s-pergunta .code-card.term { margin: 0; padding: 28px 36px; font-size: 22px; line-height: 1.5; white-space: normal; }
+#s-pergunta .code-card.term p { margin: 0 0 8px; padding-left: 9ch; text-indent: -9ch; white-space: pre-wrap; }
+#s-pergunta .code-card.term p:last-child { margin-bottom: 0; }
+#s-pergunta .ask-caption { margin: 14px 0 0; font: 500 20px/1.4 var(--mono); color: var(--ink-2); opacity: 0.75; }
+#s-pergunta .ask-arrow { align-self: center; font: 800 40px/1 var(--font); color: var(--accent); }
+#s-pergunta .ask-design { padding: 28px 32px; border: 1px solid var(--accent); border-radius: var(--radius); background: var(--card); }
+#s-pergunta .ask-design-head { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 20px; font: 500 20px/1.3 var(--mono); color: var(--ink-2); }
+#s-pergunta .ask-design-head code { color: var(--ink-2); }
+#s-pergunta .ask-design-head span { font-weight: 600; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+#s-pergunta .ask-design ul { display: flex; flex-direction: column; gap: 14px; margin: 0; padding-left: 1.1em; }
+#s-pergunta .ask-design li { font-size: 28px; line-height: 1.35; color: var(--ink); }
 
 /* Cards de regra em 3 colunas */
 .rules--3 { grid-template-columns: repeat(3, 1fr); }

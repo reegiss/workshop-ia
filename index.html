@@ -139,16 +139,28 @@ description: Use antes de qualquer
     <section class="slide slide--dark" id="s-pergunta" aria-label="O agente pergunta antes de codar">
       <p class="kicker">brainstorming na prática</p>
       <h1 class="title">O agente pergunta<br><em>antes de codar</em></h1>
-      <div class="concept">
-        <div>
-          <p class="lead">No caso da lista de bancos, cada resposta sua vira requisito escrito. A saída é um design curto, <strong>aprovado por você</strong>.</p>
-          <p class="howto-note">Exemplo ilustrativo, não é saída real do agente.</p>
-        </div>
-        <pre class="code-card term"><code><span class="term-agent">agente ›</span> Como a lista deve ser ordenada?
-<span class="term-you">você   ›</span> Por nome, sem diferenciar maiúsculas.
-<span class="term-agent">agente ›</span> A busca vale para nome, código ou os dois?
-<span class="term-you">você   ›</span> Os dois. Código só por prefixo.
-<span class="term-agent">agente ›</span> “credito” deve encontrar “Crédito”?</code></pre>
+      <p class="lead">No caso da lista de bancos, cada resposta sua vira requisito escrito. A saída é um design curto, <strong>aprovado por você</strong>.</p>
+      <div class="ask-flow">
+        <figure class="ask-term">
+          <div class="code-card term">
+            <p><span class="term-agent">agente ›</span> Como a lista deve ser ordenada?</p>
+            <p><span class="term-you">você   ›</span> Por nome, sem diferenciar maiúsculas.</p>
+            <p><span class="term-agent">agente ›</span> A busca vale para nome, código ou os dois?</p>
+            <p><span class="term-you">você   ›</span> Os dois. Código só por prefixo.</p>
+            <p><span class="term-agent">agente ›</span> “credito” deve encontrar “Crédito”?</p>
+            <p><span class="term-you">você   ›</span> Sim, sem diferenciar acentos.</p>
+          </div>
+          <figcaption class="ask-caption">Exemplo ilustrativo, não é saída real do agente.</figcaption>
+        </figure>
+        <span class="ask-arrow" aria-hidden="true">→</span>
+        <article class="ask-design">
+          <p class="ask-design-head"><code>docs/superpowers/specs/</code><span>Design aprovado</span></p>
+          <ul>
+            <li>Ordena por nome, sem diferenciar maiúsculas nem acentos</li>
+            <li>Busca: nome contém o texto, ou código começa com ele</li>
+            <li>Busca vazia devolve todas, ordenadas</li>
+          </ul>
+        </article>
       </div>
     </section>
     <section class="slide slide--dark" id="s-copilot" aria-label="Pronto para começar">
