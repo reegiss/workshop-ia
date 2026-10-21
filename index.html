@@ -480,24 +480,26 @@ description: Use antes de qualquer
       <aside class="group-band" data-bleed>
         <span class="group-num">01</span>
         <h1 class="group-title">Pensar antes de codar</h1>
-        <p class="group-result">Objetivo: entender e planejar antes de codar.</p>
+        <p class="group-result">Objetivo: chegar ao código com spec e plano aprovados.</p>
       </aside>
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
         <article class="skill-row">
-          <h2 class="skill-name">brainstorming</h2>
+          <h2 class="skill-name">brainstorming<span class="chip chip--used group-tag">instalada hoje</span></h2>
+          <p class="skill-lab">Etapa 1 · design aprovado</p>
           <p class="skill-before">Pedido vago vira código errado.</p>
           <p class="skill-after">faz perguntas uma a uma, propõe 2 ou 3 abordagens e só avança com um design aprovado.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">writing-plans</h2>
+          <h2 class="skill-name">writing-plans<span class="chip chip--used group-tag">instalada hoje</span></h2>
+          <p class="skill-lab">Etapa 2 · plano com até 3 tarefas</p>
           <p class="skill-before">Tarefa grande vira improviso.</p>
           <p class="skill-after">quebra o trabalho em passos pequenos, com arquivos, testes e critério de pronto.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">executing-plans</h2>
+          <h2 class="skill-name">executing-plans<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">O plano é esquecido no meio do caminho.</p>
-          <p class="skill-after">executa o plano em lotes, com pontos de revisão.</p>
+          <p class="skill-after">executa o plano em lotes, com pontos de revisão. É a alternativa ao <code>subagent-driven-development</code> quando não há subagentes.</p>
         </article>
       </div>
     </section>
@@ -510,17 +512,19 @@ description: Use antes de qualquer
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
         <article class="skill-row">
-          <h2 class="skill-name">test-driven-development</h2>
+          <h2 class="skill-name">test-driven-development<span class="chip chip--used group-tag">instalada hoje</span></h2>
+          <p class="skill-lab">Etapa 3 · vermelho, depois verde</p>
           <p class="skill-before">Teste escrito depois só confirma o código.</p>
           <p class="skill-after">segue vermelho, verde, refatorar: o teste falha primeiro.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">systematic-debugging</h2>
+          <h2 class="skill-name">systematic-debugging<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">O bug é “consertado” no chute.</p>
           <p class="skill-after">reproduz, isola e encontra a causa raiz antes de corrigir.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">verification-before-completion</h2>
+          <h2 class="skill-name">verification-before-completion<span class="chip chip--used group-tag">instalada hoje</span></h2>
+          <p class="skill-lab">Etapa 3 · você roda o teste</p>
           <p class="skill-before">“Pronto!” sem prova.</p>
           <p class="skill-after">só declara pronto com evidência: teste rodado, saída conferida.</p>
         </article>
@@ -535,17 +539,17 @@ description: Use antes de qualquer
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
         <article class="skill-row">
-          <h2 class="skill-name">subagent-driven-development</h2>
+          <h2 class="skill-name">subagent-driven-development<span class="chip chip--full group-tag">fluxo completo</span></h2>
           <p class="skill-before">Um agente só se perde num contexto longo.</p>
           <p class="skill-after">entrega cada tarefa do plano a um subagente novo, com revisão entre tarefas, onde houver suporte.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">dispatching-parallel-agents</h2>
+          <h2 class="skill-name">dispatching-parallel-agents<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">Problemas independentes resolvidos em fila.</p>
           <p class="skill-after">dispara vários agentes em paralelo, um por problema.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">using-git-worktrees</h2>
+          <h2 class="skill-name">using-git-worktrees<span class="chip chip--full group-tag">fluxo completo</span></h2>
           <p class="skill-before">Tarefas paralelas se atropelam no mesmo diretório.</p>
           <p class="skill-after">isola cada frente de trabalho na sua própria worktree.</p>
         </article>
@@ -560,27 +564,27 @@ description: Use antes de qualquer
       <div class="group-body">
         <div class="skill-head"><span>Sem a skill</span><span>Com a skill, o agente…</span></div>
         <article class="skill-row">
-          <h2 class="skill-name">requesting-code-review</h2>
+          <h2 class="skill-name">requesting-code-review<span class="chip chip--full group-tag">fluxo completo</span></h2>
           <p class="skill-before">O agente revisa o próprio trabalho, com o próprio viés.</p>
           <p class="skill-after">pede uma revisão independente antes de integrar.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">receiving-code-review</h2>
+          <h2 class="skill-name">receiving-code-review<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">Aceita toda sugestão sem pensar.</p>
           <p class="skill-after">avalia cada sugestão com rigor técnico e contesta quando necessário.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">finishing-a-development-branch</h2>
+          <h2 class="skill-name">finishing-a-development-branch<span class="chip chip--full group-tag">fluxo completo</span></h2>
           <p class="skill-before">Branch pronta e esquecida.</p>
           <p class="skill-after">apresenta opções claras: merge, PR ou limpeza.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">writing-skills</h2>
+          <h2 class="skill-name">writing-skills<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">O time aprende algo e o conhecimento se perde.</p>
           <p class="skill-after">transforma o aprendizado numa nova skill, testada.</p>
         </article>
         <article class="skill-row">
-          <h2 class="skill-name">using-superpowers</h2>
+          <h2 class="skill-name">using-superpowers<span class="chip chip--suggest group-tag">outra</span></h2>
           <p class="skill-before">O agente não sabe que as skills existem.</p>
           <p class="skill-after">procura e usa a skill certa antes de agir. É a porta de entrada.</p>
         </article>

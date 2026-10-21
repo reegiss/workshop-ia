@@ -1163,3 +1163,8 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 #s5 .chip-legend { margin-top: 18px; }
 .chip--full { border-color: var(--blue); background: transparent; color: var(--ink); font-weight: 700; }
 #s-escala .mini-flow li > small code { font-size: 0.95em; }
+
+/* slides 26 a 29: status de cada skill e ligação ao laboratório */
+.skill-name .group-tag { display: inline-block; margin-left: 16px; padding: 4px 12px; font-size: 16px; vertical-align: 4px; }
+.skill-lab { grid-column: 1 / -1; margin: -2px 0 0; padding-left: 22px; font: 600 20px/1.2 var(--mono); color: var(--g-ink, var(--g)); }
+.skill-after code { font-size: 0.85em; white-space: nowrap; }

@@ -13,7 +13,8 @@
 
 ## Etiquetas (slides 26 a 29)
 
-Chip pequeno (~16px) dentro do `.skill-name`, depois do nome: `chip--used` "instalada
+Chip pequeno (~16px, classe `group-tag`, porque `.skill-tag` já existe em outro slide) dentro
+do `.skill-name`, depois do nome: `chip--used` "instalada
 hoje", `chip--full` "fluxo completo", `chip--suggest` "outra".
 
 | Slide | instalada hoje | fluxo completo | outra |
