@@ -700,6 +700,7 @@ code, .mono { font-family: var(--mono); }
 #s-copilot .howto-note { line-height: 1.5; }
 #s-copilot .ready-call { margin-top: auto; font-size: 44px; }
 #s-copilot .ready-fallback { margin: 12px 0 0; font-size: 26px; color: var(--ink-2); }
+#s-copilot .howto-row code { margin: 0 0.12em; padding: 2px 12px; border-radius: 10px; background: var(--panel); color: var(--ink); font-size: 0.9em; }
 /* Slides 3 e 17: ocupar o vazio com texto maior */
 #s2 .problems { margin-top: 32px; column-gap: 28px; row-gap: 0; grid-template-rows: auto auto; }
 #s2 .problem { grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 24px; padding: 28px 32px; }

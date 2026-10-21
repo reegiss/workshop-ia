@@ -19,7 +19,7 @@ no slide 8):
 
 | Nome | Texto |
 |---|---|
-| Copilot CLI | Abra o `copilot` e confira o login (`/login`). |
+| Copilot CLI | Abra o `copilot` e confira o login com `/login`. |
 | Superpowers | `/skills list` mostra `brainstorming`. |
 | Repositório | O build da sua stack roda. Os comandos estão no guia. |
 
