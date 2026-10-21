@@ -616,15 +616,6 @@ code, .mono { font-family: var(--mono); }
 }
 .howto-row h2 { margin: 0; font-size: 32px; font-weight: 800; color: var(--ink); }
 .howto-row p { margin: 0; font-size: 26px; line-height: 1.4; color: var(--ink-2); }
-.howto-row pre {
-  margin: 0;
-  padding: 16px 24px;
-  border-radius: 14px;
-  background: var(--panel);
-  color: var(--white);
-  font: 400 24px/1.6 var(--mono);
-  white-space: pre;
-}
 .howto-note { margin: 28px 0 0; font-size: 24px; color: var(--ink-2); }
 .howto-note code { color: var(--ink); font-weight: 600; }
 
@@ -687,7 +678,6 @@ code, .mono { font-family: var(--mono); }
 .howto-row { grid-template-columns: 300px 1fr; padding: 32px 40px; }
 .howto-row h2 { font-size: 40px; }
 .howto-row p { font-size: 30px; }
-.howto-row pre { font-size: 26px; }
 .howto-note { margin-top: 36px; font-size: 30px; }
 .next-steps { margin-top: 64px; gap: 40px; }
 .next-steps li { font-size: 42px; grid-template-columns: 72px 1fr; gap: 28px; }
@@ -700,15 +690,16 @@ code, .mono { font-family: var(--mono); }
 .plat-src { font-size: 19px; }
 .plat-desc, .plat-tip p:last-child { font-size: 28px; }
 .plat-foot { margin-top: 40px; font-size: 26px; }
-.install-options { display: flex; flex-direction: column; gap: 10px; }
-.howto-row .install-label { margin: 6px 0 0; font: 600 18px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.howto-row .install-label:first-child { margin-top: 0; }
 #s-copilot .howto { gap: 18px; margin-top: 44px; }
 #s-copilot .howto-row { padding: 22px 36px; }
 #s-copilot .howto-row p { font-size: 28px; }
-#s-copilot .howto-row .install-label { font-size: 18px; }
-#s-copilot .howto-row pre { padding: 12px 22px; font-size: 24px; }
 #s-copilot .howto-note { margin-top: 24px; font-size: 26px; }
+#s-copilot .howto-row { grid-template-columns: 360px 1fr; }
+#s-copilot .howto-row h2 { display: flex; align-items: center; gap: 16px; }
+#s-copilot .howto-row h2::before { content: "✓"; display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--g4); color: var(--white); font: 800 22px/1 var(--font); }
+#s-copilot .howto-note { line-height: 1.5; }
+#s-copilot .ready-call { margin-top: auto; font-size: 44px; }
+#s-copilot .ready-fallback { margin: 12px 0 0; font-size: 26px; color: var(--ink-2); }
 /* Slides 3 e 17: ocupar o vazio com texto maior */
 #s2 .problems { margin-top: 32px; column-gap: 28px; row-gap: 0; grid-template-rows: auto auto; }
 #s2 .problem { grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 24px; padding: 28px 32px; }
