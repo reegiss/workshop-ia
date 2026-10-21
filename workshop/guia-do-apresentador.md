@@ -122,8 +122,9 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 8 · Confiável = evidência observável (2 min)
 - **Mensagem:** a definição usada no resto do workshop.
-- **Fala:** "Quando eu disser 'confiável', é isto: seis evidências que você consegue ver.
-  Sem elas, é só código que parece certo."
+- **Fala:** "Quando eu disser 'confiável', é isto: seis evidências que você consegue ver,
+  e cada uma tem um lugar: um arquivo, uma saída de teste, um diff. Sem elas, é só código
+  que parece certo."
 
 ### 9 · O agente pergunta antes de codar (2 min)
 - **Mensagem:** o brainstorming transforma um pedido vago em design aprovado.
