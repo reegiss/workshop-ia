@@ -66,6 +66,7 @@ workflows, Claude, GPT, Gemini, SDD, TDD, spec, plan, evidence.
 ## Navegação
 
 - Seta → , espaço ou clique: abre `index.html`.
+- Ao zerar o timer: mostra "Vamos começar" por 3 segundos e abre `index.html`.
 
 ## Fora do escopo
 

@@ -30,6 +30,7 @@
   }
 
   const pad = (n) => String(n).padStart(2, '0');
+  let leaving = null;
   function tick() {
     const left = Math.max(0, Math.ceil((target - Date.now()) / 1000));
     const h = Math.floor(left / 3600);
@@ -39,6 +40,8 @@
     stage.classList.toggle('is-last', left > 0 && left <= 60);
     stage.classList.toggle('is-done', left === 0);
     label.textContent = left === 0 ? 'Vamos começar' : 'Começamos em';
+    // Em zero, mostra "Vamos começar" por alguns segundos e abre o deck
+    if (left === 0 && !leaving) leaving = setTimeout(goDeck, 3000);
   }
   tick();
   setInterval(tick, 250);
