@@ -33,14 +33,18 @@ Workshop · Agentes & Skills · skills.sh/obra
 - `.cover-file`: `desenvolvimento-verificavel/<strong>SKILL.md</strong>`.
 - `<h1 class="title cover-title">`: "Desenvolvimento" na primeira linha, "verificável" em
   `<em>` na segunda, e "com agentes de IA" num `<span>` menor numa terceira linha.
-- O tamanho do `.cover-title` cai de 250px para o maior valor, na faixa de 140–150px,
-  em que "Desenvolvimento" cabe numa linha só na área útil da capa (`.cover` tem
-  `padding-right: 560px`). O valor final é escolhido pelo screenshot e pelo `?check`.
+- O tamanho do `.cover-title` cai de 250px para **128px**. Medido no Chrome:
+  "DESENVOLVIMENTO" ocupa cerca de 9,2em, e a área útil da capa tem 1240px
+  (`.cover` tem `padding-right: 560px`), então o máximo seria cerca de 135px. 128px deixa
+  folga. A faixa de 140–150px estimada antes não cabe sem mexer no layout da capa.
 - `description:` e o rodapé (`.cover-foot`) com os textos acima. `author:` não muda.
 - `aria-label="Capa"` continua.
 
-**Transbordo:** antes desta mudança, o `?check` já acusava o slide 1. Depois dela,
-o `?check` não deve acusar nenhum slide.
+**Transbordo:** antes desta mudança, o `?check` já acusava o slide 1. A causa é o
+rodapé da capa (`.cover-foot`, com `data-footer`), que fica de propósito na faixa
+inferior, a mesma do contador. O `findOverflow` só isenta `[data-bleed]`. A correção é
+isentar também `[data-footer]` em `script.js`. Depois dela, o `?check` não deve acusar
+nenhum slide.
 
 ## Outros lugares
 
