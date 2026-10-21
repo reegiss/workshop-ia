@@ -19,8 +19,8 @@ presas a `#s-confiavel`.
 
 | Coluna | Etapas | Item (não muda) | Onde ver |
 |---|---|---|---|
-| Antes | esclarecer · planejar | Requisito esclarecido | `docs/superpowers/specs/…-design.md` |
-| | | Plano revisável | `docs/superpowers/plans/….md` |
+| Antes | esclarecer · planejar | Requisito esclarecido | `docs/superpowers/specs/` |
+| | | Plano revisável | `docs/superpowers/plans/` |
 | Durante | testar primeiro | Teste falhando antes do código | a saída vermelha do teste |
 | | | Teste passando depois | a saída verde do teste |
 | Depois | verificar | Diff revisado por você | `git diff` antes do commit |
