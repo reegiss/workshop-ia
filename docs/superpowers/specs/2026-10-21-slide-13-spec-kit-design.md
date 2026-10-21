@@ -13,8 +13,8 @@
 
 ## Abertura
 
-Novo `.lead` entre o título e a lista: "Outra ferramenta para o mesmo método. Hoje usamos o
-**superpowers**; o Spec Kit fica como alternativa."
+Novo `.lead` entre o título e a lista: "Mesmo método, outra ferramenta. Hoje usamos o
+**superpowers**; o Spec Kit é uma alternativa."
 
 ## Lista (`#s-sdd-kit .sdd-kit`)
 

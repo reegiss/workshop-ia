@@ -149,9 +149,10 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
   2. Código e verificação, a etapa 3: vermelho, verde e você roda o teste."
 
 ### 13 · Spec Kit: SDD como ferramenta (1 min)
-- **Mensagem:** o GitHub oferece o mesmo método como ferramenta própria.
-- **Fala:** "O Spec Kit, do GitHub, transforma essas etapas em comandos. Os nomes mudam entre
-  versões: confira o README antes de usar."
+- **Mensagem:** o mesmo método em outra ferramenta; hoje usamos o superpowers.
+- **Fala:** "O Spec Kit, do GitHub, faz o mesmo caminho por comandos: spec, plano, tarefas e
+  código. A novidade é a constituição: os princípios do projeto. Hoje não vamos usá-lo;
+  confira o README antes de adotar."
 - **Cuidado:** não compare desempenho entre Spec Kit e superpowers; não temos dados para isso.
 
 ### 14 · O agente pergunta antes de codar (1 min)
