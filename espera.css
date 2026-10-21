@@ -1,0 +1,55 @@
+/* Tela de espera: palco 1920×1080 escalado para a janela, como o deck */
+.wait {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  margin: -540px 0 0 -960px;
+  padding: 96px 120px;
+  display: grid;
+  grid-template-columns: 1fr 840px;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  color: var(--ink);
+  transform-origin: center;
+}
+.wait-kicker {
+  grid-column: 1 / -1;
+  margin: 0;
+  font: 600 24px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.wait-label {
+  margin: 0;
+  font: 600 28px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.wait-time {
+  margin: 20px 0 40px;
+  font: 600 220px/1 var(--mono);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--white);
+}
+.wait-hint { max-width: 640px; margin: 0; font-size: 32px; line-height: 1.4; color: var(--ink-2); }
+.wait.is-last .wait-time { color: var(--g1); }
+.wait.is-done .wait-time { animation: wait-pulse 2.4s ease-in-out infinite; }
+@keyframes wait-pulse { 50% { opacity: 0.45; } }
+
+/* Globo: cada termo é posicionado pelo espera.js */
+.globe { position: relative; width: 840px; height: 840px; }
+.globe span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  white-space: nowrap;
+  font: 700 32px/1 var(--font);
+  color: var(--ink);
+  will-change: transform, opacity;
+}
+.globe span.is-ours { color: var(--accent); font-weight: 800; }

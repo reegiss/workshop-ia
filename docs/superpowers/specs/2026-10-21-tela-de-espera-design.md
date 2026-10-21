@@ -38,11 +38,13 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
 - ~36 termos (`span`), distribuídos numa esfera de Fibonacci.
 - A cada quadro (`requestAnimationFrame`, ângulo pelo tempo decorrido): rotação no eixo Y
   e inclinação fixa no X; projeção ortográfica.
-- Profundidade d ∈ [0, 1]: escala 0,45 → 1,4; opacidade 0,25 → 1; `z-index` pela
+- Profundidade d ∈ [0, 1]: escala 0,5 → 1,3; opacidade 0,25 → 1; `z-index` pela
   profundidade.
 - Termos do workshop (SDD, TDD, spec, plano, evidência, skills) em `--accent`; os demais em
   `--ink`.
 - `prefers-reduced-motion`: rotação bem mais lenta.
+- `?giro=N` adianta a rotação em N segundos (para conferir quadros diferentes; o Chrome
+  headless não avança o `requestAnimationFrame`).
 
 Termos: agentes, LLM, RAG, MCP, skills, context engineering, prompt engineering,
 embeddings, fine-tuning, evals, guardrails, alucinação, tokens, multimodal, reasoning,
