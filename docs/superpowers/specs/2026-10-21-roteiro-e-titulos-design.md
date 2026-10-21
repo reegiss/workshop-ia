@@ -43,7 +43,7 @@ O título "60 minutos, *25 de prática*" e a barra de três segmentos proporcion
 |---|---|---|---|
 | 0:00–0:15 | Conceitos | o problema, a anatomia de um agente, skills e o fluxo mínimo | um vocabulário comum para o resto da hora |
 | 0:15–0:40 | Laboratório | esclarecer, planejar e testar primeiro, no seu repositório | design aprovado, plano, teste vermelho → verde, commit local |
-| 0:40–1:00 | Retrospectiva, limites e perguntas | o que as evidências mostraram e o que vem depois | as evidências da turma, lidas no chat |
+| 0:40–1:00 | Retrospectiva e limites | o que as evidências mostraram, o que vem depois e perguntas | as evidências da turma, lidas no chat |
 
 **Visual da linha Entrega:**
 - fica no pé do card, empurrada para baixo e separada da descrição por um filete

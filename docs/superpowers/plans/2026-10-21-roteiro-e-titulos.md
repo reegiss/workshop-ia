@@ -91,8 +91,8 @@ test('slide 3 com os textos novos', () => {
     'um vocabulário comum para o resto da hora',
     'esclarecer, planejar e testar primeiro, no seu repositório',
     'design aprovado, plano, teste vermelho → verde, commit local',
-    '<strong>Retrospectiva, limites e perguntas</strong>',
-    'o que as evidências mostraram e o que vem depois',
+    '<strong>Retrospectiva e limites</strong>',
+    'o que as evidências mostraram, o que vem depois e perguntas',
     'as evidências da turma, lidas no chat',
   ]) assert.ok(s.includes(t), `falta: ${t}`);
   assert.doesNotMatch(s, /Escala, limites e perguntas/);
@@ -210,7 +210,7 @@ Dentro de `<div class="timebar">` em `#s-roteiro`, trocar as três linhas `<div 
 ```html
         <div class="timebar-seg" style="--span: 15"><span class="mono">0:00–0:15</span><strong>Conceitos</strong><span class="timebar-desc">o problema, a anatomia de um agente, skills e o fluxo mínimo</span><p class="timebar-out"><small>Entrega</small>um vocabulário comum para o resto da hora</p></div>
         <div class="timebar-seg timebar-seg--lab" style="--span: 25"><span class="mono">0:15–0:40</span><strong>Laboratório</strong><span class="timebar-desc">esclarecer, planejar e testar primeiro, no seu repositório</span><p class="timebar-out"><small>Entrega</small>design aprovado, plano, teste vermelho → verde, commit local</p></div>
-        <div class="timebar-seg" style="--span: 20"><span class="mono">0:40–1:00</span><strong>Retrospectiva, limites e perguntas</strong><span class="timebar-desc">o que as evidências mostraram e o que vem depois</span><p class="timebar-out"><small>Entrega</small>as evidências da turma, lidas no chat</p></div>
+        <div class="timebar-seg" style="--span: 20"><span class="mono">0:40–1:00</span><strong>Retrospectiva e limites</strong><span class="timebar-desc">o que as evidências mostraram, o que vem depois e perguntas</span><p class="timebar-out"><small>Entrega</small>as evidências da turma, lidas no chat</p></div>
 ```
 
 - [ ] **Step 2: Seletores da descrição**
