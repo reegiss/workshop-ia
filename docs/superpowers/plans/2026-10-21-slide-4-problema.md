@@ -82,7 +82,7 @@ test('slide 4 com uma cena em cada card', () => {
   const s = slide(4);
   for (const [titulo, cena] of [
     ['Implementar antes de esclarecer o requisito', 'Fez a busca só por nome; ninguém perguntou sobre o código do banco.'],
-    ['Escrever o teste depois, só para passar', 'O teste confirma a ordem errada: “Ágora” depois de “XP”.'],
+    ['Escrever o teste depois, só para passar', 'O teste copia a saída do código, com a ordem errada junto.'],
     ['Dizer “pronto” sem evidência', '“Pronto!”, e o teste nem foi rodado.'],
   ]) assert.ok(s.includes(`<p>${titulo}</p><p class="problem-scene">${cena}</p>`), `card incompleto: ${titulo}`);
   assert.equal(count(s, 'class="problem-scene"'), 3);
@@ -98,7 +98,7 @@ test('CSS da cena e do custo', () => {
 test('guia com o título e a fala novos do slide 4', () => {
   const g = read('workshop/guia-do-apresentador.md');
   assert.match(g, /### 4 · Rápido não quer dizer verificável \(2 min\)/);
-  assert.match(g, /O agente gera código rápido\. O problema é avaliar\. Na lista de bancos: ninguém\s+perguntou sobre o código, o teste confirmou a ordem errada e o 'pronto' veio sem rodar\s+nada\. A revisão fica toda no fim\./);
+  assert.match(g, /O agente gera código rápido\. O problema é avaliar\. Na lista de bancos: ninguém\s+perguntou sobre o código, o teste copiou a ordem errada e o 'pronto' veio sem rodar\s+nada\. A revisão fica toda no fim\./);
   assert.match(g, /sem processo, a saída do agente é difícil de avaliar\./);
 });
 
@@ -137,7 +137,7 @@ Em `index.html`, substituir a section inteira `#s2` por:
       <p class="lead">Sem processo, um agente pode — por exemplo, na lista de bancos do laboratório:</p>
       <div class="problems problems--3">
         <article class="problem"><p>Implementar antes de esclarecer o requisito</p><p class="problem-scene">Fez a busca só por nome; ninguém perguntou sobre o código do banco.</p></article>
-        <article class="problem"><p>Escrever o teste depois, só para passar</p><p class="problem-scene">O teste confirma a ordem errada: “Ágora” depois de “XP”.</p></article>
+        <article class="problem"><p>Escrever o teste depois, só para passar</p><p class="problem-scene">O teste copia a saída do código, com a ordem errada junto.</p></article>
         <article class="problem"><p>Dizer “pronto” sem evidência</p><p class="problem-scene">“Pronto!”, e o teste nem foi rodado.</p></article>
       </div>
       <p class="problem-cost">Resultado: a revisão fica toda no fim, e cara.</p>
@@ -228,7 +228,7 @@ por:
 ### 4 · Rápido não quer dizer verificável (2 min)
 - **Mensagem:** sem processo, a saída do agente é difícil de avaliar.
 - **Fala:** "O agente gera código rápido. O problema é avaliar. Na lista de bancos: ninguém
-  perguntou sobre o código, o teste confirmou a ordem errada e o 'pronto' veio sem rodar
+  perguntou sobre o código, o teste copiou a ordem errada e o 'pronto' veio sem rodar
   nada. A revisão fica toda no fim."
 ```
 

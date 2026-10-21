@@ -22,7 +22,7 @@
 | Card | Título (atual) | Cena |
 |---|---|---|
 | 1 | Implementar antes de esclarecer o requisito | Fez a busca só por nome; ninguém perguntou sobre o código do banco. |
-| 2 | Escrever o teste depois, só para passar | O teste confirma a ordem errada: “Ágora” depois de “XP”. |
+| 2 | Escrever o teste depois, só para passar | O teste copia a saída do código, com a ordem errada junto. |
 | 3 | Dizer “pronto” sem evidência | “Pronto!”, e o teste nem foi rodado. |
 
 - **Linha do custo:** "Resultado: a revisão fica toda no fim, e cara.", entre os cards e a
@@ -46,7 +46,7 @@ Na entrada do slide 4:
 - Título: "### 4 · Rápido não é verificável (2 min)" → "### 4 · Rápido não quer dizer
   verificável (2 min)".
 - Fala nova: "O agente gera código rápido. O problema é avaliar. Na lista de bancos: ninguém
-  perguntou sobre o código, o teste confirmou a ordem errada e o 'pronto' veio sem rodar
+  perguntou sobre o código, o teste copiou a ordem errada e o 'pronto' veio sem rodar
   nada. A revisão fica toda no fim."
 - A mensagem ("sem processo, a saída do agente é difícil de avaliar.") não muda.
 

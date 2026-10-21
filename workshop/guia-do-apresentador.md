@@ -99,7 +99,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 ### 4 · Rápido não quer dizer verificável (2 min)
 - **Mensagem:** sem processo, a saída do agente é difícil de avaliar.
 - **Fala:** "O agente gera código rápido. O problema é avaliar. Na lista de bancos: ninguém
-  perguntou sobre o código, o teste confirmou a ordem errada e o 'pronto' veio sem rodar
+  perguntou sobre o código, o teste copiou a ordem errada e o 'pronto' veio sem rodar
   nada. A revisão fica toda no fim."
 
 ### 5 · Anatomia de um agente (2 min)
