@@ -80,7 +80,8 @@ Exemplo de item:
 {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}
 ```
 
-Responda às perguntas do agente e aprove o design.
+Responda às perguntas do agente. Antes de aprovar, confira se o design cobre a ordem, a busca
+e os acentos.
 
 **Checkpoint no chat:** a pergunta mais útil que o agente fez.
 

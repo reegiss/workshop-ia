@@ -297,24 +297,35 @@ description: Use antes de qualquer
         <article class="rule"><h2>Aprove comando a comando</h2><p>Leia cada comando antes de permitir. Nunca “permitir tudo”.</p></article>
         <article class="rule"><h2>Nada sensível</h2><p>Não cole segredos, tokens nem dados de clientes. Não peça para ler <code>.env</code> nem <code>local.properties</code>.</p></article>
       </div>
-      <div class="rules-start">
-        <p class="catalog-label">Etapa 0 · 1 min · juntos</p>
-        <pre class="code-card code-card--dark"><code><span class="prompt">$</span> git switch -c workshop/seu-nome
+      <div class="rules-bottom">
+        <div class="rules-start">
+          <p class="catalog-label">Etapa 0 · 1 min · juntos</p>
+          <pre class="code-card code-card--dark"><code><span class="cmd-note"># na pasta do repositório</span>
+<span class="prompt">$</span> git switch -c workshop/seu-nome
 <span class="prompt">$</span> copilot</code></pre>
+        </div>
+        <div class="rules-next">
+          <p class="catalog-label">A seguir · 25 min</p>
+          <ol>
+            <li><strong>Esclarecer</strong><span>8 min</span></li>
+            <li><strong>Planejar</strong><span>4 min</span></li>
+            <li><strong>Vermelho → verde</strong><span>11 min</span></li>
+          </ol>
+          <p>Um checkpoint no chat em cada etapa.</p>
+        </div>
       </div>
-      <p class="rules-next">A seguir: 25 minutos, três etapas, um checkpoint no chat em cada uma.</p>
     </section>
     <section class="slide slide--dark lab" id="s-lab1" aria-label="Laboratório etapa 1">
       <div class="lab-head"><p class="kicker">Laboratório · etapa 1 de 3</p><span class="lab-time">8 min</span></div>
       <h1 class="title">Esclarecer</h1>
       <ol class="steps">
-        <li><span>Crie a branch e abra o <code>copilot</code> na raiz do repositório.</span></li>
-        <li><span>Cole o pedido da etapa 1 do guia (<code>/brainstorming</code>, no máximo 3 perguntas).</span></li>
-        <li><span><strong>Responda e aprove</strong> o design.</span></li>
+        <li><span>No <code>copilot</code>, cole o pedido <strong>da sua stack</strong> (iOS, Android ou backend), do guia.</span></li>
+        <li><span>Responda às perguntas: no máximo 3, respostas curtas.</span></li>
+        <li><span><strong>Confira e aprove</strong> o design: ordem, busca e acentos estão lá?</span></li>
       </ol>
       <div class="lab-story">
         <p class="deep-label">A história e o recorte</p>
-        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco. <strong>Recorte:</strong> uma função que ordena por nome e filtra por nome ou código.</p>
+        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco. <strong>Recorte:</strong> uma função pura (sem tela nem rede) que ordena por nome e filtra por nome ou código; busca vazia devolve todas.</p>
         <p class="lab-story-json"><code>{"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}</code></p>
       </div>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez. Passou de 8 min? Use o design pronto do guia.</p>

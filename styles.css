@@ -1037,10 +1037,16 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 /* slide 11: regras do laboratório */
 #s-regras .rules { margin-top: 40px; }
 #s-regras .rule { padding: 28px 40px 32px; }
-#s-regras .rules-start { margin-top: 36px; }
+#s-regras .rules-bottom { display: grid; grid-template-columns: auto 1fr; gap: 80px; align-items: start; margin-top: 36px; }
 #s-regras .rules-start .catalog-label { margin-bottom: 0; }
 #s-regras .code-card--dark { width: fit-content; margin-top: 12px; padding: 20px 32px; font-size: 26px; line-height: 1.5; }
-#s-regras .rules-next { margin: auto 0 0; font-size: 30px; color: var(--ink-2); }
+#s-regras .rules-next .catalog-label { margin-bottom: 0; }
+#s-regras .rules-next ol { display: grid; gap: 12px; max-width: 620px; margin: 16px 0 0; padding: 0; list-style: none; counter-reset: next; }
+#s-regras .rules-next li { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; font-size: 28px; color: var(--ink); counter-increment: next; }
+#s-regras .rules-next li::before { content: counter(next); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--g1); font: 700 18px/1 var(--mono); color: var(--navy); }
+#s-regras .rules-next li strong { font-weight: 800; }
+#s-regras .rules-next li span { font: 500 24px/1 var(--mono); color: var(--ink-2); }
+#s-regras .rules-next p:last-child { margin: 16px 0 0; font-size: 24px; color: var(--ink-2); }
 
 /* slide 9: o que é SDD */
 #s-sdd-intro .lead { max-width: 1500px; }

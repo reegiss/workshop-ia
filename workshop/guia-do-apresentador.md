@@ -172,13 +172,13 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Mensagem:** segurança antes da prática.
 - **Fala:** "O agente só faz o que você aprova. Lembram do harness pedindo permissão? Aqui é
   você quem decide. Leia cada comando antes de permitir. Nada de push, e nada de colar
-  credenciais. Agora, juntos: criem a branch e abram o copilot."
+  credenciais. Agora, juntos: na pasta do repositório, criem a branch e abram o copilot."
 - **Transição:** use a frase de transição para o laboratório.
 
 ### 17 · Etapa 1: Esclarecer (8 min)
 - **Mensagem:** requisito e design aprovados.
-- **Fala:** "Oito minutos. Se o agente fizer perguntas demais, responda de forma curta.
-  Passou do tempo? Use o design pronto do guia."
+- **Fala:** "Oito minutos. Cole o pedido da sua stack e responda curto. Antes de aprovar,
+  confira ordem, busca e acentos. Passou do tempo? Use o design pronto do guia."
 
 ### 18 · Etapa 2: Planejar (4 min)
 - **Mensagem:** um plano pequeno e revisável.
