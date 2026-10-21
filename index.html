@@ -601,7 +601,7 @@ description: Use antes de qualquer
           <p class="deep-rule">Nenhum código antes de um design aprovado. Vale até para o que “parece simples”.</p>
           <p class="deep-label">O que gera</p>
           <p class="deep-path">docs/superpowers/specs/AAAA-MM-DD-tema-design.md</p>
-          <p class="deep-here"><strong>Na prática:</strong> na história da lista de bancos, o agente pergunta como ordenar, se a busca é por nome ou código e o que mostrar com a lista vazia, antes de escrever código.</p>
+          <p class="deep-here"><strong>Na prática:</strong> na lista de bancos, o agente pergunta a ordem, como buscar e se ignora acentos. Você aprova o design, e ele ainda propõe que a busca vazia devolva todas.</p>
         </div>
         <div>
           <p class="deep-label">O processo</p>
@@ -610,7 +610,7 @@ description: Use antes de qualquer
             <li><span><strong>Pergunta uma coisa por vez,</strong> de preferência com múltipla escolha.</span></li>
             <li><span><strong>Propõe 2 ou 3 abordagens</strong> com prós, contras e uma recomendação.</span></li>
             <li><span><strong>Apresenta o design em partes</strong> e pede aprovação de cada uma.</span></li>
-            <li><span><strong>Escreve o spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
+            <li><span><strong>Escreve a spec e faz commit,</strong> depois revisa o texto e pede a revisão de quem pediu.</span></li>
             <li><span><strong>Passa a vez para</strong> <code>writing-plans</code>.</span></li>
           </ol>
         </div>
@@ -622,12 +622,12 @@ description: Use antes de qualquer
       <div class="deep">
         <div>
           <p class="deep-label">Quando usar</p>
-          <p class="deep-text">Com um spec aprovado em mãos, antes de tocar no código.</p>
+          <p class="deep-text">Com uma spec aprovada em mãos, antes de tocar no código.</p>
           <p class="deep-label">Regra de ouro</p>
           <p class="deep-rule">Escrever para um dev que não conhece o projeto: nada de “TODO” ou “implementar depois”.</p>
           <p class="deep-label">O que gera</p>
           <p class="deep-path">docs/superpowers/plans/AAAA-MM-DD-feature.md</p>
-          <p class="deep-here"><strong>Na prática:</strong> a lista de bancos vira tarefas como “ordenar por nome + teste”, “filtrar por nome + teste” e “filtrar por código + teste”.</p>
+          <p class="deep-here"><strong>Na prática:</strong> a lista de bancos vira três tarefas, cada uma com o seu teste: ordenar por nome, filtrar por nome, código e busca vazia. No laboratório, limitamos a 3 tarefas para caber em 4&nbsp;minutos.</p>
         </div>
         <div>
           <p class="deep-label">O processo</p>
@@ -636,8 +636,8 @@ description: Use antes de qualquer
             <li><span><strong>Quebra em tarefas pequenas:</strong> cada passo leva de 2 a 5 minutos.</span></li>
             <li><span><strong>Em cada tarefa:</strong> teste que falha, implementação, teste passando, commit.</span></li>
             <li><span><strong>Escreve tudo por extenso:</strong> caminhos exatos, código completo, comando e saída esperada.</span></li>
-            <li><span><strong>Revisa o plano contra o spec:</strong> cobertura, pendências e nomes consistentes.</span></li>
-            <li><span><strong>Oferece a execução:</strong> com subagentes ou na própria sessão.</span></li>
+            <li><span><strong>Revisa o plano contra a spec:</strong> cobertura, pendências e nomes consistentes.</span></li>
+            <li><span><strong>Oferece a execução:</strong> com <code>subagent-driven-development</code> ou <code>executing-plans</code>.</span></li>
           </ol>
         </div>
       </div>
