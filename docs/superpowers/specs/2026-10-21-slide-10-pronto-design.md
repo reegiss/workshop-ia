@@ -20,7 +20,7 @@ participante faz:
 | # | Nome | Texto |
 |---|---|---|
 | 1 | Login | Abra o `copilot` e entre com `/login`. |
-| 2 | Instalar | No terminal: `npx skills add obra/superpowers -g -a github-copilot` |
+| 2 | Instalar | `npx skills add obra/superpowers -g -a github-copilot -s brainstorming writing-plans test-driven-development verification-before-completion` (bloco em duas linhas; só as quatro skills do fluxo mínimo) |
 | 3 | Conferir | De volta ao `copilot`: `/skills list` mostra `brainstorming`. |
 | 4 | Repositório | O build da sua stack roda. Os comandos estão no guia. |
 
@@ -33,7 +33,7 @@ ficarem sem uso (`.install-options`, `.install-label`, `.howto-row pre`) saem do
 
 Abaixo da lista, duas linhas pequenas em `--ink-2`:
 
-- "Prefere o plugin do Copilot CLI? Os comandos estão nos pré-requisitos."
+- "Faltou algo? Os comandos estão nos pré-requisitos." (a opção de plugin sai: ela instala o pacote inteiro)
 - "O guia do participante está no chat: copie os comandos de lá, não da tela."
 
 ## Chamada

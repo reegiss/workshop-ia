@@ -34,7 +34,7 @@ diff revisado.
 ## Um dia antes
 
 - [ ] Enviar `pre-requisitos.md` aos participantes.
-- [ ] Testar, na sua máquina: `npx skills add obra/superpowers -g -a github-copilot`,
+- [ ] Testar, na sua máquina: a instalação do `pre-requisitos.md` (só as quatro skills),
       `/skills list` e o pedido da etapa 1 do guia.
 - [ ] Testar o QR code do LinkedIn (slide 2) com o celular.
 - [ ] Regerar o PDF se algum slide mudou.

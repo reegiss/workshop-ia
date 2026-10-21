@@ -21,23 +21,13 @@ Se for menor que 22, atualize pelo site do Node.js ou pelo gerenciador que você
 
 Depois, rode `copilot` e, dentro dele, digite `/login` e siga as instruções.
 
-## 3. Superpowers
+## 3. Superpowers: só as quatro skills do workshop
 
-Escolha **uma** das duas opções. Os comandos são os mesmos no Mac e no Windows.
-
-**Opção A — padrão do skills.sh** (instala em `~/.copilot/skills/`):
-
-```bash
-npx skills add obra/superpowers -g -a github-copilot
-```
-
-O comando pergunta quais skills do pacote instalar: selecione todas.
-
-**Opção B — plugin do Copilot CLI:**
+O pacote `obra/superpowers` tem 14 skills, mas o workshop usa quatro. Instale só elas (os
+comandos são os mesmos no Mac e no Windows; instala em `~/.copilot/skills/`):
 
 ```bash
-copilot plugin marketplace add obra/superpowers-marketplace
-copilot plugin install superpowers@superpowers-marketplace
+npx skills add obra/superpowers -g -a github-copilot -s brainstorming writing-plans test-driven-development verification-before-completion
 ```
 
 Confira: rode `copilot`, digite `/skills list` e procure `brainstorming` na lista.
