@@ -92,7 +92,7 @@ body {
 .title {
   margin: 0;
   font-size: 112px;
-  line-height: 0.95;
+  line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -937,7 +937,10 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 /* Bloco SDD */
 .sdd-quote { margin-top: 36px; font-size: 40px; color: var(--ink); }
 #s-sdd .mini-flow { margin-top: 48px; }
-#s-sdd .mini-flow li { min-height: 400px; }
+#s-sdd .mini-flow li { min-height: 360px; }
+#s3 .concept { margin-top: 24px; }
+#s3 .code-card { padding: 24px 40px; }
+#s-sdd-map .sdd-map > div { padding: 18px 32px; }
 .sdd-map {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1.3fr;
