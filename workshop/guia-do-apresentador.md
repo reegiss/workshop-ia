@@ -101,17 +101,18 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Fala:** "O agente gera código rápido. O problema é avaliar: foi o requisito certo? O
   teste prova algo? Sem processo, a revisão fica toda no fim, e cara."
 
-### 5 · Chat responde, agente age (2 min)
-- **Mensagem:** mais capacidade pede mais processo e controle.
-- **Fala:** "No chat, quem executa é você. O agente pode executar, desde que você permita.
-  Por isso precisamos definir como ele trabalha."
-- **Cuidado:** não prometa que todo agente lê o repositório ou roda testes. Depende da
+### 5 · Anatomia de um agente (2 min)
+- **Mensagem:** agente é modelo + harness; mais capacidade pede mais processo e controle.
+- **Fala:** "O modelo só gera texto. Quem age é o harness: roda o loop, chama ferramentas e
+  pede a sua permissão. No chat, o harness é você. Aqui, precisamos dizer como ele
+  trabalha."
+- **Cuidado:** não prometa que todo harness lê o repositório ou roda testes. Depende da
   ferramenta e das permissões.
 
 ### 6 · Skill é um processo em arquivo (2 min)
-- **Mensagem:** uma skill é um método reutilizável e revisável.
-- **Fala:** "Skill é um arquivo de instruções: como o agente deve conduzir um tipo de
-  trabalho. Você lê, versiona e revisa, como qualquer código."
+- **Mensagem:** ferramenta é o que o agente consegue fazer; skill é como ele deve fazer.
+- **Fala:** "Ferramenta é o que o agente consegue fazer; skill é como ele deve fazer. E custa
+  pouco: até ser usada, só a descrição ocupa o contexto."
 
 ### 7 · Quatro skills para o fluxo mínimo (2 min)
 - **Mensagem:** o laboratório usa só este fluxo.
