@@ -146,7 +146,7 @@ Revise com `git diff` antes do commit.
 Abra o `copilot` na mesma branch e peça:
 
 ```text
-Use a skill /executing-plans para continuar o plano a partir da Tarefa 2.
+Continue o plano a partir da Tarefa 2, com /test-driven-development.
 ```
 
 Quando terminar, descarte a branch se não for usá-la:
