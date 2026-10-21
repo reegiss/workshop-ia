@@ -930,6 +930,11 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .timebar-seg { min-height: 460px; padding: 44px; }
 .timebar-seg strong { font-size: 54px; }
 .timebar-desc { font-size: 32px; }
+#s-roteiro .timebar { margin-top: 56px; }
+#s-roteiro .timebar-seg { min-height: 0; padding: 36px; }
+#s-roteiro .timebar-seg strong { font-size: 40px; }
+#s-roteiro .timebar-desc { font-size: 28px; }
+#s-roteiro .timebar-out { font-size: 24px; }
 .mini-flow li { min-height: 420px; padding: 44px 36px; }
 .mini-flow li > code, .mini-flow li > span { font-size: 32px; }
 #s-escala .mini-flow li > span { font-size: 30px; }
