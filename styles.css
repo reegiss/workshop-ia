@@ -956,6 +956,13 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .sdd-quote { margin-top: 36px; font-size: 40px; color: var(--ink); }
 #s-sdd .mini-flow { margin-top: 48px; }
 #s-sdd .mini-flow li { min-height: 360px; }
+#s-fluxo-min .mini-flow { margin-top: 48px; grid-template-rows: repeat(5, auto); row-gap: 0; }
+#s-fluxo-min .mini-flow li { grid-row: span 5; display: grid; grid-template-rows: subgrid; row-gap: 14px; min-height: 0; padding: 32px 30px; }
+#s-fluxo-min .mf-title { font-size: 36px; line-height: 1.15; font-weight: 800; color: var(--ink); }
+#s-fluxo-min .mini-flow li > code { font-size: 22px; line-height: 1.3; font-weight: 500; color: var(--ink-2); }
+#s-fluxo-min .mini-flow li > span { font-size: 28px; line-height: 1.35; }
+#s-fluxo-min .mf-avoid { margin: 6px 0 0; padding-top: 18px; border-top: 1px solid var(--card-line); font-size: 24px; line-height: 1.35; color: var(--ink); }
+#s-fluxo-min .mf-avoid small { display: block; margin-bottom: 6px; font: 600 18px/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--g); }
 #s3 .concept { margin-top: 24px; }
 #s3 .code-card { margin-top: 28px; padding: 24px 40px; font-size: 22px; line-height: 1.45; }
 #s-sdd-map .sdd-map > div { padding: 18px 32px; }
