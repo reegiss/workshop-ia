@@ -103,10 +103,10 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
   nada. A revisão fica toda no fim."
 
 ### 5 · Anatomia de um agente (2 min)
-- **Mensagem:** agente é modelo + harness; mais capacidade pede mais processo e controle.
-- **Fala:** "O modelo só gera texto. Quem age é o harness: roda o loop, chama ferramentas e
-  pede a sua permissão. No chat, o harness é você. Aqui, precisamos dizer como ele
-  trabalha."
+- **Mensagem:** agente é modelo + harness; no laboratório, o Copilot CLI segue as skills.
+- **Fala:** "O modelo só gera texto. Quem age é o harness: lê o código, roda o teste, vê
+  falhar e corrige, sempre pedindo a sua permissão. No chat, o harness é você. No
+  laboratório, é o Copilot CLI, e as skills dizem como ele trabalha."
 - **Cuidado:** não prometa que todo harness lê o repositório ou roda testes. Depende da
   ferramenta e das permissões.
 
