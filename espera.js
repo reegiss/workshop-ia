@@ -43,16 +43,16 @@
   tick();
   setInterval(tick, 250);
 
-  // Globo: termos numa esfera de Fibonacci, girando no eixo Y com inclinação fixa no X
-  const ours = ['SDD', 'TDD', 'spec', 'plano', 'evidência', 'skills'];
+  // Globo: termos em inglês, girando no eixo Y com inclinação fixa no X
+  const ours = ['SDD', 'TDD', 'spec', 'plan', 'evidence', 'skills'];
   const terms = [
-    'agentes', 'LLM', 'RAG', 'MCP', 'context engineering', 'prompt engineering',
-    'embeddings', 'fine-tuning', 'evals', 'guardrails', 'alucinação', 'tokens',
-    'multimodal', 'reasoning', 'chain-of-thought', 'vibe coding', 'Copilot', 'subagentes',
+    'agents', 'LLM', 'RAG', 'MCP', 'context engineering', 'prompt engineering',
+    'embeddings', 'fine-tuning', 'evals', 'guardrails', 'hallucination', 'tokens',
+    'multimodal', 'reasoning', 'chain-of-thought', 'vibe coding', 'Copilot', 'subagents',
     'tool use', 'function calling', 'vector DB', 'transformers', 'open weights', 'AI safety',
-    'janela de contexto', 'inferência', 'LoRA', 'agentic workflows', 'Claude', 'GPT', 'Gemini',
+    'context window', 'inference', 'LoRA', 'agentic workflows', 'Claude', 'GPT', 'Gemini',
   ];
-  // Espalha os termos do workshop pelo globo, em vez de agrupá-los num polo
+  // Intercala os termos do workshop, para que se espalhem pelas faixas
   ours.forEach((word, i) => terms.splice(3 + i * 6, 0, word));
 
   const R = 370;

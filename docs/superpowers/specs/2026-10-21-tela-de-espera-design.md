@@ -49,7 +49,7 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
   latitude (amplitude 0,02 a 0,05 rad, menor que o vão entre faixas).
 - Profundidade d ∈ [0, 1]: escala 0,6 → 1,2; opacidade 0,12 → 1; `z-index` pela
   profundidade.
-- Termos do workshop (SDD, TDD, spec, plano, evidência, skills) em `--accent`; os demais em
+- Termos do workshop (SDD, TDD, spec, plan, evidence, skills) em `--accent`; os demais em
   `--ink`.
 - `prefers-reduced-motion`: rotação bem mais lenta.
 - Linhas da esfera num `canvas` atrás dos termos: contorno em `--accent` (55%), cinco
@@ -57,11 +57,11 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
 - `?giro=N` adianta a rotação em N segundos (para conferir quadros diferentes; o Chrome
   headless não avança o `requestAnimationFrame`).
 
-Termos: agentes, LLM, RAG, MCP, skills, context engineering, prompt engineering,
-embeddings, fine-tuning, evals, guardrails, alucinação, tokens, multimodal, reasoning,
-chain-of-thought, vibe coding, Copilot, subagentes, tool use, function calling, vector DB,
-transformers, open weights, AI safety, janela de contexto, inferência, LoRA, agentic
-workflows, Claude, GPT, Gemini, SDD, TDD, spec, plano, evidência.
+Termos (em inglês): agents, LLM, RAG, MCP, skills, context engineering, prompt engineering,
+embeddings, fine-tuning, evals, guardrails, hallucination, tokens, multimodal, reasoning,
+chain-of-thought, vibe coding, Copilot, subagents, tool use, function calling, vector DB,
+transformers, open weights, AI safety, context window, inference, LoRA, agentic
+workflows, Claude, GPT, Gemini, SDD, TDD, spec, plan, evidence.
 
 ## Navegação
 
