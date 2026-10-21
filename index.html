@@ -385,7 +385,7 @@ description: Use antes de qualquer
       <h1 class="title">Depois do <em>primeiro teste</em></h1>
       <p class="lead">Você fez a Tarefa 1. As tarefas 2 e 3 seguem o mesmo método, e a entrega ganha revisão.</p>
       <ol class="mini-flow" style="--n: 3">
-        <li style="--g: var(--g3)"><code>executing-plans</code><span>seguir o plano tarefa a tarefa</span><small>com subagentes, onde houver suporte</small></li>
+        <li style="--g: var(--g3)"><code>subagent-<wbr>driven-<wbr>development</code><span>seguir o plano tarefa a tarefa</span><small>sem subagentes: <code>executing-plans</code></small></li>
         <li style="--g: var(--g4)"><code>requesting-code-review</code><span>revisão independente antes de integrar</span></li>
         <li style="--g: var(--g4)"><code>finishing-a-<wbr>development-<wbr>branch</code><span>merge, PR ou descarte, com os testes verdes</span></li>
       </ol>
@@ -428,22 +428,23 @@ description: Use antes de qualquer
       <h1 class="title">Material de <em>apoio</em></h1>
       <p class="lead">Para usar se sobrar tempo ou surgir uma pergunta.</p>
       <ol class="steps appendix-list">
-        <li><span><strong>O mapa das 14 skills</strong> e os quatro grupos</span></li>
-        <li><span><strong>brainstorming</strong>, <strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span></li>
-        <li><span><strong>O fluxo completo</strong> em sete etapas</span></li>
-        <li><span><strong>obra, skills.sh</strong> e skills por plataforma</span></li>
+        <li><span><strong>O mapa das 14 skills</strong> e os quatro grupos</span><small class="appendix-at">25–29</small></li>
+        <li><span><strong>brainstorming</strong>, <strong>writing-plans</strong> e <strong>executing-plans</strong> em detalhe</span><small class="appendix-at">30–32</small></li>
+        <li><span><strong>O fluxo completo</strong> em sete etapas</span><small class="appendix-at">33</small></li>
+        <li><span><strong>obra, skills.sh</strong> e skills por plataforma</span><small class="appendix-at">34–37</small></li>
       </ol>
     </section>
     <section class="slide slide--dark" id="s5" aria-label="Mapa do superpowers">
       <p class="kicker">O mapa do superpowers</p>
       <h1 class="title">14 skills,<br>4 <em>momentos</em> do trabalho</h1>
+      <p class="lead">Hoje usamos quatro. O fluxo completo usa oito. As outras ficam para quando você precisar.</p>
       <div class="groups">
         <article class="group-card" style="--g: var(--g1); --g-ink: #E85D04">
           <h2><span class="mono">01</span>Pensar antes de codar</h2>
           <ul class="chips">
             <li class="chip chip--used">brainstorming</li>
             <li class="chip chip--used">writing-plans</li>
-            <li class="chip chip--used">executing-plans</li>
+            <li class="chip chip--suggest">executing-plans</li>
           </ul>
         </article>
         <article class="group-card" style="--g: var(--g2)">
@@ -451,29 +452,29 @@ description: Use antes de qualquer
           <ul class="chips">
             <li class="chip chip--used">test-driven-development</li>
             <li class="chip chip--suggest">systematic-debugging</li>
-            <li class="chip chip--suggest">verification-before-completion</li>
+            <li class="chip chip--used">verification-before-completion</li>
           </ul>
         </article>
         <article class="group-card" style="--g: var(--g3)">
           <h2><span class="mono">03</span>Escala com agentes</h2>
           <ul class="chips">
-            <li class="chip chip--used">subagent-driven-development</li>
+            <li class="chip chip--full">subagent-driven-development</li>
             <li class="chip chip--suggest">dispatching-parallel-agents</li>
-            <li class="chip chip--suggest">using-git-worktrees</li>
+            <li class="chip chip--full">using-git-worktrees</li>
           </ul>
         </article>
         <article class="group-card" style="--g: var(--g4)">
           <h2><span class="mono">04</span>Revisão e entrega</h2>
           <ul class="chips">
-            <li class="chip chip--suggest">requesting-code-review</li>
+            <li class="chip chip--full">requesting-code-review</li>
             <li class="chip chip--suggest">receiving-code-review</li>
-            <li class="chip chip--suggest">finishing-a-development-branch</li>
+            <li class="chip chip--full">finishing-a-development-branch</li>
             <li class="chip chip--suggest">writing-skills</li>
-            <li class="chip chip--used">using-superpowers</li>
+            <li class="chip chip--suggest">using-superpowers</li>
           </ul>
         </article>
       </div>
-      <p class="chip-legend"><span class="chip chip--used">uso no dia a dia</span><span class="chip chip--suggest">sugestão</span></p>
+      <p class="chip-legend"><span class="chip chip--used">instalada hoje</span><span class="chip chip--full">fluxo completo · slide 33</span><span class="chip chip--suggest">outras</span></p>
     </section>
     <section class="slide slide--dark slide--group" id="s6" aria-label="Pensar antes de codar" style="--g: var(--g1); --g-ink: #E85D04; --on-g: var(--navy)">
       <aside class="group-band" data-bleed>

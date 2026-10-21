@@ -201,7 +201,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Mensagem:** o mesmo método vale para o resto da tarefa.
 - **Fala:** "Vocês fizeram a Tarefa 1. O resto é repetição com controle: tarefa a tarefa,
   revisão e fechamento. Essas skills não vieram na instalação de hoje: o comando está no
-  slide 33. Subagentes só onde a sua ferramenta suportar."
+  slide 33. Subagentes só onde a sua ferramenta suportar; sem eles, executing-plans."
 
 ### 22 · Limites e controles (3 min)
 - **Mensagem:** onde o método não compensa e o que não delegar.
@@ -260,7 +260,7 @@ por versão. Confira na documentação da versão instalada antes de mencioná-l
 | Slide | Conteúdo | Quando usar |
 |---|---|---|
 | 24 | Divisória "Material de apoio" | Só de passagem |
-| 25 | Mapa das 14 skills, com o que usamos hoje | "Quais são as outras skills?" |
+| 25 | Mapa das 14 skills: as quatro de hoje, as oito do fluxo completo e as outras | "Quais são as outras skills?" |
 | 26–29 | Os quatro grupos, com antes e depois de cada skill | Dúvida sobre uma skill específica |
 | 30–32 | brainstorming, writing-plans e executing-plans em detalhe | "Como funciona por dentro?" |
 | 33 | O fluxo completo em sete etapas, com a instalação | "Como fica o fluxo inteiro?" |
