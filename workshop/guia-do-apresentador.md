@@ -96,10 +96,11 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Fala:** "Quinze minutos de conceito, vinte e cinco de prática no seu repositório e o
   resto para a retrospectiva, limites e perguntas."
 
-### 4 · Rápido não é verificável (2 min)
+### 4 · Rápido não quer dizer verificável (2 min)
 - **Mensagem:** sem processo, a saída do agente é difícil de avaliar.
-- **Fala:** "O agente gera código rápido. O problema é avaliar: foi o requisito certo? O
-  teste prova algo? Sem processo, a revisão fica toda no fim, e cara."
+- **Fala:** "O agente gera código rápido. O problema é avaliar. Na lista de bancos: ninguém
+  perguntou sobre o código, o teste confirmou a ordem errada e o 'pronto' veio sem rodar
+  nada. A revisão fica toda no fim."
 
 ### 5 · Anatomia de um agente (2 min)
 - **Mensagem:** agente é modelo + harness; mais capacidade pede mais processo e controle.
