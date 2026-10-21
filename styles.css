@@ -225,6 +225,7 @@ code, .mono { font-family: var(--mono); }
   font: 400 26px/1.5 var(--mono);
   white-space: pre;
 }
+.code-caption { margin: 14px 0 0; font: 500 20px/1.4 var(--mono); color: var(--ink-2); opacity: 0.75; }
 .compare-list { display: flex; flex-direction: column; gap: 20px; }
 .compare {
   padding: 24px 32px;
