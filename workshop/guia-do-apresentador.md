@@ -128,8 +128,9 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 9 · O agente pergunta antes de codar (2 min)
 - **Mensagem:** o brainstorming transforma um pedido vago em design aprovado.
-- **Fala:** "Em vez de sair codando, o agente pergunta. Cada resposta sua vira requisito
-  escrito. É a primeira evidência."
+- **Fala:** "Em vez de sair codando, o agente pergunta. Repare: é exatamente a pergunta que
+  faltou no slide 4. Cada resposta vira requisito escrito, num design que você aprova. É a
+  primeira evidência."
 - **Cuidado:** o terminal do slide é ilustrativo; diga isso em voz alta.
 
 ### 10 · Pronto para começar? (1 min)
