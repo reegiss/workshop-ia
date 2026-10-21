@@ -182,13 +182,14 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 18 · Etapa 2: Planejar (4 min)
 - **Mensagem:** um plano pequeno e revisável.
-- **Fala:** "Plano curto. Se vier grande, peça para cortar. O que interessa é a primeira
-  tarefa: um teste."
+- **Fala:** "Na mesma sessão, peça o plano curto. Confira: cada tarefa começa por um teste e
+  a primeira é ordenar por nome. Se vier grande, peça para cortar."
 
 ### 19 · Etapa 3: Vermelho, depois verde (11 min)
 - **Mensagem:** a evidência central do workshop.
-- **Fala:** "Não confie no relato do agente: rode o teste. Vermelho antes, verde depois.
-  Esse é o momento mais importante do workshop."
+- **Fala:** "O agente escreve o teste e para: você roda e vê vermelho. Ele implementa: você
+  roda e vê verde. Não confie no relato do agente. Esse é o momento mais importante do
+  workshop."
 
 ### 20 · O que as evidências mostraram (3 min)
 - **Mensagem:** retrospectiva com dados do chat, não impressões.

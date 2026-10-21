@@ -334,20 +334,35 @@ description: Use antes de qualquer
       <div class="lab-head"><p class="kicker">Laboratório · etapa 2 de 3</p><span class="lab-time">4 min</span></div>
       <h1 class="title">Planejar</h1>
       <ol class="steps">
-        <li><span>Peça o plano com <code>/writing-plans</code> (pedido da etapa 2).</span></li>
+        <li><span>Na mesma sessão, peça o plano com <code>/writing-plans</code> (pedido da etapa 2).</span></li>
         <li><span>No máximo <strong>3 tarefas</strong>.</span></li>
-        <li><span>Confira que a Tarefa 1 começa por um teste.</span></li>
+        <li><span><strong>Confira:</strong> cada tarefa começa por um teste, a Tarefa 1 é ordenar por nome, e nada sai do recorte (tela, rede).</span></li>
       </ol>
+      <div class="lab-story lab-plan">
+        <p class="lab-plan-head"><span class="deep-label">Um bom plano se parece com isto</span><code>docs/superpowers/plans/</code></p>
+        <ol>
+          <li><strong>Ordenar por nome</strong><span><small>teste:</small> três bancos fora de ordem → ordenados</span></li>
+          <li><strong>Filtrar por nome</strong><span><small>teste:</small> “brasil” → “Banco do Brasil”</span></li>
+          <li><strong>Código e busca vazia</strong><span><small>teste:</small> “00” → “001”; “” → todas</span></li>
+        </ol>
+      </div>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> quantas tarefas o seu plano tem. Travou? Use o plano pronto do guia.</p>
     </section>
     <section class="slide slide--dark lab" id="s-lab3" aria-label="Laboratório etapa 3">
       <div class="lab-head"><p class="kicker">Laboratório · etapa 3 de 3</p><span class="lab-time">11 min</span></div>
       <h1 class="title">Vermelho, depois verde</h1>
       <ol class="steps">
-        <li><span>Execute só a Tarefa 1 com <code>/test-driven-development</code>.</span></li>
-        <li><span>Rode o teste <strong>você mesmo</strong>: falha, depois passa.</span></li>
-        <li><span>Revise o diff e faça commit só local.</span></li>
+        <li><span>Cole o pedido da etapa 3: só a Tarefa 1, com <code>/test-driven-development</code>.</span></li>
+        <li><span>O agente escreve o teste e <strong>para</strong>. <strong>Você</strong> roda: vermelho.</span></li>
+        <li><span>O agente implementa o mínimo. <strong>Você</strong> roda de novo: verde.</span></li>
+        <li><span>Revise com <code>git diff</code> e faça commit só local.</span></li>
       </ol>
+      <div class="lab-runs">
+        <div class="lab-run lab-run--red"><p class="lab-run-tag">✗ falhou</p><p>ordena por nome</p><p>filterAndSort não existe</p></div>
+        <span class="lab-run-arrow" aria-hidden="true">→</span>
+        <div class="lab-run lab-run--green"><p class="lab-run-tag">✓ passou</p><p>ordena por nome</p><p>1 teste, 0 falhas</p></div>
+      </div>
+      <p class="lab-run-note">Ilustrativo: a saída real depende da sua stack.</p>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> a saída do teste verde. Não terminou? O guia mostra como continuar.</p>
     </section>
     <section class="slide slide--dark" id="s-retro" aria-label="Retrospectiva do laboratório">
