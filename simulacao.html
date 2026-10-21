@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulação do laboratório · Desenvolvimento verificável</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="simulacao.css">
+</head>
+<body>
+  <main class="sim">
+    <header class="sim-top">
+      <p class="sim-kicker">Laboratório · simulação</p>
+      <nav class="sim-stages" aria-label="Etapas">
+        <button class="sim-stage" data-stage="1"><span>1</span>Esclarecer</button>
+        <button class="sim-stage" data-stage="2"><span>2</span>Planejar</button>
+        <button class="sim-stage" data-stage="3"><span>3</span>Vermelho → verde</button>
+      </nav>
+      <p class="sim-skill">skill <code id="sim-skill">brainstorming</code></p>
+    </header>
+
+    <section class="term" aria-label="Terminal simulado">
+      <div class="term-bar"><i></i><i></i><i></i><span>copilot — portability</span></div>
+      <div class="term-body" id="term" aria-live="polite"></div>
+    </section>
+
+    <aside class="ev" aria-label="Evidências">
+      <h2 class="ev-title">Evidências</h2>
+      <ol class="ev-list">
+        <li data-ev="req"><strong>Requisito esclarecido</strong><span>3 perguntas antes do código</span></li>
+        <li data-ev="plan"><strong>Plano revisável</strong><span>3 tarefas, cada uma com teste</span></li>
+        <li data-ev="red"><strong>Teste falhando</strong><span><code>swift test</code> não compila</span></li>
+        <li data-ev="green"><strong>Teste passando</strong><span>1 teste, 0 falhas</span></li>
+        <li data-ev="done"><strong>“Pronto” com evidência</strong><span>o agente cita a saída</span></li>
+      </ol>
+    </aside>
+
+    <footer class="sim-foot">
+      <p class="sim-badge">Simulação · roteiro ilustrativo</p>
+      <p class="sim-keys"><kbd>→</kbd> avança <kbd>←</kbd> volta <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> etapas <kbd>Esc</kbd> volta ao deck</p>
+    </footer>
+  </main>
+
+  <script src="simulacao.js"></script>
+</body>
+</html>

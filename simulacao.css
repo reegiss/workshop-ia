@@ -1,0 +1,218 @@
+/* Simulação do laboratório: palco 1920×1080 escalado para a janela, como o deck */
+.sim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  margin: -540px 0 0 -960px;
+  padding: 48px 72px 36px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 28px 40px;
+  color: var(--ink);
+  transform-origin: center;
+}
+
+/* Topo: etapas e skill ativa */
+.sim-top { grid-column: 1 / -1; display: flex; align-items: center; gap: 40px; }
+.sim-kicker {
+  margin: 0;
+  font: 600 20px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.sim-stages { display: flex; gap: 12px; }
+.sim-stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px 10px 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font: 700 22px/1 var(--font);
+  cursor: pointer;
+}
+.sim-stage span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--card);
+  font: 600 18px/1 var(--mono);
+}
+.sim-stage.is-current { border-color: var(--accent); color: var(--ink); }
+.sim-stage.is-current span { background: var(--accent); color: var(--navy); }
+.sim-stage.is-past span { background: var(--g4); color: var(--ink); }
+.sim-skill { margin: 0 0 0 auto; font: 500 22px/1 var(--font); color: var(--ink-2); }
+.sim-skill code {
+  margin-left: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--g1);
+  color: var(--navy);
+  font: 600 20px/1 var(--mono);
+}
+
+/* Terminal */
+.term {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--card-line);
+  border-radius: 20px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--card-line);
+  font: 500 18px/1 var(--mono);
+  color: var(--muted);
+}
+.term-bar i { width: 14px; height: 14px; border-radius: 50%; background: var(--card-line); }
+.term-bar span { margin-left: 12px; }
+/* O conteúdo cresce de baixo para cima: o que é antigo sai pelo topo */
+.term-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 18px;
+  padding: 24px 32px 28px;
+  overflow: hidden;
+  font: 400 22px/1.45 var(--mono);
+  color: var(--ink-2);
+  /* O que sai pelo topo some aos poucos */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 72px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 72px);
+}
+.term-body > * { flex-shrink: 0; }
+.term-body p { margin: 0; white-space: pre-wrap; }
+.term-body code { color: var(--ink); font-weight: 600; }
+
+.blk-session { color: var(--muted); font-style: italic; }
+.blk-you { display: grid; grid-template-columns: 32px 1fr; color: var(--ink); }
+.blk-you::before { content: "›"; color: var(--accent); font-weight: 600; }
+.blk-agent { display: grid; grid-template-columns: 32px 1fr; }
+.blk-agent::before { content: "●"; color: var(--g1); font-size: 0.8em; line-height: 1.8; }
+.blk-agent > div { display: flex; flex-direction: column; gap: 4px; }
+.ln-skill { color: var(--g1); font-weight: 600; }
+.ln-ok { color: #4FD1A5; }
+.file {
+  margin: 6px 0;
+  border: 1px solid var(--card-line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.file-path {
+  padding: 8px 16px;
+  background: var(--card);
+  color: var(--accent);
+  font-weight: 600;
+}
+.file-path::before { content: "✎ "; }
+.file pre { margin: 0; padding: 10px 16px; font: inherit; color: var(--ink); white-space: pre; }
+.blk-shell p.cmd { color: var(--ink); }
+.blk-shell p.cmd::before { content: "$ "; color: #4FD1A5; font-weight: 600; }
+.out-err { color: #FF7A85; }
+.out-ok { color: #4FD1A5; font-weight: 600; }
+.out-dim { color: var(--muted); }
+
+/* Cursor piscando na última linha */
+.term-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 26px;
+  margin-left: 6px;
+  vertical-align: -5px;
+  background: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+.term-cursor { color: var(--accent); }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Entrada: linhas em cascata no bloco novo */
+.is-new .ln { opacity: 0; animation: line-in 260ms ease-out forwards; animation-delay: calc(var(--i, 0) * 70ms); }
+@keyframes line-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Evidências */
+.ev {
+  min-height: 0;
+  padding: 32px 32px;
+  border: 1px solid var(--card-line);
+  border-radius: 20px;
+  background: var(--card);
+}
+.ev-title {
+  margin: 0 0 24px;
+  font: 600 20px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ev-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 22px; }
+.ev-list li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  row-gap: 4px;
+  opacity: 0.35;
+  transition: opacity 400ms;
+}
+.ev-list li::before {
+  content: "";
+  grid-row: span 2;
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+  border: 2px solid var(--card-line);
+  border-radius: 50%;
+}
+.ev-list strong { font: 700 24px/1.25 var(--font); }
+.ev-list span { font: 400 20px/1.35 var(--font); color: var(--ink-2); }
+.ev-list li.is-on { opacity: 1; }
+.ev-list li.is-on::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  border-color: #4FD1A5;
+  background: #4FD1A5;
+  color: var(--navy);
+  font: 800 16px/1 var(--font);
+}
+.ev-list li[data-ev="red"].is-on::before { content: "✗"; border-color: #FF7A85; background: #FF7A85; }
+
+/* Rodapé */
+.sim-foot { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; }
+.sim-foot p { margin: 0; }
+.sim-badge {
+  padding: 8px 16px;
+  border: 1px dashed var(--card-line);
+  border-radius: 999px;
+  font: 600 18px/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+.sim-keys { font: 500 18px/1 var(--font); color: var(--muted); }
+.sim-keys kbd {
+  display: inline-block;
+  min-width: 30px;
+  margin: 0 4px 0 14px;
+  padding: 4px 8px;
+  border: 1px solid var(--card-line);
+  border-radius: 6px;
+  font: 600 16px/1 var(--mono);
+  text-align: center;
+  color: var(--ink-2);
+}
+.sim-keys kbd + kbd { margin-left: 0; }

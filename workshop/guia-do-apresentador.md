@@ -236,9 +236,20 @@ e o diff foi revisado.
 | Brainstorming passou de 8 min | Colar o "design pronto" do guia |
 | Plano não sai ou vem enorme | Colar o "plano pronto" do guia |
 | Agente trava ou dá erro | Nova sessão do `copilot`, colando o design aprovado |
-| Rede ou cota fora do ar para muitos | Passar a demonstração gravada |
+| Rede ou cota fora do ar para muitos | Abrir a simulação: tecla **S** nos slides 17 a 19 (ver abaixo) |
 | Laboratório falhou para a maioria | Assumir a condução: faça as três etapas na sua tela, pedindo as respostas ao público, e devolva o tempo restante para perguntas |
 | Tempo estourado | Encurtar o slide 20 e ler só os números do chat |
+
+### Plano B: simulação do laboratório
+
+Se a demo ao vivo não funcionar (rede, cota, login), aperte **S** nos slides 17, 18 ou 19. Abre
+`simulacao.html` na etapa daquele slide: um terminal roteirizado do Copilot CLI com o exemplo da
+lista de bancos em iOS (Swift + XCTest), com as quatro skills e as evidências marcadas ao lado.
+
+- **→** ou espaço avança uma fala (o primeiro toque completa a digitação); **←** volta.
+- **1**, **2**, **3** pulam para a etapa; **Esc** volta ao deck, no slide da etapa atual.
+- A tela traz o selo "Simulação · roteiro ilustrativo": diga à turma que é um roteiro, não uma
+  sessão real.
 
 ## Riscos e controles
 

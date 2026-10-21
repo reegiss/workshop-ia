@@ -21,7 +21,8 @@ dos slides (lista de bancos), para exibir no lugar da demo ao vivo se ela falhar
   chip da skill ativa.
 - Centro: janela de terminal com título `copilot — portability`.
 - Lateral "Evidências": requisito esclarecido → plano revisável → teste falhando → teste
-  passando, marcadas conforme a simulação chega a cada uma.
+  passando → "pronto" com evidência, marcadas conforme a simulação chega a cada uma.
+- O terminal cresce de baixo para cima; o que sai pelo topo esmaece.
 - Rodapé: selo fixo "Simulação · roteiro ilustrativo".
 
 ## Roteiro (iOS, Swift + XCTest)
@@ -36,7 +37,7 @@ dos slides (lista de bancos), para exibir no lugar da demo ao vivo se ela falhar
    falha (`cannot find 'filterAndSort' in scope`); o agente implementa o mínimo em
    `Sources/Domain/InstitutionSearch.swift`; `swift test` passa
    (`Executed 1 test, with 0 failures`); o agente só diz "pronto" citando essa saída;
-   `git diff --stat` e commit local, sem push.
+   `git diff --stat` e `git add -A && git commit` local, sem push.
 
 ## Controles
 

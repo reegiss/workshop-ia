@@ -49,6 +49,10 @@
     stage.style.setProperty('--scale', String(scale));
   }
 
+  // Plano B da demo: nos slides do laboratório, S abre a simulação na etapa daquele slide
+  const LAB_SLIDES = { 17: 1, 18: 2, 19: 3 };
+  function openSimulation(etapa) { location.href = `simulacao.html?etapa=${etapa}`; }
+
   function toggleFullscreen() {
     if (document.fullscreenElement) document.exitFullscreen?.();
     else document.documentElement.requestFullscreen?.();
@@ -86,6 +90,7 @@
     else if (e.key === 'Home') show(1);
     else if (e.key === 'End') show(total);
     else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    else if ((e.key === 's' || e.key === 'S') && LAB_SLIDES[current]) openSimulation(LAB_SLIDES[current]);
     else return;
     e.preventDefault();
   });
