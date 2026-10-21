@@ -1023,3 +1023,13 @@ body[data-current="1"] .home-btn { visibility: hidden; }
   .slide *, .slide *::before { animation: none !important; }
   .home-btn, .counter, .progress { display: none !important; }
 }
+
+/* slide 11: regras do laboratório */
+#s-regras .rules { margin-top: 40px; }
+#s-regras .rule { padding: 28px 40px 32px; }
+#s-regras .rules-start { margin-top: 36px; }
+#s-regras .rules-start .catalog-label { margin-bottom: 0; }
+#s-regras .code-card--dark { width: fit-content; margin-top: 12px; padding: 20px 32px; font-size: 26px; line-height: 1.5; }
+#s-regras .rules-caption { margin: 12px 0 0; font-size: 22px; color: var(--ink-2); }
+#s-regras .rules-caption code { color: var(--ink); font-weight: 600; }
+#s-regras .rules-next { margin: auto 0 0; font-size: 30px; color: var(--ink-2); }

@@ -142,8 +142,9 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 11 · Regras do laboratório (1 min)
 - **Mensagem:** segurança antes da prática.
-- **Fala:** "O agente só faz o que você aprova. Leia cada comando antes de permitir. Nada
-  de push, e nada de colar credenciais."
+- **Fala:** "O agente só faz o que você aprova. Lembram do harness pedindo permissão? Aqui é
+  você quem decide. Leia cada comando antes de permitir. Nada de push, e nada de colar
+  credenciais. Agora, juntos: criem a branch e bloqueiem o push."
 - **Transição:** use a frase de transição para o laboratório.
 
 ### 12 · Etapa 1: Esclarecer (8 min)
