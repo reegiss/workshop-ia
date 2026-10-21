@@ -45,8 +45,8 @@ USADA**:
 
 Novo `.lead`:
 
-> Uma pasta com um `SKILL.md`: nome, descrição e instruções. O agente a usa quando a
-> descrição combina com o pedido, ou quando você a cita (`/nome`).
+> Uma pasta com um `SKILL.md`: nome, descrição e instruções. Entra em uso pela
+> descrição ou quando você a cita (`/nome`).
 
 A legenda `.code-caption` ("Isto fica sempre no contexto. O resto do arquivo, só quando
 precisa.") sai do slide. Se a classe não for usada em outro slide, a regra sai do

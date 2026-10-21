@@ -31,7 +31,7 @@
 Em `#s3`, trocar o `<p class="lead">…</p>` atual por:
 
 ```html
-<p class="lead">Uma pasta com um <code>SKILL.md</code>: nome, descrição e instruções. O agente a usa quando a descrição combina com o pedido, ou quando você a cita (<code>/nome</code>).</p>
+<p class="lead">Uma pasta com um <code>SKILL.md</code>: nome, descrição e instruções. Entra em uso pela descrição ou quando você a cita (<code>/nome</code>).</p>
 ```
 
 - [ ] **Step 2: Cartão de código em duas partes**
