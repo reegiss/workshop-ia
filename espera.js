@@ -75,16 +75,69 @@
   const st = Math.sin(tilt);
   const start = performance.now() - (Number(params.get('giro')) || 0) * 1000;
 
+  // Linhas da esfera: contorno, paralelos e meridianos, desenhados num canvas atrás dos termos
+  const canvas = document.createElement('canvas');
+  const SIZE = 840;
+  const DPR = 2;
+  canvas.width = SIZE * DPR;
+  canvas.height = SIZE * DPR;
+  globe.prepend(canvas);
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+  ctx.translate(SIZE / 2, SIZE / 2);
+
+  const STEPS = 72;
+  const lines = [];
+  for (const lat of [-60, -30, 0, 30, 60]) {
+    const phi = (lat * Math.PI) / 180;
+    lines.push(Array.from({ length: STEPS + 1 }, (_, i) => {
+      const t = (i / STEPS) * Math.PI * 2;
+      return [Math.cos(phi) * Math.cos(t) * R, Math.sin(phi) * R, Math.cos(phi) * Math.sin(t) * R];
+    }));
+  }
+  for (let lon = 0; lon < 180; lon += 30) {
+    const l = (lon * Math.PI) / 180;
+    lines.push(Array.from({ length: STEPS + 1 }, (_, i) => {
+      const t = (i / STEPS) * Math.PI * 2;
+      return [Math.cos(t) * Math.cos(l) * R, Math.sin(t) * R, Math.cos(t) * Math.sin(l) * R];
+    }));
+  }
+
   function frame(now) {
     const a = ((now - start) / 1000) * speed;
     const ca = Math.cos(a);
     const sa = Math.sin(a);
+    // Gira no eixo Y, inclina no X; d vai de 0 (atrás) a 1 (na frente)
+    const project = (px, py, pz) => {
+      const x = px * ca + pz * sa;
+      const z1 = -px * sa + pz * ca;
+      const y = py * ct - z1 * st;
+      const z = py * st + z1 * ct;
+      return { x, y, d: (z / R + 1) / 2 };
+    };
+
+    ctx.clearRect(-SIZE / 2, -SIZE / 2, SIZE, SIZE);
+    ctx.lineWidth = 1.5;
+    for (const line of lines) {
+      let prev = project(...line[0]);
+      for (let i = 1; i < line.length; i++) {
+        const cur = project(...line[i]);
+        ctx.strokeStyle = `rgba(61, 143, 224, ${(0.05 + ((prev.d + cur.d) / 2) * 0.3).toFixed(3)})`;
+        ctx.beginPath();
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(cur.x, cur.y);
+        ctx.stroke();
+        prev = cur;
+      }
+    }
+    ctx.strokeStyle = 'rgba(61, 143, 224, 0.55)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0, 0, R, 0, Math.PI * 2);
+    ctx.stroke();
+
     for (const p of points) {
-      const x = p.x * ca + p.z * sa;
-      const z1 = -p.x * sa + p.z * ca;
-      const y = p.y * ct - z1 * st;
-      const z = p.y * st + z1 * ct;
-      const d = (z / R + 1) / 2; // 0 atrás, 1 na frente
+      const { x, y, d } = project(p.x, p.y, p.z);
       const scale = 0.5 + d * 0.8;
       p.el.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
       p.el.style.opacity = (0.25 + d * 0.75).toFixed(3);

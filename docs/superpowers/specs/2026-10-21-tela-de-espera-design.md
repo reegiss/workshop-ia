@@ -43,6 +43,8 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
 - Termos do workshop (SDD, TDD, spec, plano, evidência, skills) em `--accent`; os demais em
   `--ink`.
 - `prefers-reduced-motion`: rotação bem mais lenta.
+- Linhas da esfera num `canvas` atrás dos termos: contorno em `--accent` (55%), cinco
+  paralelos e seis meridianos que giram junto, mais fortes na frente (35%) que atrás (5%).
 - `?giro=N` adianta a rotação em N segundos (para conferir quadros diferentes; o Chrome
   headless não avança o `requestAnimationFrame`).
 
