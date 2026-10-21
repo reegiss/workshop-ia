@@ -193,13 +193,15 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 20 · O que as evidências mostraram (3 min)
 - **Mensagem:** retrospectiva com dados do chat, não impressões.
-- **Fala:** "Vamos olhar o chat: quem chegou ao verde e onde travou. Travar também é dado:
-  mostra onde o processo protege."
+- **Fala:** "Vamos ler o chat na ordem das etapas: a pergunta mais útil, quantas tarefas e
+  quantos chegaram ao verde. Onde travou também é dado. E dos três problemas do começo,
+  qual o processo evitou hoje?"
 
 ### 21 · Depois do primeiro teste (3 min)
 - **Mensagem:** o mesmo método vale para o resto da tarefa.
-- **Fala:** "O resto é repetição com controle: tarefa a tarefa, revisão e fechamento.
-  Subagentes só onde a sua ferramenta suportar."
+- **Fala:** "Vocês fizeram a Tarefa 1. O resto é repetição com controle: tarefa a tarefa,
+  revisão e fechamento. Essas skills não vieram na instalação de hoje: o comando está no
+  slide 33. Subagentes só onde a sua ferramenta suportar."
 
 ### 22 · Limites e controles (3 min)
 - **Mensagem:** onde o método não compensa e o que não delegar.

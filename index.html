@@ -369,19 +369,27 @@ description: Use antes de qualquer
       <p class="kicker">Retrospectiva</p>
       <h1 class="title">O que as evidências<br><em>mostraram</em></h1>
       <div class="rules rules--3">
-        <article class="rule"><h2>Quantos chegaram ao verde?</h2><p>Contagem pelos checkpoints do chat.</p></article>
-        <article class="rule"><h2>A pergunta mais útil</h2><p>Que requisito ela esclareceu antes do código?</p></article>
-        <article class="rule"><h2>Onde travou</h2><p>Travar também é dado: mostra onde o processo protege.</p></article>
+        <article class="rule"><p class="retro-stage">Etapa 1 · Esclarecer</p><h2>A pergunta mais útil</h2><p>Que requisito ela esclareceu antes do código?</p><p class="retro-ev"><small>Evidência</small>requisito esclarecido</p></article>
+        <article class="rule"><p class="retro-stage">Etapa 2 · Planejar</p><h2>Quantas tarefas?</h2><p>Alguém precisou cortar?</p><p class="retro-ev"><small>Evidência</small>plano revisável</p></article>
+        <article class="rule"><p class="retro-stage">Etapa 3 · Vermelho → verde</p><h2>Quantos chegaram ao verde?</h2><p>Pela saída colada no chat.</p><p class="retro-ev"><small>Evidência</small>teste falhando, depois passando</p></article>
+      </div>
+      <p class="retro-stuck">Onde travou? Travar também é dado: mostra onde o processo protege.</p>
+      <div class="retro-ask">
+        <p class="catalog-label">Para a turma</p>
+        <p class="retro-q">Dos três problemas do começo, qual o processo evitou hoje?</p>
+        <ul><li>implementar antes de esclarecer</li><li>teste escrito só para passar</li><li>“pronto” sem evidência</li></ul>
       </div>
     </section>
     <section class="slide slide--dark" id="s-escala" aria-label="Depois do primeiro teste">
       <p class="kicker">Escala, revisão e entrega</p>
       <h1 class="title">Depois do <em>primeiro teste</em></h1>
+      <p class="lead">Você fez a Tarefa 1. As tarefas 2 e 3 seguem o mesmo método, e a entrega ganha revisão.</p>
       <ol class="mini-flow" style="--n: 3">
-        <li style="--g: var(--g3)"><code>executing-plans</code><span>seguir o plano tarefa a tarefa; com <code>subagent-driven-development</code>, onde houver suporte a subagentes</span></li>
+        <li style="--g: var(--g3)"><code>executing-plans</code><span>seguir o plano tarefa a tarefa</span><small>com subagentes, onde houver suporte</small></li>
         <li style="--g: var(--g4)"><code>requesting-code-review</code><span>revisão independente antes de integrar</span></li>
         <li style="--g: var(--g4)"><code>finishing-a-<wbr>development-<wbr>branch</code><span>merge, PR ou descarte, com os testes verdes</span></li>
       </ol>
+      <p class="escala-note">Essas três não vieram na instalação de hoje. O comando com o fluxo completo está no apêndice (<strong>slide 33</strong>).</p>
     </section>
     <section class="slide slide--dark" id="s-cuidados" aria-label="Limites e controles">
       <p class="kicker">Com os pés no chão</p>
