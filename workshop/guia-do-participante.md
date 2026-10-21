@@ -1,4 +1,4 @@
-# Workshop Superpowers — guia do participante
+# Desenvolvimento verificável com agentes de IA — guia do participante
 
 Copie os comandos e pedidos **deste arquivo**, não da tela compartilhada.
 

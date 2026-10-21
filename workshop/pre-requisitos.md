@@ -1,4 +1,4 @@
-# Workshop Superpowers — pré-requisitos
+# Desenvolvimento verificável com agentes de IA — pré-requisitos
 
 Faça isto **antes** do workshop. No dia não haverá tempo para instalação: vamos direto
 para o laboratório.

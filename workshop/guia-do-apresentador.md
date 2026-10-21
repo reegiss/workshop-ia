@@ -1,4 +1,4 @@
-# Workshop Superpowers — guia do apresentador
+# Desenvolvimento verificável com agentes de IA — guia do apresentador
 
 Workshop online de **60 minutos** pelo Teams, com **25 minutos de laboratório** no
 Copilot CLI. Este guia é só para quem apresenta. Os participantes usam o
@@ -52,7 +52,7 @@ diff revisado.
   clique avançam e voltam; o ícone de casa no rodapé volta à capa.
 - **Ir direto a um slide:** troque o final da URL pelo número, por exemplo `#20` para o
   primeiro slide de SDD. Útil nas perguntas.
-- **Reserva:** deixe o `superpowers.pdf` aberto noutra janela. Se o navegador travar, você
+- **Reserva:** deixe o `desenvolvimento-verificavel.pdf` aberto noutra janela. Se o navegador travar, você
   continua pelo PDF, que tem os mesmos 35 slides.
 - **No Teams:** compartilhe **a janela do navegador**, não a tela inteira, e silencie as
   notificações. Deixe o terminal numa segunda janela para alternar durante o laboratório.
@@ -81,7 +81,7 @@ seção abaixo.
 
 Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
-### 1 · Superpowers (0:30)
+### 1 · Desenvolvimento verificável (0:30)
 - **Mensagem:** o tema é processo, não um modelo melhor.
 - **Fala:** "Hoje não vou falar de um modelo melhor, e sim de processo: como fazer o agente
   trabalhar em etapas que conseguimos revisar e verificar."
@@ -260,7 +260,7 @@ por versão. Confira na documentação da versão instalada antes de mencioná-l
 
 ## Depois do workshop
 
-- [ ] Compartilhar no chat o `superpowers.pdf` e os dois guias.
+- [ ] Compartilhar no chat o `desenvolvimento-verificavel.pdf` e os dois guias.
 - [ ] Registrar o que travou no laboratório (ambiente, agente, tempo) para ajustar a
       próxima edição.
 - [ ] Combinar a próxima reunião em que cada um traz as evidências da sua história.
