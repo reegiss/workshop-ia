@@ -560,11 +560,12 @@ description: Use antes de qualquer
       <div class="start">
         <div>
           <p class="catalog-label">Como começar</p>
-          <pre class="code-card code-card--dark code-card--sm"><code><span class="cmd-note"># padrão do skills.sh</span>
-<span class="prompt">$</span> npx skills add obra/superpowers -g -a github-copilot
-<span class="cmd-note"># ou como plugin do Copilot CLI</span>
-<span class="prompt">$</span> copilot plugin marketplace add obra/superpowers-marketplace
-<span class="prompt">$</span> copilot plugin install superpowers@superpowers-marketplace</code></pre>
+          <pre class="code-card code-card--dark code-card--sm"><code><span class="cmd-note"># só as skills do fluxo acima (no Windows, numa linha só)</span>
+<span class="prompt">$</span> npx skills add obra/superpowers -g -a github-copilot \
+    -s brainstorming writing-plans using-git-worktrees \
+    subagent-driven-development test-driven-development \
+    requesting-code-review verification-before-completion \
+    finishing-a-development-branch</code></pre>
           <p class="start-alt">Depois, dentro do <strong>copilot</strong>: <strong>/skills list</strong></p>
           <p class="start-links mono">skills.sh/obra · github.com/obra/superpowers</p>
         </div>
