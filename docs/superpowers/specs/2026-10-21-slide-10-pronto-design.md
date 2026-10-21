@@ -20,10 +20,10 @@ no slide 8):
 | Nome | Texto |
 |---|---|
 | Copilot CLI | Abra o `copilot` e confira o login com `/login`. |
-| Superpowers | `/skills list` mostra `brainstorming`. |
+| Superpowers | Instale com `npx skills add obra/superpowers -g -a github-copilot` e confira: `/skills list` mostra `brainstorming`. |
 | Repositório | O build da sua stack roda. Os comandos estão no guia. |
 
-A linha "Instalação" (comando `npx skills add …` e texto do plugin) sai do slide. Regras de
+A linha "Instalação" sai; o comando `npx skills add …` passa para a linha Superpowers, para não pedir a lista antes da instalação. Regras de
 CSS que ficarem sem uso (`.install-options`, `.install-label`, `.howto-row pre`) saem do
 `styles.css`; as classes `.howto*` só existem neste slide.
 
@@ -31,7 +31,7 @@ CSS que ficarem sem uso (`.install-options`, `.install-label`, `.howto-row pre`)
 
 Abaixo da lista, duas linhas pequenas em `--ink-2`:
 
-- "Faltou algo? Os comandos de instalação estão nos pré-requisitos."
+- "Prefere o plugin do Copilot CLI? Os comandos estão nos pré-requisitos."
 - "O guia do participante está no chat: copie os comandos de lá, não da tela."
 
 ## Chamada
