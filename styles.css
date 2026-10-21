@@ -140,7 +140,7 @@ code, .mono { font-family: var(--mono); }
   /* === componentes dos slides === */
 /* Slide 1 — capa */
 .cover { justify-content: center; padding-right: 560px; }
-.cover-title { font-size: 128px; line-height: 0.95; }
+.cover-title { font-size: 128px; line-height: 1.05; }
 .cover-sub { display: block; margin-top: 20px; font-size: 0.42em; letter-spacing: -0.01em; color: var(--ink-2); }
 /* A capa é escrita como o frontmatter de um SKILL.md */
 .cover-file { margin: 0 0 36px; font-size: 24px; color: var(--muted); }
