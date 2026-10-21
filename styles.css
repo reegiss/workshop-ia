@@ -952,6 +952,14 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 .evidence-col li { font-size: 40px; padding-left: 64px; }
 .evidence-col li::before { width: 46px; height: 46px; font-size: 26px; }
 .evidence-col ul { gap: 32px; }
+#s-confiavel .evidence { margin-top: 48px; }
+#s-confiavel .evidence-col { min-height: 0; padding: 40px 40px 44px; }
+#s-confiavel .evidence-col h2 span { display: block; margin-top: 10px; font-size: 20px; letter-spacing: 0.04em; text-transform: none; color: var(--ink-2); }
+#s-confiavel .evidence-col ul { gap: 28px; }
+#s-confiavel .evidence-col li { font-size: 32px; padding-left: 60px; }
+#s-confiavel .evidence-col li::before { width: 42px; height: 42px; font-size: 24px; }
+#s-confiavel .evidence-col li small { display: block; margin-top: 8px; font: 400 20px/1.35 var(--mono); color: var(--ink-2); }
+#s-confiavel .evidence-col li small code { color: var(--blue-light); }
 /* Bloco SDD */
 .sdd-quote { margin-top: 36px; font-size: 40px; color: var(--ink); }
 #s-sdd .mini-flow { margin-top: 48px; }
