@@ -162,14 +162,55 @@ description: Use antes de qualquer
     <section class="slide slide--dark" id="s-sdd" aria-label="SDD: a spec vem primeiro">
       <p class="kicker">Spec-Driven Development</p>
       <h1 class="title">SDD: a spec<br><em>vem primeiro</em></h1>
-      <p class="lead">Exemplo: a história do laboratório, <strong>escolher o banco de origem numa lista</strong>.</p>
+      <p class="lead">Cada etapa gera um artefato que você revisa antes da próxima.</p>
       <ol class="mini-flow" style="--n: 4">
-        <li style="--g: var(--g1)"><code>spec</code><span>o quê e o porquê</span><p class="sdd-ex"><small>Exemplo</small>ordena por nome; busca por nome ou código; busca vazia devolve todas</p></li>
-        <li style="--g: var(--g1)"><code>plano</code><span>o como</span><p class="sdd-ex"><small>Exemplo</small>uma função <code>filterAndSort</code>, sem dependências</p></li>
-        <li style="--g: var(--g2)"><code>tarefas</code><span>passos pequenos e verificáveis</span><p class="sdd-ex"><small>Exemplo</small>1. ordenar<br>2. filtrar por nome<br>3. código e busca vazia</p></li>
-        <li style="--g: var(--g2)"><code>código</code><span>verificado contra a spec</span><p class="sdd-ex"><small>Exemplo</small>“brasil” encontra “Banco do Brasil”: vermelho, depois verde</p></li>
+        <li style="--g: var(--g1)"><code>spec</code><span>o quê e o porquê: requisitos e critérios de aceite</span></li>
+        <li style="--g: var(--g1)"><code>plano</code><span>o como: decisões técnicas a partir da spec</span></li>
+        <li style="--g: var(--g2)"><code>tarefas</code><span>passos pequenos e verificáveis</span></li>
+        <li style="--g: var(--g2)"><code>código</code><span>implementado e verificado contra a spec</span></li>
       </ol>
       <p class="sdd-source">Definição: README do github/spec-kit, consultado em 19/09/2026.</p>
+    </section>
+    <section class="slide slide--dark" id="s-sdd-exemplo" aria-label="O exemplo, etapa a etapa">
+      <p class="kicker">Spec-Driven Development</p>
+      <h1 class="title">O exemplo, <em>etapa a etapa</em></h1>
+      <div class="ex-grid">
+        <article class="ex-card" style="--g: var(--g1)">
+          <p class="ex-head"><span>Spec</span><code>docs/superpowers/specs/</code></p>
+          <dl>
+            <dt>Objetivo</dt><dd>escolher o banco de origem numa lista</dd>
+            <dt>Requisitos</dt><dd>ordena por nome, sem diferenciar maiúsculas nem acentos; busca no nome (contém) ou no código (prefixo)</dd>
+            <dt>Aceite</dt><dd>“credito” encontra “Crédito”; “00” encontra “001”; busca vazia devolve todas</dd>
+            <dt>Fora</dt><dd>tela e rede</dd>
+          </dl>
+        </article>
+        <article class="ex-card" style="--g: var(--g1)">
+          <p class="ex-head"><span>Plano</span><code>docs/superpowers/plans/</code></p>
+          <dl>
+            <dt>Decisão</dt><dd>uma função pura<br><code>filterAndSort(institutions, query)</code></dd>
+            <dt>Por quê</dt><dd>sem tela e sem rede, o teste roda em segundos</dd>
+            <dt>Acentos</dt><dd>comparar textos normalizados (sem acento, minúsculos)</dd>
+          </dl>
+        </article>
+        <article class="ex-card ex-card--tasks" style="--g: var(--g2)">
+          <p class="ex-head"><span>Tarefas</span><code>uma por teste</code></p>
+          <dl>
+            <dt>1</dt><dd><strong>Ordenar por nome:</strong> três bancos fora de ordem → ordenados</dd>
+            <dt>2</dt><dd><strong>Filtrar por nome:</strong> “brasil” → “Banco do Brasil”</dd>
+            <dt>3</dt><dd><strong>Código e busca vazia:</strong> “00” → “001”; “” → todas</dd>
+          </dl>
+        </article>
+        <article class="ex-card" style="--g: var(--g2)">
+          <p class="ex-head"><span>Código</span><code>tarefa 1, teste primeiro</code></p>
+          <dl>
+            <dt>Dado</dt><dd>[Itaú, Bradesco, Caixa]</dd>
+            <dt>Espera</dt><dd>[Bradesco, Caixa, Itaú]</dd>
+            <dt class="ex-red">✗ vermelho</dt><dd><code>filterAndSort</code> não existe</dd>
+            <dt class="ex-green">✓ verde</dt><dd>depois da implementação</dd>
+          </dl>
+        </article>
+      </div>
+      <p class="sdd-source">Trechos resumidos. No laboratório, o agente escreve esses arquivos e você revisa.</p>
     </section>
     <section class="slide slide--dark" id="s-sdd-map" aria-label="O fluxo de hoje já é SDD">
       <p class="kicker">Spec-Driven Development</p>

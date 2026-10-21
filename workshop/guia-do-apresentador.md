@@ -53,7 +53,7 @@ diff revisado.
 - **Ir direto a um slide:** troque o final da URL pelo número, por exemplo `#9` para o
   primeiro slide de SDD. Útil nas perguntas.
 - **Reserva:** deixe o `desenvolvimento-verificavel.pdf` aberto noutra janela. Se o navegador travar, você
-  continua pelo PDF, que tem os mesmos 36 slides.
+  continua pelo PDF, que tem os mesmos 37 slides.
 - **No Teams:** compartilhe **a janela do navegador**, não a tela inteira, e silencie as
   notificações. Deixe o terminal numa segunda janela para alternar durante o laboratório.
 - **Se tiver segunda tela:** slides na tela compartilhada, este guia e o chat na sua.
@@ -65,17 +65,17 @@ diff revisado.
 | 0:00–1:30 | 1–3 | Abertura; pedir "pronto" no chat |
 | 1:30–7:00 | 4–7 | Ritmo firme, sem demonstração |
 | 7:00–8:00 | 8 | Definir "confiável" |
-| 8:00–12:00 | 9–12 | SDD: o que é, o fluxo, o mapa e o Spec Kit (1 min) |
-| 12:00–13:30 | 13 | Exemplo da lista de bancos |
-| 13:30–15:00 | 14–15 | Contar os "pronto"; formar duplas para quem não tem ambiente; colar o guia no chat |
-| 15:00–40:00 | 16–18 | Laboratório (ver abaixo) |
-| 40:00–43:00 | 19 | Ler os checkpoints do chat |
-| 43:00–49:00 | 20–21 | Escala e limites |
-| 49:00–52:00 | 22 | Próximos passos |
+| 8:00–13:00 | 9–13 | SDD: o que é, o fluxo, o exemplo, o mapa e o Spec Kit (1 min) |
+| 13:00–14:00 | 14 | O agente pergunta (o exemplo já foi visto) |
+| 14:00–15:00 | 15–16 | Contar os "pronto"; formar duplas para quem não tem ambiente; colar o guia no chat |
+| 15:00–40:00 | 17–19 | Laboratório (ver abaixo) |
+| 40:00–43:00 | 20 | Ler os checkpoints do chat |
+| 43:00–49:00 | 21–22 | Escala e limites |
+| 49:00–52:00 | 23 | Próximos passos |
 | 52:00–60:00 | — | Perguntas e folga |
 
-Se atrasar antes do laboratório, corte tempo dos slides 4–13, nunca do laboratório. Se o
-ensaio estourar, o Spec Kit (slide 12) é o primeiro a sair.
+Se atrasar antes do laboratório, corte tempo dos slides 4–14, nunca do laboratório. Se o
+ensaio estourar, o Spec Kit (slide 13) é o primeiro a sair.
 
 ## Slide a slide
 
@@ -132,75 +132,80 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
   lacunas sozinho, como a ordem da lista no slide 4. Com spec, as lacunas viram perguntas,
   e 'pronto' passa a ser cumprir a spec."
 
-### 10 · SDD: a spec vem primeiro (1 min)
-- **Mensagem:** spec, plano, tarefas e código, no caso do laboratório.
-- **Fala:** "No caso de hoje: a spec diz como ordenar e buscar, o plano escolhe uma função,
-  as tarefas viram três testes, e o código só está pronto quando o teste passa contra a
-  spec."
+### 10 · SDD: a spec vem primeiro (0,5 min)
+- **Mensagem:** cada etapa gera um artefato revisável.
+- **Fala:** "SDD em quatro passos: spec, plano, tarefas e código. Cada um gera um artefato
+  que você revisa antes do próximo, e o código é verificado contra a spec."
 
-### 11 · O fluxo de hoje já é SDD (0,5 min)
+### 11 · O exemplo, etapa a etapa (1,5 min)
+- **Mensagem:** cada etapa vira um artefato concreto e revisável.
+- **Fala:** "Este é o caso que vocês vão fazer: a spec tem critérios que dá para testar, o
+  plano escolhe uma função pura e diz por quê, cada tarefa é um teste, e o código começa
+  vermelho."
+
+### 12 · O fluxo de hoje já é SDD (0,5 min)
 - **Mensagem:** as skills do laboratório cobrem as etapas do SDD.
 - **Fala:** "O laboratório vai seguir esse caminho: o brainstorming gera a spec, o
   writing-plans gera plano e tarefas, e o TDD implementa com evidência."
 
-### 12 · Spec Kit: SDD como ferramenta (1 min)
+### 13 · Spec Kit: SDD como ferramenta (1 min)
 - **Mensagem:** o GitHub oferece o mesmo método como ferramenta própria.
 - **Fala:** "O Spec Kit, do GitHub, transforma essas etapas em comandos. Os nomes mudam entre
   versões: confira o README antes de usar."
 - **Cuidado:** não compare desempenho entre Spec Kit e superpowers; não temos dados para isso.
 
-### 13 · O agente pergunta antes de codar (1,5 min)
+### 14 · O agente pergunta antes de codar (1 min)
 - **Mensagem:** o brainstorming transforma um pedido vago em design aprovado.
 - **Fala:** "Em vez de sair codando, o agente pergunta. Repare: é exatamente a pergunta que
   faltou no slide 4. Cada resposta vira requisito escrito, num design que você aprova. É a
   primeira evidência."
 - **Cuidado:** o terminal do slide é ilustrativo; diga isso em voz alta.
 
-### 14 · Pronto para começar? (1 min)
+### 15 · Pronto para começar? (1 min)
 - **Mensagem:** a instalação foi tarefa prévia; aqui só se confere.
 - **Fala:** "Isso estava nos pré-requisitos. Siga os quatro passos: login, instalar, conferir
   e o build da stack, e escreva 'pronto' no chat. O guia do participante está no chat:
   copie de lá. Quem não tiver ambiente acompanha a minha tela ou forma dupla."
 - **Ação:** colar o `guia-do-participante.md` no chat.
 
-### 15 · Regras do laboratório (1 min)
+### 16 · Regras do laboratório (1 min)
 - **Mensagem:** segurança antes da prática.
 - **Fala:** "O agente só faz o que você aprova. Lembram do harness pedindo permissão? Aqui é
   você quem decide. Leia cada comando antes de permitir. Nada de push, e nada de colar
   credenciais. Agora, juntos: criem a branch e abram o copilot."
 - **Transição:** use a frase de transição para o laboratório.
 
-### 16 · Etapa 1: Esclarecer (8 min)
+### 17 · Etapa 1: Esclarecer (8 min)
 - **Mensagem:** requisito e design aprovados.
 - **Fala:** "Oito minutos. Se o agente fizer perguntas demais, responda de forma curta.
   Passou do tempo? Use o design pronto do guia."
 
-### 17 · Etapa 2: Planejar (4 min)
+### 18 · Etapa 2: Planejar (4 min)
 - **Mensagem:** um plano pequeno e revisável.
 - **Fala:** "Plano curto. Se vier grande, peça para cortar. O que interessa é a primeira
   tarefa: um teste."
 
-### 18 · Etapa 3: Vermelho, depois verde (11 min)
+### 19 · Etapa 3: Vermelho, depois verde (11 min)
 - **Mensagem:** a evidência central do workshop.
 - **Fala:** "Não confie no relato do agente: rode o teste. Vermelho antes, verde depois.
   Esse é o momento mais importante do workshop."
 
-### 19 · O que as evidências mostraram (3 min)
+### 20 · O que as evidências mostraram (3 min)
 - **Mensagem:** retrospectiva com dados do chat, não impressões.
 - **Fala:** "Vamos olhar o chat: quem chegou ao verde e onde travou. Travar também é dado:
   mostra onde o processo protege."
 
-### 20 · Depois do primeiro teste (3 min)
+### 21 · Depois do primeiro teste (3 min)
 - **Mensagem:** o mesmo método vale para o resto da tarefa.
 - **Fala:** "O resto é repetição com controle: tarefa a tarefa, revisão e fechamento.
   Subagentes só onde a sua ferramenta suportar."
 
-### 21 · Limites e controles (3 min)
+### 22 · Limites e controles (3 min)
 - **Mensagem:** onde o método não compensa e o que não delegar.
 - **Fala:** "Correção de uma linha não precisa de brainstorming. E skill de terceiros é
   código que orienta o seu agente: leia antes de instalar."
 
-### 22 · Próximo passo: uma história real (3 min + perguntas)
+### 23 · Próximo passo: uma história real (3 min + perguntas)
 - **Mensagem:** transformar o laboratório em hábito.
 - **Fala:** "Escolham uma história pequena desta sprint e tragam as evidências: spec,
   plano, teste vermelho e verde, diff." Depois, a frase de encerramento e "Perguntas?".
@@ -213,7 +218,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 | 2–10 | Etapa 1 · Esclarecer | Aos 8 min, avisar: "design pronto no guia" | Coletar "a pergunta mais útil" |
 | 10–14 | Etapa 2 · Planejar | Lembrar: "no máximo 3 tarefas" | Coletar o número de tarefas |
 | 14–24 | Etapa 3 · Vermelho, depois verde | Aos 20 min, avisar: "faltam 4 minutos" | Contar quantos chegaram ao verde |
-| 24–25 | Checkpoint | Encerrar e voltar aos slides | Resumir os números para o slide 19 |
+| 24–25 | Checkpoint | Encerrar e voltar aos slides | Resumir os números para o slide 20 |
 
 **Critério de sucesso:** o teste falhou e depois passou, rodado pelo próprio participante,
 e o diff foi revisado.
@@ -229,7 +234,7 @@ e o diff foi revisado.
 | Agente trava ou dá erro | Nova sessão do `copilot`, colando o design aprovado |
 | Rede ou cota fora do ar para muitos | Passar a demonstração gravada |
 | Laboratório falhou para a maioria | Assumir a condução: faça as três etapas na sua tela, pedindo as respostas ao público, e devolva o tempo restante para perguntas |
-| Tempo estourado | Encurtar o slide 19 e ler só os números do chat |
+| Tempo estourado | Encurtar o slide 20 e ler só os números do chat |
 
 ## Riscos e controles
 
@@ -246,17 +251,17 @@ e o diff foi revisado.
 As opções de bloqueio de ferramentas do Copilot CLI (por exemplo `--deny-tool`) variam
 por versão. Confira na documentação da versão instalada antes de mencioná-las.
 
-## Mapa do apêndice (slides 23–36)
+## Mapa do apêndice (slides 24–37)
 
 | Slide | Conteúdo | Quando usar |
 |---|---|---|
-| 23 | Divisória "Material de apoio" | Só de passagem |
-| 24 | Mapa das 14 skills, com o que usamos hoje | "Quais são as outras skills?" |
-| 25–28 | Os quatro grupos, com antes e depois de cada skill | Dúvida sobre uma skill específica |
-| 29–31 | brainstorming, writing-plans e executing-plans em detalhe | "Como funciona por dentro?" |
-| 32 | O fluxo completo em sete etapas, com a instalação | "Como fica o fluxo inteiro?" |
-| 33 | obra e o skills.sh | "De onde vêm essas skills?" |
-| 34–36 | Skills por plataforma: iOS, Android e backend Java | "Tem algo para a minha stack?" |
+| 24 | Divisória "Material de apoio" | Só de passagem |
+| 25 | Mapa das 14 skills, com o que usamos hoje | "Quais são as outras skills?" |
+| 26–29 | Os quatro grupos, com antes e depois de cada skill | Dúvida sobre uma skill específica |
+| 30–32 | brainstorming, writing-plans e executing-plans em detalhe | "Como funciona por dentro?" |
+| 33 | O fluxo completo em sete etapas, com a instalação | "Como fica o fluxo inteiro?" |
+| 34 | obra e o skills.sh | "De onde vêm essas skills?" |
+| 35–37 | Skills por plataforma: iOS, Android e backend Java | "Tem algo para a minha stack?" |
 
 ## Depois do workshop
 
@@ -269,15 +274,15 @@ por versão. Confira na documentação da versão instalada antes de mencioná-l
 ## Perguntas prováveis
 
 - **"Funciona no VS Code, sem o CLI?"** O Copilot também lê skills em `.github/skills/`.
-  Hoje praticamos no CLI; confira a documentação do seu ambiente. (Slides 34–36 mostram as
+  Hoje praticamos no CLI; confira a documentação do seu ambiente. (Slides 35–37 mostram as
   pastas de skills.)
 - **"Isso não deixa o trabalho mais lento?"** Deixa, no começo. Use o fluxo completo onde há
   dúvida de regra ou risco; correção pequena não precisa.
 - **"Posso criar skills da equipe?"** Sim: `writing-skills` ensina a escrever e testar uma
-  skill. É um bom próximo passo. (Slide 28.)
+  skill. É um bom próximo passo. (Slide 29.)
 - **"O agente pode ignorar a skill?"** Pode. Por isso as evidências são verificadas por
   você, não pelo relato do agente. (Slide 8.)
 - **"Isso é Spec-Driven Development?"** É a mesma ideia: a spec antes do código. Slides
-  9–12 mostram o paralelo e o Spec Kit do GitHub.
+  9–13 mostram o paralelo e o Spec Kit do GitHub.
 - **"Quanto custa em tokens?"** Não temos medição para apresentar. Vale medir numa história
   real e comparar com o retrabalho que o método evita.
