@@ -38,7 +38,10 @@ crescendo ao vir para a frente e encolhendo ao ir para trás.
 - ~36 termos (`span`), distribuídos numa esfera de Fibonacci.
 - A cada quadro (`requestAnimationFrame`, ângulo pelo tempo decorrido): rotação no eixo Y
   e inclinação fixa no X; projeção ortográfica.
-- Profundidade d ∈ [0, 1]: escala 0,5 → 1,3; opacidade 0,25 → 1; `z-index` pela
+- Cada letra é um ponto da esfera: a palavra segue o paralelo do seu centro (latitudes até
+  ±58°, longe dos polos) e se curva com o globo. Cada letra gira e achata conforme a direção
+  do paralelo projetada; atrás do globo aparece espelhada, como vista por dentro.
+- Profundidade d ∈ [0, 1]: escala 0,6 → 1,2; opacidade 0,12 → 1; `z-index` pela
   profundidade.
 - Termos do workshop (SDD, TDD, spec, plano, evidência, skills) em `--accent`; os demais em
   `--ink`.

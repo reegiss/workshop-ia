@@ -57,16 +57,34 @@
 
   const R = 370;
   const golden = Math.PI * (3 - Math.sqrt(5));
-  const points = terms.map((word, i) => {
-    const y = 1 - (i / (terms.length - 1)) * 2;
-    const r = Math.sqrt(1 - y * y);
-    const a = i * golden;
-    const el = document.createElement('span');
-    el.textContent = word;
-    if (ours.includes(word)) el.classList.add('is-ours');
-    globe.appendChild(el);
-    return { el, x: Math.cos(a) * r * R, y: y * R, z: Math.sin(a) * r * R };
-  });
+  // Cada letra é um ponto da esfera: a palavra segue o paralelo do seu centro e se curva com o globo
+  const chars = [];
+  function buildWords() {
+    const family = getComputedStyle(document.documentElement).getPropertyValue('--font');
+    const measure = document.createElement('canvas').getContext('2d');
+    terms.forEach((word, i) => {
+      const y = 0.85 * (1 - (i / (terms.length - 1)) * 2); // longe dos polos, onde o paralelo é curto demais
+      const r = Math.sqrt(1 - y * y);
+      const lon = i * golden;
+      const isOurs = ours.includes(word);
+      measure.font = `${isOurs ? 800 : 700} 32px ${family}`;
+      const letters = [...word];
+      // 1,15×: na frente a letra cresce até 1,2×, e o espaçamento precisa acompanhar
+      const widths = letters.map((ch) => measure.measureText(ch).width * 1.15);
+      let s = -widths.reduce((sum, w) => sum + w, 0) / 2;
+      letters.forEach((ch, k) => {
+        const mid = s + widths[k] / 2;
+        s += widths[k];
+        if (ch === ' ') return;
+        const el = document.createElement('span');
+        el.textContent = ch;
+        if (isOurs) el.classList.add('is-ours');
+        globe.appendChild(el);
+        const l = lon - mid / (R * r); // arco percorrido no paralelo, da esquerda para a direita
+        chars.push({ el, l, x: Math.cos(l) * r * R, y: y * R, z: Math.sin(l) * r * R });
+      });
+    });
+  }
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const speed = reduced ? 0.03 : 0.22; // radianos por segundo
@@ -136,16 +154,28 @@
     ctx.arc(0, 0, R, 0, Math.PI * 2);
     ctx.stroke();
 
-    for (const p of points) {
-      const { x, y, d } = project(p.x, p.y, p.z);
-      const scale = 0.5 + d * 0.8;
-      p.el.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
-      p.el.style.opacity = (0.25 + d * 0.75).toFixed(3);
-      p.el.style.zIndex = Math.round(d * 100);
+    for (const c of chars) {
+      const { x, y, d } = project(c.x, c.y, c.z);
+      // Direção de leitura no paralelo, projetada: dá a inclinação e o achatamento da letra
+      const tx0 = Math.sin(c.l);
+      const tz0 = -Math.cos(c.l);
+      const tx = tx0 * ca + tz0 * sa;
+      const ty = -(-tx0 * sa + tz0 * ca) * st;
+      const len = Math.max(0.05, Math.hypot(tx, ty));
+      const angle = Math.atan(ty / (tx || 1e-6));
+      const flat = tx < 0 ? -len : len; // atrás do globo a letra aparece espelhada, como vista por dentro
+      const scale = 0.6 + d * 0.6;
+      c.el.style.transform = `translate(-50%, -50%) translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${angle.toFixed(3)}rad) scale(${(flat * scale).toFixed(3)}, ${scale.toFixed(3)})`;
+      c.el.style.opacity = (0.12 + d * 0.88).toFixed(3);
+      c.el.style.zIndex = Math.round(d * 100);
     }
     requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  // Mede as letras com a fonte já carregada; sem ela, as larguras sairiam da fonte reserva
+  document.fonts.ready.then(() => {
+    buildWords();
+    requestAnimationFrame(frame);
+  });
 
   // Seta, espaço ou clique: vai para o deck
   function goDeck() { location.href = 'index.html'; }
