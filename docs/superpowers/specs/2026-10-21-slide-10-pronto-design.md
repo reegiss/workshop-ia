@@ -12,19 +12,21 @@
 3. Destacar a única ação pedida: escrever "pronto" no chat.
 4. Dizer de onde copiar os comandos: o guia do participante, colado no chat.
 
-## Lista de verificação (`#s-copilot .howto`)
+## Lista de passos (`#s-copilot ol.howto`)
 
-Três `.howto-row`, cada uma com um ✓ antes do nome (círculo em `--g4` com ✓ branco, como
-no slide 8):
+Quatro `.howto-row` numeradas (círculo em `--accent` com o número), na ordem em que o
+participante faz:
 
-| Nome | Texto |
-|---|---|
-| Copilot CLI | Abra o `copilot` e confira o login com `/login`. |
-| Superpowers | Instale com `npx skills add obra/superpowers -g -a github-copilot` e confira: `/skills list` mostra `brainstorming`. |
-| Repositório | O build da sua stack roda. Os comandos estão no guia. |
+| # | Nome | Texto |
+|---|---|---|
+| 1 | Login | Abra o `copilot` e entre com `/login`. |
+| 2 | Instalar | No terminal: `npx skills add obra/superpowers -g -a github-copilot` |
+| 3 | Conferir | De volta ao `copilot`: `/skills list` mostra `brainstorming`. |
+| 4 | Repositório | O build da sua stack roda. Os comandos estão no guia. |
 
-A linha "Instalação" sai; o comando `npx skills add …` passa para a linha Superpowers, para não pedir a lista antes da instalação. Regras de
-CSS que ficarem sem uso (`.install-options`, `.install-label`, `.howto-row pre`) saem do
+A instalação vem antes da conferência, para o slide não pedir a lista de skills antes de
+instalar. Os comandos aparecem em caixas escuras, com respiro em volta. Regras de CSS que
+ficarem sem uso (`.install-options`, `.install-label`, `.howto-row pre`) saem do
 `styles.css`; as classes `.howto*` só existem neste slide.
 
 ## Socorro
@@ -44,7 +46,7 @@ Abaixo da lista, duas linhas pequenas em `--ink-2`:
 ## Guia do apresentador
 
 Na entrada "### 10 · Pronto para começar? (1 min)", a fala passa a ser: "Isso estava nos
-pré-requisitos. Confira as três linhas, inclusive se o build roda, e escreva 'pronto' no
+pré-requisitos. Siga os quatro passos: login, instalar, conferir e o build da stack, e escreva 'pronto' no
 chat. O guia do participante está no chat: copie de lá. Quem não tiver ambiente acompanha a
 minha tela ou forma dupla." A mensagem e a ação não mudam.
 
@@ -56,7 +58,7 @@ minha tela ou forma dupla." A mensagem e a ação não mudam.
 
 ## Critérios de aceite
 
-- O slide 10 mostra as três verificações com ✓, as duas linhas de socorro, a chamada e o
+- O slide 10 mostra os quatro passos numerados, as duas linhas de socorro, a chamada e o
   plano B, sem o comando de instalação.
 - No screenshot, nada colide e o slide termina acima da faixa do contador; `?check` sem
   transbordo.

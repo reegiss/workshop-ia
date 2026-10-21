@@ -690,13 +690,15 @@ code, .mono { font-family: var(--mono); }
 .plat-src { font-size: 19px; }
 .plat-desc, .plat-tip p:last-child { font-size: 28px; }
 .plat-foot { margin-top: 40px; font-size: 26px; }
-#s-copilot .howto { gap: 18px; margin-top: 44px; }
-#s-copilot .howto-row { padding: 22px 36px; }
+#s-copilot .howto { gap: 14px; margin: 40px 0 0; }
+#s-copilot .howto-row { padding: 18px 36px; }
 #s-copilot .howto-row p { font-size: 28px; }
 #s-copilot .howto-note { margin-top: 24px; font-size: 26px; }
-#s-copilot .howto-row { grid-template-columns: 360px 1fr; }
+#s-copilot .howto-row { grid-template-columns: 320px 1fr; }
 #s-copilot .howto-row h2 { display: flex; align-items: center; gap: 16px; }
-#s-copilot .howto-row h2::before { content: "✓"; display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--g4); color: var(--white); font: 800 22px/1 var(--font); }
+#s-copilot .howto { padding: 0; list-style: none; counter-reset: step; }
+#s-copilot .howto-row { counter-increment: step; }
+#s-copilot .howto-row h2::before { content: counter(step); display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--white); font: 800 22px/1 var(--font); }
 #s-copilot .howto-note { line-height: 1.5; }
 #s-copilot .ready-call { margin-top: auto; font-size: 44px; }
 #s-copilot .ready-fallback { margin: 12px 0 0; font-size: 26px; color: var(--ink-2); }

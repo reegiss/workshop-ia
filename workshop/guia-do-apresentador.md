@@ -135,9 +135,9 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 10 · Pronto para começar? (1 min)
 - **Mensagem:** a instalação foi tarefa prévia; aqui só se confere.
-- **Fala:** "Isso estava nos pré-requisitos. Confira as três linhas, inclusive se o build
-  roda, e escreva 'pronto' no chat. O guia do participante está no chat: copie de lá. Quem
-  não tiver ambiente acompanha a minha tela ou forma dupla."
+- **Fala:** "Isso estava nos pré-requisitos. Siga os quatro passos: login, instalar, conferir
+  e o build da stack, e escreva 'pronto' no chat. O guia do participante está no chat:
+  copie de lá. Quem não tiver ambiente acompanha a minha tela ou forma dupla."
 - **Ação:** colar o `guia-do-participante.md` no chat.
 
 ### 11 · Regras do laboratório (1 min)
