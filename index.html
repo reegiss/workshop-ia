@@ -162,14 +162,14 @@ description: Use antes de qualquer
     <section class="slide slide--dark" id="s-sdd" aria-label="SDD: a spec vem primeiro">
       <p class="kicker">Spec-Driven Development</p>
       <h1 class="title">SDD: a spec<br><em>vem primeiro</em></h1>
-      <p class="lead sdd-quote">“Definir <strong>o quê e o porquê</strong> antes de decidir <strong>o como</strong>.”</p>
+      <p class="lead">Exemplo: a história do laboratório, <strong>escolher o banco de origem numa lista</strong>.</p>
       <ol class="mini-flow" style="--n: 4">
-        <li style="--g: var(--g1)"><code>spec</code><span>o quê e o porquê: requisitos e critérios de aceite</span></li>
-        <li style="--g: var(--g1)"><code>plano</code><span>o como: decisões técnicas a partir da spec</span></li>
-        <li style="--g: var(--g2)"><code>tarefas</code><span>passos pequenos e verificáveis</span></li>
-        <li style="--g: var(--g2)"><code>código</code><span>implementado e verificado contra a spec</span></li>
+        <li style="--g: var(--g1)"><code>spec</code><span>o quê e o porquê</span><p class="sdd-ex"><small>Exemplo</small>ordena por nome; busca por nome ou código; busca vazia devolve todas</p></li>
+        <li style="--g: var(--g1)"><code>plano</code><span>o como</span><p class="sdd-ex"><small>Exemplo</small>uma função <code>filterAndSort</code>, sem dependências</p></li>
+        <li style="--g: var(--g2)"><code>tarefas</code><span>passos pequenos e verificáveis</span><p class="sdd-ex"><small>Exemplo</small>1. ordenar<br>2. filtrar por nome<br>3. código e busca vazia</p></li>
+        <li style="--g: var(--g2)"><code>código</code><span>verificado contra a spec</span><p class="sdd-ex"><small>Exemplo</small>“brasil” encontra “Banco do Brasil”: vermelho, depois verde</p></li>
       </ol>
-      <p class="howto-note">Definição: README do <code>github/spec-kit</code>, consultado em 19/09/2026.</p>
+      <p class="sdd-source">Definição: README do github/spec-kit, consultado em 19/09/2026.</p>
     </section>
     <section class="slide slide--dark" id="s-sdd-map" aria-label="O fluxo de hoje já é SDD">
       <p class="kicker">Spec-Driven Development</p>

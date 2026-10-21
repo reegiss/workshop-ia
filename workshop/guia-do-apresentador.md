@@ -133,9 +133,10 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
   e 'pronto' passa a ser cumprir a spec."
 
 ### 10 · SDD: a spec vem primeiro (1 min)
-- **Mensagem:** definir o quê e o porquê antes do como.
-- **Fala:** "SDD é uma ideia simples: a especificação vem antes do código e guia tudo
-  depois dela. Spec, plano, tarefas e só então código, verificado contra a spec."
+- **Mensagem:** spec, plano, tarefas e código, no caso do laboratório.
+- **Fala:** "No caso de hoje: a spec diz como ordenar e buscar, o plano escolhe uma função,
+  as tarefas viram três testes, e o código só está pronto quando o teste passa contra a
+  spec."
 
 ### 11 · O fluxo de hoje já é SDD (0,5 min)
 - **Mensagem:** as skills do laboratório cobrem as etapas do SDD.

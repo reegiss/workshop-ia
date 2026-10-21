@@ -972,9 +972,13 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 #s-confiavel .evidence-col li small { display: block; margin-top: 8px; font: 400 20px/1.35 var(--mono); color: var(--ink-2); }
 #s-confiavel .evidence-col li small code { color: var(--blue-light); }
 /* Bloco SDD */
-.sdd-quote { margin-top: 36px; font-size: 40px; color: var(--ink); }
-#s-sdd .mini-flow { margin-top: 48px; }
-#s-sdd .mini-flow li { min-height: 360px; }
+#s-sdd .mini-flow { margin-top: 44px; grid-template-rows: repeat(4, auto); row-gap: 0; }
+#s-sdd .mini-flow li { grid-row: span 4; display: grid; grid-template-rows: subgrid; row-gap: 14px; min-height: 0; padding: 30px 30px 28px; }
+#s-sdd .mini-flow li > span { font-size: 28px; line-height: 1.35; }
+#s-sdd .sdd-ex { margin: 6px 0 0; padding-top: 18px; border-top: 1px solid var(--card-line); font-size: 24px; line-height: 1.4; color: var(--ink); }
+#s-sdd .sdd-ex small { display: block; margin-bottom: 6px; font: 600 18px/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--g); }
+#s-sdd .sdd-ex code { font-size: 0.9em; color: var(--ink); }
+#s-sdd .sdd-source { margin: 24px 0 0; font: 400 20px/1.3 var(--mono); color: var(--muted); }
 #s-fluxo-min .mini-flow { margin-top: 48px; grid-template-rows: repeat(5, auto); row-gap: 0; }
 #s-fluxo-min .mini-flow li { grid-row: span 5; display: grid; grid-template-rows: subgrid; row-gap: 14px; min-height: 0; padding: 32px 30px; }
 #s-fluxo-min .mf-title { font-size: 36px; line-height: 1.15; font-weight: 800; color: var(--ink); }
