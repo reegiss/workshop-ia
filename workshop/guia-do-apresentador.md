@@ -117,8 +117,8 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 
 ### 7 · Quatro skills para o fluxo mínimo (2 min)
 - **Mensagem:** o laboratório usa só este fluxo.
-- **Fala:** "O pacote tem catorze skills, mas hoje usamos quatro. É o fluxo mínimo:
-  entender, planejar, testar primeiro e verificar."
+- **Fala:** "O pacote tem catorze skills, mas hoje usamos quatro: esclarecer, planejar,
+  testar primeiro e verificar. Cada uma evita um dos problemas que vimos no começo."
 
 ### 8 · Confiável = evidência observável (2 min)
 - **Mensagem:** a definição usada no resto do workshop.
