@@ -4,7 +4,7 @@ Copie os comandos e pedidos **deste arquivo**, não da tela compartilhada.
 
 ## Regras do laboratório
 
-- Trabalhe só numa **branch local** `workshop/seu-nome`, com o **push bloqueado** (etapa 0).
+- Trabalhe só numa **branch local** `workshop/seu-nome` (etapa 0). Nunca aprove um `git push`.
 - **Aprove comando a comando.** Leia cada comando que o agente pedir para rodar. Nunca
   escolha "permitir tudo".
 - **Nada sensível:** não cole segredos, tokens nem dados de clientes. Não peça ao agente
@@ -19,14 +19,7 @@ Na pasta do repositório (os comandos são os mesmos no Mac e no Windows):
 
 ```bash
 git switch -c workshop/seu-nome
-git remote set-url --push origin DESABILITADO
 copilot
-```
-
-A segunda linha faz qualquer `git push` falhar. Para desfazer depois do workshop:
-
-```bash
-git remote set-url --push origin "$(git remote get-url origin)"
 ```
 
 ## Etapa 1 · Esclarecer (8 min)
@@ -156,10 +149,9 @@ Abra o `copilot` na mesma branch e peça:
 Use a skill /executing-plans para continuar o plano a partir da Tarefa 2.
 ```
 
-Quando terminar, descarte a branch se não for usá-la e reative o push:
+Quando terminar, descarte a branch se não for usá-la:
 
 ```bash
 git switch main
 git branch -D workshop/seu-nome
-git remote set-url --push origin "$(git remote get-url origin)"
 ```

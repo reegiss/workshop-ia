@@ -192,16 +192,14 @@ description: Use antes de qualquer
       <p class="kicker">Antes de começar</p>
       <h1 class="title">Regras do <em>laboratório</em></h1>
       <div class="rules rules--3">
-        <article class="rule"><h2>Branch local, sem push</h2><p><code>workshop/seu-nome</code>, com o push bloqueado.</p></article>
+        <article class="rule"><h2>Branch local, sem push</h2><p><code>workshop/seu-nome</code>, só na sua máquina. Nunca aprove um <code>git push</code>.</p></article>
         <article class="rule"><h2>Aprove comando a comando</h2><p>Leia cada comando antes de permitir. Nunca “permitir tudo”.</p></article>
         <article class="rule"><h2>Nada sensível</h2><p>Não cole segredos, tokens nem dados de clientes. Não peça para ler <code>.env</code> nem <code>local.properties</code>.</p></article>
       </div>
       <div class="rules-start">
         <p class="catalog-label">Etapa 0 · 1 min · juntos</p>
         <pre class="code-card code-card--dark"><code><span class="prompt">$</span> git switch -c workshop/seu-nome
-<span class="prompt">$</span> git remote set-url --push origin DESABILITADO
 <span class="prompt">$</span> copilot</code></pre>
-        <p class="rules-caption">A 2ª linha faz qualquer <code>git push</code> falhar. Para desfazer: veja o guia.</p>
       </div>
       <p class="rules-next">A seguir: 25 minutos, três etapas, um checkpoint no chat em cada uma.</p>
     </section>

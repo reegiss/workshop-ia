@@ -91,6 +91,6 @@ que você escreva **pronto** no chat.
 
 - **iOS:** deixe o simulador aberto e o projeto já gerado (`make demo-project`), para o
   primeiro teste não demorar.
-- **Segurança:** no laboratório você vai trabalhar numa branch local com o push bloqueado,
+- **Segurança:** no laboratório você vai trabalhar numa branch local, sem push,
   aprovar cada comando do agente e não expor credenciais. As instruções estão no guia do
   participante, que será compartilhado no chat.

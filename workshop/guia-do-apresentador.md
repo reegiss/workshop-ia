@@ -144,7 +144,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Mensagem:** segurança antes da prática.
 - **Fala:** "O agente só faz o que você aprova. Lembram do harness pedindo permissão? Aqui é
   você quem decide. Leia cada comando antes de permitir. Nada de push, e nada de colar
-  credenciais. Agora, juntos: criem a branch e bloqueiem o push."
+  credenciais. Agora, juntos: criem a branch e abram o copilot."
 - **Transição:** use a frase de transição para o laboratório.
 
 ### 12 · Etapa 1: Esclarecer (8 min)
@@ -213,7 +213,7 @@ estão no cronograma; use quando fizer sentido. Sugestões de momento:
 
 | Min do lab | Etapa | Você | Facilitador no chat |
 |---|---|---|---|
-| 0–2 | Etapa 0 (branch, push bloqueado, `copilot`) | Mostrar os comandos na sua tela | Responder dúvidas de ambiente |
+| 0–2 | Etapa 0 (branch local, `copilot`) | Mostrar os comandos na sua tela | Responder dúvidas de ambiente |
 | 2–10 | Etapa 1 · Esclarecer | Aos 8 min, avisar: "design pronto no guia" | Coletar "a pergunta mais útil" |
 | 10–14 | Etapa 2 · Planejar | Lembrar: "no máximo 3 tarefas" | Coletar o número de tarefas |
 | 14–24 | Etapa 3 · Vermelho, depois verde | Aos 20 min, avisar: "faltam 4 minutos" | Contar quantos chegaram ao verde |
@@ -242,7 +242,7 @@ e o diff foi revisado.
 | Código do cliente no Copilot | Confirmar a política antes; trilha kata para quem não puder |
 | Segredos e dados sensíveis | Não pedir ao agente que leia arquivos de credenciais (`local.properties`, `.env`); revisar o diff |
 | Comando destrutivo | Aprovar comando a comando; nunca "permitir tudo" |
-| Push remoto | `git remote set-url --push origin DESABILITADO` na etapa 0 do guia |
+| Push remoto | Branch local; negar qualquer `git push` que o agente pedir |
 | Skills de terceiros | No laboratório, só `obra/superpowers`; revisar `SKILL.md` e scripts antes de adotar outras |
 | Permissões excessivas | Abrir o `copilot` só na pasta do repositório |
 | Confiança indevida na saída | Rodar o teste você mesmo e revisar o diff antes do commit |

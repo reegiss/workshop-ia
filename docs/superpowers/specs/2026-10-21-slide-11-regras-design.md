@@ -7,7 +7,7 @@
 
 ## Objetivo
 
-1. Mostrar no slide os comandos da etapa 0 (branch e push bloqueado), feitos juntos.
+1. Mostrar no slide os comandos da etapa 0 (branch local e `copilot`), feitos juntos.
 2. Trocar o rodapé, que repetia o slide 10, por uma prévia do laboratório.
 3. Dar exemplos concretos de arquivos sensíveis.
 
@@ -20,7 +20,7 @@
 
 | Card | Título (não muda) | Texto |
 |---|---|---|
-| 1 | Branch local, sem push | `workshop/seu-nome`, com o push bloqueado. |
+| 1 | Branch local, sem push | `workshop/seu-nome`, só na sua máquina. Nunca aprove um `git push`. |
 | 2 | Aprove comando a comando | Leia cada comando antes de permitir. Nunca “permitir tudo”. (não muda) |
 | 3 | Nada sensível | Não cole segredos, tokens nem dados de clientes. Não peça para ler `.env` nem `local.properties`. |
 
@@ -37,12 +37,12 @@ Abaixo dos cards:
 
 ```
 $ git switch -c workshop/seu-nome
-$ git remote set-url --push origin DESABILITADO
 $ copilot
 ```
 
-- Legenda pequena em `--ink-2`: "A 2ª linha faz qualquer `git push` falhar. Para desfazer:
-  veja o guia."
+Sem o comando de bloqueio do push (`git remote set-url --push`): a regra é negar qualquer
+`git push` que o agente pedir. O bloqueio também sai do guia do participante, dos
+pré-requisitos e do guia do apresentador.
 
 Os comandos são os da etapa 0 do guia do participante, iguais no Mac e no Windows.
 
@@ -56,7 +56,7 @@ slide: "A seguir: 25 minutos, três etapas, um checkpoint no chat em cada uma."
 Na entrada "### 11 · Regras do laboratório (1 min)", a fala passa a ser: "O agente só faz o
 que você aprova. Lembram do harness pedindo permissão? Aqui é você quem decide. Leia cada
 comando antes de permitir. Nada de push, e nada de colar credenciais. Agora, juntos: criem a
-branch e bloqueiem o push." A mensagem e a transição não mudam.
+branch e abram o copilot." A mensagem e a transição não mudam.
 
 ## Fora do escopo
 
@@ -67,8 +67,8 @@ branch e bloqueiem o push." A mensagem e a transição não mudam.
 
 ## Critérios de aceite
 
-- O slide 11 mostra os três cards com os textos da tabela, o rótulo, os três comandos, a
-  legenda e o rodapé novo.
+- O slide 11 mostra os três cards com os textos da tabela, o rótulo, os dois comandos e o
+  rodapé novo.
 - No screenshot, nada colide e o slide termina acima da faixa do contador; `?check` sem
   transbordo.
 - Os outros slides com `.rules` não mudam.
