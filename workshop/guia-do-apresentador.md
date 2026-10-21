@@ -94,7 +94,7 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 ### 3 · 60 minutos, 25 de prática (0:30)
 - **Mensagem:** a maior parte do tempo é mão na massa.
 - **Fala:** "Quinze minutos de conceito, vinte e cinco de prática no seu repositório e o
-  resto para escala, limites e perguntas."
+  resto para a retrospectiva, limites e perguntas."
 
 ### 4 · Rápido não é verificável (2 min)
 - **Mensagem:** sem processo, a saída do agente é difícil de avaliar.
