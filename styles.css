@@ -957,7 +957,7 @@ body[data-current="1"] .home-btn { visibility: hidden; }
 #s-sdd .mini-flow { margin-top: 48px; }
 #s-sdd .mini-flow li { min-height: 360px; }
 #s3 .concept { margin-top: 24px; }
-#s3 .code-card { padding: 20px 40px; }
+#s3 .code-card { margin-top: 28px; padding: 24px 40px; font-size: 22px; line-height: 1.45; }
 #s-sdd-map .sdd-map > div { padding: 18px 32px; }
 .sdd-map {
   display: grid;
