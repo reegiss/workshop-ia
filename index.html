@@ -171,6 +171,19 @@ description: Use antes de qualquer
       </ol>
       <p class="sdd-source">Definição: README do github/spec-kit, consultado em 19/09/2026.</p>
     </section>
+    <section class="slide slide--dark" id="s-sdd-kit" aria-label="Spec Kit: SDD como ferramenta">
+      <p class="kicker">Spec-Driven Development</p>
+      <h1 class="title">Spec Kit: SDD<br><em>como ferramenta</em></h1>
+      <p class="lead">Mesmo método, outra ferramenta. Hoje usamos o <strong>superpowers</strong>; o Spec Kit é uma alternativa.</p>
+      <div class="sdd-kit">
+        <div class="pkg"><code>/speckit-constitution</code><b class="kit-tag kit-tag--new">princípios</b><span>regras do projeto que toda spec respeita</span></div>
+        <div class="pkg"><code>/speckit-specify</code><b class="kit-tag" style="--g: var(--g1)">spec</b><span>a spec: o quê e o porquê</span></div>
+        <div class="pkg"><code>/speckit-plan</code><b class="kit-tag" style="--g: var(--g1)">plano</b><span>o plano técnico: o como</span></div>
+        <div class="pkg"><code>/speckit-tasks</code><b class="kit-tag kit-tag--dark" style="--g: var(--g2)">tarefas</b><span>tarefas a partir do plano</span></div>
+        <div class="pkg"><code>/speckit-implement</code><b class="kit-tag kit-tag--dark" style="--g: var(--g2)">código</b><span>implementa as tarefas; repete com <code>/speckit-converge</code> até convergir</span></div>
+      </div>
+      <p class="sdd-source">GitHub Spec Kit (github/spec-kit), integração padrão com o GitHub Copilot. Comandos conforme o README em 19/09/2026: confira a versão.</p>
+    </section>
     <section class="slide slide--dark" id="s-sdd-exemplo" aria-label="O exemplo, etapa a etapa">
       <p class="kicker">Spec-Driven Development</p>
       <h1 class="title">O exemplo, <em>etapa a etapa</em></h1>
@@ -212,6 +225,34 @@ description: Use antes de qualquer
       </div>
       <p class="sdd-source">Trechos resumidos. No laboratório, o agente escreve esses arquivos e você revisa.</p>
     </section>
+    <section class="slide slide--dark" id="s-pergunta" aria-label="O agente pergunta antes de codar">
+      <p class="kicker">brainstorming na prática</p>
+      <h1 class="title">O agente pergunta<br><em>antes de codar</em></h1>
+      <p class="lead">É assim que a spec nasce: o <code>brainstorming</code> pergunta, você responde, e cada resposta vira requisito. A saída é um design curto, <strong>aprovado por você</strong>.</p>
+      <div class="ask-flow">
+        <figure class="ask-term">
+          <div class="code-card term">
+            <p><span class="term-agent">agente ›</span> Como a lista deve ser ordenada?</p>
+            <p><span class="term-you">você   ›</span> Por nome, sem diferenciar maiúsculas. <b class="ask-n">1</b></p>
+            <p><span class="term-agent">agente ›</span> A busca vale para nome, código ou os dois?</p>
+            <p><span class="term-you">você   ›</span> Os dois. Código só por prefixo. <b class="ask-n">2</b></p>
+            <p><span class="term-agent">agente ›</span> “credito” deve encontrar “Crédito”?</p>
+            <p><span class="term-you">você   ›</span> Sim, sem diferenciar acentos. <b class="ask-n">3</b></p>
+          </div>
+          <figcaption class="ask-caption">Exemplo ilustrativo, não é saída real do agente.</figcaption>
+        </figure>
+        <span class="ask-arrow" aria-hidden="true">→</span>
+        <article class="ask-design">
+          <p class="ask-design-head"><code>docs/superpowers/specs/</code><span>Design aprovado</span></p>
+          <ul>
+            <li><b class="ask-n">1</b>Ordena por nome, sem diferenciar maiúsculas</li>
+            <li><b class="ask-n">2</b>Busca: nome contém o texto, ou código começa com ele</li>
+            <li><b class="ask-n">3</b>Ordem e busca ignoram acentos</li>
+            <li class="ask-extra"><b class="ask-plus">+</b>Busca vazia devolve todas <small>proposto pelo agente</small></li>
+          </ul>
+        </article>
+      </div>
+    </section>
     <section class="slide slide--dark" id="s-sdd-map" aria-label="O fluxo de hoje já é SDD">
       <p class="kicker">Spec-Driven Development</p>
       <h1 class="title">O fluxo de hoje<br><em>já é SDD</em></h1>
@@ -221,46 +262,6 @@ description: Use antes de qualquer
         <div class="sdd-term">plano e tarefas</div><div><strong>Planejar</strong><code>writing-plans</code></div><div><small>Etapa 2 · 4 min</small>plano com até 3 tarefas</div>
         <div class="sdd-term">código</div><div><strong>Testar primeiro</strong><code>test-driven-development</code></div><div><small>Etapa 3 · 11 min</small>vermelho, depois verde</div>
         <div class="sdd-term">verificação</div><div><strong>Verificar</strong><code>verification-before-completion</code></div><div><small>Etapa 3</small>você roda o teste</div>
-      </div>
-    </section>
-    <section class="slide slide--dark" id="s-sdd-kit" aria-label="Spec Kit: SDD como ferramenta">
-      <p class="kicker">Spec-Driven Development</p>
-      <h1 class="title">Spec Kit: SDD<br><em>como ferramenta</em></h1>
-      <p class="lead">Mesmo método, outra ferramenta. Hoje usamos o <strong>superpowers</strong>; o Spec Kit é uma alternativa.</p>
-      <div class="sdd-kit">
-        <div class="pkg"><code>/speckit-constitution</code><b class="kit-tag kit-tag--new">princípios</b><span>regras do projeto que toda spec respeita</span></div>
-        <div class="pkg"><code>/speckit-specify</code><b class="kit-tag" style="--g: var(--g1)">spec</b><span>a spec: o quê e o porquê</span></div>
-        <div class="pkg"><code>/speckit-plan</code><b class="kit-tag" style="--g: var(--g1)">plano</b><span>o plano técnico: o como</span></div>
-        <div class="pkg"><code>/speckit-tasks</code><b class="kit-tag kit-tag--dark" style="--g: var(--g2)">tarefas</b><span>tarefas a partir do plano</span></div>
-        <div class="pkg"><code>/speckit-implement</code><b class="kit-tag kit-tag--dark" style="--g: var(--g2)">código</b><span>implementa as tarefas; repete com <code>/speckit-converge</code> até convergir</span></div>
-      </div>
-      <p class="sdd-source">GitHub Spec Kit (github/spec-kit), integração padrão com o GitHub Copilot. Comandos conforme o README em 19/09/2026: confira a versão.</p>
-    </section>
-    <section class="slide slide--dark" id="s-pergunta" aria-label="O agente pergunta antes de codar">
-      <p class="kicker">brainstorming na prática</p>
-      <h1 class="title">O agente pergunta<br><em>antes de codar</em></h1>
-      <p class="lead">No caso da lista de bancos, cada resposta sua vira requisito escrito. A saída é um design curto, <strong>aprovado por você</strong>.</p>
-      <div class="ask-flow">
-        <figure class="ask-term">
-          <div class="code-card term">
-            <p><span class="term-agent">agente ›</span> Como a lista deve ser ordenada?</p>
-            <p><span class="term-you">você   ›</span> Por nome, sem diferenciar maiúsculas.</p>
-            <p><span class="term-agent">agente ›</span> A busca vale para nome, código ou os dois?</p>
-            <p><span class="term-you">você   ›</span> Os dois. Código só por prefixo.</p>
-            <p><span class="term-agent">agente ›</span> “credito” deve encontrar “Crédito”?</p>
-            <p><span class="term-you">você   ›</span> Sim, sem diferenciar acentos.</p>
-          </div>
-          <figcaption class="ask-caption">Exemplo ilustrativo, não é saída real do agente.</figcaption>
-        </figure>
-        <span class="ask-arrow" aria-hidden="true">→</span>
-        <article class="ask-design">
-          <p class="ask-design-head"><code>docs/superpowers/specs/</code><span>Design aprovado</span></p>
-          <ul>
-            <li>Ordena por nome, sem diferenciar maiúsculas nem acentos</li>
-            <li>Busca: nome contém o texto, ou código começa com ele</li>
-            <li>Busca vazia devolve todas, ordenadas</li>
-          </ul>
-        </article>
       </div>
     </section>
     <section class="slide slide--dark" id="s-copilot" aria-label="Pronto para começar">
@@ -277,14 +278,14 @@ description: Use antes de qualquer
         </li>
         <li class="howto-row">
           <h2>Conferir</h2>
-          <p>De volta ao <code>copilot</code>: <code>/skills list</code> mostra <code>brainstorming</code>.</p>
+          <p>De volta ao <code>copilot</code>: <code>/skills list</code> mostra as <strong>quatro</strong> skills.</p>
         </li>
         <li class="howto-row">
           <h2>Repositório</h2>
           <p>O build da sua stack roda. Os comandos estão no guia.</p>
         </li>
       </ol>
-      <p class="howto-note">Faltou algo? Os comandos estão nos pré-requisitos.<br>O guia do participante está no chat: copie os comandos de lá, não da tela.</p>
+      <p class="howto-note">Faltou algo? Os pré-requisitos e o guia estão no chat: copie de lá, não da tela.</p>
       <p class="vs-punch ready-call">Tudo certo? Escreva <em>pronto</em> no chat.</p>
       <p class="ready-fallback">Sem ambiente? Forme dupla ou acompanhe a tela do apresentador.</p>
     </section>

@@ -65,8 +65,7 @@ diff revisado.
 | 0:00–1:30 | 1–3 | Abertura; pedir "pronto" no chat |
 | 1:30–7:00 | 4–7 | Ritmo firme, sem demonstração |
 | 7:00–8:00 | 8 | Definir "confiável" |
-| 8:00–13:00 | 9–13 | SDD: o que é, o fluxo, o exemplo, o mapa e o Spec Kit (1 min) |
-| 13:00–14:00 | 14 | O agente pergunta (o exemplo já foi visto) |
+| 8:00–14:00 | 9–14 | SDD: o que é, o fluxo, o Spec Kit (1 min), o exemplo, a pergunta e o mapa |
 | 14:00–15:00 | 15–16 | Contar os "pronto"; formar duplas para quem não tem ambiente; colar o guia no chat |
 | 15:00–40:00 | 17–19 | Laboratório (ver abaixo) |
 | 40:00–43:00 | 20 | Ler os checkpoints do chat |
@@ -75,7 +74,7 @@ diff revisado.
 | 52:00–60:00 | — | Perguntas e folga |
 
 Se atrasar antes do laboratório, corte tempo dos slides 4–14, nunca do laboratório. Se o
-ensaio estourar, o Spec Kit (slide 13) é o primeiro a sair.
+ensaio estourar, o Spec Kit (slide 11) é o primeiro a sair.
 
 ## Slide a slide
 
@@ -137,36 +136,36 @@ Cada fala tem até 40 palavras. Use como base, não como texto para ler.
 - **Fala:** "SDD em quatro passos: spec, plano, tarefas e código. Cada um gera um artefato
   que você revisa antes do próximo, e o código é verificado contra a spec."
 
-### 11 · O exemplo, etapa a etapa (1,5 min)
-- **Mensagem:** cada etapa vira um artefato concreto e revisável.
-- **Fala:** "Este é o caso que vocês vão fazer: a spec tem critérios que dá para testar, o
-  plano escolhe uma função pura e diz por quê, cada tarefa é um teste, e o código começa
-  vermelho."
-
-### 12 · O fluxo de hoje já é SDD (0,5 min)
-- **Mensagem:** os nomes do SDD, as skills e as etapas do laboratório são a mesma coisa.
-- **Fala:** "Spec, no laboratório, é o Esclarecer, na etapa 1. Plano e tarefas são a etapa
-  2. Código e verificação, a etapa 3: vermelho, verde e você roda o teste."
-
-### 13 · Spec Kit: SDD como ferramenta (1 min)
+### 11 · Spec Kit: SDD como ferramenta (1 min)
 - **Mensagem:** o mesmo método em outra ferramenta; hoje usamos o superpowers.
 - **Fala:** "O Spec Kit, do GitHub, faz o mesmo caminho por comandos: spec, plano, tarefas e
   código. A novidade é a constituição: os princípios do projeto. Hoje não vamos usá-lo;
   confira o README antes de adotar."
 - **Cuidado:** não compare desempenho entre Spec Kit e superpowers; não temos dados para isso.
 
-### 14 · O agente pergunta antes de codar (1 min)
+### 12 · O exemplo, etapa a etapa (1,5 min)
+- **Mensagem:** cada etapa vira um artefato concreto e revisável.
+- **Fala:** "Este é o caso que vocês vão fazer: a spec tem critérios que dá para testar, o
+  plano escolhe uma função pura e diz por quê, cada tarefa é um teste, e o código começa
+  vermelho."
+
+### 13 · O agente pergunta antes de codar (1 min)
 - **Mensagem:** o brainstorming transforma um pedido vago em design aprovado.
-- **Fala:** "Em vez de sair codando, o agente pergunta. Repare: é exatamente a pergunta que
-  faltou no slide 4. Cada resposta vira requisito escrito, num design que você aprova. É a
-  primeira evidência."
+- **Fala:** "Em vez de sair codando, o agente pergunta. Cada resposta vira um requisito:
+  repare nos números. E o agente também propõe; você aprova. É a primeira evidência."
 - **Cuidado:** o terminal do slide é ilustrativo; diga isso em voz alta.
+
+### 14 · O fluxo de hoje já é SDD (0,5 min)
+- **Mensagem:** os nomes do SDD, as skills e as etapas do laboratório são a mesma coisa.
+- **Fala:** "Spec, no laboratório, é o Esclarecer, na etapa 1. Plano e tarefas são a etapa
+  2. Código e verificação, a etapa 3: vermelho, verde e você roda o teste."
 
 ### 15 · Pronto para começar? (1 min)
 - **Mensagem:** a instalação foi tarefa prévia; aqui só se confere.
 - **Fala:** "Isso estava nos pré-requisitos. Siga os quatro passos: login, instalar, conferir
-  e o build da stack, e escreva 'pronto' no chat. O guia do participante está no chat:
-  copie de lá. Quem não tiver ambiente acompanha a minha tela ou forma dupla."
+  (confira que aparecem as quatro skills) e o build da stack, e escreva 'pronto' no chat.
+  O guia do participante está no chat: copie de lá. Quem não tiver ambiente acompanha a
+  minha tela ou forma dupla."
 - **Ação:** colar o `guia-do-participante.md` no chat.
 
 ### 16 · Regras do laboratório (1 min)
@@ -284,6 +283,6 @@ por versão. Confira na documentação da versão instalada antes de mencioná-l
 - **"O agente pode ignorar a skill?"** Pode. Por isso as evidências são verificadas por
   você, não pelo relato do agente. (Slide 8.)
 - **"Isso é Spec-Driven Development?"** É a mesma ideia: a spec antes do código. Slides
-  9–13 mostram o paralelo e o Spec Kit do GitHub.
+  9–14 mostram o paralelo e o Spec Kit do GitHub.
 - **"Quanto custa em tokens?"** Não temos medição para apresentar. Vale medir numa história
   real e comparar com o retrabalho que o método evita.
