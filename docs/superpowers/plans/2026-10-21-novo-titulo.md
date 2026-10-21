@@ -298,7 +298,9 @@ git commit -m "docs: guias com o novo título e o novo nome do PDF"
 
 ---
 
-### Task 5: Renomear e regerar o PDF
+### Task 5 (adiada): Renomear e regerar o PDF
+
+> **Não executar agora.** O usuário pediu para gerar o PDF só depois de todas as edições da apresentação. Até lá, o teste "PDF renomeado" fica falhando de propósito, e os guias já citam `desenvolvimento-verificavel.pdf`.
 
 **Files:**
 - Rename: `superpowers.pdf` → `desenvolvimento-verificavel.pdf`
@@ -332,5 +334,5 @@ git commit -m "chore: PDF renomeado para desenvolvimento-verificavel.pdf e reger
 
 ## Verificação final
 
-- [ ] `node $SCRATCH/check-titulo.mjs` e `node $SCRATCH/check-intro.mjs` → `todos os testes passaram`.
-- [ ] `git status` limpo; `git log --oneline -4` mostra os commits das tasks 2 a 5.
+- [ ] `node $SCRATCH/check-titulo.mjs` → só "PDF renomeado" falha (Task 5 adiada); `node $SCRATCH/check-intro.mjs` → `todos os testes passaram`.
+- [ ] `git status` limpo; `git log --oneline -3` mostra os commits das tasks 2 a 4.
