@@ -63,7 +63,7 @@
       const scale = box.width / STAGE_W;
       const bottomLimit = box.bottom - SAFE_BOTTOM * scale;
       const leaves = [...slide.querySelectorAll('*')].filter(
-        (el) => el.children.length === 0 && !el.closest('[data-bleed]')
+        (el) => el.children.length === 0 && !el.closest('[data-bleed], [data-footer]')
       );
       const escaped = leaves.some((el) => {
         const r = el.getBoundingClientRect();
