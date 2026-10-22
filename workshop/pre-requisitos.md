@@ -39,7 +39,7 @@ Confira: rode `copilot`, digite `/skills list` e procure `brainstorming` na list
 Clone o repositório como você já faz no dia a dia e **rode os testes uma vez**. O
 primeiro build baixa dependências e pode levar mais de 15 minutos.
 
-### iOS — `cinv-lib-bnj-portability-ios` (só Mac, Xcode 26.2)
+### iOS (só Mac, Xcode 26.2)
 
 ```bash
 make demo-project
@@ -50,7 +50,7 @@ xcodebuild test -project app_demo/portabilityDemo.xcodeproj -scheme portabilityD
 Se não tiver o iPhone 16 no simulador, veja os disponíveis com
 `xcrun simctl list devices available` e troque o nome.
 
-### Android — `cinv-lib-bnj-portability-android`
+### Android
 
 O build usa o Artifactory da empresa: deixe o acesso configurado como no dia a dia
 (`local.properties` / `JFROG_TOKEN`).
@@ -69,7 +69,7 @@ cd project
 .\gradlew.bat :portability:testDebugUnitTest
 ```
 
-### Backend — `cinv-bff-portability-bmpf`
+### Backend
 
 Use o JDK que o projeto pede (`java.version` no `pom.xml`) e o acesso ao repositório
 Maven corporativo que você já usa.
