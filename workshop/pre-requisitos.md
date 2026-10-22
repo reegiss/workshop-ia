@@ -3,14 +3,15 @@
 Faça isto **antes** do workshop. No dia não haverá tempo para instalação: vamos direto
 para o laboratório.
 
-## 1. Node.js 24 LTS
+Link de apoio - https://docs.github.com/pt/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli 
+
+## 1. Node.js 22 ou superior
 
 ```bash
 node --version
 ```
 
-A saída deve começar com `v24`. Se não começar, instale o Node.js 24 LTS pelo site do Node.js
-ou pelo gerenciador que você já usa.
+Se for menor que 22, atualize pelo site do Node.js ou pelo gerenciador que você já usa.
 
 ## 2. GitHub Copilot CLI
 
