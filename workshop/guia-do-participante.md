@@ -45,7 +45,7 @@ Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e n
 Recorte: uma função pura (sem UI, rede ou ViewModel) que recebe uma lista de instituições e
 um texto de busca e devolve a lista ordenada por nome e filtrada por nome ou código. Busca
 vazia devolve todas, ordenadas. Coloque o tipo Institution e a função em Sources/Domain.
-Testes com XCTest em Tests/portabilityTests.
+Testes com XCTest em Tests/DomainTests.
 
 História:
 Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
@@ -62,8 +62,8 @@ Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e n
 
 Recorte: uma função pura (sem UI, rede ou ViewModel) que recebe uma lista de instituições e
 um texto de busca e devolve a lista ordenada por nome e filtrada por nome ou código. Busca
-vazia devolve todas, ordenadas. Coloque a data class e a função em
-project/portability/src/main/java/domain. Testes JUnit em project/portability/src/test/java.
+vazia devolve todas, ordenadas. Coloque a data class e a função no pacote domain do módulo.
+Testes JUnit em src/test/java do módulo.
 
 História:
 Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
@@ -141,22 +141,24 @@ Faça commit local e não faça push.
 **② Confira:** rode o teste **você mesmo**. Ele deve falhar antes da implementação e passar
 depois. Revise com `git diff` antes do commit.
 
+Nos comandos abaixo, troque o que está entre `< >` pelo nome do seu projeto, scheme ou módulo.
+
 **iOS** (só Mac):
 
 ```bash
-xcodebuild test -project app_demo/portabilityDemo.xcodeproj -scheme portabilityDemo -destination 'platform=iOS Simulator,name=iPhone 16'
+xcodebuild test -project <SeuProjeto>.xcodeproj -scheme <SeuScheme> -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
 **Android**, Mac:
 
 ```bash
-cd project && ./gradlew :portability:testDebugUnitTest --tests "*Institution*"
+./gradlew :<seu-modulo>:testDebugUnitTest --tests "*Institution*"
 ```
 
 **Android**, Windows:
 
 ```powershell
-cd project; .\gradlew.bat :portability:testDebugUnitTest --tests "*Institution*"
+.\gradlew.bat :<seu-modulo>:testDebugUnitTest --tests "*Institution*"
 ```
 
 **Backend**, Mac:

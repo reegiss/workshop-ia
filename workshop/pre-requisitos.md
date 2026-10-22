@@ -37,13 +37,13 @@ Confira: rode `copilot`, digite `/skills list` e procure `brainstorming` na list
 ## 4. O repositório da sua stack, compilando
 
 Clone o repositório como você já faz no dia a dia e **rode os testes uma vez**. O
-primeiro build baixa dependências e pode levar mais de 15 minutos.
+primeiro build baixa dependências e pode levar mais de 15 minutos. Nos comandos abaixo,
+troque o que está entre `< >` pelo nome do seu projeto, scheme ou módulo.
 
 ### iOS (só Mac, Xcode 26.2)
 
 ```bash
-make demo-project
-xcodebuild test -project app_demo/portabilityDemo.xcodeproj -scheme portabilityDemo \
+xcodebuild test -project <SeuProjeto>.xcodeproj -scheme <SeuScheme> \
   -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
@@ -58,15 +58,13 @@ O build usa o Artifactory da empresa: deixe o acesso configurado como no dia a d
 Mac:
 
 ```bash
-cd project
-./gradlew :portability:testDebugUnitTest
+./gradlew :<seu-modulo>:testDebugUnitTest
 ```
 
 Windows:
 
 ```powershell
-cd project
-.\gradlew.bat :portability:testDebugUnitTest
+.\gradlew.bat :<seu-modulo>:testDebugUnitTest
 ```
 
 ### Backend
@@ -91,8 +89,8 @@ Windows:
 Entre no Teams com o terminal aberto na pasta do repositório. Na abertura, vamos pedir
 que você escreva **pronto** no chat.
 
-- **iOS:** deixe o simulador aberto e o projeto já gerado (`make demo-project`), para o
-  primeiro teste não demorar.
+- **iOS:** deixe o simulador aberto e o projeto já compilado uma vez, para o primeiro
+  teste não demorar.
 - **Segurança:** no laboratório você vai trabalhar numa branch local, sem push,
   aprovar cada comando do agente e não expor credenciais. As instruções estão no guia do
   participante, que será compartilhado no chat.

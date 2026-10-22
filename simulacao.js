@@ -28,7 +28,7 @@
     { s: 1, who: 'you', text:
       'Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.\n' +
       'Recorte: uma função pura (sem UI, rede ou ViewModel) que ordena por nome e filtra por nome ou código; ' +
-      'busca vazia devolve todas. Tipo e função em Sources/Domain; testes XCTest em Tests/portabilityTests.\n' +
+      'busca vazia devolve todas. Tipo e função em Sources/Domain; testes XCTest em Tests/DomainTests.\n' +
       'História: como cliente que quer trazer investimentos de outro banco, quero escolher o banco de origem numa lista.\n' +
       'Exemplo: {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}' },
     { s: 1, who: 'agent', skill: 'brainstorming', lines: [
@@ -88,9 +88,9 @@
       'Faça commit local e não faça push.' },
     { s: 3, who: 'agent', skill: 'test-driven-development', lines: [
       'Primeiro o teste, e só ele:',
-    ], file: { path: 'Tests/portabilityTests/FilterAndSortTests.swift', code: [
+    ], file: { path: 'Tests/DomainTests/FilterAndSortTests.swift', code: [
       'import XCTest',
-      '@testable import portability',
+      '@testable import Domain',
       '',
       'final class FilterAndSortTests: XCTestCase {',
       '    func testOrdenaPorNome() {',
@@ -145,8 +145,8 @@
       { t: '✓ Tarefa 1 pronta. Revise o diff e faça o commit local.', c: 'ok' },
     ] },
     { s: 3, who: 'shell', cmd: 'git diff --stat', out: [
-      { t: ' Sources/Domain/InstitutionSearch.swift          | 13 +++++++++++++' },
-      { t: ' Tests/portabilityTests/FilterAndSortTests.swift | 15 +++++++++++++++' },
+      { t: ' Sources/Domain/InstitutionSearch.swift     | 13 +++++++++++++' },
+      { t: ' Tests/DomainTests/FilterAndSortTests.swift | 15 +++++++++++++++' },
       { t: ' 2 files changed, 28 insertions(+)' },
     ] },
     { s: 3, who: 'shell', cmd: 'git add -A && git commit -m "feat: ordena instituições por nome"', out: [
