@@ -21,8 +21,8 @@ O agente vai criar o design e o plano em `docs/superpowers/`. Eles ficam na sua 
 - **Aprove comando a comando.** Leia cada comando que o agente pedir para rodar. Nunca
   escolha "permitir tudo".
 - **Nada sensível:** não cole segredos, tokens nem dados de clientes. Não peça ao agente
-  para ler arquivos de credenciais (por exemplo `local.properties` com `JFROG_TOKEN`, ou `.env`).
-- Ao fim de cada etapa, cole no chat do Teams o que o checkpoint pedir.
+  para ler arquivos de credenciais (por exemplo `.env` ou `local.properties`).
+- Ao fim de cada etapa, cole no chat da reunião o que o checkpoint pedir.
 
 ## Etapa 0 · Preparar a branch (1 min)
 
@@ -76,8 +76,8 @@ Exemplo de item:
 ```text
 Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.
 
-Recorte: uma classe nova e pura (por exemplo InstitutionSorter), sem alterar o controller nem
-o InstitutionService, que recebe uma lista de instituições e um texto de busca e devolve a
+Recorte: uma classe nova e pura (por exemplo InstitutionSorter), sem alterar o código existente,
+que recebe uma lista de instituições e um texto de busca e devolve a
 lista ordenada por nome e filtrada por nome ou código. Busca vazia devolve todas, ordenadas.
 Testes JUnit em src/test/java.
 

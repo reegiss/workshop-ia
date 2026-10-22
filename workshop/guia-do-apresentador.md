@@ -5,7 +5,7 @@ Este guia é só para quem apresenta. Está na ordem de uso: visão geral, prepa
 
 ## 1. Visão geral
 
-Workshop online de **60 minutos** pelo Teams, com **25 minutos de laboratório** no
+Workshop online de **60 minutos**, com **25 minutos de laboratório** no
 Copilot CLI.
 
 **Tese:** skills tornam o trabalho com agentes verificável, porque cada etapa deixa uma
@@ -21,21 +21,21 @@ diff revisado.
 | `simulacao.html` | Terminal roteirizado do laboratório (iOS) | Plano B, se a demo ao vivo falhar (tecla **S** nos slides 17–19) |
 | `desenvolvimento-verificavel.pdf` | Os mesmos 37 slides em PDF | Reserva se o navegador travar; compartilhar depois |
 | `workshop/pre-requisitos.md` | Instalação e build | Enviar aos participantes um dia antes |
-| `workshop/guia-do-participante.md` | Pedidos e comandos do laboratório | Colar no chat do Teams no slide 15 |
+| `workshop/guia-do-participante.md` | Pedidos e comandos do laboratório | Colar no chat da reunião no slide 15 |
 
 ## 2. Preparação
 
 ### Uma semana antes
 
-- [ ] Confirmar que a política do cliente e da Stefanini permite usar o Copilot CLI nesses
-      repositórios. Se não permitir, o laboratório inteiro vai para a trilha kata.
+- [ ] Confirmar que a política da empresa (e do cliente, se o código for de um) permite usar o
+      Copilot CLI nesses repositórios. Se não permitir, o laboratório inteiro vai para a trilha kata.
 - [ ] Confirmar licença e acesso ao Copilot CLI de todos os participantes.
 - [ ] Ensaiar o laboratório completo nas 3 stacks e anotar os tempos reais (build, primeiro
       teste, respostas do agente).
 - [ ] Ensaiar o plano B: tecla **S** nos slides 17–19 abre a simulação; **Esc** volta. A
       simulação cobre só iOS; se quiser Android ou backend, grave uma demonstração curta das
       3 etapas.
-- [ ] Preparar a trilha kata: um repositório mínimo sem dependências corporativas
+- [ ] Preparar a trilha kata: um repositório mínimo sem dependências privadas
       (Swift Package sem UIKit, Kotlin/JVM, Java/Maven), para quem não conseguir compilar.
 - [ ] Combinar um facilitador para acompanhar o chat durante o laboratório.
 - [ ] Conferir a contagem de skills do pacote superpowers (hoje, 14) e os comandos de
@@ -55,10 +55,10 @@ diff revisado.
       `espera.html?ate=14:00` (ou `?min=10`). Ao zerar, ela abre o deck.
 - [ ] Deck pronto para tela cheia (`F`) e janela do terminal pronta para demonstrar.
 - [ ] `desenvolvimento-verificavel.pdf` aberto noutra janela, como reserva.
-- [ ] `guia-do-participante.md` pronto para colar no chat do Teams.
+- [ ] `guia-do-participante.md` pronto para colar no chat da reunião.
 - [ ] Timer à vista para o laboratório.
 - [ ] Facilitador no chat, com a lista de quem escreveu "pronto".
-- [ ] No Teams: compartilhe **a janela do navegador**, não a tela inteira, e silencie as
+- [ ] Na reunião: compartilhe **a janela do navegador**, não a tela inteira, e silencie as
       notificações. Deixe o terminal numa segunda janela para alternar durante o laboratório.
 - [ ] Se tiver segunda tela: slides na tela compartilhada, este guia e o chat na sua.
 
@@ -311,7 +311,7 @@ sessão real.
 
 | Risco | Controle |
 |---|---|
-| Código do cliente no Copilot | Confirmar a política antes; trilha kata para quem não puder |
+| Código proprietário no Copilot | Confirmar a política antes; trilha kata para quem não puder |
 | Segredos e dados sensíveis | Não pedir ao agente que leia arquivos de credenciais (`local.properties`, `.env`); revisar o diff |
 | Comando destrutivo | Aprovar comando a comando; nunca "permitir tudo" |
 | Push remoto | Branch local; negar qualquer `git push` que o agente pedir |

@@ -40,7 +40,7 @@ Clone o repositório como você já faz no dia a dia e **rode os testes uma vez*
 primeiro build baixa dependências e pode levar mais de 15 minutos. Nos comandos abaixo,
 troque o que está entre `< >` pelo nome do seu projeto, scheme ou módulo.
 
-### iOS (só Mac, Xcode 26.2)
+### iOS (só Mac, com o Xcode que o projeto pede)
 
 ```bash
 xcodebuild test -project <SeuProjeto>.xcodeproj -scheme <SeuScheme> \
@@ -52,8 +52,8 @@ Se não tiver o iPhone 16 no simulador, veja os disponíveis com
 
 ### Android
 
-O build usa o Artifactory da empresa: deixe o acesso configurado como no dia a dia
-(`local.properties` / `JFROG_TOKEN`).
+Se o build depende de um repositório privado de pacotes, deixe o acesso configurado como no
+dia a dia.
 
 Mac:
 
@@ -69,24 +69,24 @@ Windows:
 
 ### Backend
 
-Use o JDK que o projeto pede (`java.version` no `pom.xml`) e o acesso ao repositório
-Maven corporativo que você já usa.
+Use o JDK que o projeto pede (`java.version` no `pom.xml`) e, se o projeto usar um
+repositório Maven privado, o acesso que você já usa.
 
 Mac:
 
 ```bash
-./mvnw test -Dtest=InstitutionServiceTest
+./mvnw test
 ```
 
 Windows:
 
 ```powershell
-.\mvnw.cmd test "-Dtest=InstitutionServiceTest"
+.\mvnw.cmd test
 ```
 
 ## 5. No dia
 
-Entre no Teams com o terminal aberto na pasta do repositório. Na abertura, vamos pedir
+Entre na reunião com o terminal aberto na pasta do repositório. Na abertura, vamos pedir
 que você escreva **pronto** no chat.
 
 - **iOS:** deixe o simulador aberto e o projeto já compilado uma vez, para o primeiro

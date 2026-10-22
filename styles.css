@@ -1,5 +1,5 @@
 :root {
-  /* Identidade Stefanini (extraída de stefanini.com) */
+  /* Paleta de cores do deck */
   --navy: #0B1641;
   --blue: #0067CC;
   --blue-dark: #024589;
@@ -669,7 +669,7 @@ code, .mono { font-family: var(--mono); }
   color: var(--ink);
 }
 .group-result { color: var(--ink-2); }
-/* Legibilidade no Teams: slides com pouco conteúdo usam o espaço com texto maior */
+/* Legibilidade em videochamada: slides com pouco conteúdo usam o espaço com texto maior */
 .rules { gap: 28px; margin-top: 56px; }
 .rule { padding: 40px 44px; }
 .rule h2 { margin-bottom: 14px; font-size: 40px; }
