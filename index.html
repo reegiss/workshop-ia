@@ -191,7 +191,7 @@ description: Use antes de qualquer
         <article class="ex-card" style="--g: var(--g1)">
           <p class="ex-head"><span>Spec</span><code>docs/superpowers/specs/</code></p>
           <dl>
-            <dt>Objetivo</dt><dd>escolher o banco de origem numa lista</dd>
+            <dt>Objetivo</dt><dd>escolher um banco numa lista</dd>
             <dt>Requisitos</dt><dd>ordena por nome, sem diferenciar maiúsculas nem acentos; busca no nome (contém) ou no código (prefixo)</dd>
             <dt>Aceite</dt><dd>“credito” encontra “Crédito”; “00” encontra “001”; busca vazia devolve todas</dd>
             <dt>Fora</dt><dd>tela e rede</dd>
@@ -325,7 +325,7 @@ description: Use antes de qualquer
       </ol>
       <div class="lab-story">
         <p class="deep-label">A história e o recorte</p>
-        <p class="lab-story-text"><strong>Como</strong> cliente que quer trazer investimentos de outro banco, <strong>quero</strong> escolher o banco de origem numa lista, <strong>para</strong> iniciar a portabilidade sem digitar dados do banco. <strong>Recorte:</strong> uma função pura (sem tela nem rede) que ordena por nome e filtra por nome ou código; busca vazia devolve todas.</p>
+        <p class="lab-story-text"><strong>Como</strong> cliente, <strong>quero</strong> escolher um banco numa lista, <strong>para</strong> não precisar digitar os dados do banco. <strong>Recorte:</strong> uma função pura (sem tela nem rede) que ordena por nome e filtra por nome ou código; busca vazia devolve todas.</p>
         <p class="lab-story-json"><code>{"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}</code></p>
       </div>
       <p class="lab-check"><strong>Checkpoint no chat:</strong> a pergunta mais útil que o agente fez. Passou de 8 min? Use o design pronto do guia.</p>

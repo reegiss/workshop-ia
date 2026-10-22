@@ -29,7 +29,7 @@
       'Use a skill /brainstorming para esta história. Faça no máximo 3 perguntas e não implemente nada ainda.\n' +
       'Recorte: uma função pura (sem UI, rede ou ViewModel) que ordena por nome e filtra por nome ou código; ' +
       'busca vazia devolve todas. Tipo e função em Sources/Domain; testes XCTest em Tests/DomainTests.\n' +
-      'História: como cliente que quer trazer investimentos de outro banco, quero escolher o banco de origem numa lista.\n' +
+      'História: como cliente, quero escolher um banco numa lista, para não precisar digitar os dados do banco.\n' +
       'Exemplo: {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}' },
     { s: 1, who: 'agent', skill: 'brainstorming', lines: [
       'Li o recorte e o exemplo. Vou fazer até 3 perguntas, uma por vez.',

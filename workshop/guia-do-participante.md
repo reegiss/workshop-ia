@@ -48,8 +48,7 @@ vazia devolve todas, ordenadas. Coloque o tipo Institution e a função em Sourc
 Testes com XCTest em Tests/DomainTests.
 
 História:
-Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
-origem numa lista, para iniciar a portabilidade sem digitar dados do banco.
+Como cliente, quero escolher um banco numa lista, para não precisar digitar os dados do banco.
 
 Exemplo de item:
 {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}
@@ -66,8 +65,7 @@ vazia devolve todas, ordenadas. Coloque a data class e a função no pacote doma
 Testes JUnit em src/test/java do módulo.
 
 História:
-Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
-origem numa lista, para iniciar a portabilidade sem digitar dados do banco.
+Como cliente, quero escolher um banco numa lista, para não precisar digitar os dados do banco.
 
 Exemplo de item:
 {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}
@@ -84,8 +82,7 @@ lista ordenada por nome e filtrada por nome ou código. Busca vazia devolve toda
 Testes JUnit em src/test/java.
 
 História:
-Como cliente que quer trazer investimentos de outro banco, quero escolher o banco de
-origem numa lista, para iniciar a portabilidade sem digitar dados do banco.
+Como cliente, quero escolher um banco numa lista, para não precisar digitar os dados do banco.
 
 Exemplo de item:
 {"code": "001", "institutionType": "1", "name": "Banco do Brasil", "cnpj": "00000000000191"}
