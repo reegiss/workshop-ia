@@ -101,8 +101,13 @@ de valor**.
 - Critério de ordenação na spec do Cap. 5: "Order for 500: Âmbar, Azul, Verde."
 - **Para o Cap. 7:** a ordenação ingênua (`sort()` ou `<`) põe Azul antes de Âmbar (ponto de
   código de "Â" vem depois de "Z"): vermelho legítimo; correção com
-  `localeCompare(..., "pt-BR")`. Conferido em Node 24. Termo de busca vazio devolve todos os
-  bancos: decidir no Cap. 7 (fora do escopo ou caso de teste).
+  `localeCompare(..., "pt-BR")`. Conferido em Node 24. Termo de busca vazio: lacuna revelada no Cap. 6
+  (durante o plano); decisão do leitor: devolve todos os bancos. A spec ganha o critério
+  `"" (empty) finds all banks.` e um commit.
+- Plano do exemplo (Cap. 6), arquivos `src/bankSearch.ts` e `src/bankSearch.test.ts`, 3 tarefas:
+  1. `calculateFee(bank, amount)` — 1000 paga 2, 1000.01 paga 5 (Banco Azul);
+  2. `searchBanks(banks, term)` — "azul", "AZUL", "ambar", "001", "1", "";
+  3. `sortByFee(banks, amount)` — `sortByFee(searchBanks(banks, ""), 500)` dá Âmbar, Azul, Verde.
 - Ambiente conferido: Node 24, Vitest 5.0.5; sem arquivos de teste, `vitest run` falha com
   "No test files found".
 - Artefatos do projeto (spec, plano) em inglês, como o código; a conversa com o agente em pt-BR.
