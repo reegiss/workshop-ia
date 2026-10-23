@@ -25,22 +25,24 @@ aplicá-lo sozinho, sem ter assistido à apresentação.
 
 ## Sumário e mapeamento de arquivos
 
-Os capítulos usam `##` (nível de capítulo no PDF e no EPUB, `epub-chapter-level: 2`).
-As partes usam `#` no topo do primeiro arquivo de cada parte.
+Os capítulos usam `##` (nível de capítulo no PDF e no EPUB, `epub-chapter-level: 2`), com o
+rótulo `## Capítulo N — Título`; apêndices usam `## Apêndice X — Título`. As partes **não** são
+títulos `#` (o sumário fica plano): o primeiro capítulo de cada parte abre com uma linha de
+rótulo em negrito, por exemplo `**Parte I — Fundamentos**`.
 
 | Arquivo | Conteúdo | Meta (palavras) |
 |---|---|---|
 | `chapter-00.md` | Folha de rosto + sumário (já existe) | — |
 | `chapter-01.md` | Introdução | 1.000 |
-| `chapter-02.md` | `# Parte I — Fundamentos` + Cap. 1 · Rápido não é verificável | 1.500 |
+| `chapter-02.md` | Rótulo Parte I + Cap. 1 · Rápido não é verificável | 1.500 |
 | `chapter-03.md` | Cap. 2 · Agente = modelo + harness | 2.000 |
 | `chapter-04.md` | Cap. 3 · Skills: um processo em arquivo | 2.000 |
 | `chapter-05.md` | Cap. 4 · Evidência e Spec-Driven Development | 2.500 |
-| `chapter-06.md` | `# Parte II — Na prática` + Cap. 5 · Esclarecer | 2.500 |
+| `chapter-06.md` | Rótulo Parte II + Cap. 5 · Esclarecer | 2.500 |
 | `chapter-07.md` | Cap. 6 · Planejar | 1.500 |
 | `chapter-08.md` | Cap. 7 · Vermelho, depois verde | 2.500 |
-| `chapter-09.md` | `# Parte III — Além do primeiro teste` + Cap. 8 · Escala, limites e próximos passos | 2.000 |
-| `chapter-10.md` | Apêndices A (mapa das skills), B (glossário), C (equivalências entre CLIs) | 1.000 |
+| `chapter-09.md` | Rótulo Parte III + Cap. 8 · Escala, limites e próximos passos | 2.000 |
+| `chapter-10.md` | Apêndice A (mapa das skills), Apêndice B (glossário), Apêndice C (equivalências entre CLIs), cada um em `##` | 1.000 |
 
 ### Escopo de cada capítulo
 
@@ -82,8 +84,10 @@ As partes usam `#` no topo do primeiro arquivo de cada parte.
 - **Imagens:** só quando um diagrama ensina mais que o texto. sRGB, alto contraste para
   e-ink, ≥ 300 DPI, em `images/`.
 - **Terminologia:** o glossário (Apêndice B) é mantido desde o primeiro capítulo. Termos
-  iniciais: agente, harness, modelo, prompt, ferramenta, MCP, skill, spec, plano, evidência,
+  iniciais: agente, CLI, harness, modelo, prompt, ferramenta, MCP, skill, spec, plano, evidência,
   SDD, TDD, vermelho/verde, diff, branch, worktree, subagente.
+- **Seta → proibida no texto:** a fonte do PDF não tem o glyph; usar palavras.
+- **"Ferramenta"** só no sentido do glossário (ação do harness); o produto é "CLI".
 - **Sem referências** a empresas, ferramentas de reunião ou repositórios específicos do
   workshop.
 
