@@ -89,6 +89,17 @@ de valor**.
 - As três falhas do Cap. 1: busca só por nome (ninguém perguntou sobre o código); teste escrito
   depois copia a saída, com o limite de faixa errado junto; "pronto!" sem rodar o teste.
 
+### Projeto do exemplo (criado pelo leitor no Cap. 5, sem repositório externo)
+
+- Node.js + TypeScript + **Vitest** (`it`/`expect`), script `npm test` = `vitest run`.
+- `src/banks.ts`: tipo `Bank` (`code`, `name`, `lowFee`, `highFee`), constante
+  `FEE_RANGE_LIMIT = 1000` e cadastro com três bancos fictícios:
+  Banco Azul (`"001"`, 2, 5), Banco Verde (`"012"`, 3, 4), Banco Âmbar (`"123"`, 2, 6).
+- Respostas do leitor no `brainstorming` (Cap. 5): busca por nome **e** código; nome contém o
+  termo, ignorando maiúsculas e acentos; código só por igualdade exata ("1" não encontra "001");
+  R$ 1.000,00 é faixa baixa; empate de tarifa ordena pelo nome (Âmbar antes de Azul).
+- Artefatos do projeto (spec, plano) em inglês, como o código; a conversa com o agente em pt-BR.
+
 ## Padrões de escrita (todos os capítulos)
 
 - **Estrutura de capítulo:** abertura com o objetivo do capítulo em 1–2 frases → seções com
@@ -144,4 +155,4 @@ as edições pedidas.
   `verification-before-completion`, não hifenizam) e conferir títulos `####` no PDF.
 - Antes do Cap. 5: confirmar como cada CLI mostra skills de plugin (ex.: `superpowers:brainstorming`)
   para o leitor digitar o nome certo.
-- Estrutura do projeto mínimo do exemplo (pastas, runner de teste): definida no plano do Cap. 5.
+
