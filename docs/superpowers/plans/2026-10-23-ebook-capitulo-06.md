@@ -47,7 +47,7 @@ Files: src/bankSearch.ts,
 - [ ] Write failing tests: Banco Azul fee
   for 1000 is 2; for 1000.01 is 5.
 - [ ] Run `npm test`. Expected: FAIL,
-  calculateFee is not exported.
+  calculateFee is not a function.
 - [ ] Implement calculateFee using
   FEE_RANGE_LIMIT, inclusive.
 - [ ] Run `npm test`. Expected: PASS.

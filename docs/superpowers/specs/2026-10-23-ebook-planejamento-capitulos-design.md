@@ -108,6 +108,11 @@ de valor**.
   1. `calculateFee(bank, amount)` — 1000 paga 2, 1000.01 paga 5 (Banco Azul);
   2. `searchBanks(banks, term)` — "azul", "AZUL", "ambar", "001", "1", "";
   3. `sortByFee(banks, amount)` — `sortByFee(searchBanks(banks, ""), 500)` dá Âmbar, Azul, Verde.
+- Código verificado do exemplo em `docs/ebook-exemplo/` (fonte de verdade do Cap. 7): 8 testes
+  (2 de tarifa, 5 de busca, 1 de ordenação). Vermelhos reais: `TypeError: calculateFee is not a
+  function` (só se `src/bankSearch.ts` já existir sem a função; sem o arquivo, o erro é de import
+  não resolvido: o Cap. 7 deve dizer quem cria o arquivo); `AssertionError: expected 5 to be 2`
+  (com `<`); na ordenação ingênua, Azul antes de Âmbar.
 - Ambiente conferido: Node 24, Vitest 5.0.5; sem arquivos de teste, `vitest run` falha com
   "No test files found".
 - Artefatos do projeto (spec, plano) em inglês, como o código; a conversa com o agente em pt-BR.
