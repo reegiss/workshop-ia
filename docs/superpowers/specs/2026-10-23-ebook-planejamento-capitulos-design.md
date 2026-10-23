@@ -68,7 +68,7 @@ na página do capítulo anterior no PDF).
   falhando, depois passando, rodado pelo leitor.
 - **Cap. 8 · Escala, limites e próximos passos:** subagentes e worktrees; revisão e entrega;
   custo em tempo e tokens; "a skill orienta, não garante"; como aplicar a uma história real.
-- **Apêndices:** A) as 14 skills do *superpowers* em 4 momentos, em lista vertical; B) glossário;
+- **Apêndices:** A) as skills do *superpowers* em 4 momentos (sem fixar a contagem: o pacote muda), em lista vertical; B) glossário;
   C) equivalências entre Copilot CLI e Claude Code. O apêndice A só aponta onde procurar outras
   skills, sem listá-las.
 
