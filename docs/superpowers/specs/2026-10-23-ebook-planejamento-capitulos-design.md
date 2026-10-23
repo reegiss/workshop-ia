@@ -105,6 +105,8 @@ de valor**.
   compatível (Vitest ou Jest).
 - **Definições destacadas:** parágrafo comum com o termo em negrito, não blockquote (blockquote
   é reservado às quatro caixas rotuladas).
+- **Valores em reais:** `R$` seguido de espaço inquebrável (U+00A0), para não separar símbolo e
+  número na quebra de linha.
 - **"Código" ambíguo:** escrever "código do banco" quando não for código-fonte.
 - **Imagens:** só quando um diagrama ensina mais que o texto. sRGB, alto contraste para
   e-ink, ≥ 300 DPI, em `images/`.

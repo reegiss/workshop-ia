@@ -6,6 +6,8 @@
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
+**Contexto** — Tudo o que o modelo enxerga numa chamada: o pedido, os arquivos lidos, as saídas de comandos e as instruções do harness. Tem limite, e o que não está nele não existe para o modelo, fora o que ele aprendeu no treinamento.
+
 **Desenvolvimento verificável** — Forma de trabalhar em que cada etapa deixa uma evidência que você consegue ver: antes, durante e depois do código. É o método apresentado neste livro.
 
 **Diff** — Lista das diferenças entre duas versões de um código, linha a linha. Revisar o diff é a forma de conferir exatamente o que o agente mudou.
@@ -14,11 +16,15 @@
 
 **Ferramenta** — Ação que o harness oferece ao modelo, como ler um arquivo, editar código ou rodar um comando no terminal. O modelo decide quando usar cada ferramenta; o harness a executa.
 
-**Harness** — Programa que envolve o modelo e lhe dá contexto, ferramentas e permissões. O GitHub Copilot CLI e o Claude Code são exemplos de harness; ligados a um modelo, cada um forma um agente.
+**Harness** — Programa que envolve o modelo: monta o contexto, oferece ferramentas, executa as ações pedidas pelo modelo e devolve o resultado, em loop, respeitando as permissões. O GitHub Copilot CLI e o Claude Code são exemplos de harness; ligados a um modelo, cada um forma um agente.
 
-**MCP** — Sigla de *Model Context Protocol*, um padrão aberto para conectar agentes a ferramentas e fontes de dados externas. Com ele, um mesmo servidor de ferramentas funciona em agentes diferentes.
+**Loop** — Ciclo em que o modelo pede uma ação, o harness a executa e devolve o resultado, e o modelo decide o próximo passo. Repete até a tarefa terminar.
+
+**MCP** — Sigla de *Model Context Protocol*, um padrão aberto para ligar serviços externos a um agente como ferramentas. Com ele, um mesmo servidor MCP funciona em agentes diferentes.
 
 **Modelo** — Modelo de linguagem que recebe texto e gera texto como resposta. Sozinho, ele não lê arquivos nem roda comandos; quem faz isso é o harness.
+
+**Permissão** — Autorização que você dá ao harness antes de uma ação com efeito, como rodar um comando ou editar um arquivo. Pode valer para uma vez ou ficar liberada para as próximas.
 
 **Plano** — Documento que divide uma spec em passos pequenos e ordenados, cada um com o que fazer e como verificar. Um bom plano pode ser revisado por uma pessoa antes de qualquer linha de código.
 

@@ -12,12 +12,12 @@ A história é esta: uma pessoa vai fazer uma transferência e precisa escolher 
 
 A tarifa depende de faixas de valor. Cada banco cobra duas tarifas:
 
-- até R$ 1.000,00, inclusive: a tarifa da faixa baixa;
-- acima de R$ 1.000,00: a tarifa da faixa alta.
+- até R$ 1.000,00, inclusive: a tarifa da faixa baixa;
+- acima de R$ 1.000,00: a tarifa da faixa alta.
 
-No Banco Azul, por exemplo, a faixa baixa custa R$ 2,00 e a alta custa R$ 5,00. Uma transferência de R$ 1.000,00 nesse banco paga R$ 2,00.
+No Banco Azul, por exemplo, a faixa baixa custa R$ 2,00 e a alta custa R$ 5,00. Uma transferência de R$ 1.000,00 nesse banco paga R$ 2,00.
 
-O projeto já tem o cadastro dos bancos, cada um com as duas tarifas e o limite de R$ 1.000,00 entre as faixas. O que não está escrito em lugar nenhum é de que lado do limite fica uma transferência de exatamente R$ 1.000,00. Isso só quem pediu a história sabe.
+O projeto já tem o cadastro dos bancos, cada um com as duas tarifas e o limite de R$ 1.000,00 entre as faixas. O que não está escrito em lugar nenhum é de que lado do limite fica uma transferência de exatamente R$ 1.000,00. Isso só quem pediu a história sabe.
 
 Agora imagine que você abre o terminal e faz o pedido do jeito que muita gente faz no dia a dia: curto, direto, confiando que o agente vai entender o resto.
 
@@ -60,7 +60,7 @@ O problema aqui não é a função. Ela faz exatamente o que foi escrito. O prob
 
 O agente também entregou testes, e, se você rodá-los, todos passam. Isso parece bom sinal. Mas olhe como esses testes nasceram: primeiro veio o código, depois o agente escreveu testes que repetem o que esse mesmo código faz.
 
-> **[Exemplo]** A função de tarifa usa "menor que" no limite da faixa, quando a regra pede "até R$ 1.000,00, inclusive":
+> **[Exemplo]** A função de tarifa usa "menor que" no limite da faixa, quando a regra pede "até R$ 1.000,00, inclusive":
 >
 > ```ts
 > function calculateFee(
@@ -72,7 +72,7 @@ O agente também entregou testes, e, se você rodá-los, todos passam. Isso pare
 > }
 > ```
 >
-> Uma transferência de R$ 1.000,00 no Banco Azul cai na faixa alta e paga R$ 5,00 em vez de R$ 2,00. O teste gerado depois afirma exatamente esse valor:
+> Uma transferência de R$ 1.000,00 no Banco Azul cai na faixa alta e paga R$ 5,00 em vez de R$ 2,00. O teste gerado depois afirma exatamente esse valor:
 >
 > ```ts
 > it("charges 5 for an amount of 1000", () => {
@@ -125,7 +125,7 @@ O método organiza essas evidências em três momentos:
 - **Durante:** um teste escrito a partir da regra, que você vê falhar primeiro e passar depois.
 - **Depois:** o diff revisado linha a linha e o teste rodado por você, na sua máquina.
 
-Volte às três falhas da história. A busca só por nome teria aparecido no "antes", quando alguém perguntasse se o código do banco também conta. O limite errado da faixa teria aparecido no "durante", num teste escrito a partir da regra de R$ 1.000,00. E o "devem passar" não sobreviveria ao "depois", porque você mesmo rodaria os testes.
+Volte às três falhas da história. A busca só por nome teria aparecido no "antes", quando alguém perguntasse se o código do banco também conta. O limite errado da faixa teria aparecido no "durante", num teste escrito a partir da regra de R$ 1.000,00. E o "devem passar" não sobreviveria ao "depois", porque você mesmo rodaria os testes.
 
 Nenhum desses passos é novo. O que muda é que eles deixam de depender da memória ou da boa vontade de alguém e passam a fazer parte do fluxo. O Capítulo 4 detalha cada momento e a evidência que ele produz.
 
