@@ -6,15 +6,21 @@
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
+**Constituição** — No Spec Kit, documento com os princípios do projeto que toda spec deve respeitar. A spec muda a cada história; a constituição vale para todas.
+
 **Contexto** — Tudo o que o modelo enxerga numa chamada: o pedido, os arquivos lidos, as saídas de comandos e as instruções do harness. Tem limite, e o que não está nele não existe para o modelo, fora o que ele aprendeu no treinamento.
+
+**Critério de aceite** — Caso concreto, com entrada e resultado esperado, que mostra que um requisito da spec foi cumprido. Um bom critério de aceite vira um teste quase sem tradução.
 
 **Desenvolvimento verificável** — Forma de trabalhar em que cada etapa deixa uma evidência que você consegue ver: antes, durante e depois do código. É o método apresentado neste livro.
 
 **Diff** — Lista das diferenças entre duas versões de um código, linha a linha. Revisar o diff é a forma de conferir exatamente o que o agente mudou.
 
-**Evidência** — Artefato concreto que mostra que uma etapa foi cumprida, como uma spec aprovada, um teste falhando ou um diff revisado. É o oposto de "o agente disse que terminou".
+**Evidência** — Artefato concreto que mostra que uma etapa foi cumprida, como uma spec aprovada, um teste falhando ou um diff revisado, e não a palavra do agente de que terminou. O método deste livro produz seis: duas antes, duas durante e duas depois do código.
 
 **Ferramenta** — Ação que o harness oferece ao modelo, como ler um arquivo, editar código ou rodar um comando no terminal. O modelo decide quando usar cada ferramenta; o harness a executa.
+
+**Fluxo mínimo** — Sequência de quatro skills do superpowers usada neste livro, uma por etapa: `brainstorming` (esclarecer), `writing-plans` (planejar), `test-driven-development` (testar primeiro) e `verification-before-completion` (verificar). Cada etapa deixa uma evidência.
 
 **Frontmatter** — Cabeçalho curto em YAML no topo de um arquivo Markdown, entre duas linhas com três hifens. Num `SKILL.md`, traz o nome (`name`) e a descrição (`description`) da skill.
 
@@ -34,11 +40,11 @@
 
 **Prompt** — Texto que você envia ao agente para pedir algo. Vale só para aquela conversa e não fica guardado como processo.
 
-**SDD (Spec-Driven Development)** — Abordagem em que a especificação é escrita e aprovada antes do código e guia todo o trabalho. A spec vira a referência para o plano, os testes e a revisão.
+**SDD (Spec-Driven Development)** — Abordagem em que a especificação é escrita e aprovada antes do código e guia todo o trabalho. A spec vira a referência para o plano, os testes e a revisão; cada artefato (spec, plano, tarefas, código) é revisado antes do próximo.
 
 **Skill** — Pasta com um arquivo `SKILL.md` que ensina ao agente um processo, como seguir TDD: um frontmatter com nome e descrição e, abaixo, as instruções. O agente a aciona quando a descrição combina com a tarefa ou quando você a chama pelo nome, com barra; diferente de um prompt, ela fica salva e pode ser reutilizada.
 
-**Spec** — Especificação: descrição do que deve ser construído, com regras, exemplos e critérios de aceite. É escrita antes do plano e aprovada por uma pessoa.
+**Spec** — Especificação: descrição do que deve ser construído, em quatro partes: objetivo, requisitos, critérios de aceite e fora do escopo. É escrita antes do plano e aprovada por uma pessoa.
 
 **Subagente** — Agente iniciado por outro agente para cuidar de uma tarefa específica, com contexto próprio. Ao terminar, devolve só o resultado ao agente principal.
 

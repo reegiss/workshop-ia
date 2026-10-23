@@ -140,6 +140,8 @@ as edições pedidas.
 - Build final: desligar ligaduras da JetBrains Mono (`=>` vira seta e `---` vira traço
   contínuo, o que quebra o frontmatter do Cap. 3) com `monofontoptions: [Contextuals=NoAlternate]`
   em `kdp-pdf.yaml`, e conferir a página impressa.
+- Build final: procurar "Overfull \hbox" no log (nomes longos de skill em código inline, como
+  `verification-before-completion`, não hifenizam) e conferir títulos `####` no PDF.
 - Antes do Cap. 5: confirmar como cada CLI mostra skills de plugin (ex.: `superpowers:brainstorming`)
   para o leitor digitar o nome certo.
 - Estrutura do projeto mínimo do exemplo (pastas, runner de teste): definida no plano do Cap. 5.
