@@ -6,6 +6,8 @@
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
+**Commit** — Registro de uma versão dos arquivos no histórico do git, com uma mensagem que descreve a mudança. A spec e o plano entram em commits na mesma branch do código, e `git log --oneline` lista os commits feitos.
+
 **Constituição** — No Spec Kit, documento com os princípios do projeto que toda spec deve respeitar. A spec muda a cada história; a constituição vale para todas.
 
 **Contexto** — Tudo o que o modelo enxerga numa chamada: o pedido, os arquivos lidos, as saídas de comandos e as instruções do harness. Tem limite, e o que não está nele não existe para o modelo, fora o que ele aprendeu no treinamento.
@@ -23,6 +25,8 @@
 **Fluxo mínimo** — Sequência de quatro skills do superpowers usada neste livro, uma por etapa: `brainstorming` (esclarecer), `writing-plans` (planejar), `test-driven-development` (testar primeiro) e `verification-before-completion` (verificar). Cada etapa deixa uma evidência.
 
 **Frontmatter** — Cabeçalho curto em YAML no topo de um arquivo Markdown, entre duas linhas com três hifens. Num `SKILL.md`, traz o nome (`name`) e a descrição (`description`) da skill.
+
+**Função pura** — Função que recebe dados e devolve um resultado sem ler nem alterar nada fora dela. Dada a mesma entrada, devolve sempre a mesma saída, o que a torna fácil de testar.
 
 **Harness** — Programa que envolve o modelo: monta o contexto, oferece ferramentas, executa as ações pedidas pelo modelo e devolve o resultado, em loop, respeitando as permissões. O GitHub Copilot CLI e o Claude Code são exemplos de harness; ligados a um modelo, cada um forma um agente.
 

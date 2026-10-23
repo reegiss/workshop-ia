@@ -72,7 +72,7 @@ Trecho da spec gravada (bloco `md`, inglês, ≤ 60 caracteres por linha, ≤ 24
 - `"azul"` and `"AZUL"` find Banco Azul; `"ambar"` finds Banco Âmbar.
 - `"001"` finds Banco Azul; `"1"` finds no bank by code.
 - Banco Azul fee for 1000 is 2; for 1000.01 is 5.
-- Sorted by fee, ascending; ties sorted by name.
+- Order for 500: Âmbar, Azul, Verde.
 Out of scope: fee exemptions or promotions; the confirmation screen.
 
 ---

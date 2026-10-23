@@ -98,6 +98,13 @@ de valor**.
 - Respostas do leitor no `brainstorming` (Cap. 5): busca por nome **e** código; nome contém o
   termo, ignorando maiúsculas e acentos; código só por igualdade exata ("1" não encontra "001");
   R$ 1.000,00 é faixa baixa; empate de tarifa ordena pelo nome (Âmbar antes de Azul).
+- Critério de ordenação na spec do Cap. 5: "Order for 500: Âmbar, Azul, Verde."
+- **Para o Cap. 7:** a ordenação ingênua (`sort()` ou `<`) põe Azul antes de Âmbar (ponto de
+  código de "Â" vem depois de "Z"): vermelho legítimo; correção com
+  `localeCompare(..., "pt-BR")`. Conferido em Node 24. Termo de busca vazio devolve todos os
+  bancos: decidir no Cap. 7 (fora do escopo ou caso de teste).
+- Ambiente conferido: Node 24, Vitest 5.0.5; sem arquivos de teste, `vitest run` falha com
+  "No test files found".
 - Artefatos do projeto (spec, plano) em inglês, como o código; a conversa com o agente em pt-BR.
 
 ## Padrões de escrita (todos os capítulos)
