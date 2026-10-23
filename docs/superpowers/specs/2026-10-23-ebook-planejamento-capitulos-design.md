@@ -17,7 +17,7 @@ aplicá-lo sozinho, sem ter assistido à apresentação.
 | Relação com o workshop | Livro independente. Não cita nem reproduz o workshop. |
 | Ferramentas | Conceitos agnósticos. Exemplos práticos no **GitHub Copilot CLI** e no **Claude Code**, lado a lado só onde diferem. Sem se prender a nenhum dos dois. |
 | Exemplo prático | Uma história única e neutra (regra de negócio simples) num projeto mínimo. |
-| Linguagem do código | TypeScript. |
+| Linguagem do código | TypeScript. Código sempre em **inglês** (identificadores, comentários, descrições de teste); a prosa é pt-BR. |
 | Idioma | pt-BR primeiro (`chapters/pt`). Versão em inglês (`chapters/en`) só depois do texto estável. |
 | Tamanho | ~18.500 palavras, ~60–65 páginas em 6×9 in. |
 | Estrutura | Híbrida em três partes: Fundamentos → Na prática → Além do primeiro teste. |
@@ -71,6 +71,20 @@ rótulo em negrito, por exemplo `**Parte I — Fundamentos**`.
   C) equivalências entre Copilot CLI e Claude Code. O apêndice A só aponta onde procurar outras
   skills, sem listá-las.
 
+## Exemplo do livro
+
+História única, do Cap. 1 ao Cap. 7: **escolher o banco para uma transferência**. Dado um
+valor e um termo de busca, mostrar os bancos que correspondem ao termo (por **nome ou
+código**), ordenados pela **tarifa** calculada para aquele valor; a tarifa depende de **faixas
+de valor**.
+
+- Funções: `searchBanks(banks, term)`, `calculateFee(bank, amount)`, `sortByFee(...)`.
+- Ambiguidades para o Cap. 5: "1" encontra o código "001"? acentos e maiúsculas? o limite de
+  faixa (R$ 1.000,00) cai em qual faixa? desempate com tarifas iguais?
+- Casos de borda para o Cap. 7: limites de faixa e desempate.
+- As três falhas do Cap. 1: busca só por nome (ninguém perguntou sobre o código); teste escrito
+  depois copia a saída, com o limite de faixa errado junto; "pronto!" sem rodar o teste.
+
 ## Padrões de escrita (todos os capítulos)
 
 - **Estrutura de capítulo:** abertura com o objetivo do capítulo em 1–2 frases → seções com
@@ -110,5 +124,4 @@ as edições pedidas.
 - Título, subtítulo e metadados KDP (`{{BOOK_TITLE}}` etc., categorias BISAC, palavras-chave,
   descrição): definidos depois que a Parte I estiver escrita.
 - Capa (`cover/`): depois do título.
-- Exemplo prático concreto (qual regra de negócio, estrutura do projeto mínimo): definido
-  **antes de escrever o Cap. 4**, que o antecipa de forma leve. O Cap. 5 o apresenta por completo.
+- Estrutura do projeto mínimo do exemplo (pastas, runner de teste): definida no plano do Cap. 5.
