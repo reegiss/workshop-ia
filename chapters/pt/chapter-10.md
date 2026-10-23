@@ -6,6 +6,8 @@
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
+**Desenvolvimento verificável** — Forma de trabalhar em que cada etapa deixa uma evidência que você consegue ver: antes, durante e depois do código. É o método apresentado neste livro.
+
 **Diff** — Lista das diferenças entre duas versões de um código, linha a linha. Revisar o diff é a forma de conferir exatamente o que o agente mudou.
 
 **Evidência** — Artefato concreto que mostra que uma etapa foi cumprida, como uma spec aprovada, um teste falhando ou um diff revisado. É o oposto de "o agente disse que terminou".

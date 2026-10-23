@@ -27,8 +27,9 @@ aplicá-lo sozinho, sem ter assistido à apresentação.
 
 Os capítulos usam `##` (nível de capítulo no PDF e no EPUB, `epub-chapter-level: 2`), com o
 rótulo `## Capítulo N — Título`; apêndices usam `## Apêndice X — Título`. As partes **não** são
-títulos `#` (o sumário fica plano): o primeiro capítulo de cada parte abre com uma linha de
-rótulo em negrito, por exemplo `**Parte I — Fundamentos**`.
+títulos `#` (o sumário fica plano): no primeiro capítulo de cada parte, logo **depois** do `##`,
+vem um antetítulo em itálico, por exemplo `*Parte I — Fundamentos*` (antes do `##` ele cairia
+na página do capítulo anterior no PDF).
 
 | Arquivo | Conteúdo | Meta (palavras) |
 |---|---|---|
@@ -79,7 +80,10 @@ código**), ordenados pela **tarifa** calculada para aquele valor; a tarifa depe
 de valor**.
 
 - Funções: `searchBanks(banks, term)`, `calculateFee(bank, amount)`, `sortByFee(...)`.
-- Ambiguidades para o Cap. 5: "1" encontra o código "001"? acentos e maiúsculas? o limite de
+- Regra da tarifa (o leitor conhece desde o Cap. 1; o agente não): até R$ 1.000,00 inclusive
+  = faixa baixa; acima = faixa alta. Banco Azul (`blueBank`): baixa R$ 2,00, alta R$ 5,00. Campos
+  do tipo `Bank`: `name`, `lowFee`, `highFee` (o código do banco entra no Cap. 5).
+- Ambiguidades para o Cap. 5 (o limite de faixa é pergunta do agente, não dúvida do leitor): "1" encontra o código "001"? acentos e maiúsculas? o limite de
   faixa (R$ 1.000,00) cai em qual faixa? desempate com tarifas iguais?
 - Casos de borda para o Cap. 7: limites de faixa e desempate.
 - As três falhas do Cap. 1: busca só por nome (ninguém perguntou sobre o código); teste escrito
@@ -95,6 +99,13 @@ de valor**.
 - **Código e comandos:** blocos cercados com linguagem (`ts`, `bash`, `md`), linhas curtas
   (≤ 60 caracteres sempre que possível) para telas estreitas. Quando as CLIs diferem, dois
   blocos rotulados *Copilot CLI* e *Claude Code*.
+- **Código dentro de caixas** (blockquote): ≤ 46 caracteres por linha.
+- **Prompts ao agente:** em bloco `text`, em pt-BR (é o que o leitor digita).
+- **Testes:** sintaxe `it`/`expect(...).toBe(...)`; o runner escolhido no Cap. 5 deve ser
+  compatível (Vitest ou Jest).
+- **Definições destacadas:** parágrafo comum com o termo em negrito, não blockquote (blockquote
+  é reservado às quatro caixas rotuladas).
+- **"Código" ambíguo:** escrever "código do banco" quando não for código-fonte.
 - **Imagens:** só quando um diagrama ensina mais que o texto. sRGB, alto contraste para
   e-ink, ≥ 300 DPI, em `images/`.
 - **Terminologia:** o glossário (Apêndice B) é mantido desde o primeiro capítulo. Termos
@@ -124,4 +135,6 @@ as edições pedidas.
 - Título, subtítulo e metadados KDP (`{{BOOK_TITLE}}` etc., categorias BISAC, palavras-chave,
   descrição): definidos depois que a Parte I estiver escrita.
 - Capa (`cover/`): depois do título.
+- Build final: conferir ligaduras da JetBrains Mono (`=>` vira seta); se preciso,
+  `monofontoptions: [Contextuals=NoAlternate]` em `kdp-pdf.yaml`.
 - Estrutura do projeto mínimo do exemplo (pastas, runner de teste): definida no plano do Cap. 5.
