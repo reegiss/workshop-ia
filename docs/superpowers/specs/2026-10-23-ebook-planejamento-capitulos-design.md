@@ -137,6 +137,9 @@ as edições pedidas.
 - Título, subtítulo e metadados KDP (`{{BOOK_TITLE}}` etc., categorias BISAC, palavras-chave,
   descrição): definidos depois que a Parte I estiver escrita.
 - Capa (`cover/`): depois do título.
-- Build final: conferir ligaduras da JetBrains Mono (`=>` vira seta); se preciso,
-  `monofontoptions: [Contextuals=NoAlternate]` em `kdp-pdf.yaml`.
+- Build final: desligar ligaduras da JetBrains Mono (`=>` vira seta e `---` vira traço
+  contínuo, o que quebra o frontmatter do Cap. 3) com `monofontoptions: [Contextuals=NoAlternate]`
+  em `kdp-pdf.yaml`, e conferir a página impressa.
+- Antes do Cap. 5: confirmar como cada CLI mostra skills de plugin (ex.: `superpowers:brainstorming`)
+  para o leitor digitar o nome certo.
 - Estrutura do projeto mínimo do exemplo (pastas, runner de teste): definida no plano do Cap. 5.

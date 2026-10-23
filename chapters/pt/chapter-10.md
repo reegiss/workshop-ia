@@ -16,6 +16,8 @@
 
 **Ferramenta** — Ação que o harness oferece ao modelo, como ler um arquivo, editar código ou rodar um comando no terminal. O modelo decide quando usar cada ferramenta; o harness a executa.
 
+**Frontmatter** — Cabeçalho curto em YAML no topo de um arquivo Markdown, entre duas linhas com três hifens. Num `SKILL.md`, traz o nome (`name`) e a descrição (`description`) da skill.
+
 **Harness** — Programa que envolve o modelo: monta o contexto, oferece ferramentas, executa as ações pedidas pelo modelo e devolve o resultado, em loop, respeitando as permissões. O GitHub Copilot CLI e o Claude Code são exemplos de harness; ligados a um modelo, cada um forma um agente.
 
 **Loop** — Ciclo em que o modelo pede uma ação, o harness a executa e devolve o resultado, e o modelo decide o próximo passo. Repete até a tarefa terminar.
@@ -28,11 +30,13 @@
 
 **Plano** — Documento que divide uma spec em passos pequenos e ordenados, cada um com o que fazer e como verificar. Um bom plano pode ser revisado por uma pessoa antes de qualquer linha de código.
 
+**Plugin** — Pacote que a CLI instala e atualiza de uma vez, com skills e configurações. O superpowers pode ser instalado como plugin.
+
 **Prompt** — Texto que você envia ao agente para pedir algo. Vale só para aquela conversa e não fica guardado como processo.
 
 **SDD (Spec-Driven Development)** — Abordagem em que a especificação é escrita e aprovada antes do código e guia todo o trabalho. A spec vira a referência para o plano, os testes e a revisão.
 
-**Skill** — Arquivo com instruções que ensina ao agente um processo, como fazer brainstorming ou seguir TDD. Diferente de um prompt, a skill fica salva e pode ser reutilizada e compartilhada.
+**Skill** — Pasta com um arquivo `SKILL.md` que ensina ao agente um processo, como seguir TDD: um frontmatter com nome e descrição e, abaixo, as instruções. O agente a aciona quando a descrição combina com a tarefa ou quando você a chama pelo nome, com barra; diferente de um prompt, ela fica salva e pode ser reutilizada.
 
 **Spec** — Especificação: descrição do que deve ser construído, com regras, exemplos e critérios de aceite. É escrita antes do plano e aprovada por uma pessoa.
 
