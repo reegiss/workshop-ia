@@ -68,7 +68,7 @@ O **fora do escopo** diz o que a história não vai fazer. Por exemplo: não tra
 
 Repare que os critérios de aceite são a ponte entre a spec e o teste. É por isso que, no SDD, o teste escrito antes do código não sai do nada: ele sai de um critério que você já aprovou.
 
-O Capítulo 5 mostra uma spec real dessa história, escrita pelo agente a partir das suas respostas. Como todo arquivo do projeto, ela vai estar em inglês.
+O Capítulo 5 mostra os critérios de aceite da spec real dessa história, escrita pelo agente a partir das suas respostas. Como todo arquivo do projeto, ela vai estar em inglês.
 
 ### Quatro artefatos, uma revisão de cada vez
 
@@ -164,7 +164,7 @@ A Parte II segue a história do Banco Azul do pedido vago até o teste verde, um
 - Node.js em versão LTS;
 - git, com um repositório local onde você possa criar uma branch.
 
-O Capítulo 5 começa pela preparação do projeto exemplo. Depois, você faz o mesmo pedido curto do Capítulo 1, mas desta vez com a skill `brainstorming` no caminho. A diferença aparece logo na primeira resposta do agente: em vez de código, uma pergunta.
+Antes do Capítulo 5, prepare o projeto exemplo com os passos do Apêndice D. No Capítulo 5, você faz o mesmo pedido curto do Capítulo 1, mas desta vez com a skill `brainstorming` no caminho. A diferença aparece logo na primeira resposta do agente: em vez de código, uma pergunta.
 
 ### Resumo
 

@@ -6,8 +6,6 @@
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
-**Commit** — Registro de uma versão dos arquivos no histórico do git, com uma mensagem que descreve a mudança. A spec e o plano entram em commits na mesma branch do código, e `git log --oneline` lista os commits feitos.
-
 **Constituição** — No Spec Kit, documento com os princípios do projeto que toda spec deve respeitar. A spec muda a cada história; a constituição vale para todas.
 
 **Contexto** — Tudo o que o modelo enxerga numa chamada: o pedido, os arquivos lidos, as saídas de comandos e as instruções do harness. Tem limite, e o que não está nele não existe para o modelo, fora o que ele aprendeu no treinamento.
@@ -57,3 +55,169 @@
 **Vermelho/verde** — Os dois estados de um teste no ciclo do TDD: vermelho quando falha e verde quando passa. Ver o vermelho antes do verde é a evidência de que o teste realmente verifica algo.
 
 **Worktree** — Cópia de trabalho adicional de um repositório git, ligada a outra branch, numa pasta separada. Permite que um agente trabalhe isolado sem mexer na pasta principal.
+
+## Apêndice D — Projeto do exemplo
+
+Este é o projeto que os Capítulos 5 a 7 usam, reunido num só lugar para quem quiser reproduzir cada etapa com o agente. O código final é o ponto de chegada, não o ponto de partida: na prática, quem o escreve é o agente, guiado pelas skills.
+
+O apêndice segue a ordem da história. A preparação e o cadastro dos bancos são a única parte que você digita sozinho, antes de abrir a CLI. Os dois arquivos do fim servem para comparar com o que o seu agente produziu, não para copiar antes da hora.
+
+### Preparação
+
+Os comandos são iguais no macOS, no Linux e no Windows. Rode-os numa pasta vazia, fora de qualquer outro repositório:
+
+```bash
+mkdir bank-search
+cd bank-search
+git init -b main
+npm init -y
+npm install -D typescript vitest
+npm pkg set scripts.test="vitest run"
+```
+
+No editor, crie o `.gitignore` com uma única linha, `node_modules`, e o arquivo `src/banks.ts` da seção seguinte. Depois, feche a preparação com o commit inicial e crie a branch da história:
+
+```bash
+git add .
+git commit -m "chore: initial project"
+git switch -c feature/bank-search
+```
+
+Nesse ponto o projeto ainda não tem testes. É o estado em que o Capítulo 5 começa, e `npm test` termina com erro até o primeiro arquivo de teste existir.
+
+### Ponto de partida: src/banks.ts
+
+O cadastro traz três bancos fictícios e o limite entre as duas faixas de tarifa. Ele tem todos os dados de que a história precisa; o que falta são as decisões que o `brainstorming` arranca de você no Capítulo 5.
+
+```ts
+export type Bank = {
+  code: string;
+  name: string;
+  lowFee: number;
+  highFee: number;
+};
+
+export const FEE_RANGE_LIMIT = 1000;
+
+export const banks: Bank[] = [
+  { code: "001", name: "Banco Azul",
+    lowFee: 2, highFee: 5 },
+  { code: "012", name: "Banco Verde",
+    lowFee: 3, highFee: 4 },
+  { code: "123", name: "Banco Âmbar",
+    lowFee: 2, highFee: 6 },
+];
+```
+
+### Ponto de chegada
+
+Os dois arquivos abaixo são o resultado das três tarefas do plano do Capítulo 6, executadas em TDD no Capítulo 7: a tarifa por faixa, a busca por nome ou código do banco e a ordenação por tarifa, com o nome como desempate.
+
+O seu agente pode chegar a um código diferente, com outros nomes de variáveis ou outra forma de normalizar o texto. Isso não é problema. O que precisa coincidir são os comportamentos que os testes descrevem, porque eles vêm direto dos critérios de aceite da spec.
+
+Dois desses comportamentos têm história própria. O termo vazio, que devolve todos os bancos, foi uma lacuna revelada durante o plano, no Capítulo 6, e entrou na spec por decisão sua. O desempate pelo nome, com Âmbar antes de Azul, pega a comparação ingênua entre nomes: por código de caractere, "Â" vem depois de "Z" e Azul vai para a frente. A correção é `localeCompare(..., "pt-BR")`. Se o seu código passar nos oito testes, ele cobre os dois.
+
+`src/bankSearch.ts`:
+
+```ts
+import { type Bank, FEE_RANGE_LIMIT } from "./banks";
+
+export function calculateFee(
+  bank: Bank, amount: number
+): number {
+  return amount <= FEE_RANGE_LIMIT
+    ? bank.lowFee
+    : bank.highFee;
+}
+
+function normalize(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
+}
+
+export function searchBanks(
+  banks: Bank[], term: string
+): Bank[] {
+  const t = normalize(term);
+  return banks.filter((b) =>
+    normalize(b.name).includes(t) ||
+    b.code === term
+  );
+}
+
+export function sortByFee(
+  banks: Bank[], amount: number
+): Bank[] {
+  return [...banks].sort((a, b) =>
+    calculateFee(a, amount) -
+      calculateFee(b, amount) ||
+    a.name.localeCompare(b.name, "pt-BR")
+  );
+}
+```
+
+`src/bankSearch.test.ts`:
+
+```ts
+import { describe, it, expect } from "vitest";
+import { banks } from "./banks";
+import {
+  calculateFee, searchBanks, sortByFee,
+} from "./bankSearch";
+
+const blueBank = banks[0];
+const names = (list: { name: string }[]) =>
+  list.map((b) => b.name);
+
+describe("calculateFee", () => {
+  it("charges lowFee up to the limit", () => {
+    const fee = calculateFee(blueBank, 1000);
+    expect(fee).toBe(2);
+  });
+
+  it("charges highFee above the limit", () => {
+    const fee = calculateFee(blueBank, 1000.01);
+    expect(fee).toBe(5);
+  });
+});
+
+describe("searchBanks", () => {
+  it("ignores case", () => {
+    const found = searchBanks(banks, "AZUL");
+    expect(names(found)).toEqual(["Banco Azul"]);
+  });
+
+  it("ignores accents", () => {
+    const found = searchBanks(banks, "ambar");
+    expect(names(found)).toEqual(["Banco Âmbar"]);
+  });
+
+  it("finds the exact code", () => {
+    const found = searchBanks(banks, "001");
+    expect(names(found)).toEqual(["Banco Azul"]);
+  });
+
+  it("does not match part of a code", () => {
+    expect(searchBanks(banks, "1")).toEqual([]);
+  });
+
+  it("finds all banks for an empty term", () => {
+    expect(searchBanks(banks, "")).toHaveLength(3);
+  });
+});
+
+describe("sortByFee", () => {
+  it("sorts by fee, then by name", () => {
+    const all = searchBanks(banks, "");
+    expect(names(sortByFee(all, 500))).toEqual([
+      "Banco Âmbar", "Banco Azul", "Banco Verde",
+    ]);
+  });
+});
+```
+
+Com os dois arquivos no lugar, `npm test` deve mostrar `Tests  8 passed (8)`.
+
+> **[Nota]** O projeto foi conferido com Node 24 e Vitest 5. Versões futuras podem mudar a saída, não o método.

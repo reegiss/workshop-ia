@@ -21,7 +21,7 @@ Comandos de preparação (bloco `bash`, iguais no macOS, Linux e Windows):
 ```bash
 mkdir bank-search
 cd bank-search
-git init
+git init -b main
 npm init -y
 npm install -D typescript vitest
 npm pkg set scripts.test="vitest run"

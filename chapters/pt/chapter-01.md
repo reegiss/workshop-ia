@@ -6,7 +6,7 @@ Um *agente* de IA escreve em segundos um código que você levaria uma tarde par
 
 Este livro é para pessoas desenvolvedoras de qualquer linguagem ou plataforma que já usam, ou estão começando a usar, um agente de código no terminal. Nos exemplos, usamos duas *CLIs* (programas de linha de comando): o GitHub Copilot CLI e o Claude Code. Se você usa outra parecida, as ideias continuam valendo.
 
-Você não precisa ser especialista em nada. Basta conhecer git e linha de comando: criar uma *branch*, fazer um commit, rodar um comando. O exemplo prático é em TypeScript, mas você só precisa ler o código, não dominar a linguagem.
+O livro supõe que você já usa git (commit, *branch*), npm e testes automatizados no dia a dia, e não para para explicá-los. O exemplo prático é em TypeScript, mas você só precisa ler o código, não dominar a linguagem.
 
 O livro foi escrito para quem quer confiança para colocar o próprio nome num pull request feito com ajuda do agente. Se você já aceitou uma sugestão que "parecia certa" e descobriu o erro dias depois, este livro é para você.
 
@@ -57,6 +57,7 @@ O livro tem três partes e apêndices.
 - Apêndice A — Mapa das skills
 - Apêndice B — Glossário
 - Apêndice C — Equivalências entre as CLIs
+- Apêndice D — Projeto do exemplo
 
 A Parte I explica as peças: o que é um agente, o que é uma skill e por que a evidência importa. A Parte II usa essas peças num único exemplo, do pedido inicial até o teste passando. A Parte III mostra como levar o método para histórias maiores e onde ele para de compensar.
 
@@ -64,7 +65,7 @@ A Parte I explica as peças: o que é um agente, o que é uma skill e por que a 
 
 Na primeira leitura, siga a ordem dos capítulos. A Parte II depende dos conceitos da Parte I. Pular direto para a prática funciona mal: você vai ver os comandos, mas não vai entender por que eles estão ali.
 
-Leia a Parte II com o terminal aberto e faça o exemplo junto. Ler sobre um teste falhando ensina pouco; ver o teste falhar na sua máquina ensina muito mais. Reserve de 1 a 2 horas para essa parte, de preferência num bloco só.
+Leia a Parte II com o terminal aberto e faça o exemplo junto. O projeto completo, da preparação ao código final, está no Apêndice D. Ler sobre um teste falhando ensina pouco; ver o teste falhar na sua máquina ensina muito mais. Reserve de 1 a 2 horas para essa parte, de preferência num bloco só.
 
 Depois da primeira leitura, a Parte I serve de consulta rápida. Use o sumário para voltar a um conceito quando precisar explicá-lo para alguém do time.
 

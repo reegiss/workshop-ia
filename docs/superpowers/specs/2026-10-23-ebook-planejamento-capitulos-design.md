@@ -43,7 +43,7 @@ na página do capítulo anterior no PDF).
 | `chapter-07.md` | Cap. 6 · Planejar | 1.500 |
 | `chapter-08.md` | Cap. 7 · Vermelho, depois verde | 2.500 |
 | `chapter-09.md` | Rótulo Parte III + Cap. 8 · Escala, limites e próximos passos | 2.000 |
-| `chapter-10.md` | Apêndice A (mapa das skills), Apêndice B (glossário), Apêndice C (equivalências entre CLIs), cada um em `##` | 1.000 |
+| `chapter-10.md` | Apêndice A (mapa das skills), Apêndice B (glossário), Apêndice C (equivalências entre CLIs), Apêndice D (projeto do exemplo), cada um em `##` | 1.000 |
 
 ### Escopo de cada capítulo
 
@@ -119,6 +119,16 @@ de valor**.
 
 ## Padrões de escrita (todos os capítulos)
 
+- **Método acima do exemplo (Parte II):** cada capítulo prático segue o roteiro
+  `### O que esta etapa resolve` → `### Conduzindo o agente` (pedido, o que esperar, onde
+  intervir) → `### A evidência` (o que conferir e como) → `### Erros comuns` → `### Resumo`.
+  O Banco Azul aparece só em caixas `> **[Exemplo]**` curtas; código mínimo. O projeto completo
+  (setup, `banks.ts`, `bankSearch.ts`, testes) fica no **Apêndice D — Projeto do exemplo**.
+- **Nível do leitor:** dev que usa git, npm e testes no dia a dia. Explicar só o que é novo
+  (agente, skills, evidência, o motivo de cada vermelho). **Não** explicar git (commit, status,
+  diff, branch), npm, matchers (`toBe`/`toEqual`), Unicode/NFD nem como ler saída de teste.
+  Revisões editoriais não devem acrescentar esse tipo de explicação.
+
 - **Estrutura de capítulo:** abertura com o objetivo do capítulo em 1–2 frases → seções com
   `###` → **Resumo** ao final (3–5 itens) para capítulos com mais de 1.500 palavras.
 - **Caixas didáticas** em blockquote com rótulo em negrito, compatíveis com PDF e EPUB:
@@ -166,8 +176,9 @@ as edições pedidas.
   descrição): definidos depois que a Parte I estiver escrita.
 - Capa (`cover/`): depois do título.
 - Build final: desligar ligaduras da JetBrains Mono (`=>` vira seta e `---` vira traço
-  contínuo, o que quebra o frontmatter do Cap. 3) com `monofontoptions: [Contextuals=NoAlternate]`
-  em `kdp-pdf.yaml`, e conferir a página impressa.
+  contínuo, o que quebra o frontmatter do Cap. 3): trocar `monofont` para `"JetBrains Mono NL"`
+  (variante sem ligaduras, já instalada; tem `×` e `Â`) em `kdp-pdf.yaml`, e conferir a página
+  impressa.
 - Build final: procurar "Overfull \hbox" no log (nomes longos de skill em código inline, como
   `verification-before-completion`, não hifenizam) e conferir títulos `####` no PDF.
 - Antes do Cap. 5: confirmar como cada CLI mostra skills de plugin (ex.: `superpowers:brainstorming`)
