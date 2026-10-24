@@ -1,80 +1,73 @@
 ## Capítulo 3 — Skills: um processo em arquivo {#cap-3}
 
-O [Capítulo 2](#cap-2) terminou com uma ideia: a skill é onde o processo pode morar, dentro do harness. Este capítulo abre uma skill por dentro, mostra como o agente a usa e onde ela fica guardada. No fim, você instala um pacote de skills na sua CLI e aprende os cuidados que ele exige.
+O [Capítulo 2](#cap-2) terminou com uma distinção: o prompt degrada com a sessão, e a skill é o único dos três mecanismos que transforma processo em artefato durável e auditável. Este capítulo trata a skill como engenharia, e não como recurso de ferramenta. Ele mostra como ela é versionada e revisada, como gasta o orçamento de contexto, por que o acionamento não é confiável e que padrões de engenharia o livro usa a partir daqui. No fim estão os comandos de instalação e o que muda quando a skill vem de terceiros.
 
-### Anatomia de um SKILL.md
+### Skill é processo versionado
 
-Uma skill é uma pasta. Dentro dela há pelo menos um arquivo, sempre com o mesmo nome: `SKILL.md`. O nome da pasta deve ser igual ao nome da skill.
+Uma skill é uma pasta com um `SKILL.md`. O arquivo tem um *frontmatter* com dois campos obrigatórios: `name`, em minúsculas e hifens, igual ao nome da pasta, e `description`. Abaixo vem o corpo, com as instruções em Markdown. A pasta pode trazer arquivos de apoio, como referências longas, modelos de documento e scripts. O formato segue um padrão aberto, o Agent Skills, e a mesma pasta funciona no Claude Code e no GitHub Copilot CLI.
 
-O `SKILL.md` tem duas partes. No topo vem um cabeçalho curto, delimitado por duas linhas com três hifens. Esse cabeçalho se chama *frontmatter* e é escrito em YAML, um formato simples de chave e valor. Ele traz dois campos obrigatórios:
+O formato é trivial; o que importa é a consequência. Um processo de engenharia costuma morar em três lugares ruins: na cabeça das pessoas, numa página de wiki que ninguém atualiza ou num prompt que cada um cola do seu jeito. Nenhum deles tem versão, autoria, diff ou revisão. A skill tem tudo isso de graça, porque é um arquivo no repositório:
 
-- `name`: o nome da skill, só com letras minúsculas, números e hifens (no lugar de espaços), igual ao nome da pasta;
-- `description`: uma ou duas frases que dizem para que a skill serve e quando usá-la.
+- **Mudança por PR.** Alterar o processo é abrir um pull request, com descrição do motivo, revisão e aprovação, como qualquer mudança de código.
+- **Dono explícito.** Uma regra de CODEOWNERS sobre o diretório de skills define quem aprova mudanças no processo do time.
+- **Histórico como justificativa.** O `git log` da skill explica por que um passo existe, o que evita a erosão comum de processo ("ninguém lembra por que fazemos isso, vamos pular").
+- **Reprodutibilidade.** Duas pessoas do time, em duas CLIs diferentes, carregam o mesmo texto na mesma versão.
 
-Abaixo do frontmatter vem o corpo: as instruções, em Markdown comum. É texto para o agente ler, escrito como você escreveria para uma pessoa nova no time. Passos numerados, regras curtas, exemplos. Não há linguagem especial nem sintaxe obrigatória.
+Uma skill de projeto deve ser específica. Ela codifica o que só vale ali: o módulo que não pode ser tocado sem rede de proteção, o contrato que não pode quebrar e a regra que não pode ser duplicada.
 
-A pasta também pode guardar arquivos de apoio, como scripts que o agente pode rodar ou modelos de documento que ele deve preencher. O corpo do `SKILL.md` diz quando usar cada um.
-
-Volte à história da busca de bancos. A regra de que R$ 1.000,00 fica na faixa baixa não estava no contexto, e o agente errou o limite. O Capítulo 2 sugeriu escrever essa regra num arquivo do projeto. Uma skill vai um passo além: ela diz ao agente quando ler esse arquivo e o que fazer antes de mexer na tarifa.
-
-> **[Exemplo]** Uma skill mínima, inventada para este livro, guardada em `fee-rules/SKILL.md`:
+> **[Exemplo]** No `transfer-service`, uma skill de projeto em `.claude/skills/fee-rules/SKILL.md` guarda o que vale para o legado de tarifas:
 >
 > ```md
 > ---
 > name: fee-rules
-> description: Use when writing or changing
->   transfer fees, fee ranges or their tests.
+> description: Use when changing src/legacy/,
+>   fee calculation or fee tests.
 > ---
->
-> # Fee rules
->
-> 1. Before changing calculateFee, read
->    docs/fee-rules.md.
-> 2. Ask before assuming a range boundary.
-> 3. Write the failing test before the code.
-> 4. Run the tests and show the output.
+> 1. Before editing src/legacy/, add
+>    characterization tests; they must pass.
+> 2. Keep the getFee signature unchanged.
+> 3. Reuse the legacy fee rule; never copy it.
 > ```
->
-> As linhas entre os dois `---` são o frontmatter; o resto é o corpo. A descrição diz quando usar; o corpo diz como trabalhar. O arquivo está em inglês, como todo o código do livro.
 
-Repare no tamanho. Quatro instruções já atacam as três falhas do [Capítulo 1](#cap-1) nesse pedaço do código: ler a regra e perguntar sobre o limite combatem implementar antes de esclarecer; o teste antes do código combate o teste que copia a saída; rodar os testes combate o "pronto" sem evidência.
+Repare no que o exemplo não faz. Ele não ensina TDD nem explica o que é teste de caracterização; isso é papel de skills gerais. Ele só amarra o processo geral aos pontos de risco deste repositório.
 
-Uma skill não precisa ser longa para ser útil. Precisa ser clara sobre quando se aplica e sobre o que o agente deve fazer.
+### Divulgação progressiva: orçamento de contexto
 
-O formato segue um padrão aberto, chamado Agent Skills, adotado por várias CLIs. A mesma pasta funciona no Claude Code e no GitHub Copilot CLI, sem mudar uma linha.
+O Capítulo 2 mostrou que cada token no contexto compete por atenção e que a janela se deteriora antes de encher. Skills instaladas disputam o mesmo orçamento. O formato lida com isso por *divulgação progressiva* (*progressive disclosure*), em três níveis de custo:
 
-### Como o agente usa uma skill
+1. **Metadados, sempre carregados.** O `name` e a `description` de cada skill disponível entram no contexto de toda sessão. O custo é baixo por skill, mas é fixo e se multiplica pelo número de skills instaladas.
+2. **Corpo, ao acionar.** O corpo do `SKILL.md` entra no contexto só quando a skill é acionada, e a partir daí ocupa espaço como qualquer outro texto da sessão.
+3. **Arquivos de apoio, sob demanda.** Referências e modelos só entram se o corpo mandar e o agente de fato ler. Scripts podem ser executados sem serem lidos, e aí só a saída entra no contexto.
 
-Um projeto pode ter dezenas de skills instaladas. Se todas entrassem inteiras no contexto a cada pedido, sobraria pouco espaço para o código, as saídas de comandos e a conversa. O harness evita isso carregando a skill em duas etapas.
+Isso gera critérios de projeto para quem escreve skills:
 
-Na primeira etapa, só o `name` e a `description` de cada skill entram no contexto. São poucas linhas por skill. Isso custa pouco e permite que o modelo saiba quais processos estão disponíveis.
+- **A descrição é a interface.** Ela é o único texto que o modelo vê antes de decidir. Deve dizer quando usar, com gatilhos concretos (caminhos, tipos de tarefa, sintomas), e não o que a skill é.
+- **O corpo é curto e imperativo.** Passos e regras verificáveis. Material de referência longo vai para arquivos de apoio, que o corpo aponta.
+- **Trabalho determinístico vai para script.** Uma checagem que pode ser um comando é mais confiável executada do que descrita, e custa menos contexto.
+- **Menos skills é melhor.** Cada skill instalada é custo fixo em toda sessão e mais uma descrição competindo pela escolha. Skills com descrições sobrepostas pioram as duas coisas.
 
-Na segunda etapa, quando a skill é acionada, o corpo do `SKILL.md` entra no contexto. Só a partir daí o agente lê as instruções e passa a segui-las.
+### Acionamento não é determinístico
 
-A diferença de tamanho é grande. Um corpo costuma ter dezenas ou centenas de linhas; a descrição, uma ou duas. Com vinte skills instaladas, a primeira etapa ocupa umas quarenta linhas do contexto, e só os corpos das skills em uso entram por inteiro. Como o contexto tem limite, isso deixa espaço para o que importa na tarefa: o código, as saídas dos comandos e a conversa.
+A skill entra em ação de duas formas: pela descrição, quando o modelo decide que ela se aplica ao pedido, ou pelo nome, quando você a invoca explicitamente com barra, como `/fee-rules`.
 
-Uma skill é acionada de duas formas:
+O acionamento pela descrição é uma inferência do modelo, sujeita a tudo o que o Capítulo 2 descreveu. Ele pode falhar de várias formas:
 
-- **Pela descrição:** o modelo compara o sentido do seu pedido com as descrições disponíveis. Se uma trata do mesmo assunto da tarefa, ele aciona a skill por conta própria.
-- **Pelo nome:** você chama a skill digitando uma barra seguida do nome, como `/brainstorming`. Nesse caso, ela entra no contexto mesmo que o modelo não a tivesse escolhido.
+- o pedido não se parece com a descrição o bastante, e a skill não é acionada;
+- duas descrições se sobrepõem, e a escolhida é a errada;
+- a skill é acionada no começo da sessão, e o corpo é compactado ou perde peso horas depois, embora o agente continue agindo como se a seguisse;
+- o modelo carrega a skill e pula um passo que julgou desnecessário para aquele caso.
 
-A primeira forma explica por que a descrição é a parte mais importante do arquivo. É ela que diz ao modelo *quando* usar a skill. Uma descrição vaga, como "Regras do projeto", raramente combina com um pedido concreto. Uma descrição específica, como a do exemplo, dá ao modelo um assunto claro: tarifas de transferência e suas faixas.
+Sob a ótica de zero-trust, isso define a regra de uso. **Quando o processo importa, chame a skill pelo nome.** O acionamento automático serve para conveniência, nas situações em que esquecer a skill custa pouco. Ele não serve como controle. E, mesmo chamada pelo nome, a skill só aumenta a probabilidade de o processo ser seguido. A confirmação vem do artefato que o processo deveria produzir: a spec gravada, o plano no repositório, o vermelho na saída do teste. Se o artefato não existe, o processo não aconteceu, diga o agente o que disser.
 
-Pense no pedido do Capítulo 1: "ordene pela tarifa do valor informado". Com a skill `fee-rules` instalada, o pedido trata do mesmo assunto da descrição, mesmo escrito em português. O agente carrega as instruções, lê o arquivo da regra e pergunta sobre o limite antes de escrever `calculateFee`.
-
-Pode ser que isso não aconteça. A escolha pela descrição é uma decisão do modelo, e decisões do modelo variam. Ele pode achar que o pedido não precisa da skill, ou pode escolher outra parecida.
-
-> **[Dica Prática]** Quando você quer ter certeza de que uma skill vai ser usada, chame-a pelo nome. Digitar `/fee-rules` antes do pedido garante que as instruções entrem no contexto. Deixe o acionamento automático para as situações em que esquecer a skill não custa caro.
+> **[Dica Prática]** Em mudanças de risco, invoque a skill pelo nome numa sessão nova e confira na transcrição que ela foi carregada antes do primeiro pedido de edição. Numa sessão longa, invoque de novo ao começar uma etapa, em vez de confiar que o corpo carregado lá atrás ainda pesa.
 
 ### Onde as skills moram
 
-Cada CLI procura skills em pastas conhecidas. Há dois tipos de pasta, e a escolha entre eles é uma decisão sobre quem vai usar a skill.
+Cada CLI procura skills em dois escopos, e a escolha entre eles é uma decisão de governança, não de conveniência.
 
-A **pasta do projeto** fica dentro do repositório. A skill é versionada junto com o código, entra nos pull requests e vale para todas as pessoas do time que abrirem o projeto. É o lugar certo para regras do próprio projeto, como a `fee-rules`: ela só faz sentido onde existe `calculateFee`.
+O **escopo de projeto** fica no repositório. A skill é versionada, revisada em PR e igual para todo o time. É o lugar de qualquer processo que o time considera obrigatório.
 
-A **pasta pessoal** fica no seu diretório de usuário. A skill vale para todos os seus projetos, mas só na sua máquina. É o lugar certo para processos gerais, que você quer em qualquer repositório, como esclarecer antes de implementar ou escrever o teste primeiro.
-
-As pastas de cada CLI são estas:
+O **escopo pessoal** fica no seu diretório de usuário. A skill vale para todos os seus projetos, mas é invisível para quem revisa o seu trabalho. Serve para preferências e para processos gerais que você quer em qualquer repositório. Se o time depende de uma regra, ela não pode morar só no escopo pessoal de alguém.
 
 *Claude Code*
 
@@ -86,30 +79,35 @@ As pastas de cada CLI são estas:
 - projeto: `.github/skills/`, `.claude/skills/` ou `.agents/skills/`;
 - pessoal: `~/.copilot/skills/` ou `~/.agents/skills/`.
 
-Cada skill ocupa uma subpasta dentro dessas. A `fee-rules` do exemplo, no projeto, ficaria em `.claude/skills/fee-rules/SKILL.md`.
+Como `.claude/skills/` aparece nas duas listas, um time que usa as duas CLIs pode manter as skills do projeto ali. Evite o mesmo nome de skill em escopos diferentes: a regra de precedência varia entre CLIs e versões, e um processo ambíguo é um processo não auditável.
 
-Repare que `.claude/skills/` aparece nas duas listas. Se o time usa as duas CLIs, guardar as skills do projeto nessa pasta faz com que ambas as encontrem.
+### Padrões de engenharia com IA
 
-### O superpowers
+As falhas do Capítulo 1 não são específicas de uma ferramenta, e as respostas a elas também não. O livro organiza essas respostas como padrões de engenharia: cada um nomeia um problema recorrente do trabalho com agentes, um mecanismo que o resolve e a evidência que ele deixa. A skill é só o veículo. O padrão continua valendo se você trocar de CLI, de pacote de skills ou escrever a sua própria implementação.
 
-Escrever as próprias skills é útil para regras do projeto. Para práticas gerais de engenharia, você não precisa começar do zero.
+O *superpowers*, pacote aberto de skills de engenharia criado por Jesse Vincent e publicado em `obra/superpowers`, é usado neste livro como implementação de referência de cada padrão. O pacote evolui; o livro não fixa quantas skills ele tem.
 
-O *superpowers* é um pacote aberto de skills de engenharia de software, criado por Jesse Vincent e publicado no repositório `obra/superpowers`. Cada skill do pacote codifica uma prática conhecida: esclarecer o requisito antes de implementar, escrever um plano, seguir TDD, depurar com método, verificar antes de declarar pronto e revisar o código. O pacote cresce com o tempo, por isso este livro não fixa quantas skills ele tem.
+**Elicitação Guiada de Requisitos** (*Guided Requirements Elicitation*). Problema: o agente preenche lacunas do pedido em silêncio, com a interpretação mais provável. Mecanismo: antes de qualquer código, o agente explora o repositório, faz perguntas uma de cada vez, propõe abordagens com trade-offs e só grava a spec depois da sua aprovação. Evidência: requisito esclarecido. Referência: `brainstorming`.
 
-O fluxo do livro usa só quatro delas, uma para cada etapa. Compare cada uma com as três falhas do Capítulo 1:
+**Decomposição Verificável** (*Verifiable Decomposition*). Problema: tarefas grandes demais para revisar e sem critério de pronto. Mecanismo: a spec vira um plano de tarefas pequenas, cada uma com arquivos explícitos, um teste que começa falhando e o comando que prova o resultado. Evidência: plano revisável. Referência: `writing-plans`.
 
-- `brainstorming`: esclarece o requisito com perguntas antes de qualquer código e termina numa spec aprovada por você. Responde a implementar antes de esclarecer.
-- `writing-plans`: transforma a spec num plano curto, com tarefas pequenas e revisáveis, cada uma começando por um teste. Liga o esclarecimento ao TDD.
-- `test-driven-development`: conduz o ciclo vermelho, depois verde, com o teste escrito antes do código. Responde ao teste escrito depois, só para passar.
-- `verification-before-completion`: exige que o agente rode os comandos e mostre a saída antes de dizer "pronto". Responde ao "pronto" sem evidência.
+**Prova por Falha** (*Fail-First Proof*). Problema: o teste escrito depois espelha a implementação e passa por construção. Mecanismo: o teste vem antes do código e precisa falhar pelo motivo certo; só então vem o código mínimo para passar. Evidências: teste falhando antes do código e teste passando depois. Referência: `test-driven-development`.
 
-Essas quatro skills formam o fluxo mínimo. O [Capítulo 4](#cap-4) explica esse fluxo e a evidência que cada etapa produz. A [Parte II](#cap-5) usa cada skill no exemplo da busca de bancos. O [Apêndice A](#apendice-a) mostra o pacote completo, organizado pelos momentos do trabalho.
+**Portão de Verificação Independente** (*Independent Verification Gate*). Problema: o loop termina quando o modelo decide, e "pronto" é texto. Mecanismo: nenhuma afirmação de conclusão sem o comando que a prova executado agora, com a saída lida. Evidência: resultado verificado. Referência: `verification-before-completion`.
 
-### Instalando
+**Delegação com Contexto Limpo** (*Clean-Context Delegation*). Problema: o contexto acumulado de uma sessão longa degrada a execução de cada tarefa nova. Mecanismo: um coordenador entrega cada tarefa a um subagente com contexto curado, recebe só o resultado e revisa antes da próxima. Referência: `subagent-driven-development`.
 
-Há duas formas de instalar o superpowers. A primeira instala o pacote inteiro como *plugin*, um conjunto de skills e configurações que a CLI instala e atualiza de uma vez. Um plugin pode trazer também comandos que a CLI roda sozinha, por isso os cuidados do fim do capítulo valem para ele. A segunda instala só as quatro skills do fluxo mínimo.
+**Isolamento de Espaço de Trabalho** (*Workspace Isolation*). Problema: o agente altera a mesma árvore de arquivos em que você e outros agentes trabalham. Mecanismo: cada linha de trabalho ganha um worktree e uma branch próprios, e o resultado é uma branch para revisar. Referência: `using-git-worktrees`.
 
-A primeira forma é a mais simples de manter. Os comandos mudam conforme a CLI.
+**Revisão Independente** (*Independent Review*). Problema: quem escreveu o código é o pior revisor dele, e isso vale também para o agente na mesma sessão. Mecanismo: a revisão é feita por um contexto que não participou da implementação, contra a spec e o plano, antes da sua leitura do diff. Referência: `requesting-code-review`.
+
+**Caracterização antes da Mudança** (*Characterize Before Change*). Problema: em código legado sem testes, não existe especificação confiável do comportamento atual, e qualquer mudança pode quebrar um contrato sem que ninguém perceba. Mecanismo: antes de tocar o código, testes registram o que ele faz hoje. Eles nascem verdes, ao contrário do TDD, e só provam algo quando se quebra o legado de propósito e se vê o vermelho. Não há skill própria no superpowers; é o passo zero, e uma skill de projeto como a `fee-rules` é o lugar natural para exigi-lo. O resultado é a linha de base caracterizada, pré-requisito das seis evidências e não uma sétima.
+
+O fluxo mínimo do livro usa os quatro primeiros: esclarecer, planejar, vermelho/verde, verificar. O [Capítulo 4](#cap-4) liga cada um à sua evidência e apresenta a variação para código legado. A [Parte II](#cap-5) executa o fluxo no exemplo. O [Capítulo 8](#cap-8) trata de delegação, isolamento e revisão quando o trabalho escala. O [Apêndice A](#apendice-a) mapeia o pacote completo.
+
+### Instalando o superpowers
+
+Há duas formas. Como *plugin*, o pacote inteiro é instalado e atualizado de uma vez. Um plugin pode trazer, além de skills, comandos e hooks que a CLI executa sem passar pelo modelo, então tudo o que a próxima seção diz vale em dobro para ele. Pela CLI `skills`, você instala só as skills escolhidas.
 
 *Claude Code* (dentro da sessão):
 
@@ -117,7 +115,7 @@ A primeira forma é a mais simples de manter. Os comandos mudam conforme a CLI.
 /plugin install superpowers@claude-plugins-official
 ```
 
-*Copilot CLI* (no terminal):
+*Copilot CLI*:
 
 ```bash
 copilot plugin marketplace add \
@@ -126,11 +124,7 @@ copilot plugin install \
   superpowers@superpowers-marketplace
 ```
 
-No Copilot CLI, o primeiro comando registra o marketplace, o catálogo de onde o pacote vem; o segundo instala o pacote.
-
-A barra invertida no fim de uma linha só quebra o comando para caber na página. Colado como está, ele funciona no bash e no zsh. No PowerShell do Windows, digite cada comando numa linha só, sem as barras.
-
-A segunda forma usa um programa de linha de comando chamado `skills`, executado com `npx`. Ele exige Node.js 22 ou superior. O comando abaixo instala as quatro skills na pasta pessoal do Claude Code:
+Só o fluxo mínimo, via `npx` (exige Node.js 22 ou superior). Aqui ele vai para o escopo pessoal do Claude Code; troque `claude-code` por `github-copilot` para o Copilot CLI, e omita `-g` para instalar no escopo do projeto:
 
 ```bash
 npx skills add obra/superpowers -g \
@@ -140,40 +134,38 @@ npx skills add obra/superpowers -g \
   verification-before-completion
 ```
 
-As barras invertidas seguem a mesma regra de antes. As opções fazem o seguinte:
+Skills vindas de plugin podem aparecer com prefixo, como `superpowers:brainstorming`; é a mesma skill. O [Apêndice C](#apendice-c) reúne as equivalências entre as CLIs, inclusive como listar e invocar skills.
 
-- `-a` escolhe a CLI. No Copilot CLI, troque `claude-code` por `github-copilot`;
-- `-s` lista as skills que você quer;
-- `-g` instala na pasta pessoal. Sem `-g`, a instalação vai para a pasta do projeto em que você está.
+> **[Nota]** Os comandos foram conferidos na data de publicação. Se mudarem, o README de `obra/superpowers` traz as instruções atuais para cada CLI.
 
-Depois de instalar, confira se as skills aparecem. No Claude Code, digite `/` e procure `brainstorming` na lista que aparece. No Copilot CLI, digite `/skills list` dentro da sessão. Quando a skill vem de um plugin, a CLI pode mostrá-la com o nome do plugin na frente, como `superpowers:brainstorming`; é a mesma skill.
+### Skills de terceiros: risco de cadeia de suprimentos
 
-Se a skill não aparecer, feche a sessão e abra outra. A CLI costuma ler as skills disponíveis quando a sessão começa.
+Uma skill de terceiros é uma dependência, e das mais privilegiadas que você pode adicionar. Uma biblioteca roda dentro do seu programa. Uma skill dirige um agente que, como mostrou o Capítulo 2, tem shell com os seus privilégios. Trate-a como problema de *cadeia de suprimentos* (*supply chain*).
 
-> **[Nota]** Os comandos desta seção foram conferidos na data de publicação. Se algum mudar de nome ou de forma, consulte o README do repositório `obra/superpowers`, que traz as instruções atuais de instalação para cada CLI.
+Os vetores são os conhecidos de qualquer ecossistema de pacotes, com um agravante:
 
-### Skills de terceiros são instruções para o seu agente
+- **Instrução maliciosa no corpo.** Um passo que manda ler arquivos fora do escopo, rodar um script da própria pasta ou enviar dados para fora. Chega ao aprovador com a mesma cara de um passo legítimo.
+- **Scripts e hooks.** Código executável dentro da pasta, ou do plugin, que roda com os seus privilégios, às vezes sem passar pela aprovação de comandos.
+- **Injeção via arquivos de apoio.** Referências lidas sob demanda entram no contexto como qualquer saída de ferramenta.
+- **Atualização comprometida.** A versão que você revisou era segura; a seguinte vem de uma conta comprometida ou de um mantenedor novo. É o mesmo padrão de ataques a pacotes npm, só que o payload é texto em linguagem natural, que nenhum scanner de dependências analisa.
 
-Instalar uma skill parece instalar uma biblioteca, mas o efeito é diferente. Uma skill é um conjunto de instruções que o agente vai seguir. E o agente, como você viu no Capítulo 2, tem acesso ao seu terminal e aos seus arquivos.
+O agravante é que o payload não precisa parecer código. Uma frase bem colocada no meio de cem linhas razoáveis é suficiente.
 
-Uma skill mal-intencionada pode pedir ao agente que leia arquivos que não têm relação com a tarefa, rode um script da própria pasta ou envie dados para fora da sua máquina. Mesmo uma skill bem-intencionada pode trazer um passo que não combina com o seu projeto. As permissões ajudam, porque o harness pede autorização antes de rodar comandos. Mas um pedido que vem de uma skill chega com a mesma cara de um pedido comum, e é fácil aprová-lo sem pensar.
+Os controles também são os de cadeia de suprimentos:
 
-Por isso, trate a instalação de uma skill como um pull request. Antes de instalar:
+- **Revisão integral antes de instalar.** Leia o `SKILL.md` inteiro, os arquivos de apoio, os scripts e, num plugin, a configuração de hooks e de servidores MCP. Mesmo critério de um PR de alguém de fora do time.
+- **Pinagem de versão.** Não deixe uma skill de terceiros flutuar para a versão mais recente. A forma mais simples e independente de CLI é incorporar ao repositório (*vendoring*) a pasta revisada, no escopo de projeto, registrando a origem e o commit de onde ela veio. A partir daí, a skill só muda por PR.
+- **Reavaliação a cada atualização.** Atualizar é revisar o diff entre a versão pinada e a nova, não reinstalar. Diff que você não leu é código que você não aprovou.
+- **Menor privilégio continua valendo.** Nenhuma skill justifica liberar padrões amplos de comando, expor credenciais ou dar ao agente acesso de push ou deploy.
 
-- leia o `SKILL.md` inteiro, não só a descrição;
-- abra os scripts e demais arquivos da pasta e entenda o que cada um faz;
-- prefira fontes que você conhece e que mostram o histórico de mudanças.
+> **[Aviso de Erro Comum]** Instalar como plugin com atualização automática e revisar só a primeira versão. O sintoma, quando aparece, é o agente executando passos que ninguém do time escreveu. Para evitar, pine a versão revisada no repositório e trate cada atualização como um PR de dependência, com diff lido e aprovação explícita.
 
-A mesma regra vale para atualizações. Uma skill que era segura na versão que você leu pode mudar depois.
-
-> **[Aviso de Erro Comum]** Instalar uma skill de fonte desconhecida sem ler o conteúdo, porque o nome e a descrição pareciam úteis. O sintoma aparece depois: o agente roda comandos ou lê arquivos que você não pediu e que não têm relação com a tarefa. Para evitar, leia a pasta inteira antes de instalar, como faria com o código de outra pessoa antes de aprovar um pull request.
-
-Há um último cuidado, que vale até para skills confiáveis. Uma skill orienta o agente; ela não o obriga. O modelo pode pular um passo, interpretar uma instrução do jeito errado ou não acionar a skill quando deveria. A skill aumenta muito a chance de o processo ser seguido, mas a evidência continua sendo sua responsabilidade. O [Capítulo 8](#cap-8) volta a esse limite.
+Por fim, o limite que vale até para a skill mais confiável: ela orienta o agente, mas não o obriga. O controle está nos artefatos que o processo produz e nas verificações que não dependem do agente. O Capítulo 8 volta a esse limite.
 
 ### Resumo
 
-- Uma skill é uma pasta com um arquivo `SKILL.md`: um frontmatter com `name` e `description`, seguido das instruções em Markdown, e arquivos de apoio opcionais.
-- Até ser usada, só o nome e a descrição ocupam o contexto. A skill é acionada quando a descrição combina com a tarefa ou quando você a chama pelo nome, com barra.
-- Skills na pasta do projeto são versionadas e valem para o time; skills na pasta pessoal valem para todos os seus projetos.
-- O superpowers é um pacote aberto de skills de engenharia. O livro usa quatro delas no fluxo mínimo: `brainstorming`, `writing-plans`, `test-driven-development` e `verification-before-completion`.
-- Uma skill de terceiros é uma instrução para o seu agente: leia antes de instalar e lembre que ela orienta, mas não garante.
+- Skill é processo em arquivo: versionada, com dono, revisada em PR e reproduzível entre pessoas e CLIs. Skills de projeto amarram o processo geral aos pontos de risco do repositório.
+- A divulgação progressiva gere o orçamento de contexto em três níveis (metadados, corpo, arquivos de apoio). Descrição precisa, corpo curto, trabalho determinístico em script e poucas skills.
+- O acionamento pela descrição é não determinístico. Quando o processo importa, chame a skill pelo nome e confirme pelo artefato produzido, não pela palavra do agente.
+- Os padrões de engenharia com IA são o conceito, e as skills do superpowers são implementações de referência. O fluxo mínimo usa Elicitação Guiada de Requisitos, Decomposição Verificável, Prova por Falha e Portão de Verificação Independente; em código legado, Caracterização antes da Mudança vem antes de tudo.
+- Skills e plugins de terceiros são risco de cadeia de suprimentos: revise tudo antes de instalar, pine a versão no repositório e reavalie o diff a cada atualização.

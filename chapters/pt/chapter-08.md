@@ -1,147 +1,212 @@
 ## Capítulo 7 — Vermelho, depois verde {#cap-7}
 
-Com a spec e o plano aprovados, entra o código, e ele só chega depois de um teste que você viu falhar. Este capítulo mostra como conduzir o agente nessa etapa e como conferir as quatro evidências que faltam: teste falhando, teste passando, diff revisado e resultado verificado por você.
+Com a spec e o plano aprovados, entra o código, e ele só chega depois de um teste que você viu falhar. Este capítulo trata da etapa em que o agente mais produz e em que a sua desconfiança mais rende: o ciclo vermelho-verde, a teoria que explica quando um teste protege alguma coisa e o portão que separa "o agente disse que terminou" de "está verificado". No fim, as quatro evidências que faltam estão reunidas.
 
-### O que esta etapa resolve
+### Prova por Falha
 
-Esta etapa ataca as duas falhas do [Capítulo 1](#cap-1) que sobraram depois da spec e do plano.
+Um teste é uma afirmação condicional: se o comportamento X quebrar, eu fico vermelho. Enquanto você não viu o vermelho, essa afirmação não foi testada. Um teste que sempre passou é indistinguível, na saída da suíte, de `expect(true).toBe(true)`.
 
-A segunda falha era o teste que copia a saída: escrito depois do código, ele afirma o que o código faz, não o que a regra pede, e passa junto com o erro. O plano já pôs o teste antes do código no papel. Falta garantir que isso aconteça na execução, e que o teste prove alguma coisa. Um teste só prova algo se você o viu falhar, e falhar pelo motivo certo.
+A Prova por Falha, que a skill `test-driven-development` implementa, existe por causa de um problema estrutural do trabalho com agentes: **o mesmo autor escreve o teste e o código.** Não há verificação independente entre os dois. Se o agente entendeu a regra errado, o teste e a implementação erram juntos, e o verde só prova que concordam entre si. O único momento em que o teste é confrontado com algo além do código que ele testa é o vermelho, quando ele roda contra a ausência do comportamento.
 
-A terceira falha era o "pronto" sem evidência: o agente prevê o resultado e o apresenta no tom de quem conferiu. A resposta é simples de dizer e fácil de pular: "pronto" exige evidência nova, produzida depois da última mudança, e lida por você.
+A skill impõe a ordem sem negociação:
 
-### Conduzindo o agente
+- nenhum código de produção antes de um teste falhando;
+- a falha é lida e o motivo é confirmado antes da implementação;
+- código mínimo para aquele teste, sem antecipar a próxima tarefa;
+- verde da suíte inteira, não só do teste novo;
+- código escrito antes do teste é apagado, e não "aproveitado" com um teste escrito em volta.
 
-#### O pedido
+A última regra é a mais dura e a mais importante. Um teste escrito em volta de código existente é a segunda falha do [Capítulo 1](#cap-1) com outro nome.
 
-Uma tarefa do plano por vez, na mesma sessão em que você aprovou o plano ou numa nova, já que tudo está no arquivo:
+Peça uma tarefa do plano por vez e continue aprovando comando a comando. Instalar pacote, mexer em configuração ou tocar arquivo fora do mapa foge do contrato do [Capítulo 6](#cap-6).
 
-```text
-/test-driven-development Execute a Task 1 do
-plano da busca de bancos.
-```
+### Falhou ou quebrou: o vermelho pelo motivo certo
 
-Quando a tarefa fechar, repita o pedido com o número da próxima. Executar uma tarefa por pedido mantém cada ciclo pequeno o bastante para você ler cada vermelho.
+Nem todo vermelho é prova. Há duas categorias, e confundi-las anula a evidência.
 
-Continue aprovando comando a comando. Nesta etapa, o esperado é pouco: criar ou editar os arquivos que o plano lista, rodar `npm test` e fazer um commit por tarefa. Instalar um pacote, mexer em configuração ou tocar arquivo fora do plano foge do combinado: recuse e pergunte por quê.
+- **O teste falhou:** a asserção rodou e o valor observado diverge do esperado. A mensagem fala do comportamento, como `expected 5 to be 2`.
+- **O teste quebrou:** a asserção nem chegou a rodar. `SyntaxError`, import com caminho errado, fixture que lança na preparação, nome digitado errado. A mensagem fala do arquivo de teste, e não da regra.
 
-#### O que esperar da skill
+Um teste quebrado não diz nada sobre o código, nem o verde que vem depois de consertá-lo. Entre os extremos há um vermelho legítimo, mas fraco: `is not a function` no primeiro ciclo. Ele mostra que o teste chama a função, não que a asserção discrimina valores. O vermelho que vale mais é o seguinte, quando a função existe e devolve o valor errado.
 
-A `test-driven-development` impõe um ciclo curto e não negocia a ordem:
+Ler um vermelho é conferir quatro coisas:
 
-- **Nenhum código de produção antes de um teste falhando.** O agente escreve o teste da tarefa, roda e mostra o vermelho antes de tocar na implementação.
-- **Confirmação do motivo.** A skill pede que o agente leia a falha e confirme que ela é a esperada: a função não existe, ou devolve o valor errado. Falha por erro de digitação ou de import não conta como vermelho; é teste quebrado, e o agente deve consertá-lo antes de seguir.
-- **Código mínimo.** Só o necessário para aquele teste passar, sem antecipar a próxima tarefa.
-- **Verde.** O agente roda de novo e mostra o teste passando, junto com os anteriores.
-- **Código escrito antes do teste é descartado.** Se aparecer implementação antes do vermelho, a regra é apagar e recomeçar pelo teste, não "aproveitar" e escrever o teste em volta. É aqui que a skill é mais dura que o TDD de costume, e é exatamente o que impede a segunda falha.
+1. o nome do teste corresponde ao critério que a tarefa implementa;
+2. a mensagem fala de valor, e não de estrutura;
+3. o esperado na mensagem é o da spec, e não o que o código devolve;
+4. a contagem bate: falha exatamente o que deveria falhar, e o resto continua passando.
 
-No primeiro ciclo de cada tarefa, o vermelho costuma ser o mais óbvio: a função ainda não existe, e a saída diz `is not a function` (ou `Cannot find module`, se nem o arquivo existe ainda). É o motivo certo, mas prova pouco. O vermelho que interessa é o seguinte, quando a função existe e devolve o valor errado.
+O quarto item é o mais esquecido: `3 failed` quando você esperava uma falha quer dizer que algo mais quebrou. E o Vitest transpila sem checar tipos; a suíte nunca substitui o typecheck, que é outro gate.
 
-#### Onde intervir
+### Teoria do teste de mutação
 
-A skill conduz o ciclo; você confere os pontos em que ele pode enganar.
+Ver o teste falhar uma vez prova que ele discrimina um defeito: a ausência do código. A pergunta seguinte é mais exigente: que outros defeitos ele pega? O teste de mutação responde a essa pergunta de forma sistemática, e a teoria por trás dele explica tanto o seu poder quanto os seus limites.
 
-**Leia o motivo de cada vermelho.** Não basta ver vermelho. Leia o nome do teste e a mensagem, e separe os dois casos:
+#### Mutantes, operadores e score
 
-- **O teste falhou:** a mensagem fala do comportamento, como `expected 5 to be 2` ou `is not a function`. É o vermelho que vale.
-- **O teste quebrou:** a mensagem fala do próprio arquivo de teste, como um `SyntaxError`, um import que aponta para o caminho errado ou um nome digitado errado. Não diz nada sobre a regra.
+Um *mutante* é uma cópia do programa com uma única alteração sintática pequena, gerada por um operador de mutação. A ferramenta gera centenas deles, roda a suíte contra cada um e classifica:
 
-Se quebrou, peça a correção do teste e um novo vermelho antes de aceitar qualquer código.
+- **morto:** pelo menos um teste falhou; a suíte detectou o defeito;
+- **sobrevivente:** todos os testes passaram; a suíte não distingue o mutante do original.
 
-**Quebre o código de propósito.** O agente pode acertar a implementação de primeira, e aí você nunca vê o teste proteger nada. Depois do verde, introduza você mesmo o erro mais provável (um operador de comparação, um caso de borda), rode `npm test`, confira que o teste certo fica vermelho e desfaça. Leva um minuto e transforma "o teste existe" em "o teste pega este erro".
+Os operadores reproduzem os deslizes que programadores cometem. Os mais reveladores:
 
-É a versão manual do teste de mutação. Ferramentas como o Stryker, que roda com o Vitest, fazem o mesmo em escala: alteram o código em muitos pontos e contam quantas alterações nenhum teste pegou. Num módulo crítico, rodar uma delas depois do fluxo mostra os casos que a spec e os testes deixaram de fora; cada alteração sobrevivente é um critério de aceite que faltou.
+- **troca de operador relacional e de limite:** `>` vira `>=`, `<` vira `<=`;
+- **negação de condicional:** `if (c)` vira `if (!c)`, ou a condição vira `true` ou `false`;
+- **troca de operador lógico:** `||` vira `&&`;
+- **remoção de chamada ou de bloco:** o corpo de uma função ou um `continue` desaparece;
+- **troca de método:** `toLowerCase()` vira `toUpperCase()`.
 
-**Desconfie de vermelho "consertado" no teste.** Quando um vermelho some, olhe o que mudou. Se a mudança foi no arquivo de testes, e não na implementação, pare e pergunte por quê. Um valor esperado diferente do que está na spec é a segunda falha voltando pela porta dos fundos.
+O *mutation score* é a fração de mutantes detectados sobre os mutantes válidos. Ele mede outra coisa que a cobertura. Cobertura diz que uma linha executou; mutação diz que alguma asserção depende do que a linha faz. Uma suíte com 100% de cobertura e asserções fracas pode deixar metade dos mutantes viva.
 
-**Chame a verificação antes de aceitar "pronto".** Ao fim da última tarefa, antes de aceitar qualquer "terminei":
+#### Por que mutações pequenas bastam
+
+Uma objeção natural: defeitos reais não são uma troca de caractere. A resposta vem de DeMillo, Lipton e Sayward (1978), em duas hipóteses.
+
+A *hipótese do programador competente* diz que programas escritos por profissionais competentes estão perto do correto; os defeitos que sobram são desvios pequenos da versão certa. O *efeito de acoplamento* diz que testes capazes de detectar todos os defeitos simples também detectam a maioria dos defeitos complexos, que são composições de simples.
+
+Juntas, elas justificam o método: se a suíte mata os mutantes de primeira ordem, ela provavelmente mata os defeitos reais. E aqui há um argumento específico para agentes. O código que um modelo gera é plausível por construção. Ele raramente erra a estrutura; erra o operador, o lado do limite, a chamada no lugar errado. O `<` do Capítulo 1 é exatamente um mutante de limite. A hipótese do programador competente descreve o agente melhor do que descreve muita gente.
+
+#### Mutantes equivalentes
+
+Alguns mutantes não podem morrer. Um *mutante equivalente* é sintaticamente diferente do original e semanticamente idêntico: nenhuma entrada distingue os dois. Decidir equivalência de programas é indecidível no caso geral, por isso nenhuma ferramenta os descarta sozinha; eles aparecem como sobreviventes e baixam o score.
+
+> **[Exemplo]** Stryker 10.1 sobre o código final do ranking: 52 mutantes, 51 mortos, 1 sobrevivente, score 98,08 (break em 80).
+>
+> ```text
+> [Survived] MethodExpression
+> src/ranking/bankRanking.ts:12:10
+> -       .toLowerCase();
+> +       .toUpperCase();
+> ```
+>
+> `normalize` é aplicada ao termo e ao nome antes da comparação; trocar a caixa dos dois lados não muda o resultado.
+
+Declarar um mutante equivalente é uma análise, e não um atalho. A troca de caixa só é equivalente se as duas direções forem simétricas para as entradas possíveis. Em Unicode geral não são (o "ß" alemão vira "SS" em maiúsculas), mas para o cadastro de bancos e o alfabeto do termo, são. Registre esse raciocínio junto da supressão, e não aceite "é equivalente" do agente sem ele. Um sobrevivente rotulado como equivalente por conveniência é um teste faltando com um álibi.
+
+#### Testes tautológicos: os que sobrevivem e os que enganam
+
+O Capítulo 1 apresentou o teste tautológico. A teoria de mutação permite separá-lo em duas famílias, e a distinção importa porque a ferramenta só pega uma delas.
+
+**Testes sem sensibilidade** deixam mutantes vivos, e a mutação os denuncia:
+
+- **espelho por reuso:** o esperado é calculado chamando a própria implementação, ou um helper que ela também usa. O mutante altera os dois lados da comparação, e o teste continua verde;
+- **asserção sobre o mock, e não sobre o efeito:** o teste confere que `current()` foi chamado, mas não o que o serviço fez com a tabela. Qualquer mutação no cálculo sobrevive;
+- **asserções fracas:** `toBeDefined()`, só o tamanho da lista, só "não lançou". O valor pode ser qualquer um.
+
+**Testes sem oráculo independente** matam mutantes e, ainda assim, não provam nada sobre a regra:
+
+- **espelho por cópia:** o esperado é calculado com a mesma lógica, copiada para o teste. A cópia carrega o defeito original;
+- **snapshot aceito sem leitura:** o snapshot fixa a saída atual, certa ou errada;
+- **esperado copiado da saída:** roda-se o código, cola-se o resultado no `expect`.
+
+Esses três são sensíveis a mudanças, então o score sobe. O problema está no *oráculo*, a fonte do valor esperado: ele é o próprio código. O teste do Capítulo 1, que afirmava `5` para R$ 1.000,00, mataria o mutante `<` para `<=` sem dificuldade, e o defeito chegaria à produção com score alto.
+
+A lição é precisa: **mutação mede sensibilidade, não correção do oráculo.** A correção do oráculo vem de fora do código: do critério de aceite da spec ou da caracterização de um consumidor que já está em produção. Repare que as duas últimas técnicas são, literalmente, como se escreve um teste de caracterização. A diferença é a intenção declarada: em código legado, fixar o comportamento atual é o objetivo; em código novo, é tautologia.
+
+### Quebrar de propósito: a mutação manual
+
+Rodar a ferramenta a cada tarefa é caro. A versão manual custa um minuto: depois do verde, aplique você mesmo o mutante mais provável, rode a suíte, confira que o teste certo fica vermelho e desfaça.
+
+A escolha do mutante segue a hipótese do programador competente. Pergunte qual é o erro plausível que este código admite: o lado do limite, uma condição invertida, uma chamada movida para dentro do laço. Não sabote ao acaso; sabote onde o agente erraria.
+
+> **[Exemplo]** Sabotagem do limite em `feeFor`, com `>` trocado por `>=`:
+>
+> ```text
+> × charges lowFee at exactly the limit
+> × AC-04 lowFee at the limit
+> AssertionError: expected 5 to be 2
+>       Tests  2 failed | 8 passed (10)
+> ```
+>
+> Dois vermelhos, um por consumidor da política: o extrato, pela caracterização, e o ranking, pelo AC-04.
+
+A segunda sabotagem plausível é a primeira falha do Capítulo 1: mover `current()` para dentro do laço. O provider falso a pega com `expected 3 to be 1` no AC-06, e a contagem mostra `Tests  1 failed | 9 passed (10)`. Uma linha movida, uma falha, no critério certo.
+
+### O vermelho da caracterização
+
+O exemplo acima mostra algo que só aparece em código legado: um vermelho num teste que não pertence à tarefa em curso. Ele tem semântica oposta à do vermelho do TDD.
+
+No ciclo de TDD, o vermelho é esperado e desejado: ele vem antes do código. Na suíte de caracterização, o vermelho é um alarme: ele diz que o comportamento observado por um consumidor em produção mudou. Por isso a resposta também é oposta. Diante de um vermelho de caracterização, quem recua é a mudança, nunca o teste.
+
+Há um caso em que o vermelho de caracterização revela um defeito real do legado. Mesmo assim, a correção não entra nesta branch. Ela muda o que o consumidor recebe, e isso é uma decisão de negócio, com spec própria, fora do escopo da história atual.
+
+### Desconfie do vermelho "consertado" no teste
+
+Quando um vermelho vira verde, a primeira pergunta é: qual arquivo mudou? Se foi o arquivo de teste, e não a implementação, pare.
+
+O agente otimiza o objetivo declarado, e "fazer os testes passarem" pode ser satisfeito editando testes: o esperado ajustado ao valor que o código devolve; a asserção afrouxada, de `toBe` para `toBeGreaterThan`; o `.skip` num caso difícil; o `.only` que faz o resto da suíte nem rodar; o mock reescrito para devolver o que o código espera; o timeout aumentado até a flutuação sumir.
+
+A regra: depois que você confirmou que um teste falhou pelo motivo certo, a única razão legítima para editá-lo é ele estar quebrado, e quem decide isso é você, olhando a mensagem. Um esperado que diverge da spec é a segunda falha do Capítulo 1 voltando pela porta dos fundos.
+
+### Portão de Verificação Independente
+
+A terceira falha do Capítulo 1 foi o "pronto" sem evidência. O Portão de Verificação Independente, que a skill `verification-before-completion` implementa, define o que um "pronto" exige:
+
+- **frescor:** a evidência foi produzida depois da última mudança. Uma saída verde de três edições atrás não vale;
+- **completude:** o comando é o da suíte inteira, e não o de um arquivo filtrado; a saída é lida inteira, e não resumida;
+- **independência:** o mecanismo que produz a evidência não depende da narrativa do agente.
+
+Chame a skill antes de aceitar qualquer "terminei":
 
 ```text
 /verification-before-completion Confirme que a
-implementação da busca de bancos está pronta.
+Task 3 e a suíte completa estão verdes.
 ```
 
-A regra dela é a resposta direta à terceira falha: nenhuma afirmação de "pronto" ou "passou" sem rodar o comando completo, agora, e ler a saída inteira. Ela também pode entrar sozinha pela descrição, quando o agente estiver prestes a encerrar; chamar pelo nome tira a dúvida.
+Mas repare no limite dela. A skill roda dentro do agente. Ela obriga o agente a rodar o comando e citar a saída, o que já elimina o "deve passar", mas continua sendo o agente relatando o próprio trabalho, no mesmo contexto que pode ter perdido detalhes. A independência tem graus: o agente rodando e citando; você rodando no seu terminal; o CI rodando num ambiente limpo, que o Capítulo 8 trata. A skill é o primeiro grau. A evidência do método começa no segundo.
 
-> **[Exemplo]** O erro do Capítulo 1, agora com o teste do limite escrito antes. Se o agente implementar a tarifa assim:
->
-> ```ts
-> return amount < FEE_RANGE_LIMIT
-> ```
->
-> a saída de `npm test` mostra:
->
-> ```text
-> × charges lowFee up to the limit
-> AssertionError: expected 5 to be 2
->       Tests  1 failed | 1 passed (2)
-> ```
->
-> É o vermelho pelo motivo certo: a função existe e cobra R$ 5,00 onde a regra pede R$ 2,00. A correção é um caractere, `<=`. No Capítulo 1, o mesmo erro passou pelos testes e ficou num commit; aqui, foi barrado antes, por um teste que nasceu da spec.
+### A evidência final: a suíte e o diff
 
-### A evidência
+**A suíte, rodada por você.** Fora da sessão, no seu terminal, rode `npm test` e leia a contagem: `Tests  10 passed (10)`, em 2 arquivos de teste. Confira o número contra o plano. Dez testes previstos, dez rodados. Uma contagem menor sem explicação é um teste apagado ou pulado.
 
-Ao fim das tarefas, quatro evidências precisam existir, e duas delas dependem de você.
-
-**Teste falhando, depois passando.** As saídas vermelhas e verdes de cada tarefa aparecem no terminal da sessão. Elas são evidência porque você as leu na hora, com o motivo conferido. Copie as que importam para a descrição do pull request, como sugeriu o [Capítulo 4](#cap-4); o terminal rola e elas somem.
-
-**O resultado verificado por você.** A verificação da skill cobre a parte do agente. A sua é rodar no seu terminal, fora da sessão:
+**O diff, revisado com checklist.** Comece pelo tamanho e depois vá aos pontos sensíveis:
 
 ```bash
-npm test
+git diff --stat main...HEAD
+git diff main...HEAD -- src/legacy/fees.ts
+git log --oneline -- \
+  src/legacy/fees.characterization.test.ts
+git diff main...HEAD -- package.json \
+  package-lock.json
 ```
 
-e ler a contagem final. Não o resumo do agente: a sua tela.
+O checklist de um revisor sênior:
 
-**O diff revisado.** Revise a branch inteira de uma vez:
+- **Contrato público intacto.** No legado, a assinatura de `getFee` não mudou e só o corpo delega. Nenhum export removido ou renomeado.
+- **Nenhum teste enfraquecido.** Nenhuma asserção afrouxada, nenhum `.skip` ou `.only` novo, nenhum teste apagado. O arquivo de caracterização tem um commit só, o da Task 0.
+- **Nenhum esperado ajustado.** Cada valor literal num `expect` corresponde a um critério da spec ou ao comportamento caracterizado.
+- **Nada fora do escopo.** Os arquivos do `--stat` estão contidos no mapa do plano, mais a spec e o plano.
+- **Nenhuma dependência nova.** O diff de `package.json` e do lockfile está vazio. Dependência é superfície de ataque e decisão de arquitetura; não entra como efeito colateral de uma tarefa.
 
-```bash
-git diff main
-```
-
-Confira, nesta ordem:
-
-- só os arquivos esperados: os que o plano lista, mais a spec e o plano;
-- nenhum teste enfraquecido, apagado ou marcado para pular;
-- nenhum `expect` ajustado ao código: cada valor esperado bate com um critério de aceite da spec;
-- nada fora do escopo: nenhuma função, dependência ou refatoração que a spec não pediu.
-
-O plano faz um commit por tarefa na branch local, e o `git diff main` revisa a soma deles. Com commits por tarefa, a revisão que o Capítulo 4 pôs antes do commit acontece antes do `git push`. Enviar a branch é o último passo, e quem decide é você.
+Enviar a branch é o último passo, e quem decide é você. O agente não tem credenciais de push nem de deploy.
 
 ### Erros comuns
 
-> **[Aviso de Erro Comum]** Aceitar vermelho por motivo errado. O sintoma é um `SyntaxError`, um import com caminho errado ou um nome de função digitado errado, seguido de "o teste falhou, vou implementar". O vermelho existiu, mas não disse nada sobre a regra. Para evitar, leia a mensagem antes de liberar o próximo comando e exija um vermelho que fale do comportamento.
+> **[Aviso de Erro Comum]** Confiar no score. Um score alto com esperados copiados da saída mede sensibilidade, não correção. Confira a origem de cada valor esperado.
 
-> **[Aviso de Erro Comum]** Teste que nunca falhou. O agente escreve teste e código no mesmo passo, ou acerta de primeira, e tudo fica verde sem um vermelho no caminho. Esse teste pode passar com qualquer implementação. Para evitar, quebre o código de propósito e veja o teste certo falhar antes de aceitar a tarefa.
-
-> **[Aviso de Erro Comum]** Aceitar "deve passar". O agente encerra com "os testes devem passar" ou "isso resolve", sem uma saída de comando logo acima. Previsão não é evidência. Para evitar, peça a verificação e rode `npm test` você mesmo.
+> **[Aviso de Erro Comum]** Aceitar a verificação da skill como a sua. A skill é o agente conferindo o próprio trabalho. A evidência é a suíte na sua tela e o diff lido por você.
 
 ### As seis evidências, reunidas
 
-O fluxo mínimo terminou, e cada evidência do Capítulo 4 tem um lugar:
+O fluxo mínimo terminou, e cada evidência do [Capítulo 4](#cap-4) tem lugar e mecanismo:
 
-- **Requisito esclarecido:** a spec, em `docs/superpowers/specs/`, num commit.
-- **Plano revisável:** o plano, em `docs/superpowers/plans/`, num commit.
-- **Teste falhando antes do código:** os vermelhos de cada tarefa, com o motivo lido por você.
-- **Teste passando depois:** os verdes, tarefa por tarefa.
-- **Diff revisado por você:** o `git diff main`, conferido com a lista acima.
-- **Resultado verificado por você:** o `npm test` rodado no seu terminal.
+- **Requisito esclarecido:** a spec em `docs/superpowers/specs/`, com os oito critérios identificados e o AC-08 num commit próprio.
+- **Plano revisável:** o plano em `docs/superpowers/plans/`, auditado contra os IDs, num commit.
+- **Teste falhando antes do código:** os vermelhos de cada tarefa, com o motivo lido, mais as sabotagens que mostraram cada teste pegando o defeito plausível.
+- **Teste passando depois:** os verdes, tarefa por tarefa, com a suíte de caracterização verde e intocada do começo ao fim.
+- **Diff revisado por você:** o diff da branch, conferido com o checklist acima.
+- **Resultado verificado por você:** `Tests  10 passed (10)` no seu terminal.
 
-> **[Exemplo]** O fim da história do Banco Azul, no `npm test` que você rodou:
->
-> ```text
->  Test Files  1 passed (1)
->       Tests  8 passed (8)
-> ```
+Sob as seis está a linha de base caracterizada, que não é uma sétima evidência, mas é o que permitiu mexer no legado sabendo que o extrato continua cobrando o mesmo.
 
-Compare com o fim do Capítulo 1. Lá, o agente encerrou com "Os testes devem passar", e havia três falhas escondidas. Aqui, cada uma foi barrada no seu momento: a busca pelo código do banco, na spec; o limite da faixa, num vermelho; e o "devem passar" virou `8 passed` na sua tela.
-
-O método funcionou numa história pequena, numa sessão, com você aprovando cada passo. O [Capítulo 8](#cap-8) trata do que muda quando a história cresce: subagentes, custo em tempo e tokens e os limites do que uma skill consegue garantir.
+Compare com o fim do Capítulo 1. Lá, o agente encerrou com "Os testes devem passar", e havia três falhas escondidas. Aqui, cada uma foi barrada no seu momento: a busca pelo código e o snapshot, na spec; a tarifa divergente, num vermelho da caracterização e do AC-04; e o "devem passar" virou uma contagem na sua tela. O [Capítulo 8](#cap-8) trata do que muda quando a história cresce e de como transformar cada uma dessas conferências num gate de pipeline que ninguém pula.
 
 ### Resumo
 
-- Um teste só prova algo se você o viu falhar pelo motivo certo; vermelho por import ou digitação é teste quebrado.
-- A `test-driven-development` impõe a ordem: teste, vermelho conferido, código mínimo, verde. Código escrito antes do teste é descartado.
-- Seus pontos de intervenção: ler cada vermelho, quebrar o código de propósito, desconfiar de vermelho "consertado" no teste e chamar a `verification-before-completion` antes de aceitar "pronto".
-- A evidência final é sua: `npm test` no seu terminal e `git diff main` revisado, sem testes enfraquecidos nem `expect` ajustado ao código.
-- Nada sai da branch local sem decisão sua.
+- Prova por Falha: um teste só prova algo se você o viu falhar pelo motivo certo; falhar (valor divergente) é diferente de quebrar (o teste nem rodou).
+- Mutação mede se a suíte distingue defeitos pequenos e plausíveis; a hipótese do programador competente e o efeito de acoplamento justificam o método, e ele descreve bem os erros de um agente.
+- Mutantes equivalentes exigem análise registrada; e um score alto não prova o oráculo: esperados copiados da saída matam mutantes e certificam o defeito.
+- Quebrar o código de propósito é a mutação manual; no legado, o vermelho da caracterização é alarme, e quem recua é a mudança.
+- O Portão de Verificação Independente exige evidência fresca, completa e independente; a skill é só o primeiro grau.
+- A evidência final é sua: a suíte rodada no seu terminal e o diff revisado com o checklist sênior.

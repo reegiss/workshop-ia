@@ -1,118 +1,144 @@
 ## Capítulo 6 — Planejar {#cap-6}
 
-A spec diz o quê. O plano diz como e em que ordem. Este capítulo mostra como conduzir o agente da spec aprovada até um plano curto, em que cada tarefa começa por um teste, e como revisar esse plano antes de deixar o agente escrever código. O resultado é a segunda evidência: o plano revisável.
+A spec diz o quê. O plano diz como, em que ordem e como cada passo será conferido. Este capítulo trata o plano como peça de engenharia, e não como lista de afazeres: um contrato entre você e o agente, decomposto em unidades que se verificam e se revertem sozinhas. O resultado é a segunda evidência, o plano revisável.
 
-### O que esta etapa resolve
+### Decomposição Verificável
 
-A segunda falha do [Capítulo 1](#cap-1) foi o teste escrito depois. O código veio primeiro, e os testes repetiram o que ele já fazia, com o limite de faixa errado junto.
+A Decomposição Verificável, que a skill `writing-plans` implementa, responde a uma pergunta que todo plano responde mal quando ninguém a faz: qual é o tamanho certo de uma tarefa?
 
-O plano corrige isso pela ordem. Cada tarefa começa por um teste que expressa um critério da spec e diz qual falha esperar antes de o código existir. Não sobra espaço para um teste que copia a saída.
+O critério não é tempo nem número de linhas. Uma tarefa tem o tamanho certo quando é, ao mesmo tempo, uma **unidade de verificação** e uma **unidade de rollback**.
 
-O plano tem um segundo efeito, menos óbvio. Para escrever um teste, o agente precisa de entrada e resultado exatos. Uma spec pode dizer "busca por nome ou código do banco" e parecer completa; o passo concreto "escreva o teste para o termo X" revela que ninguém decidiu o que acontece com certos valores de X. Planejar é a última chance barata de encontrar essas lacunas: aqui, a correção custa uma frase e um commit; no código, custa uma investigação.
+- **Unidade de verificação:** a tarefa termina num estado observável por um comando, com uma saída esperada declarada antes. Se você não consegue dizer qual comando prova que ela terminou, ela ainda não é uma tarefa; é uma intenção.
+- **Unidade de rollback:** a tarefa termina verde e num commit próprio. Reverter esse commit deixa o sistema num estado coerente, com a suíte passando. Cada fronteira de tarefa vira um ponto de retorno e um ponto de bisseção.
 
-### Conduzindo o agente
+Tarefas grandes demais perdem a localização da falha: o vermelho pode vir de qualquer uma de vinte mudanças, e o `git bisect` não tem onde cortar. Tarefas pequenas demais quebram a segunda propriedade: o commit intermediário não compila ou deixa a suíte vermelha. O tamanho certo quase sempre coincide com um critério de aceite ou com um pequeno grupo deles.
 
-#### O pedido
+Com um agente, esse critério pesa mais do que com uma pessoa. O [Capítulo 2](#cap-2) mostrou que o contexto se degrada em sessões longas: detalhes somem na compactação, instruções antigas perdem peso. Uma tarefa curta, com início e fim definidos no arquivo, limita quanto estado a sessão precisa carregar. E, no regime de zero-trust, a declaração "terminei a tarefa" só tem valor se o fim da tarefa for definido por algo que você observa sem depender do agente.
 
-Com a spec aprovada no [Capítulo 5](#cap-5), a `brainstorming` costuma oferecer a passagem para a `writing-plans`. Se a sessão foi encerrada, chame a skill diretamente e dê um limite:
+### O plano como contrato
 
-```text
-/writing-plans Crie o plano a partir da spec
-aprovada. No máximo 3 tarefas, cada uma
-começando por um teste.
+O plano é o único documento que o agente, você e qualquer subagente leem com o mesmo significado. Por isso ele precisa ser legível por máquina: cada passo traz a ação, o comando que a confere e a saída esperada, inclusive quando a saída esperada é uma falha.
+
+
+
+```md
+- [ ] Step 2: run the new test
+  Run: npx vitest run src/x/y.test.ts
+  Expect: FAIL, "parse is not a function"
+- [ ] Step 3: minimal implementation
+- [ ] Step 4: run the suite
+  Run: npm test
+  Expect: PASS, no other test changed
 ```
 
-Numa sessão nova o agente não lembra a conversa anterior, e não precisa: tudo o que foi decidido está na spec.
+Um passo assim tem uma propriedade que a prosa não tem: a divergência é detectável. Se a saída obtida não bate com a declarada, o trabalho saiu do contrato naquele passo, e o executor para. Não importa quem executa; o contrato é o mesmo para o agente na sessão principal, para um subagente com contexto limpo no [Capítulo 8](#cap-8) e para você.
 
-O limite de tarefas é deliberado. Sem ele, o agente tende a quebrar uma história pequena em muitas tarefas ou a puxar trabalho vizinho. Dimensione pelo tamanho da história: algumas funções puras pedem poucas tarefas.
-
-#### O que esperar da skill
-
-A `writing-plans` grava o plano em `docs/superpowers/plans/`, num arquivo `AAAA-MM-DD-<tema>.md`, sempre com a mesma estrutura:
-
-- **Cabeçalho:** o objetivo (*Goal*), a arquitetura em duas ou três frases e as tecnologias.
-- **Mapa de arquivos:** o que será criado ou alterado, antes de qualquer tarefa. Você sabe de antemão onde o agente vai mexer.
-- **Tarefas com passos de 2 a 5 minutos,** sempre na mesma ordem: escrever o teste que falha, rodar e ver a falha, escrever o código mínimo, rodar e ver passar, fazer o commit.
-- **Caminhos e comandos exatos,** com o código completo e a saída esperada de cada comando. A skill proíbe "TODO", "implementar depois" e passos vagos.
-- **Revisão contra a spec:** no fim, a skill confere se cada requisito tem uma tarefa.
-- **Oferta de execução:** com subagentes ou na própria sessão.
-
-O tamanho dos passos é o que torna o plano verificável. Um passo de minutos tem um comando e uma saída esperada. Se a saída obtida for outra, você sabe em que passo o trabalho saiu do plano, em vez de descobrir no fim que algo deu errado em algum lugar.
-
-#### Onde intervir
-
-A skill faz a maior parte do trabalho, mas três decisões são suas.
-
-**Lacuna descoberta.** Ao transformar critérios em testes, o agente pode esbarrar numa entrada que a spec não cobre. A decisão costuma ser de negócio, não de código, e por isso é sua. Se o agente não perguntar, pergunte você: percorra os critérios procurando entradas sem resultado definido (vazio, limite, duplicado).
-
-A regra desta etapa: **toda decisão tomada no plano volta para a spec, como critério de aceite, com commit, antes de o plano seguir.** O plano sai da spec, e não o contrário. Uma regra que existe só na conversa ou só no plano não será conferida pela verificação do [Capítulo 7](#cap-7). Peça explicitamente:
+A `writing-plans` grava o plano em `docs/superpowers/plans/` com essa disciplina: cabeçalho com objetivo e arquitetura, um mapa de arquivos antes de qualquer tarefa, passos de poucos minutos com caminhos e comandos exatos, proibição de "TODO" e de passos vagos, e uma revisão final contra a spec. Peça o plano a partir da spec aprovada no [Capítulo 5](#cap-5), com um teto de tarefas:
 
 ```text
-Acrescente esse critério à spec e faça o
-commit antes de continuar o plano.
+/writing-plans Plano a partir da spec aprovada.
+No máximo 4 tarefas. Cada passo de teste com
+comando e saída esperada. Cite os IDs dos
+critérios em cada tarefa.
 ```
 
-Ao aprovar o commit, confira que ele toca só o arquivo da spec.
+O teto evita que o agente fatie demais ou puxe trabalho vizinho. O mapa de arquivos é a declaração prévia do raio de impacto da mudança. No fim do [Capítulo 7](#cap-7), o diff será conferido contra ele: todo arquivo alterado fora do mapa precisa de uma justificativa, ou sai.
 
-> **[Exemplo]** No plano da busca de bancos, a lacuna foi o termo vazio:
->
-> **Agente:** A spec não diz o que acontece com um termo vazio. Buscar por `""` deve devolver todos os bancos ou nenhum?
->
-> **Você:** Todos os bancos.
->
-> A spec ganhou um critério e um commit:
->
-> ```md
-> - "" (empty) finds all banks.
-> ```
+### Em código legado: caracterizar antes, extrair depois
 
-**Plano grande demais.** Se o plano passou do limite ou traz tarefas que a história não pede, peça para cortar ou juntar antes de aprovar. Duas tarefas que mexem na mesma função provavelmente são uma só. Uma tarefa que nenhum critério da spec justifica sai do plano.
+Quando a história toca código legado sem testes, a ordem das tarefas deixa de ser questão de gosto. Há uma ordem correta, e ela começa antes do primeiro teste da história.
 
-**Forma de execução.** A skill oferece executar com subagentes ou na própria sessão. Escolha a própria sessão e avise que vai pedir uma tarefa por vez, como mostra o Capítulo 7. Assim você vê cada vermelho e cada verde e pode parar o agente se ele sair do plano. Subagentes ficam para o [Capítulo 8](#cap-8).
+#### Task 0: a linha de base caracterizada
 
-### A evidência
+A primeira tarefa aplica a Caracterização antes da Mudança, apresentada no [Capítulo 4](#cap-4) a partir de Michael Feathers. Os testes de caracterização registram o que o código faz hoje, e não o que a spec deseja. Eles fixam o contrato de que os consumidores atuais dependem, certo ou errado.
 
-O plano só vira evidência depois que você o lê. Abra o arquivo ao lado da spec e confira:
+Daí sai uma consequência que contraria o reflexo de quem pratica TDD: **o teste de caracterização nasce verde, por definição.** Ele descreve o comportamento existente. É o inverso do ciclo vermelho-verde, e por isso o verde inicial não prova nada. Um teste de caracterização que afirma `true === true` também nasce verde.
 
-- **Cada critério de aceite vira teste.** Um por um, inclusive os que entraram nesta etapa. Critério sem teste é regra que ninguém verifica.
-- **Cada tarefa começa por um teste com a falha esperada.** O passo "rodar" deve dizer por que o teste falha, por exemplo, uma função que ainda não existe. Uma falha por outro motivo, na execução, aponta problema no teste ou na preparação.
-- **Tarefas pequenas.** Passos de minutos, caminhos e comandos exatos. "Tratar os casos restantes" não é passo.
-- **Nada fora do escopo.** O que a spec exclui não aparece em tarefa nenhuma.
-- **Commit.** O plano aprovado entra num commit, como a spec. No `git log`, devem aparecer o commit da spec, o da lacuna, se houve, e o do plano.
+A prova vem de outro jeito: quebrando o legado de propósito. O plano da Task 0 deve declarar, depois do verde, um passo de sabotagem, por exemplo trocar `>` por `>=` na comparação com o limite. O esperado é vermelho no teste do limite. Em seguida, o passo de desfazer a sabotagem e ver o verde voltar. Só então a suíte de caracterização vale como linha de base.
 
-Se algum item falhar, peça o ajuste e leia de novo. Um erro pego aqui custa um parágrafo; no meio da implementação, custa testes e código refeitos.
+O que caracterizar? O contrato que os consumidores observam e que a mudança pode alterar: as fronteiras de faixa, dos dois lados do limite; o comportamento de erro, inclusive a mensagem, se alguém a lê; os efeitos sobre estado compartilhado. Não o módulo inteiro.
 
-> **[Exemplo]** Trecho da Task 1 do plano da busca de bancos:
+#### Task 1: extrair com a suíte intocada
+
+A segunda tarefa extrai a regra para uma unidade nova e faz o legado delegar a ela, com a assinatura intacta. É o padrão *strangler* em escala de função: o código novo cresce por dentro do antigo, e o contrato externo não muda.
+
+A regra da Task 1 é rígida: **os arquivos de caracterização não podem aparecer no diff.** Se a suíte ficar vermelha, a extração mudou comportamento, e quem se ajusta é a extração. Um teste de caracterização editado na mesma branch que mexe no código que ele protege deixa de ser evidência de qualquer coisa.
+
+Por que extrair, e não chamar o legado direto ou reescrever a regra? Chamar o legado acopla o código novo ao estado global que ele lê. Reescrever a regra é a segunda falha do [Capítulo 1](#cap-1): duas implementações da mesma política, que divergem no primeiro caso de borda. Extrair deixa uma política só, consumida pelos dois lados.
+
+> **[Exemplo]** As quatro tarefas do plano do ranking, depois da lacuna resolvida:
 >
 > ```md
-> ### Task 1: calculateFee
->
-> - [ ] Write failing tests: Banco Azul fee
->   for 1000 is 2; for 1000.01 is 5.
-> - [ ] Run `npm test`. Expected: FAIL,
->   calculateFee is not a function.
-> - [ ] Implement calculateFee using
->   FEE_RANGE_LIMIT, inclusive.
-> - [ ] Run `npm test`. Expected: PASS.
-> - [ ] Commit.
+> - Task 0: characterize legacy getFee (AC-07)
+> - Task 1: extract feeFor; getFee delegates
+> - Task 2: searchBanks (AC-01..03)
+> - Task 3: BankRankingService (AC-04..06, 08)
 > ```
 >
-> O plano real traz o teste e a função inteiros; aqui, só os passos.
+> Se `feeFor` divergir do legado, o vermelho aparece na Task 1, e não na tela do cliente.
+
+### Portas e injeção como pré-condição de testabilidade
+
+Alguns critérios de aceite não são testáveis contra o design que existe. Um caso típico: "uma leitura da tabela de tarifas por requisição". Se o serviço importa um cliente singleton do serviço de preços, o teste não tem como contar leituras nem como simular um refresh do cache no meio da requisição. O critério está escrito, mas não há onde verificá-lo.
+
+A saída é uma *costura* (*seam*, no vocabulário de Feathers): um ponto onde o comportamento pode ser trocado sem editar o código sob teste. Em código orientado a objetos, a costura mais limpa é uma porta, uma interface pequena que o serviço recebe por injeção de dependência. Em produção, a implementação da porta fala com o outro serviço. No teste, um provider falso devolve uma versão nova da tabela a cada chamada e conta quantas vezes foi chamado. Com ele, o critério do snapshot vira uma asserção determinística: uma chamada, uma versão.
+
+O critério de planejamento que sai daí: para cada critério de aceite, pergunte o que você precisa controlar para que o teste seja determinístico. Rede, relógio, aleatoriedade, concorrência e estado global são as respostas comuns, e cada uma pede uma porta. Se a porta não existe, criá-la é uma tarefa do plano, anterior à tarefa que a usa. Um plano que adia essa decisão para a implementação deixa o agente decidir sozinho, e o caminho mais curto para ele costuma ser um mock de módulo que acopla o teste à estrutura interna.
+
+### A lacuna que o plano descobre
+
+Planejar tem um efeito colateral valioso. Para escrever um passo de teste com entrada e saída exatas, alguém precisa saber a saída. Uma spec que parecia completa revela, no passo concreto, uma entrada sem resultado definido. É a última chance barata de fechar a lacuna: aqui ela custa uma frase e um commit; no código, custa uma investigação.
+
+Quando a lacuna aparece, a decisão costuma ser de negócio ou de operação, e por isso é sua. A regra desta etapa:
+
+**Toda decisão tomada no plano volta para a spec, como critério de aceite com ID, num commit próprio, antes de o plano seguir.**
+
+O fluxo é da spec para o plano, nunca o contrário. Uma regra que existe só no plano, ou só na conversa, não é conferida pela rastreabilidade nem pelo gate de CI do Capítulo 8. Ao aprovar o commit, confira que ele toca só o arquivo da spec.
+
+> **[Exemplo]** A lacuna surgiu ao escrever o teste da Task 3:
+>
+> **Agente:** O snapshot pode não ter tarifa para um banco do cadastro. O ranking deve omitir o banco, falhar a requisição ou exibi-lo sem tarifa?
+>
+> **Você:** Omitir. O pricing-service pode estar no meio do rollout de um banco novo; o ranking não pode cair por isso, nem mostrar sem tarifa um banco como se fosse o mais barato.
+>
+> A spec ganhou o AC-08. O `getFee` legado continua lançando erro, porque o contrato dele é o AC-07.
+
+Repare no efeito sobre o design: a política extraída passa a devolver "sem tarifa" como valor, e cada consumidor decide o que fazer com ele. O ranking omite; o legado preserva o comportamento que o extrato conhece.
+
+### Auditar o plano contra os IDs
+
+A revisão final da skill diz que o plano cobre a spec. Essa revisão é do agente; a evidência é a sua auditoria. Com critérios identificados, ela é mecânica na primeira passada:
+
+```bash
+spec=docs/superpowers/specs/<file>.md
+plan=docs/superpowers/plans/<file>.md
+ids() { grep -ohE 'AC-[0-9]+' "$1" | sort -u; }
+comm -3 <(ids "$spec") <(ids "$plan")
+```
+
+Saída vazia quer dizer que todo ID da spec aparece no plano, e vice-versa. Qualquer linha é um problema: um critério sem tarefa é regra que ninguém vai verificar; um ID no plano que não existe na spec é decisão que não voltou para ela. O Capítulo 8 leva a mesma ideia para o CI, cruzando a spec com os arquivos de teste.
+
+A segunda passada é sua, tarefa por tarefa:
+
+- **Toda tarefa cita pelo menos um ID.** Uma tarefa sem critério é escopo que ninguém pediu, com uma exceção: tarefas habilitadoras, como a Task 0 e a Task 1, que precisam dizer qual critério protegem.
+- **Todo passo de teste declara a falha esperada e o motivo.** "Expect: FAIL" sozinho não basta.
+- **A Task 0 declara verde, sabotagem, vermelho e retorno.** Sem a sabotagem, a linha de base não foi validada.
+- **A tarefa de extração declara a suíte de caracterização intocada.**
+- **O mapa de arquivos não inclui nada que a spec põe fora do escopo.**
+- **Um critério verificado pela caracterização carrega o ID no próprio teste.** Do contrário, a rastreabilidade o dá como órfão, mesmo coberto.
+
+Depois de aprovado, o plano entra num commit, como a spec. No histórico da branch aparecem, nesta ordem, a spec, a lacuna e o plano. Execute na própria sessão, uma tarefa por vez, como mostra o Capítulo 7; a execução com subagentes fica para o Capítulo 8. O código completo das tarefas está no [Apêndice D](#apendice-d).
 
 ### Erros comuns
 
-> **[Aviso de Erro Comum]** Testes concentrados na última tarefa. O sintoma é uma tarefa só de testes no fim, depois de todas as funções. É a segunda falha do Capítulo 1 voltando: o teste escrito depois copia a saída do código, com os erros junto. Recuse o plano e peça que cada tarefa comece pelo seu teste.
+> **[Aviso de Erro Comum]** Caracterização tratada como TDD. O agente escreve a Task 0, vê tudo verde e segue, ou pior, ajusta o legado até um teste "ficar vermelho primeiro". Caracterização nasce verde; a prova é a sabotagem deliberada, desfeita em seguida.
 
-> **[Aviso de Erro Comum]** Decisão nova só no plano. A lacuna foi resolvida na conversa e virou teste, mas a spec continua como estava. A verificação final confere o código contra uma spec incompleta. Toda decisão tomada no plano volta para a spec, com commit.
-
-> **[Aviso de Erro Comum]** Plano com passos vagos. "Implementar a busca", "adicionar testes", "tratar casos de borda". Passo vago deixa o agente decidir na hora de codificar, que é justamente o que o plano devia evitar. Peça caminhos, código e comandos exatos.
-
-> **[Aviso de Erro Comum]** Aprovar sem conferir critério por critério. A revisão da skill diz que cobre a spec, e você aprova. A revisão da skill é do agente; a evidência é a sua leitura. Percorra a lista de critérios e aponte o teste de cada um.
+> **[Aviso de Erro Comum]** Critério sem costura. O plano promete testar algo que depende de rede, relógio ou estado global, sem dizer como controlar isso. O agente resolve na hora com o mock mais conveniente. Exija a porta no plano.
 
 ### Resumo
 
-- O plano evita o teste escrito depois: cada tarefa começa por um teste derivado da spec, com a falha esperada declarada.
-- Peça a `writing-plans` a partir da spec, com limite de tarefas; espere cabeçalho, mapa de arquivos, passos de minutos e comandos exatos.
-- Passos concretos revelam lacunas. A decisão é sua e volta para a spec, com commit, antes de o plano seguir.
-- Revise o plano contra a spec, critério por critério, e corte o que estiver fora do escopo.
-- O plano num commit é a segunda evidência. Execute na própria sessão; subagentes ficam para o Capítulo 8.
+- Decomposição Verificável: a tarefa certa é unidade de verificação (um comando, uma saída esperada) e unidade de rollback (verde, num commit que se reverte sozinho).
+- O plano é um contrato legível por máquina; cada passo declara comando e saída esperada, e a divergência é o sinal de parada.
+- Em código legado, a Task 0 caracteriza o comportamento atual, nasce verde e é validada pela sabotagem; a extração segue com a suíte de caracterização intocada.
+- Critérios que dependem de rede, cache ou estado global exigem uma porta injetada; o provider falso torna o snapshot testável.
+- Lacunas descobertas no plano voltam para a spec, com ID e commit; a auditoria cruza os IDs da spec com os do plano antes da aprovação.
