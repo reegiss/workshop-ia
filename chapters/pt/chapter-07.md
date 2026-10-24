@@ -1,10 +1,10 @@
-## Capítulo 6 — Planejar
+## Capítulo 6 — Planejar {#cap-6}
 
 A spec diz o quê. O plano diz como e em que ordem. Este capítulo mostra como conduzir o agente da spec aprovada até um plano curto, em que cada tarefa começa por um teste, e como revisar esse plano antes de deixar o agente escrever código. O resultado é a segunda evidência: o plano revisável.
 
 ### O que esta etapa resolve
 
-A segunda falha do Capítulo 1 foi o teste escrito depois. O código veio primeiro, e os testes repetiram o que ele já fazia, com o limite de faixa errado junto.
+A segunda falha do [Capítulo 1](#cap-1) foi o teste escrito depois. O código veio primeiro, e os testes repetiram o que ele já fazia, com o limite de faixa errado junto.
 
 O plano corrige isso pela ordem. Cada tarefa começa por um teste que expressa um critério da spec e diz qual falha esperar antes de o código existir. Não sobra espaço para um teste que copia a saída.
 
@@ -14,7 +14,7 @@ O plano tem um segundo efeito, menos óbvio. Para escrever um teste, o agente pr
 
 #### O pedido
 
-Com a spec aprovada, a `brainstorming` costuma oferecer a passagem para a `writing-plans`. Se a sessão foi encerrada, chame a skill diretamente e dê um limite:
+Com a spec aprovada no [Capítulo 5](#cap-5), a `brainstorming` costuma oferecer a passagem para a `writing-plans`. Se a sessão foi encerrada, chame a skill diretamente e dê um limite:
 
 ```text
 /writing-plans Crie o plano a partir da spec
@@ -37,11 +37,15 @@ A `writing-plans` grava o plano em `docs/superpowers/plans/`, num arquivo `AAAA-
 - **Revisão contra a spec:** no fim, a skill confere se cada requisito tem uma tarefa.
 - **Oferta de execução:** com subagentes ou na própria sessão.
 
+O tamanho dos passos é o que torna o plano verificável. Um passo de minutos tem um comando e uma saída esperada. Se a saída obtida for outra, você sabe em que passo o trabalho saiu do plano, em vez de descobrir no fim que algo deu errado em algum lugar.
+
 #### Onde intervir
 
 A skill faz a maior parte do trabalho, mas três decisões são suas.
 
-**Lacuna descoberta.** Ao transformar critérios em testes, o agente pode esbarrar numa entrada que a spec não cobre. A decisão costuma ser de negócio, não de código, e por isso é sua. E ela não fica só na conversa nem só no plano: volta para a spec, como critério de aceite, com commit, antes de o plano seguir. O plano sai da spec, e não o contrário; uma regra que existe só no plano não será conferida pela verificação do Capítulo 7. Se o agente não perguntar, pergunte você: percorra os critérios procurando entradas sem resultado definido (vazio, limite, duplicado). Depois peça explicitamente:
+**Lacuna descoberta.** Ao transformar critérios em testes, o agente pode esbarrar numa entrada que a spec não cobre. A decisão costuma ser de negócio, não de código, e por isso é sua. Se o agente não perguntar, pergunte você: percorra os critérios procurando entradas sem resultado definido (vazio, limite, duplicado).
+
+A regra desta etapa: **toda decisão tomada no plano volta para a spec, como critério de aceite, com commit, antes de o plano seguir.** O plano sai da spec, e não o contrário. Uma regra que existe só na conversa ou só no plano não será conferida pela verificação do [Capítulo 7](#cap-7). Peça explicitamente:
 
 ```text
 Acrescente esse critério à spec e faça o
@@ -52,13 +56,9 @@ Ao aprovar o commit, confira que ele toca só o arquivo da spec.
 
 > **[Exemplo]** No plano da busca de bancos, a lacuna foi o termo vazio:
 >
-> ```text
-> Agente: A spec não diz o que acontece com
-> um termo vazio. Buscar por "" deve
-> devolver todos os bancos ou nenhum?
+> **Agente:** A spec não diz o que acontece com um termo vazio. Buscar por `""` deve devolver todos os bancos ou nenhum?
 >
-> Você: Todos os bancos.
-> ```
+> **Você:** Todos os bancos.
 >
 > A spec ganhou um critério e um commit:
 >
@@ -66,9 +66,9 @@ Ao aprovar o commit, confira que ele toca só o arquivo da spec.
 > - "" (empty) finds all banks.
 > ```
 
-**Plano grande demais.** Se o plano passou do limite ou traz tarefas que a história não pede, peça para cortar ou juntar antes de aprovar. Duas tarefas que mexem na mesma função provavelmente são uma só.
+**Plano grande demais.** Se o plano passou do limite ou traz tarefas que a história não pede, peça para cortar ou juntar antes de aprovar. Duas tarefas que mexem na mesma função provavelmente são uma só. Uma tarefa que nenhum critério da spec justifica sai do plano.
 
-**Forma de execução.** A skill oferece executar com subagentes ou na própria sessão. Escolha a própria sessão e avise que vai pedir uma tarefa por vez, como mostra o Capítulo 7. Assim você vê cada vermelho e cada verde e pode parar o agente se ele sair do plano. Subagentes ficam para o Capítulo 8.
+**Forma de execução.** A skill oferece executar com subagentes ou na própria sessão. Escolha a própria sessão e avise que vai pedir uma tarefa por vez, como mostra o Capítulo 7. Assim você vê cada vermelho e cada verde e pode parar o agente se ele sair do plano. Subagentes ficam para o [Capítulo 8](#cap-8).
 
 ### A evidência
 

@@ -1,6 +1,6 @@
-## Apêndice A — Mapa das skills
+## Apêndice A — Mapa das skills {#apendice-a}
 
-O superpowers muda com o tempo: skills entram, saem e mudam de nome, então confira a lista na sua CLI antes de chamar qualquer uma. As quatro marcadas como fluxo mínimo são as que o livro usa do Capítulo 4 ao 7; as marcadas com o Capítulo 8 aparecem na escala e na entrega.
+O superpowers muda com o tempo: skills entram, saem e mudam de nome, então confira a lista na sua CLI antes de chamar qualquer uma. As quatro marcadas como fluxo mínimo são as que o livro usa do [Capítulo 4](#cap-4) ao 7; as marcadas com o [Capítulo 8](#cap-8) aparecem na escala e na entrega.
 
 ### Pensar antes de codar
 
@@ -31,16 +31,14 @@ O superpowers muda com o tempo: skills entram, saem e mudam de nome, então conf
 Três skills do pacote não tratam do código, e sim do próprio uso de skills:
 
 - `using-superpowers` — carregada no início da sessão; faz o agente procurar a skill certa e usá-la antes de responder.
-- `writing-skills` — para criar, editar ou testar skills, como a `fee-rules` do Capítulo 3.
+- `writing-skills` — para criar, editar ou testar skills, como a `fee-rules` do [Capítulo 3](#cap-3).
 - `diagnosing-superpowers` — para entender por que uma sessão deu errado, como uma skill que não foi acionada ou um trabalho feito duas vezes.
 
 Fora do superpowers, existem catálogos públicos de skills para outros assuntos. Antes de instalar qualquer uma, vale a regra do Capítulo 3: leia o `SKILL.md` e os scripts da pasta, como faria com um pull request.
 
-## Apêndice B — Glossário
+## Apêndice B — Glossário {#apendice-b}
 
 **Agente** — Programa que usa um modelo de linguagem para decidir e executar ações, como ler arquivos e rodar comandos. Neste livro, um agente é sempre a soma de um modelo com um harness.
-
-**Branch** — Linha de desenvolvimento separada dentro de um repositório git. Permite trabalhar numa mudança sem afetar o código principal até a integração.
 
 **CLI** — Sigla de *Command-Line Interface*: programa usado digitando comandos no terminal. Neste livro, as CLIs são o GitHub Copilot CLI e o Claude Code.
 
@@ -86,7 +84,11 @@ Fora do superpowers, existem catálogos públicos de skills para outros assuntos
 
 **Spec** — Especificação: descrição do que deve ser construído, em quatro partes: objetivo, requisitos, critérios de aceite e fora do escopo. É escrita antes do plano e aprovada por uma pessoa.
 
+**Spec Kit** — Kit aberto do GitHub para praticar SDD com um agente, publicado no repositório `github/spec-kit`. Conduz cada etapa por um comando na CLI, começando pela constituição do projeto.
+
 **Subagente** — Agente iniciado por outro agente para cuidar de uma tarefa específica, com contexto próprio. Ao terminar, devolve só o resultado ao agente principal.
+
+**Superpowers** — Pacote aberto de skills de engenharia de software, publicado no repositório `obra/superpowers`. O livro usa quatro delas no fluxo mínimo; o Apêndice A mostra o pacote completo.
 
 **TDD (Test-Driven Development)** — Prática de escrever o teste antes do código de produção. O ciclo é: teste falhando (vermelho), código mínimo para passar (verde) e, se preciso, refatoração.
 
@@ -94,9 +96,11 @@ Fora do superpowers, existem catálogos públicos de skills para outros assuntos
 
 **Worktree** — Cópia de trabalho adicional de um repositório git, ligada a outra branch, numa pasta separada. Permite que um agente trabalhe isolado sem mexer na pasta principal.
 
-## Apêndice C — Equivalências entre as CLIs
+## Apêndice C — Equivalências entre as CLIs {#apendice-c}
 
-Este apêndice reúne, para consulta rápida, os comandos e as pastas que o Capítulo 3 e o Capítulo 5 apresentam. Em cada bloco, a primeira forma é a do Claude Code e a segunda, a do Copilot CLI.
+Este apêndice reúne, para consulta rápida, os comandos e as pastas que o [Capítulo 3](#cap-3) e o [Capítulo 5](#cap-5) apresentam. Em cada bloco, a primeira forma é a do Claude Code e a segunda, a do Copilot CLI.
+
+Nos blocos de terminal, a barra invertida no fim de uma linha só quebra o comando para caber na página. Colado como está, ele funciona no bash e no zsh. No PowerShell do Windows, digite cada comando numa linha só, sem as barras.
 
 ### Instalar o pacote como plugin
 
@@ -168,9 +172,9 @@ Quando o superpowers foi instalado como plugin, a skill pode aparecer com o nome
 
 > **[Nota]** Os comandos deste apêndice foram conferidos em outubro de 2026. As CLIs mudam com frequência; se algum comando não funcionar, confira a documentação da versão que você usa.
 
-## Apêndice D — Projeto do exemplo
+## Apêndice D — Projeto do exemplo {#apendice-d}
 
-Este é o projeto que os Capítulos 5 a 7 usam, reunido num só lugar para quem quiser reproduzir cada etapa com o agente. O código final é o ponto de chegada, não o ponto de partida: na prática, quem o escreve é o agente, guiado pelas skills.
+Este é o projeto que os [Capítulos 5 a 7](#cap-5) usam, reunido num só lugar para quem quiser reproduzir cada etapa com o agente. O código final é o ponto de chegada, não o ponto de partida: na prática, quem o escreve é o agente, guiado pelas skills.
 
 O apêndice segue a ordem da história. A preparação e o cadastro dos bancos são a única parte que você digita sozinho, antes de abrir a CLI. Os dois arquivos do fim servem para comparar com o que o seu agente produziu, não para copiar antes da hora.
 
@@ -223,7 +227,7 @@ export const banks: Bank[] = [
 
 ### Ponto de chegada
 
-Os dois arquivos abaixo são o resultado das três tarefas do plano do Capítulo 6, executadas em TDD no Capítulo 7: a tarifa por faixa, a busca por nome ou código do banco e a ordenação por tarifa, com o nome como desempate.
+Os dois arquivos abaixo são o resultado das três tarefas do plano do [Capítulo 6](#cap-6), executadas em TDD no [Capítulo 7](#cap-7): a tarifa por faixa, a busca por nome ou código do banco e a ordenação por tarifa, com o nome como desempate.
 
 O seu agente pode chegar a um código diferente, com outros nomes de variáveis ou outra forma de normalizar o texto. Isso não é problema. O que precisa coincidir são os comportamentos que os testes descrevem, porque eles vêm direto dos critérios de aceite da spec.
 

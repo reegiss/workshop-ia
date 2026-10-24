@@ -1,10 +1,10 @@
-## Capítulo 7 — Vermelho, depois verde
+## Capítulo 7 — Vermelho, depois verde {#cap-7}
 
 Com a spec e o plano aprovados, entra o código, e ele só chega depois de um teste que você viu falhar. Este capítulo mostra como conduzir o agente nessa etapa e como conferir as quatro evidências que faltam: teste falhando, teste passando, diff revisado e resultado verificado por você.
 
 ### O que esta etapa resolve
 
-Esta etapa ataca as duas falhas do Capítulo 1 que sobraram depois da spec e do plano.
+Esta etapa ataca as duas falhas do [Capítulo 1](#cap-1) que sobraram depois da spec e do plano.
 
 A segunda falha era o teste que copia a saída: escrito depois do código, ele afirma o que o código faz, não o que a regra pede, e passa junto com o erro. O plano já pôs o teste antes do código no papel. Falta garantir que isso aconteça na execução, e que o teste prove alguma coisa. Um teste só prova algo se você o viu falhar, e falhar pelo motivo certo.
 
@@ -41,9 +41,16 @@ No primeiro ciclo de cada tarefa, o vermelho costuma ser o mais óbvio: a funç�
 
 A skill conduz o ciclo; você confere os pontos em que ele pode enganar.
 
-**Leia o motivo de cada vermelho.** Não basta ver vermelho. Leia o nome do teste e a mensagem, e pergunte: esta falha é a que a regra prevê? Se a mensagem fala de sintaxe, de um caminho de import errado ou de um nome trocado, o teste não falhou: quebrou. Peça a correção do teste e um novo vermelho antes de aceitar qualquer código.
+**Leia o motivo de cada vermelho.** Não basta ver vermelho. Leia o nome do teste e a mensagem, e separe os dois casos:
+
+- **O teste falhou:** a mensagem fala do comportamento, como `expected 5 to be 2` ou `is not a function`. É o vermelho que vale.
+- **O teste quebrou:** a mensagem fala do próprio arquivo de teste, como um `SyntaxError`, um import que aponta para o caminho errado ou um nome digitado errado. Não diz nada sobre a regra.
+
+Se quebrou, peça a correção do teste e um novo vermelho antes de aceitar qualquer código.
 
 **Quebre o código de propósito.** O agente pode acertar a implementação de primeira, e aí você nunca vê o teste proteger nada. Depois do verde, introduza você mesmo o erro mais provável (um operador de comparação, um caso de borda), rode `npm test`, confira que o teste certo fica vermelho e desfaça. Leva um minuto e transforma "o teste existe" em "o teste pega este erro".
+
+É a versão manual do teste de mutação. Ferramentas como o Stryker, que roda com o Vitest, fazem o mesmo em escala: alteram o código em muitos pontos e contam quantas alterações nenhum teste pegou. Num módulo crítico, rodar uma delas depois do fluxo mostra os casos que a spec e os testes deixaram de fora; cada alteração sobrevivente é um critério de aceite que faltou.
 
 **Desconfie de vermelho "consertado" no teste.** Quando um vermelho some, olhe o que mudou. Se a mudança foi no arquivo de testes, e não na implementação, pare e pergunte por quê. Um valor esperado diferente do que está na spec é a segunda falha voltando pela porta dos fundos.
 
@@ -76,7 +83,7 @@ A regra dela é a resposta direta à terceira falha: nenhuma afirmação de "pro
 
 Ao fim das tarefas, quatro evidências precisam existir, e duas delas dependem de você.
 
-**Teste falhando, depois passando.** As saídas vermelhas e verdes de cada tarefa aparecem no terminal da sessão. Elas são evidência porque você as leu na hora, com o motivo conferido. Copie as que importam para a descrição do pull request, como sugeriu o Capítulo 4; o terminal rola e elas somem.
+**Teste falhando, depois passando.** As saídas vermelhas e verdes de cada tarefa aparecem no terminal da sessão. Elas são evidência porque você as leu na hora, com o motivo conferido. Copie as que importam para a descrição do pull request, como sugeriu o [Capítulo 4](#cap-4); o terminal rola e elas somem.
 
 **O resultado verificado por você.** A verificação da skill cobre a parte do agente. A sua é rodar no seu terminal, fora da sessão:
 
@@ -129,7 +136,7 @@ O fluxo mínimo terminou, e cada evidência do Capítulo 4 tem um lugar:
 
 Compare com o fim do Capítulo 1. Lá, o agente encerrou com "Os testes devem passar", e havia três falhas escondidas. Aqui, cada uma foi barrada no seu momento: a busca pelo código do banco, na spec; o limite da faixa, num vermelho; e o "devem passar" virou `8 passed` na sua tela.
 
-O método funcionou numa história pequena, numa sessão, com você aprovando cada passo. O Capítulo 8 trata do que muda quando a história cresce: subagentes, custo em tempo e tokens e os limites do que uma skill consegue garantir.
+O método funcionou numa história pequena, numa sessão, com você aprovando cada passo. O [Capítulo 8](#cap-8) trata do que muda quando a história cresce: subagentes, custo em tempo e tokens e os limites do que uma skill consegue garantir.
 
 ### Resumo
 

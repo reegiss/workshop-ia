@@ -1,4 +1,4 @@
-## Capítulo 1 — Rápido não é verificável
+## Capítulo 1 — Rápido não é verificável {#cap-1}
 
 *Parte I — Fundamentos*
 
@@ -80,8 +80,6 @@ O agente também entregou testes, e, se você rodá-los, todos passam. Isso pare
 >   expect(fee).toBe(5);
 > });
 > ```
->
-> Cada `it` descreve um caso de teste; `expect(...).toBe(...)` compara o valor obtido com o esperado.
 
 Esse teste não verifica a regra; ele copia o comportamento atual. Se o código estiver errado, o teste fica errado junto e passa. Pior: ele congela o erro. Quem corrigir a função depois vai ver o teste quebrar e pode achar que a correção é que está errada.
 
@@ -123,17 +121,21 @@ O método organiza essas evidências em três momentos:
 
 - **Antes:** o requisito esclarecido, com as dúvidas respondidas por você, e um plano curto que você consegue revisar antes de qualquer código.
 - **Durante:** um teste escrito a partir da regra, que você vê falhar primeiro e passar depois.
-- **Depois:** o diff revisado linha a linha e o teste rodado por você, na sua máquina.
+- **Depois:** o diff revisado por você, linha a linha, e o resultado verificado por você, com o teste rodado na sua máquina.
 
-Volte às três falhas da história. A busca só por nome teria aparecido no "antes", quando alguém perguntasse se o código do banco também conta. O limite errado da faixa teria aparecido no "durante", num teste escrito a partir da regra de R$ 1.000,00. E o "devem passar" não sobreviveria ao "depois", porque você mesmo rodaria os testes.
+Volte às três falhas da história e compare, em cada uma, o que o agente assumiu com o que a regra exigia:
 
-Nenhum desses passos é novo. O que muda é que eles deixam de depender da memória ou da boa vontade de alguém e passam a fazer parte do fluxo. O Capítulo 4 detalha cada momento e a evidência que ele produz.
+- **Busca só pelo nome.** O agente assumiu que o termo é o nome do banco; a regra aceita nome ou código. A falha teria aparecido **antes**, quando alguém perguntasse se o código também conta.
+- **Limite com "menor que".** O agente pôs R$ 1.000,00 na faixa alta; a regra diz "até R$ 1.000,00, inclusive". O teste escrito depois confirmou o erro em vez de pegá-lo. A falha teria aparecido **durante**, num teste escrito a partir da regra e visto falhando.
+- **"Os testes devem passar".** O agente previu o resultado sem rodar nada; evidência é a saída do comando. A falha não sobreviveria ao **depois**, porque você mesmo rodaria os testes.
+
+Nenhum desses passos é novo. O que muda é que eles deixam de depender da memória ou da boa vontade de alguém e passam a fazer parte do fluxo. O [Capítulo 4](#cap-4) detalha cada momento e a evidência que ele produz.
 
 ### E se o processo viesse junto com o agente?
 
 Até aqui, o método parece depender de você: lembrar de esclarecer, exigir o teste antes, conferir a saída. Isso funciona, mas cansa, e é fácil pular uma etapa num dia corrido.
 
-Existe outro caminho. Um agente não é só o modelo que escreve texto; é também o programa em volta dele, que pode carregar instruções e processos prontos. Se o processo estiver ali, o próprio agente pode parar para perguntar, escrever o teste primeiro e rodar os comandos antes de dizer "pronto". O Capítulo 2 explica como esse programa funciona.
+Existe outro caminho. Um agente não é só o modelo que escreve texto; é também o programa em volta dele, que pode carregar instruções e processos prontos. Se o processo estiver ali, o próprio agente pode parar para perguntar, escrever o teste primeiro e rodar os comandos antes de dizer "pronto". O [Capítulo 2](#cap-2) explica como esse programa funciona.
 
 ### Resumo
 

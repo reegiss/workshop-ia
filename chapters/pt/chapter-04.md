@@ -1,6 +1,6 @@
-## Capítulo 3 — Skills: um processo em arquivo
+## Capítulo 3 — Skills: um processo em arquivo {#cap-3}
 
-O Capítulo 2 terminou com uma ideia: a skill é onde o processo pode morar, dentro do harness. Este capítulo abre uma skill por dentro, mostra como o agente a usa e onde ela fica guardada. No fim, você instala um pacote de skills na sua CLI e aprende os cuidados que ele exige.
+O [Capítulo 2](#cap-2) terminou com uma ideia: a skill é onde o processo pode morar, dentro do harness. Este capítulo abre uma skill por dentro, mostra como o agente a usa e onde ela fica guardada. No fim, você instala um pacote de skills na sua CLI e aprende os cuidados que ele exige.
 
 ### Anatomia de um SKILL.md
 
@@ -35,9 +35,9 @@ Volte à história da busca de bancos. A regra de que R$ 1.000,00 fica na faixa
 > 4. Run the tests and show the output.
 > ```
 >
-> O arquivo está em inglês, como todo o código do livro. A descrição diz quando usar; o corpo diz como trabalhar.
+> As linhas entre os dois `---` são o frontmatter; o resto é o corpo. A descrição diz quando usar; o corpo diz como trabalhar. O arquivo está em inglês, como todo o código do livro.
 
-Repare no tamanho. Quatro instruções já atacam as três falhas do Capítulo 1 nesse pedaço do código: ler a regra e perguntar sobre o limite combatem implementar antes de esclarecer; o teste antes do código combate o teste que copia a saída; rodar os testes combate o "pronto" sem evidência.
+Repare no tamanho. Quatro instruções já atacam as três falhas do [Capítulo 1](#cap-1) nesse pedaço do código: ler a regra e perguntar sobre o limite combatem implementar antes de esclarecer; o teste antes do código combate o teste que copia a saída; rodar os testes combate o "pronto" sem evidência.
 
 Uma skill não precisa ser longa para ser útil. Precisa ser clara sobre quando se aplica e sobre o que o agente deve fazer.
 
@@ -50,6 +50,8 @@ Um projeto pode ter dezenas de skills instaladas. Se todas entrassem inteiras no
 Na primeira etapa, só o `name` e a `description` de cada skill entram no contexto. São poucas linhas por skill. Isso custa pouco e permite que o modelo saiba quais processos estão disponíveis.
 
 Na segunda etapa, quando a skill é acionada, o corpo do `SKILL.md` entra no contexto. Só a partir daí o agente lê as instruções e passa a segui-las.
+
+A diferença de tamanho é grande. Um corpo costuma ter dezenas ou centenas de linhas; a descrição, uma ou duas. Com vinte skills instaladas, a primeira etapa ocupa umas quarenta linhas do contexto, e só os corpos das skills em uso entram por inteiro. Como o contexto tem limite, isso deixa espaço para o que importa na tarefa: o código, as saídas dos comandos e a conversa.
 
 Uma skill é acionada de duas formas:
 
@@ -94,16 +96,14 @@ Escrever as próprias skills é útil para regras do projeto. Para práticas ger
 
 O *superpowers* é um pacote aberto de skills de engenharia de software, criado por Jesse Vincent e publicado no repositório `obra/superpowers`. Cada skill do pacote codifica uma prática conhecida: esclarecer o requisito antes de implementar, escrever um plano, seguir TDD, depurar com método, verificar antes de declarar pronto e revisar o código. O pacote cresce com o tempo, por isso este livro não fixa quantas skills ele tem.
 
-O fluxo do livro usa só quatro delas, uma para cada etapa:
+O fluxo do livro usa só quatro delas, uma para cada etapa. Compare cada uma com as três falhas do Capítulo 1:
 
-- `brainstorming`: esclarece o requisito com perguntas antes de qualquer código e termina numa spec aprovada por você;
-- `writing-plans`: transforma a spec num plano curto, com tarefas pequenas e revisáveis;
-- `test-driven-development`: conduz o ciclo vermelho, depois verde, com o teste escrito antes do código;
-- `verification-before-completion`: exige que o agente rode os comandos e mostre a saída antes de dizer "pronto".
+- `brainstorming`: esclarece o requisito com perguntas antes de qualquer código e termina numa spec aprovada por você. Responde a implementar antes de esclarecer.
+- `writing-plans`: transforma a spec num plano curto, com tarefas pequenas e revisáveis, cada uma começando por um teste. Liga o esclarecimento ao TDD.
+- `test-driven-development`: conduz o ciclo vermelho, depois verde, com o teste escrito antes do código. Responde ao teste escrito depois, só para passar.
+- `verification-before-completion`: exige que o agente rode os comandos e mostre a saída antes de dizer "pronto". Responde ao "pronto" sem evidência.
 
-Compare essa lista com as três falhas do Capítulo 1. A `brainstorming` responde a implementar antes de esclarecer. A `test-driven-development` responde ao teste escrito depois, só para passar. A `verification-before-completion` responde ao "pronto" sem evidência. A `writing-plans` liga o esclarecimento ao TDD: ela pede que cada tarefa do plano comece por um teste.
-
-Essas quatro skills formam o fluxo mínimo. O Capítulo 4 explica esse fluxo e a evidência que cada etapa produz. A Parte II usa cada skill no exemplo da busca de bancos. O Apêndice A mostra o pacote completo, organizado pelos momentos do trabalho.
+Essas quatro skills formam o fluxo mínimo. O [Capítulo 4](#cap-4) explica esse fluxo e a evidência que cada etapa produz. A [Parte II](#cap-5) usa cada skill no exemplo da busca de bancos. O [Apêndice A](#apendice-a) mostra o pacote completo, organizado pelos momentos do trabalho.
 
 ### Instalando
 
@@ -128,6 +128,8 @@ copilot plugin install \
 
 No Copilot CLI, o primeiro comando registra o marketplace, o catálogo de onde o pacote vem; o segundo instala o pacote.
 
+A barra invertida no fim de uma linha só quebra o comando para caber na página. Colado como está, ele funciona no bash e no zsh. No PowerShell do Windows, digite cada comando numa linha só, sem as barras.
+
 A segunda forma usa um programa de linha de comando chamado `skills`, executado com `npx`. Ele exige Node.js 22 ou superior. O comando abaixo instala as quatro skills na pasta pessoal do Claude Code:
 
 ```bash
@@ -138,7 +140,7 @@ npx skills add obra/superpowers -g \
   verification-before-completion
 ```
 
-As barras invertidas no fim das linhas só quebram o comando para caber na página; se preferir digitá-lo numa linha só, apague as barras. As opções fazem o seguinte:
+As barras invertidas seguem a mesma regra de antes. As opções fazem o seguinte:
 
 - `-a` escolhe a CLI. No Copilot CLI, troque `claude-code` por `github-copilot`;
 - `-s` lista as skills que você quer;
@@ -166,7 +168,7 @@ A mesma regra vale para atualizações. Uma skill que era segura na versão que 
 
 > **[Aviso de Erro Comum]** Instalar uma skill de fonte desconhecida sem ler o conteúdo, porque o nome e a descrição pareciam úteis. O sintoma aparece depois: o agente roda comandos ou lê arquivos que você não pediu e que não têm relação com a tarefa. Para evitar, leia a pasta inteira antes de instalar, como faria com o código de outra pessoa antes de aprovar um pull request.
 
-Há um último cuidado, que vale até para skills confiáveis. Uma skill orienta o agente; ela não o obriga. O modelo pode pular um passo, interpretar uma instrução do jeito errado ou não acionar a skill quando deveria. A skill aumenta muito a chance de o processo ser seguido, mas a evidência continua sendo sua responsabilidade. O Capítulo 8 volta a esse limite.
+Há um último cuidado, que vale até para skills confiáveis. Uma skill orienta o agente; ela não o obriga. O modelo pode pular um passo, interpretar uma instrução do jeito errado ou não acionar a skill quando deveria. A skill aumenta muito a chance de o processo ser seguido, mas a evidência continua sendo sua responsabilidade. O [Capítulo 8](#cap-8) volta a esse limite.
 
 ### Resumo
 

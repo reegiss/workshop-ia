@@ -1,22 +1,22 @@
-## Capítulo 5 — Esclarecer
+## Capítulo 5 — Esclarecer {#cap-5}
 
 *Parte II — Na prática*
 
-Este capítulo ensina a conduzir a primeira etapa do fluxo mínimo: transformar um pedido vago numa spec que registra as suas decisões. No fim, a primeira das seis evidências, o requisito esclarecido, está num arquivo versionado do repositório.
+A Parte I explicou as peças; a Parte II as usa no terminal, uma etapa do fluxo mínimo por capítulo. Este capítulo ensina a conduzir a primeira etapa: transformar um pedido vago numa spec que registra as suas decisões. No fim, a primeira das seis evidências, o requisito esclarecido, está num arquivo versionado do repositório.
 
 ### O que esta etapa resolve
 
-A primeira falha do Capítulo 1 foi implementar antes de esclarecer. O pedido deixava lacunas, e o agente as preencheu sem avisar. Buscar só pelo nome, tratar o limite como "menor que": cada lacuna virou uma decisão de negócio tomada por quem não tinha autoridade para tomá-la.
+A primeira falha do [Capítulo 1](#cap-1) foi implementar antes de esclarecer. O pedido deixava lacunas, e o agente as preencheu sem avisar. Buscar só pelo nome, tratar o limite como "menor que": cada lacuna virou uma decisão de negócio tomada por quem não tinha autoridade para tomá-la.
 
 O agente não faz isso por descuido. Ele foi treinado para entregar, e um pedido com lacunas ainda é um pedido que dá para atender. Escolher a interpretação mais provável e seguir em frente é o comportamento padrão. Para o modelo, perguntar parece atraso; para você, é a etapa mais barata do fluxo inteiro.
 
 Esclarecer inverte esse padrão. Antes de qualquer código, cada lacuna vira uma pergunta, cada pergunta recebe uma resposta sua e o conjunto das respostas é gravado numa spec. O que antes era suposição do agente passa a ser decisão sua, com registro.
 
-Duas coisas tornam a spec mais valiosa que a conversa que a produziu. A primeira é a persistência: a conversa some quando a sessão termina, e a spec fica no repositório para qualquer sessão nova, qualquer subagente e qualquer revisor. A segunda é a verificabilidade: uma spec com critérios de aceite concretos é o insumo direto dos testes do Capítulo 7. Sem ela, o teste não tem contra o que ser escrito, e você volta à segunda falha do Capítulo 1.
+Duas coisas tornam a spec mais valiosa que a conversa que a produziu. A primeira é a persistência: a conversa some quando a sessão termina, e a spec fica no repositório para qualquer sessão nova, qualquer subagente e qualquer revisor. A segunda é a verificabilidade: uma spec com critérios de aceite concretos é o insumo direto dos testes do [Capítulo 7](#cap-7). Sem ela, o teste não tem contra o que ser escrito, e você volta à segunda falha do Capítulo 1.
 
 ### Conduzindo o agente
 
-Para acompanhar na prática, crie o projeto do Apêndice D e trabalhe numa branch local. As regras do Capítulo 2 valem para toda a Parte II: nada de `git push`, aprovação comando a comando e nada sensível no contexto.
+Para acompanhar na prática, crie o projeto do [Apêndice D](#apendice-d) e trabalhe numa branch local. As regras do [Capítulo 2](#cap-2) valem para toda a Parte II: nada de `git push`, aprovação comando a comando e nada sensível no contexto.
 
 #### O pedido
 
@@ -31,22 +31,19 @@ Não tente antecipar as respostas no pedido. Um pedido curto deixa as lacunas vi
 > tela de transferência. Filtre pelo termo
 > digitado e ordene pela tarifa do valor
 > informado. Escreva a spec em inglês.
->
-> Agente: O cadastro define
-> FEE_RANGE_LIMIT = 1000. Uma transferência
-> de exatamente R$ 1.000,00 fica na faixa
-> baixa ou na alta?
->
-> Você: Na faixa baixa, inclusive.
->
-> Agente: Quando dois bancos têm a mesma
-> tarifa, qual vem primeiro?
->   A) A ordem do cadastro
->   B) Ordem alfabética pelo nome
->   C) Ordem pelo código do banco
->
-> Você: B, pelo nome.
 > ```
+>
+> **Agente:** O cadastro define `FEE_RANGE_LIMIT = 1000`. Uma transferência de exatamente R$ 1.000,00 fica na faixa baixa ou na alta?
+>
+> **Você:** Na faixa baixa, inclusive.
+>
+> **Agente:** Quando dois bancos têm a mesma tarifa, qual vem primeiro?
+>
+> A) A ordem do cadastro
+> B) Ordem alfabética pelo nome
+> C) Ordem pelo código do banco
+>
+> **Você:** B, pelo nome.
 
 #### O que esperar da skill
 
@@ -62,7 +59,7 @@ O diálogo nunca se repete igual. O seu agente vai perguntar com outras palavras
 
 #### Onde intervir
 
-A skill conduz a conversa, mas quem decide é você. Há quatro pontos em que a sua intervenção muda o resultado.
+A skill conduz a conversa, mas quem decide é você. A divisão é esta: numa decisão técnica, o agente propõe e você pode aceitar a recomendação, se ela vier justificada; numa decisão de negócio, a resposta vem de quem pediu a história, e você a leva para a conversa. Há quatro pontos em que a sua intervenção muda o resultado.
 
 **Responda com decisões de negócio.** "Tanto faz" e "o que você achar melhor" devolvem a decisão ao agente, e é exatamente isso que esta etapa existe para evitar. Se você não sabe a resposta, essa é a descoberta mais útil da sessão: pare e pergunte a quem sabe antes de seguir. Uma spec com "a confirmar" é melhor que uma spec com um chute.
 
@@ -110,7 +107,7 @@ Cada linha é um teste pronto para ser escrito.
 
 > **[Aviso de Erro Comum]** Spec só na conversa. O design foi aprovado, mas o arquivo não foi gravado, ou foi gravado e não commitado. Na próxima sessão, as decisões somem. Só conta como evidência o que está no repositório.
 
-Com a spec aprovada, a skill oferece o próximo passo: `writing-plans`, que transforma a spec num plano. O Capítulo 6 começa daí.
+Com a spec aprovada, a skill oferece o próximo passo: `writing-plans`, que transforma a spec num plano. O [Capítulo 6](#cap-6) começa daí.
 
 ### Resumo
 

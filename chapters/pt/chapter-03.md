@@ -1,6 +1,6 @@
-## Capítulo 2 — Agente = modelo + harness
+## Capítulo 2 — Agente = modelo + harness {#cap-2}
 
-O Capítulo 1 terminou com uma ideia: um agente não é só o modelo que escreve texto, mas também o programa em volta dele. Este capítulo separa essas duas peças e mostra como elas trabalham juntas. O objetivo é que você saiba onde o processo de desenvolvimento verificável pode morar, para que ele não dependa só da sua memória.
+O [Capítulo 1](#cap-1) terminou com uma ideia: um agente não é só o modelo que escreve texto, mas também o programa em volta dele. Este capítulo separa essas duas peças e mostra como elas trabalham juntas. O objetivo é que você saiba onde o processo de desenvolvimento verificável pode morar, para que ele não dependa só da sua memória.
 
 ### O modelo sozinho não age
 
@@ -103,15 +103,17 @@ Cuidado também com o que entra no contexto. Ler arquivos dentro da pasta do pro
 
 ### Prompt, ferramenta e skill
 
-Agora você tem as peças para separar três coisas que costumam ser confundidas:
+Agora você tem as peças para separar três coisas que costumam ser confundidas. Para cada uma, veja o que ela é, onde fica e quanto dura:
 
-- **Prompt:** é o que você pede agora. Vale para aquela conversa e não passa para a próxima. Se amanhã você quiser o mesmo cuidado, precisa pedir de novo, com as mesmas palavras, e torcer para não esquecer nada.
-- **Ferramenta:** é o que o agente consegue fazer. Ler, editar, rodar um comando, consultar um serviço via MCP. Ferramentas dão capacidade, mas não dizem em que ordem trabalhar nem quando parar para perguntar.
-- **Skill:** é como o agente deve fazer. Um processo escrito em arquivo, que entra no contexto quando a tarefa pede. Por ser um arquivo, a skill pode ser versionada no git, revisada num pull request e melhorada com o tempo, como qualquer código.
+- **Prompt:** é o que você pede agora. Fica no contexto da conversa e dura enquanto ela durar; numa conversa longa, pode ser resumido antes disso. Se amanhã você quiser o mesmo cuidado, precisa pedir de novo, com as mesmas palavras, e torcer para não esquecer nada.
+- **Ferramenta:** é o que o agente consegue fazer: ler, editar, rodar um comando, consultar um serviço via MCP. Fica no harness, que a traz pronta ou a recebe de um servidor MCP, e está disponível em toda sessão. Ferramentas dão capacidade, mas não dizem em que ordem trabalhar nem quando parar para perguntar.
+- **Skill:** é como o agente deve fazer: um processo escrito em arquivo, que entra no contexto quando a tarefa pede. Fica numa pasta do projeto ou da CLI e dura até alguém mudar o arquivo. Por ser um arquivo, pode ser versionada no git, revisada num pull request e melhorada com o tempo, como qualquer código.
+
+A diferença que mais importa é a duração: o prompt some com a conversa, e a skill continua lá na próxima.
 
 Volte às três falhas do Capítulo 1. Nenhuma delas era falta de ferramenta: o agente podia ler arquivos e rodar testes. O que faltava era processo. Esclarecer antes de implementar, escrever o teste antes do código e rodar os testes antes de dizer "pronto" são formas de trabalhar, não ações isoladas.
 
-Um prompt até pode pedir tudo isso, mas depende de você lembrar toda vez. A skill é onde o processo do Capítulo 1 pode morar de forma permanente, dentro do harness. O Capítulo 3 mostra como uma skill é escrita e como instalá-la na sua CLI.
+Um prompt até pode pedir tudo isso, mas depende de você lembrar toda vez. A skill é onde o processo do Capítulo 1 pode morar de forma permanente, dentro do harness. Falta ver como é esse arquivo por dentro, como o agente decide carregá-lo e como instalá-lo na sua CLI. É o assunto do [Capítulo 3](#cap-3).
 
 ### Resumo
 

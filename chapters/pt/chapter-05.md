@@ -1,24 +1,22 @@
-## Capítulo 4 — Evidência e Spec-Driven Development
+## Capítulo 4 — Evidência e Spec-Driven Development {#cap-4}
 
-O Capítulo 1 definiu desenvolvimento verificável em uma frase: trabalhar de modo que cada etapa deixe uma evidência que você consegue ver. Este capítulo diz exatamente quais evidências procurar e onde cada uma fica. Depois, apresenta o *Spec-Driven Development* e monta o fluxo que a Parte II vai executar, uma skill por etapa.
+O [Capítulo 1](#cap-1) definiu desenvolvimento verificável em uma frase: trabalhar de modo que cada etapa deixe uma evidência que você consegue ver. Este capítulo diz exatamente quais evidências procurar e onde cada uma fica. Depois, apresenta o *Spec-Driven Development* e monta o fluxo que a [Parte II](#cap-5) vai executar, uma skill por etapa.
 
 ### Seis evidências
 
 O Capítulo 1 dividiu o trabalho em três momentos: antes, durante e depois do código. Cada momento produz duas evidências. São seis no total, e cada uma é algo que você pode abrir, ler ou rodar.
 
-- **Antes do código**
+- **Antes do código:** ficam em arquivos do repositório.
   - *Requisito esclarecido:* um arquivo de spec, escrito depois que você respondeu às dúvidas do agente. No superpowers, ele fica por padrão em `docs/superpowers/specs/`.
   - *Plano revisável:* um arquivo com as tarefas em ordem, cada uma pequena o bastante para ser conferida. No superpowers, ele fica por padrão em `docs/superpowers/plans/`.
-- **Durante**
+- **Durante:** aparecem no terminal.
   - *Teste falhando antes do código:* a saída vermelha do comando de testes. Ela mostra que o teste existe e que o comportamento ainda não existe.
   - *Teste passando depois:* a saída verde do mesmo comando, depois da implementação.
-- **Depois**
+- **Depois:** acontecem na sua máquina, antes do commit.
   - *Diff revisado por você:* a saída de `git diff`, lida antes do commit.
   - *Resultado verificado por você:* o teste rodado por você, no seu terminal, e não pelo agente.
 
-Repare que nenhuma das seis é uma frase do agente. Duas são arquivos que ficam no repositório. Duas são saídas de comando que aparecem no terminal. As duas últimas dependem de você: são o seu olhar sobre o diff e o seu comando de testes.
-
-Repare também no lugar de cada uma. A spec e o plano ficam guardados e podem ser lidos amanhã, por você ou por outra pessoa do time. As saídas vermelha e verde somem quando o terminal rola, a menos que alguém as guarde. O diff e o teste final acontecem na sua máquina, no último minuto antes do commit. Saber onde cada evidência fica é saber onde procurá-la.
+Repare que nenhuma das seis é uma frase do agente. E repare no lugar de cada uma, porque saber onde a evidência fica é saber onde procurá-la. A spec e o plano ficam guardados e podem ser lidos amanhã, por você ou por outra pessoa do time. As saídas vermelha e verde somem quando o terminal rola, a menos que alguém as guarde. O diff e o teste final dependem de você: são o seu olhar e o seu comando, no último minuto antes do commit.
 
 Agora volte às três falhas do Capítulo 1 e veja qual evidência teria barrado cada uma.
 
@@ -66,9 +64,9 @@ Os **critérios de aceite** dizem como saber que o requisito foi cumprido. Cada 
 
 O **fora do escopo** diz o que a história não vai fazer. Por exemplo: não trata isenções nem promoções de tarifa e não altera a tela de confirmação da transferência. Essa parte parece um detalhe, mas evita que o agente "aproveite" para mexer onde ninguém pediu.
 
-Repare que os critérios de aceite são a ponte entre a spec e o teste. É por isso que, no SDD, o teste escrito antes do código não sai do nada: ele sai de um critério que você já aprovou.
+Cada parte tem um papel na etapa seguinte. Os requisitos dizem o que testar. Os critérios de aceite dão os casos de teste prontos, com entrada e resultado. O fora do escopo diz o que nenhuma tarefa e nenhum teste deve tocar. E o objetivo desempata quando uma decisão não está escrita. É por isso que, no SDD, o teste escrito antes do código não sai do nada: ele sai de um critério que você já aprovou.
 
-O Capítulo 5 mostra os critérios de aceite da spec real dessa história, escrita pelo agente a partir das suas respostas. Como todo arquivo do projeto, ela vai estar em inglês.
+O [Capítulo 5](#cap-5) mostra os critérios de aceite da spec real dessa história, escrita pelo agente a partir das suas respostas. Como todo arquivo do projeto, ela vai estar em inglês.
 
 ### Quatro artefatos, uma revisão de cada vez
 
@@ -85,9 +83,14 @@ Pode parecer burocracia. Não é, por causa do custo de corrigir.
 
 Volte à seção "O custo aparece no fim", do Capítulo 1. Um erro descoberto depois do commit custava uma investigação: achar a causa, ajustar o código, corrigir o teste que congelou o erro e conferir se nada mais dependia do comportamento antigo.
 
-O mesmo erro, pego na spec, custa uma frase. Se você lê "valores abaixo de R$ 1.000,00 usam a faixa baixa", troca "abaixo de" por "até, inclusive" e segue em frente. Nenhum código foi escrito, nenhum teste congelou nada.
+O mesmo erro custa menos quanto mais cedo é pego:
 
-Pego no plano, o erro custa um parágrafo. Pego numa tarefa, custa uma tarefa. Quanto mais cedo a revisão, menor o conserto.
+- **Na spec:** uma frase. Se você lê "valores abaixo de R$ 1.000,00 usam a faixa baixa", troca "abaixo de" por "até, inclusive" e segue em frente. Nenhum código foi escrito, nenhum teste congelou nada.
+- **No plano:** um parágrafo.
+- **Numa tarefa:** uma tarefa refeita.
+- **Depois do commit:** uma investigação.
+
+Quanto mais cedo a revisão, menor o conserto.
 
 Há outra vantagem. Revisar quatro artefatos pequenos é mais fácil do que revisar um grande. Ao ler a spec, você só pensa em regras. Ao ler o plano, só em abordagem. Ao ler o diff de uma tarefa, você sabe exatamente o que procurar, porque a spec e o plano já disseram. É o oposto da revisão do Capítulo 1, em que você lia muito código sem saber o que procurar.
 
@@ -99,7 +102,7 @@ O Spec Kit conduz o SDD por comandos digitados na CLI. Cada etapa tem o seu coma
 
 A novidade conceitual está na primeira etapa. O Spec Kit chama os princípios do projeto de *constituição*: um documento com as regras que toda spec do projeto deve respeitar. Por exemplo, "código, comentários e testes são escritos em inglês" ou "toda regra de negócio tem teste antes do código". A spec de cada história muda; a constituição vale para todas.
 
-A ideia vale mesmo fora do Spec Kit. Se o seu projeto tem regras que se repetem em toda história, escrevê-las uma vez, num arquivo que o agente lê, evita repeti-las em cada pedido. A skill `fee-rules` do Capítulo 3 é uma versão pequena dessa ideia.
+A ideia vale mesmo fora do Spec Kit. Se o seu projeto tem regras que se repetem em toda história, escrevê-las uma vez, num arquivo que o agente lê, evita repeti-las em cada pedido. A skill `fee-rules` do [Capítulo 3](#cap-3) é uma versão pequena dessa ideia.
 
 Este livro usa o superpowers, cujas skills você conheceu no Capítulo 3. O método é o mesmo: spec antes do código, uma revisão de cada vez, evidência em cada etapa. Se o seu time já usa o Spec Kit, tudo o que você ler sobre evidência continua valendo.
 
@@ -127,7 +130,7 @@ A skill faz o agente perguntar antes de propor. Uma pergunta por vez, até que a
 - **Skill:** `writing-plans`.
 - **Falha que evita:** o teste escrito depois, porque o plano põe um teste no início de cada tarefa.
 - **Evidência:** plano revisável.
-- **Onde você executa:** Capítulo 6.
+- **Onde você executa:** [Capítulo 6](#cap-6).
 
 A skill transforma a spec aprovada num plano curto, dividido em tarefas pequenas. Cada tarefa diz que arquivo muda, que teste escrever primeiro e que comando roda para conferir. Você lê o plano antes de qualquer código e pode cortar, reordenar ou pedir ajustes.
 
@@ -136,8 +139,8 @@ A skill transforma a spec aprovada num plano curto, dividido em tarefas pequenas
 - **Etapa do SDD:** código.
 - **Skill:** `test-driven-development`.
 - **Falha que evita:** o teste escrito depois, que copia a saída do código.
-- **Evidência:** teste vermelho, depois verde.
-- **Onde você executa:** Capítulo 7.
+- **Evidência:** teste falhando antes do código e teste passando depois.
+- **Onde você executa:** [Capítulo 7](#cap-7).
 
 A skill conduz o ciclo do TDD. O agente escreve o teste a partir de um critério de aceite, roda e mostra a falha. Só então escreve o código mínimo para o teste passar, e roda de novo. Se o teste não falhou primeiro, ele não prova nada.
 
@@ -146,14 +149,14 @@ A skill conduz o ciclo do TDD. O agente escreve o teste a partir de um critério
 - **Etapa do SDD:** verificação contra a spec.
 - **Skill:** `verification-before-completion`.
 - **Falha que evita:** o "pronto" sem evidência.
-- **Evidência:** diff revisado e teste rodado por você.
+- **Evidência:** diff revisado por você e resultado verificado por você.
 - **Onde você executa:** Capítulo 7.
 
 A skill proíbe o agente de dizer "pronto" sem rodar os comandos e mostrar a saída. Ela fecha a parte do agente. A sua parte vem logo depois: ler o diff e rodar os testes você mesmo antes do commit.
 
 Repare na ordem. Cada skill recebe o artefato da anterior: o plano sai da spec, cada teste segue uma tarefa do plano, a verificação confere o código. Pular uma etapa quebra a corrente, e a evidência daquela etapa simplesmente não existe.
 
-> **[Dica Prática]** Nem toda mudança precisa do fluxo completo. Corrigir um erro de digitação numa mensagem ou trocar o nome de uma variável não pede spec nem plano. Use o fluxo onde há dúvida sobre a regra ou risco de erro caro, como numa tarifa. O Capítulo 8 volta a essa decisão.
+> **[Dica Prática]** Nem toda mudança precisa do fluxo completo. Corrigir um erro de digitação numa mensagem ou trocar o nome de uma variável não pede spec nem plano. Use o fluxo onde há dúvida sobre a regra ou risco de erro caro, como numa tarifa. O [Capítulo 8](#cap-8) volta a essa decisão.
 
 ### Antes de começar a Parte II
 
@@ -164,7 +167,7 @@ A Parte II segue a história do Banco Azul do pedido vago até o teste verde, um
 - Node.js em versão LTS;
 - git, com um repositório local onde você possa criar uma branch.
 
-Antes do Capítulo 5, prepare o projeto exemplo com os passos do Apêndice D. No Capítulo 5, você faz o mesmo pedido curto do Capítulo 1, mas desta vez com a skill `brainstorming` no caminho. A diferença aparece logo na primeira resposta do agente: em vez de código, uma pergunta.
+Antes do Capítulo 5, prepare o projeto exemplo com os passos do [Apêndice D](#apendice-d). No Capítulo 5, você faz o mesmo pedido curto do Capítulo 1, mas desta vez com a skill `brainstorming` no caminho. A diferença aparece logo na primeira resposta do agente: em vez de código, uma pergunta.
 
 ### Resumo
 
