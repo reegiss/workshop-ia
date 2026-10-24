@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2560" viewBox="0 0 1600 2560">
+  <!-- Background -->
+  <rect width="1600" height="2560" fill="#1a1a2e"/>
+
+  <!-- Accent bar -->
+  <rect x="0" y="0" width="12" height="2560" fill="#e94560"/>
+
+  <!-- Decorative geometric shape -->
+  <polygon points="800,320 1560,900 1560,320" fill="#16213e" opacity="0.8"/>
+  <polygon points="0,1800 800,1300 0,1300" fill="#16213e" opacity="0.6"/>
+
+  <!-- Title -->
+  <text
+    x="120"
+    y="560"
+    font-family="Georgia, serif"
+    font-size="108"
+    font-weight="bold"
+    fill="#ffffff"
+    xml:space="preserve">{{BOOK_TITLE_EN}}</text>
+
+  <!-- Subtitle -->
+  <text
+    x="120"
+    y="680"
+    font-family="Georgia, serif"
+    font-size="52"
+    fill="#a0aec0"
+    xml:space="preserve">{{BOOK_SUBTITLE_EN}}</text>
+
+  <!-- Divider -->
+  <rect x="120" y="730" width="200" height="4" fill="#e94560"/>
+
+  <!-- Author -->
+  <text
+    x="120"
+    y="2440"
+    font-family="Georgia, serif"
+    font-size="52"
+    fill="#a0aec0"
+    xml:space="preserve">{{AUTHOR_NAME}}</text>
+</svg>

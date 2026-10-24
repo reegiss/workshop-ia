@@ -1,0 +1,12 @@
+title: "{{BOOK_TITLE_EN}}"
+subtitle: "{{BOOK_SUBTITLE_EN}}"
+author: "{{AUTHOR_NAME}}"
+date: "{{YEAR}}"
+lang: "en-US"
+publisher: "{{AUTHOR_NAME}}"
+rights: "© {{YEAR}} {{AUTHOR_NAME}}. All rights reserved."
+isbn: "[ISBN]"
+subject: "COM051300"
+description: |
+  [Write a 150–200 word paragraph describing the content,
+  target audience, and what sets this book apart.]
