@@ -1,3 +1,41 @@
+## Apêndice A — Mapa das skills
+
+O superpowers muda com o tempo: skills entram, saem e mudam de nome, então confira a lista na sua CLI antes de chamar qualquer uma. As quatro marcadas como fluxo mínimo são as que o livro usa do Capítulo 4 ao 7; as marcadas com o Capítulo 8 aparecem na escala e na entrega.
+
+### Pensar antes de codar
+
+- `brainstorming` (fluxo mínimo) — antes de qualquer trabalho novo: faz perguntas, propõe abordagens e termina num design aprovado, gravado como spec.
+- `writing-plans` (fluxo mínimo) — quando há uma spec e ainda nenhum código; divide o trabalho em tarefas pequenas.
+- `executing-plans` (Capítulo 8) — para executar o plano na própria sessão, sem subagentes.
+
+### Qualidade e disciplina
+
+- `test-driven-development` (fluxo mínimo) — antes de escrever código de implementação: o teste vem primeiro e precisa falhar.
+- `systematic-debugging` — diante de um bug, um teste falhando ou um comportamento inesperado, antes de propor qualquer correção.
+- `verification-before-completion` (fluxo mínimo) — antes de dizer que algo está pronto, corrigido ou passando: exige rodar a verificação e conferir a saída.
+
+### Escala com agentes
+
+- `subagent-driven-development` (Capítulo 8) — quando o plano tem tarefas independentes; um subagente por tarefa.
+- `dispatching-parallel-agents` — quando há duas ou mais tarefas sem estado compartilhado nem dependência entre elas.
+- `using-git-worktrees` (Capítulo 8) — para isolar o trabalho num worktree antes de executar um plano.
+
+### Revisão e entrega
+
+- `requesting-code-review` (Capítulo 8) — ao concluir tarefas ou antes do merge.
+- `receiving-code-review` — ao receber o feedback de uma revisão, antes de aplicá-lo: conferir cada ponto tecnicamente, sem concordar por reflexo.
+- `finishing-a-development-branch` (Capítulo 8) — com todos os testes verdes, para decidir como integrar a branch.
+
+### Skills sobre as skills
+
+Três skills do pacote não tratam do código, e sim do próprio uso de skills:
+
+- `using-superpowers` — carregada no início da sessão; faz o agente procurar a skill certa e usá-la antes de responder.
+- `writing-skills` — para criar, editar ou testar skills, como a `fee-rules` do Capítulo 3.
+- `diagnosing-superpowers` — para entender por que uma sessão deu errado, como uma skill que não foi acionada ou um trabalho feito duas vezes.
+
+Fora do superpowers, existem catálogos públicos de skills para outros assuntos. Antes de instalar qualquer uma, vale a regra do Capítulo 3: leia o `SKILL.md` e os scripts da pasta, como faria com um pull request.
+
 ## Apêndice B — Glossário
 
 **Agente** — Programa que usa um modelo de linguagem para decidir e executar ações, como ler arquivos e rodar comandos. Neste livro, um agente é sempre a soma de um modelo com um harness.
@@ -55,6 +93,80 @@
 **Vermelho/verde** — Os dois estados de um teste no ciclo do TDD: vermelho quando falha e verde quando passa. Ver o vermelho antes do verde é a evidência de que o teste realmente verifica algo.
 
 **Worktree** — Cópia de trabalho adicional de um repositório git, ligada a outra branch, numa pasta separada. Permite que um agente trabalhe isolado sem mexer na pasta principal.
+
+## Apêndice C — Equivalências entre as CLIs
+
+Este apêndice reúne, para consulta rápida, os comandos e as pastas que o Capítulo 3 e o Capítulo 5 apresentam. Em cada bloco, a primeira forma é a do Claude Code e a segunda, a do Copilot CLI.
+
+### Instalar o pacote como plugin
+
+*Claude Code* (dentro da sessão):
+
+```text
+/plugin install superpowers@claude-plugins-official
+```
+
+*Copilot CLI* (no terminal):
+
+```bash
+copilot plugin marketplace add \
+  obra/superpowers-marketplace
+copilot plugin install \
+  superpowers@superpowers-marketplace
+```
+
+### Instalar só algumas skills
+
+O comando é o mesmo nas duas CLIs e exige Node.js 22 ou superior. Muda só o valor de `-a`:
+
+- *Claude Code*: `-a claude-code`;
+- *Copilot CLI*: `-a github-copilot`.
+
+Com as quatro skills do fluxo mínimo, na pasta pessoal do Claude Code:
+
+```bash
+npx skills add obra/superpowers -g \
+  -a claude-code \
+  -s brainstorming writing-plans \
+  test-driven-development \
+  verification-before-completion
+```
+
+Sem `-g`, as skills vão para a pasta do projeto em que você está.
+
+### Pastas de skills
+
+*Claude Code*
+
+- projeto: `.claude/skills/`;
+- pessoal: `~/.claude/skills/`.
+
+*Copilot CLI*
+
+- projeto: `.github/skills/`, `.claude/skills/` ou `.agents/skills/`;
+- pessoal: `~/.copilot/skills/` ou `~/.agents/skills/`.
+
+A pasta `.claude/skills/` do projeto serve às duas CLIs. Num time que usa ambas, é o lugar das skills do projeto.
+
+### Conferir as skills instaladas
+
+- *Claude Code*: digite `/` na sessão e procure a skill na lista.
+- *Copilot CLI*: digite `/skills list` na sessão.
+
+Se uma skill recém-instalada não aparecer, feche a sessão e abra outra.
+
+### Chamar uma skill
+
+Nas duas CLIs, digite uma barra, o nome da skill e, em seguida, o pedido:
+
+```text
+/brainstorming Crie a busca de bancos para a
+tela de transferência.
+```
+
+Quando o superpowers foi instalado como plugin, a skill pode aparecer com o nome do pacote na frente, como `/superpowers:brainstorming`. É a mesma skill; use o nome que a sua CLI listar.
+
+> **[Nota]** Os comandos deste apêndice foram conferidos em outubro de 2026. As CLIs mudam com frequência; se algum comando não funcionar, confira a documentação da versão que você usa.
 
 ## Apêndice D — Projeto do exemplo
 
