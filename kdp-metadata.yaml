@@ -5,8 +5,25 @@ date: "2026"
 lang: "pt-BR"
 publisher: "Regis Araujo Melo"
 rights: "© 2026 Regis Araujo Melo. Todos os direitos reservados."
-isbn: "[ISBN]"
-subject: "COM051300"
+subject:
+  - "COM051330 Computers / Software Development & Engineering / Quality Assurance & Testing"
+  - "COM004000 Computers / Artificial Intelligence / General"
+  - "COM051230 Computers / Software Development & Engineering / General"
 description: |
-  [Escreva aqui um parágrafo de 150–200 palavras descrevendo o conteúdo,
-  o público-alvo e o diferencial do livro.]
+  Gerar código ficou barato. Saber se ele está certo, não. Agentes de
+  código preenchem lacunas do requisito em silêncio, escrevem testes que
+  espelham o próprio erro, degradam o contexto em sessões longas,
+  inventam APIs e declaram "pronto" sem ter rodado nada. Este livro trata
+  o agente como falho por construção e mostra como construir barreiras de
+  verificação que não dependem da palavra dele. Você vai aplicar
+  zero-trust ao desenvolvimento com IA e reconhecer padrões de engenharia
+  como elicitação guiada de requisitos, decomposição verificável, prova
+  por falha, verificação independente e delegação com contexto limpo.
+  Vai praticar Spec-Driven Development com critérios rastreáveis até os
+  testes, separar testes que protegem de testes tautológicos com testes
+  de mutação, proteger código legado com testes de caracterização e
+  transformar cada evidência em gate de CI/CD. Escrito para engenheiros
+  plenos e seniores, tech leads e arquitetos, com um único caso real de
+  serviço legado, contrato de interface e microsserviço com cache. O
+  método é agnóstico de ferramenta: GitHub Copilot CLI e Claude Code são
+  apenas veículos.
